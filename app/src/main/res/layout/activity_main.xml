@@ -5,7 +5,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="luyuan.tech.com.chaoke.MainActivity">
+   <FrameLayout
+       android:id="@+id/fl_container"
+       android:layout_above="@id/ll_bottom"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"></FrameLayout>
 
+   <LinearLayout
+       android:id="@+id/ll_bottom"
+       android:elevation="3dp"
+       android:translationZ="3dp"
+       android:paddingTop="3dp"
+       android:paddingBottom="3dp"
+       android:layout_alignParentBottom="true"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+      <LinearLayout
+          android:id="@+id/ll0"
+          android:gravity="center"
+          android:orientation="vertical"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="40dp">
+         <ImageView
+             android:id="@+id/iv0"
+             android:src="@drawable/selector_home"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+         <TextView
+             android:id="@+id/tv0"
+             android:layout_marginTop="3dp"
+             android:text="首页"
+             android:textColor="@drawable/selector_tc_home"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+      </LinearLayout>
 
+      <LinearLayout
+          android:id="@+id/ll1"
+          android:gravity="center"
+          android:orientation="vertical"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="40dp">
+         <ImageView
+             android:id="@+id/iv1"
+             android:src="@drawable/selector_tel"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+         <TextView
+             android:id="@+id/tv1"
+             android:layout_marginTop="3dp"
+             android:text="通话记录"
+             android:textColor="@drawable/selector_tc_home"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/ll2"
+          android:gravity="center"
+          android:orientation="vertical"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="40dp">
+         <ImageView
+             android:id="@+id/iv2"
+             android:src="@drawable/selector_message"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+         <TextView
+             android:id="@+id/tv2"
+             android:layout_marginTop="3dp"
+             android:text="消息"
+             android:textColor="@drawable/selector_tc_home"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/ll3"
+          android:gravity="center"
+          android:orientation="vertical"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="40dp">
+         <ImageView
+             android:id="@+id/iv3"
+             android:src="@drawable/selector_mine"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+         <TextView
+             android:id="@+id/tv3"
+             android:layout_marginTop="3dp"
+             android:text="我的"
+             android:textColor="@drawable/selector_tc_home"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+      </LinearLayout>
+
+   </LinearLayout>
 
 </RelativeLayout>
