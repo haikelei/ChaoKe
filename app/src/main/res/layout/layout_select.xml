@@ -19,4 +19,16 @@
         android:layout_toRightOf="@id/tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <TextView
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:drawableRight="@mipmap/arrow_gray_right"
+        android:id="@+id/tv"
+        android:textColor="#000000"
+        android:drawablePadding="3dp"
+        android:textSize="15sp"
+        android:gravity="right|center"
+        android:layout_toRightOf="@id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

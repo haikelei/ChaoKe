@@ -25,7 +25,8 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
-    <luyuan.tech.com.chaoke.widget.InputLayout
+    <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_unity_name"
         app:mTitle="小区名称"
         app:mHint="输入小区名称"
         android:paddingLeft="15dp"
@@ -34,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_unity_address"
         android:layout_marginTop="1dp"
         app:mTitle="具体地址"
         app:mHint="输入具体地址"
@@ -43,16 +45,55 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_house_from"
         android:layout_marginTop="1dp"
         app:mTitle="房源来源"
-        app:mContent="选择房源来源"
+        app:mHint="选择房源来源"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_house_state"
+        android:layout_marginTop="1dp"
+        app:mTitle="房源状态"
+        app:mHint="选择房源状态"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 
+    <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_host_name"
+        android:layout_marginTop="20dp"
+        app:mTitle="姓名"
+        app:mHint="输入房东姓名"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_host_tel"
+        android:layout_marginTop="1dp"
+        app:mTitle="手机"
+        app:mHint="输入房东手机号码"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 
-
-
+    <Button
+        android:id="@+id/btn_next"
+        android:textSize="18sp"
+        android:text="下一步"
+        android:textColor="#ffffff"
+        android:background="@drawable/shape_r6_60d1c8"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="240dp"
+        android:layout_height="50dp" />
 </LinearLayout>

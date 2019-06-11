@@ -27,6 +27,8 @@ public class SelectLayout extends RelativeLayout {
     TextView tvTitle;
     @BindView(R.id.tv_content)
     TextView tvContent;
+    @BindView(R.id.tv)
+    TextView tv;
 
     public SelectLayout(Context context) {
         super(context);
@@ -59,7 +61,13 @@ public class SelectLayout extends RelativeLayout {
         }
     }
 
-    public String getText() {
-        return tvContent.getText().toString().trim();
+    public void setText(String s){
+        tvContent.setVisibility(GONE);
+        tv.setVisibility(VISIBLE);
+        tv.setText(s);
+    }
+
+    public String getText(){
+        return tv.getText().toString().trim();
     }
 }
