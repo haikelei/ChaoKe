@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InputLayout">
+        <attr name="mTitle" format="string"/>
+        <attr name="mHint" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="SelectLayout">
+        <attr name="mContent" format="string"/>
+    </declare-styleable>
+</resources>

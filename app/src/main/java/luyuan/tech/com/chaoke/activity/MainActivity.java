@@ -1,9 +1,10 @@
-package luyuan.tech.com.chaoke;
+package luyuan.tech.com.chaoke.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,8 +15,14 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.fragment.HomeFragment;
+import luyuan.tech.com.chaoke.fragment.MessageFragment;
+import luyuan.tech.com.chaoke.fragment.MineFragment;
+import luyuan.tech.com.chaoke.fragment.TelFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
 
     @BindView(R.id.ll0)

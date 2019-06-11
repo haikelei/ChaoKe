@@ -1,4 +1,4 @@
-package luyuan.tech.com.chaoke;
+package luyuan.tech.com.chaoke.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import luyuan.tech.com.chaoke.R;
+
 /**
  * @author: lujialei
  * @date: 2019/6/10
@@ -15,11 +17,11 @@ import android.view.ViewGroup;
  */
 
 
-public class MineFragment extends Fragment {
+public class LineFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_mine, container, false);
+        return inflater.inflate(R.layout.fragment_message, container, false);
     }
 
 }
