@@ -27,6 +27,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.activity.AddHouseActivity;
+import luyuan.tech.com.chaoke.activity.ClientTaskActivity;
+import luyuan.tech.com.chaoke.activity.HouseTaskActivity;
+import luyuan.tech.com.chaoke.activity.ShouFangShenPiActivity;
 import luyuan.tech.com.chaoke.adapter.LinePagerAdapter;
 
 /**
@@ -100,4 +103,36 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @OnClick({R.id.ll_kerenwu, R.id.ll_fangrenwu, R.id.ll_shoufangshenpi, R.id.ll_tongxunlu, R.id.ll_ziyingfangyuan, R.id.ll_zuqiankehu, R.id.ll_kaifafangyuan, R.id.ll_chuzuhetong, R.id.ll_weituohetong, R.id.ll_hetongtiaokua, R.id.ll_chufangjiaoge, R.id.ll_shoufangjiaoge})
+    public void onViewClicke(View view) {
+        switch (view.getId()) {
+            case R.id.ll_kerenwu:
+                startActivity(new Intent(getContext(), ClientTaskActivity.class));
+                break;
+            case R.id.ll_fangrenwu:
+                startActivity(new Intent(getContext(), HouseTaskActivity.class));
+                break;
+            case R.id.ll_shoufangshenpi:
+                startActivity(new Intent(getContext(), ShouFangShenPiActivity.class));
+                break;
+            case R.id.ll_tongxunlu:
+                break;
+            case R.id.ll_ziyingfangyuan:
+                break;
+            case R.id.ll_zuqiankehu:
+                break;
+            case R.id.ll_kaifafangyuan:
+                break;
+            case R.id.ll_chuzuhetong:
+                break;
+            case R.id.ll_weituohetong:
+                break;
+            case R.id.ll_hetongtiaokua:
+                break;
+            case R.id.ll_chufangjiaoge:
+                break;
+            case R.id.ll_shoufangjiaoge:
+                break;
+        }
+    }
 }
