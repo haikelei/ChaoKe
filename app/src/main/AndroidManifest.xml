@@ -24,7 +24,7 @@
         <activity android:name=".activity.AddHouseOtherInfoActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.HouseTaskActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ClientTaskActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.WeiTuoHeTongActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.HeTongTiaoKuanActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

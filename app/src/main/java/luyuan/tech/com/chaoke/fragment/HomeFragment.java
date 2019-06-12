@@ -28,6 +28,7 @@ import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.activity.AddHouseActivity;
 import luyuan.tech.com.chaoke.activity.ClientTaskActivity;
+import luyuan.tech.com.chaoke.activity.HeTongTiaoKuanActivity;
 import luyuan.tech.com.chaoke.activity.HouseTaskActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangShenPiActivity;
 import luyuan.tech.com.chaoke.activity.WeiTuoHeTongActivity;
@@ -130,6 +131,7 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), WeiTuoHeTongActivity.class));
                 break;
             case R.id.ll_hetongtiaokua:
+                startActivity(new Intent(getContext(), HeTongTiaoKuanActivity.class));
                 break;
             case R.id.ll_chufangjiaoge:
                 break;
