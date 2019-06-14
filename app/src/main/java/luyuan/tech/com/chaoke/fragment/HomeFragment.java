@@ -32,6 +32,7 @@ import luyuan.tech.com.chaoke.activity.HeTongTiaoKuanActivity;
 import luyuan.tech.com.chaoke.activity.HouseTaskActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangShenPiActivity;
 import luyuan.tech.com.chaoke.activity.WeiTuoHeTongActivity;
+import luyuan.tech.com.chaoke.activity.ZiYingFangYuanActivity;
 import luyuan.tech.com.chaoke.adapter.LinePagerAdapter;
 
 /**
@@ -120,6 +121,7 @@ public class HomeFragment extends Fragment {
             case R.id.ll_tongxunlu:
                 break;
             case R.id.ll_ziyingfangyuan:
+                startActivity(new Intent(getContext(), ZiYingFangYuanActivity.class));
                 break;
             case R.id.ll_zuqiankehu:
                 break;

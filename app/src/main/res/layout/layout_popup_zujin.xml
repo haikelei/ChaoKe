@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:text="不限" />
+    <View
+        android:background="#898989"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:text="1500元以下" />
+    <View
+        android:background="#898989"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:text="1500-2000元" />
+    <View
+        android:background="#898989"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:text="2000-2500元" />
+    <View
+        android:background="#898989"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:text="2500-4000元" />
+    <View
+        android:background="#898989"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:text="4000元以上" />
+    <View
+        android:background="#898989"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:gravity="center"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <EditText
+            android:textSize="11sp"
+            android:gravity="center"
+            android:hint="最低低价"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/et_from"
+            android:background="@drawable/shape_f0eef2_r10"
+            android:layout_centerVertical="true"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/_000000"
+            android:layout_width="10dp"
+            android:layout_height="1dp"/>
+
+        <EditText
+            android:textSize="11sp"
+            android:gravity="center"
+            android:hint="最高价格"
+            android:layout_toRightOf="@id/et_from"
+            android:id="@+id/et_to"
+            android:background="@drawable/shape_f0eef2_r10"
+            android:layout_centerVertical="true"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+        <Button
+            android:layout_marginLeft="20dp"
+            android:textSize="11sp"
+            android:textColor="#ffffff"
+            android:text="确定"
+            android:background="#60d1c8"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+</LinearLayout>
