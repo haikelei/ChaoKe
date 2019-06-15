@@ -1,14 +1,20 @@
 package luyuan.tech.com.chaoke.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.zhouyou.http.EasyHttp;
+import com.zhouyou.http.callback.SimpleCallBack;
+import com.zhouyou.http.exception.ApiException;
 
 import java.util.ArrayList;
 
@@ -21,6 +27,8 @@ import luyuan.tech.com.chaoke.fragment.HomeFragment;
 import luyuan.tech.com.chaoke.fragment.MessageFragment;
 import luyuan.tech.com.chaoke.fragment.MineFragment;
 import luyuan.tech.com.chaoke.fragment.TelFragment;
+import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 
 public class MainActivity extends BaseActivity {
 
@@ -75,6 +83,11 @@ public class MainActivity extends BaseActivity {
                 .add(R.id.fl_container,f3)
                 .commit();
         ll0.performClick();
+        loadData();
+    }
+
+    private void loadData() {
+        startActivity(new Intent(getBaseContext(),LoginActivity.class));
     }
 
     @OnClick({R.id.ll0, R.id.ll1, R.id.ll2, R.id.ll3})

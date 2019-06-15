@@ -38,4 +38,5 @@ dependencies {
     implementation 'cn.aigestudio.datepicker:DatePicker:2.2.0'
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     implementation 'com.github.razerdp:BasePopup:2.2.0'
+    implementation 'com.zhouyou:rxeasyhttp:2.1.5'
 }

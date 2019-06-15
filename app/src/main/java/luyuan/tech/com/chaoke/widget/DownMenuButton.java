@@ -60,6 +60,16 @@ public class DownMenuButton extends LinearLayout {
         if (!TextUtils.isEmpty(text)){
             tv.setText(text);
         }
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checked = !checked;
+                updateUI();
+                if (mOnCheckedChangeListener!=null){
+                    mOnCheckedChangeListener.onCheckedChage(view,checked);
+                }
+            }
+        });
     }
 
     private void updateUI() {
@@ -75,6 +85,14 @@ public class DownMenuButton extends LinearLayout {
     public void setChecked(boolean b) {
         this.checked = b;
         updateUI();
+    }
+
+    public interface OnCheckedChangeListener{
+        void onCheckedChage(View view,boolean checked);
+    }
+    private OnCheckedChangeListener mOnCheckedChangeListener;
+    public void setOnCheckedChangeListener(OnCheckedChangeListener mOnCheckedChangeListener){
+        this.mOnCheckedChangeListener = mOnCheckedChangeListener;
     }
 
 }
