@@ -13,7 +13,7 @@ public class CustomApiResult<T> extends ApiResult<T> {
 
    @Override
     public boolean isOk() {
-        return getCode()==0;//如果不是0表示成功，请重写isOk()方法。
+        return getCode()==1;//如果不是0表示成功，请重写isOk()方法。
     }
 
     @Override

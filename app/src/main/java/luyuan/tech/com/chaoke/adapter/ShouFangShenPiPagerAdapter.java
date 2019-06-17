@@ -26,9 +26,9 @@ public class ShouFangShenPiPagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         fragments = new ArrayList<>();
         titles = new ArrayList<>();
-        fragments.add(new ShouFangDaiChuShenFragment());
-        fragments.add(new ShouFangDaiChuShenFragment());
-        fragments.add(new ShouFangDaiChuShenFragment());
+        fragments.add(ShouFangDaiChuShenFragment.newInstance(1));
+        fragments.add(ShouFangDaiChuShenFragment.newInstance(2));
+        fragments.add(ShouFangDaiChuShenFragment.newInstance(3));
         titles.add("待初审");
         titles.add("待复审");
         titles.add("审核通过");

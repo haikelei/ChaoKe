@@ -27,9 +27,31 @@ public class HttpManager {
     }
 
 
+
+
     /**
      * 登录
      */
     public static final String LOGIN = "/api/login/login";
+
+    /**
+     * 收房审批
+     */
+    public static final String SHOUFANGSHENPI = "/api/agent/collect_check";
+
+    /**
+     * 小区名称
+     */
+    public static final String XIAOQUMINGCHENG = "/api/agent/neighbour";
+
+    /**
+     * 发布房源第一步
+     */
+    public static final String FABUONE = "/api/agent/release_first";
+
+    /**
+     * 发布房源第二步
+     */
+    public static final String FABUTWO = "/api/agent/release_second";
 
 }

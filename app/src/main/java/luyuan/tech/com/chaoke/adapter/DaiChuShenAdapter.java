@@ -1,6 +1,7 @@
 package luyuan.tech.com.chaoke.adapter;
 
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -17,13 +18,16 @@ import luyuan.tech.com.chaoke.bean.ShouFangShenPiBean;
  */
 
 
-public class DaiGenJinAdapter extends BaseQuickAdapter<ShouFangShenPiBean.DataBean,BaseViewHolder> {
-    public DaiGenJinAdapter(@Nullable List<ShouFangShenPiBean.DataBean> data) {
-        super(R.layout.layout_daigenjin_item,data);
+public class DaiChuShenAdapter extends BaseQuickAdapter<ShouFangShenPiBean.DataBean,BaseViewHolder> {
+    public DaiChuShenAdapter(@Nullable List<ShouFangShenPiBean.DataBean> data) {
+        super(R.layout.layout_daichushen_item,data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, ShouFangShenPiBean.DataBean item) {
-
+        TextView tvTitle = helper.getView(R.id.tv_title);
+        TextView tvOther = helper.getView(R.id.tv_other);
+        tvTitle.setText(item.getRoom_name());
+        tvOther.setText(item.getCreatetime());
     }
 }

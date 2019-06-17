@@ -2,7 +2,6 @@ package luyuan.tech.com.chaoke.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,9 +12,6 @@ import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.widget.DownMenuButton;
-import luyuan.tech.com.chaoke.widget.QuYuPopup;
-import luyuan.tech.com.chaoke.widget.ZuJinPopup;
-import razerdp.basepopup.BasePopupWindow;
 
 /**
  * @author: lujialei

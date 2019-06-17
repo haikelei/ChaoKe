@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.flyco.tablayout.SlidingTabLayout;
@@ -35,9 +36,20 @@ public class ShouFangShenPiActivity extends BaseActivity {
         setContentView(R.layout.activity_shou_fang_shen_pi);
         ButterKnife.bind(this);
         initView();
+        initListener();
+    }
+
+    private void initListener() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void initView() {
+        viewPager.setOffscreenPageLimit(5);
         viewPager.setAdapter(new ShouFangShenPiPagerAdapter(getSupportFragmentManager()));
         tabLayout.setViewPager(viewPager);
     }

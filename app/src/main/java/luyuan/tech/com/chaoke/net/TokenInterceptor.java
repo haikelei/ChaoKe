@@ -37,7 +37,6 @@ public class TokenInterceptor extends BaseExpiredInterceptor {
         try {
             switch (apiResult.getCode()) {
                 case Code.TOKEN_INVAILD: //AccessToken错误或已过期
-//                    SettingManager.getInstance().setToken("");
                     App.getAppContext().startActivity(new Intent(App.getAppContext(), LoginActivity.class));
                     Response response = chain.proceed(chain.request());
                     return response;

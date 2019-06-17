@@ -43,11 +43,11 @@ public class DaiGenJinFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        ArrayList list = new ArrayList();
-        for (int i = 0; i < 5; i++) {
-            list.add(1);
-        }
-        recycler.setAdapter(new DaiGenJinAdapter(list));
+//        ArrayList list = new ArrayList();
+//        for (int i = 0; i < 5; i++) {
+//            list.add(1);
+//        }
+//        recycler.setAdapter(new DaiGenJinAdapter(list));
     }
 
     @Override

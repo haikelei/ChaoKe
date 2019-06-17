@@ -3,11 +3,18 @@ package luyuan.tech.com.chaoke.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.zhouyou.http.callback.SimpleCallBack;
+import com.zhouyou.http.exception.ApiException;
+import com.zhouyou.http.request.PostRequest;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,9 +22,18 @@ import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ItemBean;
+import luyuan.tech.com.chaoke.bean.LoginBean;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
+import luyuan.tech.com.chaoke.bean.XiaoQuBean;
+import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
+import luyuan.tech.com.chaoke.utils.T;
+import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
 import luyuan.tech.com.chaoke.widget.SelectDialogFragment;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
+
+import static com.zhouyou.http.EasyHttp.getContext;
 
 /**
  * @author: lujialei
@@ -43,6 +59,8 @@ public class AddHouseActivity extends BaseActivity {
     InputLayout inputHostTel;
     @BindView(R.id.btn_next)
     Button btnNext;
+    private String houseId;
+    private HashMap<String,String> xiaoquMap = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +76,31 @@ public class AddHouseActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.sl_unity_name:
+                HttpManager.post(HttpManager.XIAOQUMINGCHENG)
+                        .params("token",UserInfoUtils.getInstance().getToken())
+                        .execute(new SimpleCallBack<List<XiaoQuBean>>() {
+
+                            @Override
+                            public void onError(ApiException e) {
+                                T.showShort(getContext(),e.getMessage());
+                            }
+
+                            @Override
+                            public void onSuccess(List<XiaoQuBean> list) {
+                                if (list==null||list.size()==0){
+                                    T.showShort(getContext(),"暂无小区数据");
+                                    return;
+                                }
+                                String[] arr = new String[list.size()];
+                                xiaoquMap.clear();
+                                for (int i = 0; i < list.size(); i++) {
+                                    XiaoQuBean bean =  list.get(i);
+                                    arr[i] = bean.getReside_name();
+                                    xiaoquMap.put(bean.getReside_name(),String.valueOf(bean.getId()));
+                                }
+                                createDialog(arr,slUnityName);
+                            }
+                        });
                 break;
             case R.id.sl_house_from:
                 String[] arr = {"中介合作","转介绍","老客户","网络端口","地推","房东上门","名单获取","销冠","其他"};
@@ -68,10 +111,41 @@ public class AddHouseActivity extends BaseActivity {
                 createDialog(arr1,slHouseState);
                 break;
             case R.id.btn_next:
-                startActivity(new Intent(getBaseContext(),AddHouseOtherInfoActivity.class));
-                onBackPressed();
+                loadData();
                 break;
         }
+    }
+
+    private void loadData() {
+        PostRequest postRequest = HttpManager.post(HttpManager.FABUONE)
+                .params("token",UserInfoUtils.getInstance().getToken())
+                .params("rid",xiaoquMap.get(slUnityName.getText().toString()))
+                .params("address",inputUnityAddress.getText().toString().trim())
+                .params("source",slHouseFrom.getText().toString())
+                .params("rent_state",slHouseState.getText().toString())
+                .params("landlady_name",inputHostName.getText().toString().trim())
+                .params("landlady_phone",inputHostTel.getText().toString().trim());
+        if (!TextUtils.isEmpty(houseId)){
+            postRequest.params("first_id",houseId);
+        }
+        postRequest.execute(new SimpleCallBack<String>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getContext(),e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(String s) {
+                        if (NetParser.isOk(s)){
+                            StringDataResponse response = NetParser.parse(s,StringDataResponse.class);
+                            houseId = response.getData();
+                            Intent intent = new Intent(getBaseContext(),AddHouseOtherInfoActivity.class);
+                            intent.putExtra("id",houseId);
+                            startActivityForResult(intent,199);
+                        }
+                    }
+                });
     }
 
     private void createDialog(String[] arr, final SelectLayout sl) {
@@ -90,5 +164,15 @@ public class AddHouseActivity extends BaseActivity {
                 sl.setText(s);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==199){
+            if (resultCode==RESULT_OK){
+                finish();
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ public class NetParser {
 
     public static boolean isOk(String s){
         CustomApiResult customApiResult = gson.fromJson(s,CustomApiResult.class);
-        if (customApiResult.getCode()==0){
+        if (customApiResult.getCode()==1){
             return  true;
         }
         return false;
