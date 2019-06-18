@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -40,6 +41,12 @@ public class WeiTuoHeTongActivity extends BaseActivity {
         setContentView(R.layout.activity_wei_tuo_he_tong);
         ButterKnife.bind(this);
         initView();
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void initView() {

@@ -8,5 +8,5 @@ package luyuan.tech.com.chaoke.net;
 
 
 public class Code {
-    public static final int TOKEN_INVAILD = 500;
+    public static final int TOKEN_INVAILD = 10;
 }

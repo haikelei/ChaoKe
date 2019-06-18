@@ -1,0 +1,9 @@
+curl -F "file=@/Users/gary/MainProject/androidStuiodProjects/ChaoKe/app/build/outputs/apk/debug/app-debug.apk" \
+                                                                                                                  -F "uKey=ac666c4bc4a9e7433f406deddd551272" \
+                                                                                                                  -F "_api_key=2bb984203e828f44fd005f52d71af506" \
+                                                                                                                  https://www.pgyer.com/apiv1/app/upload
+
+
+
+
+             hhttps://www.pgyer.com/FekW

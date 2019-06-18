@@ -54,4 +54,22 @@ public class HttpManager {
      */
     public static final String FABUTWO = "/api/agent/release_second";
 
+    /**
+     * 房源列表
+     */
+    public static final String HOUSE_LIST = "/api/agent/house_list";
+
+
+    /**
+     * 房任务
+     */
+    public static final String HOUSE_TASK = "/api/agent/house_task";
+
+    /**
+     * 客任务
+     */
+    public static final String CLIENT_TASK = "/api/agent/tenant_task";
+
+
+
 }

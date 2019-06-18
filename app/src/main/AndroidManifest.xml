@@ -89,6 +89,7 @@
         <activity android:name=".activity.WeiTuoHeTongActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ZiYingFangYuanActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.KaiFaFangYuanActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

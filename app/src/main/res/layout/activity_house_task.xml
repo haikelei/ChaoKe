@@ -24,24 +24,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-    <RelativeLayout
+    <fragment
+        android:id="@+id/fragment"
+        class="luyuan.tech.com.chaoke.fragment.DaiGenJinFragment"
         android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.flyco.tablayout.SlidingTabLayout
-            android:layout_centerHorizontal="true"
-            android:id="@+id/tab_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            tl:tl_textSelectColor="#60d1c8"
-            tl:tl_textUnselectColor="@color/_000000"
-            tl:tl_indicator_color="#60d1c8"
-            tl:tl_indicator_width="20dp"/>
+        android:layout_height="match_parent">
 
-    </RelativeLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+
+    </fragment>
 
 </LinearLayout>

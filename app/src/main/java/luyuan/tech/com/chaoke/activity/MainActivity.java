@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loadData() {
-        startActivity(new Intent(getBaseContext(),LoginActivity.class));
+//        startActivity(new Intent(getBaseContext(),LoginActivity.class));
     }
 
     @OnClick({R.id.ll0, R.id.ll1, R.id.ll2, R.id.ll3})

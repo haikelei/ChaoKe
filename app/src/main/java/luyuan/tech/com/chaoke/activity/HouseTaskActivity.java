@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.flyco.tablayout.SlidingTabLayout;
@@ -23,10 +24,6 @@ import luyuan.tech.com.chaoke.base.BaseActivity;
 public class HouseTaskActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.tab_layout)
-    SlidingTabLayout tabLayout;
-    @BindView(R.id.view_pager)
-    ViewPager viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,10 +31,14 @@ public class HouseTaskActivity extends BaseActivity {
         setContentView(R.layout.activity_house_task);
         ButterKnife.bind(this);
         initView();
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void initView() {
-        viewPager.setAdapter(new HouseTaskPagerAdapter(getSupportFragmentManager()));
-        tabLayout.setViewPager(viewPager);
     }
 }
