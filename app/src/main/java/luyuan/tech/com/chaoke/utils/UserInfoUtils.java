@@ -34,14 +34,25 @@ public class UserInfoUtils {
         return (String) helper.getSharedPreference("token","");
     }
 
-    public void setToken(String userId) {
-        helper.put("token",userId);
+    public void setToken(String token) {
+        helper.put("token",token);
     }
+
+    public String getPhone(){
+        return (String) helper.getSharedPreference("phone","");
+    }
+
+    public void setPhone(String phone) {
+        helper.put("phone",phone);
+    }
+
+
 
 
 
     public void updateUserInfo(LoginBean bean){
         setToken(bean.getToken());
+        setPhone(bean.getPhone());
     }
 
     public void logout() {

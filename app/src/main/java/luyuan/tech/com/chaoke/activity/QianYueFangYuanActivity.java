@@ -19,12 +19,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ClientTaskAdapter;
+import luyuan.tech.com.chaoke.adapter.QianYueFangYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ClientTaskBean;
-import luyuan.tech.com.chaoke.bean.XiaoQuBean;
+import luyuan.tech.com.chaoke.bean.HouseBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
+
+import static com.zhouyou.http.EasyHttp.getContext;
 
 /**
  * @author: lujialei
@@ -33,19 +36,19 @@ import luyuan.tech.com.chaoke.utils.UserInfoUtils;
  */
 
 
-public class ClientTaskActivity extends BaseActivity {
+public class QianYueFangYuanActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.recycler)
     RecyclerView recycler;
-    ArrayList<ClientTaskBean> list = new ArrayList();
-    private ClientTaskAdapter adapter;
+    ArrayList<HouseBean> list = new ArrayList();
+    private QianYueFangYuanAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_task);
+        setContentView(R.layout.activity_qianyue_fangyuan);
         ButterKnife.bind(this);
         initView();
         loadData();
@@ -58,17 +61,17 @@ public class ClientTaskActivity extends BaseActivity {
     }
 
     private void loadData() {
-        HttpManager.post(HttpManager.CLIENT_TASK)
+        HttpManager.post(HttpManager.HOUSE_LIST)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .execute(new SimpleCallBack<List<ClientTaskBean>>() {
+                .execute(new SimpleCallBack<List<HouseBean>>() {
 
                     @Override
                     public void onError(ApiException e) {
-                        T.showShort(getBaseContext(),e.getMessage());
+                        T.showShort(getContext(),e.getMessage());
                     }
 
                     @Override
-                    public void onSuccess(List<ClientTaskBean> data) {
+                    public void onSuccess(List<HouseBean> data) {
                         list.clear();
                         list.addAll(data);
                         adapter.notifyDataSetChanged();
@@ -78,13 +81,16 @@ public class ClientTaskActivity extends BaseActivity {
 
     private void initView() {
         recycler.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        adapter = new ClientTaskAdapter(list);
+        adapter = new QianYueFangYuanAdapter(list);
         recycler.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(ClientTaskActivity.this,ZuKeDetailActivity.class));
+                Intent intent = new Intent(getBaseContext(),XianChangDaiKanActivity.class);
+                HouseBean houseBean = list.get(position);
+                intent.putExtra("id",String.valueOf(houseBean.getId()));
+                startActivity(intent);
             }
         });
     }

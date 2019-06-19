@@ -69,6 +69,20 @@ public class HttpManager {
      * 客任务
      */
     public static final String CLIENT_TASK = "/api/agent/tenant_task";
+    public static final String HOUSE_DETAIL = "/api/agent/tenant_task";
+
+
+    /*
+   *出租合同第一步
+     */
+    public static final String HETONG_ONE = "/api/Contract/lease_contract_first";
+    public static final String HETONG_TWO = "/api/Contract/lease_contract_second";
+    public static final String HETONG_THREE = "/api/Contract/lease_contract_third";
+    public static final String HETONG_TOUR = "/api/Contract/lease_contract_fouth";
+
+
+
+    public static final String IMAGE = "/api/login/upload";
 
 
 

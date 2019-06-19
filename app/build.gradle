@@ -40,4 +40,5 @@ dependencies {
     implementation 'com.github.razerdp:BasePopup:2.2.0'
     implementation 'com.zhouyou:rxeasyhttp:2.1.5'
     implementation 'com.github.Idtk:SmallChart:v0.1.1'
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 }

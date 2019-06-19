@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:padding="13dp"
+                android:src="@mipmap/back_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="租客信息"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="请确保你证件上的信息完全清晰可见"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rl_zhengmian"
+                    android:background="@drawable/xuxian_9c9c9c_r10"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_gravity="center_horizontal"
+                            android:src="@mipmap/xiangji"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:text="拍摄身份证(正面)"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_zhengmian"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_fanmian"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/xuxian_9c9c9c_r10"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_gravity="center_horizontal"
+                            android:src="@mipmap/xiangji"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:text="拍摄身份证(反面)"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_fanmian"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="10dp"
+                app:mHint="姓名"
+                app:mTitle="请输入姓名" />
+
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_xingbie"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请选择"
+                app:mTitle="性别" />
+
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_nianling"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="1dp"
+                app:mHint="请输入"
+                app:mTitle="年龄" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_shenfenzhenghaoma"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="1dp"
+                app:mHint="请输入"
+                app:mTitle="身份证号码" />
+
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhengjianyouxiaokaishi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请选择"
+                app:mTitle="证件有效开始日" />
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhengjianyouxiaojiezhi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请选择"
+                app:mTitle="证件有效截止日" />
+
+            <RelativeLayout
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="#ffffff"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:textColor="#000000"
+                    android:layout_centerVertical="true"
+                    android:text="其他承租人"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/cb_chengzuren"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="#ffffff"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:textColor="#000000"
+                    android:layout_centerVertical="true"
+                    android:text="代理人"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/cb_dailiren"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/colorPrimary"
+                android:text="下一步"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

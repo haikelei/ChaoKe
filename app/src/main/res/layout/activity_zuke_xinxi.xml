@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:background="#f5f5f5"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:padding="13dp"
+                android:src="@mipmap/back_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="填写租客信息"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请输入"
+            app:mTitle="姓名" />
+
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择"
+            app:mTitle="性别" />
+
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请输入"
+            app:mTitle="手机" />
+
+
+
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择"
+            app:mTitle="租客来源" />
+
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择"
+            app:mTitle="求租等级" />
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择"
+            app:mTitle="社会资质" />
+
+        <Button
+            android:id="@+id/btn_submmit"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/shape_r6_60d1c8"
+            android:text="提交"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+
+</ScrollView>
