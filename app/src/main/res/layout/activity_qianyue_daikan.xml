@@ -218,7 +218,7 @@
                 android:id="@+id/btn_next"
                 android:background="@color/colorPrimary"
                 android:textColor="#ffffff"
-                android:text="现场签约"
+                android:text="现场带看"
                 android:layout_width="match_parent"
                 android:layout_height="50dp" />
         </LinearLayout>

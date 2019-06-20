@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
@@ -114,6 +116,15 @@ public class DaiKanFangYuanActivity extends BaseActivity {
         recycler.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         adapter = new KaiFaFangYuanAdapter(list);
         recycler.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getBaseContext(),.class);
+                HouseBean houseBean = list.get(position);
+                intent.putExtra("data",houseBean);
+                startActivity(intent);
+            }
+        });
     }
 
     @OnClick({R.id.iv_back})

@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.youth.banner.Banner;
+import com.youth.banner.loader.ImageLoader;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +33,7 @@ import luyuan.tech.com.chaoke.utils.UserInfoUtils;
  */
 
 
-public class QianYueDaiKanActivity extends BaseActivity {
+public class XianChangQianYueActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;

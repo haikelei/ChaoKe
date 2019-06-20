@@ -1,5 +1,7 @@
 package luyuan.tech.com.chaoke.bean;
 
+import java.io.Serializable;
+
 /**
  * @author: lujialei
  * @date: 2019/6/17
@@ -7,7 +9,7 @@ package luyuan.tech.com.chaoke.bean;
  */
 
 
-public class HouseBean {
+public class HouseBean implements Serializable{
 
     /**
      * id : 1

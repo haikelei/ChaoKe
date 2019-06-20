@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhouyou.http.callback.SimpleCallBack;
@@ -17,13 +18,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
-import luyuan.tech.com.chaoke.adapter.QianYueFangYuanAdapter;
+import luyuan.tech.com.chaoke.adapter.KaiFaFangYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
+import luyuan.tech.com.chaoke.widget.DownMenuButton;
 
 import static com.zhouyou.http.EasyHttp.getContext;
 
@@ -34,31 +37,65 @@ import static com.zhouyou.http.EasyHttp.getContext;
  */
 
 
-public class QianYueFangYuanActivity extends BaseActivity {
-
+public class XuanZeYueKanActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
+    @BindView(R.id.quyu_button)
+    DownMenuButton quyuButton;
+    @BindView(R.id.zujin_button)
+    DownMenuButton zujinButton;
+    @BindView(R.id.paixu_button)
+    DownMenuButton paixuButton;
+    @BindView(R.id.shaixuan_button)
+    DownMenuButton shaixuanButton;
+    @BindView(R.id.pop_quyu)
+    LinearLayout llquyu;
+    @BindView(R.id.pop_zujin)
+    LinearLayout llzujin;
+    @BindView(R.id.pop_paixu)
+    LinearLayout llpaixu;
+    @BindView(R.id.pop_shaixuan)
+    LinearLayout llshaixuan;
     @BindView(R.id.recycler)
     RecyclerView recycler;
-    ArrayList<HouseBean> list = new ArrayList();
-    private QianYueFangYuanAdapter adapter;
+    private ArrayList<HouseBean> list = new ArrayList<>();
+    private KaiFaFangYuanAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qianyue_fangyuan);
+        setContentView(R.layout.activity_xuanze_yuekan);
         ButterKnife.bind(this);
         initView();
         loadData();
-        ivBack.setOnClickListener(new View.OnClickListener() {
+        quyuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                onBackPressed();
+            public void onCheckedChage(View view, boolean checked) {
+                llquyu.setVisibility(checked ? View.VISIBLE : View.GONE);
+            }
+        });
+        zujinButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChage(View view, boolean checked) {
+                llzujin.setVisibility(checked ? View.VISIBLE : View.GONE);
+            }
+        });
+        paixuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChage(View view, boolean checked) {
+                llpaixu.setVisibility(checked ? View.VISIBLE : View.GONE);
+            }
+        });
+        shaixuanButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChage(View view, boolean checked) {
+                llshaixuan.setVisibility(checked ? View.VISIBLE : View.GONE);
             }
         });
     }
 
     private void loadData() {
+        // TODO: 2019/6/18  选择带看房源接口
         HttpManager.post(HttpManager.HOUSE_LIST)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .execute(new SimpleCallBack<List<HouseBean>>() {
@@ -69,19 +106,16 @@ public class QianYueFangYuanActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onSuccess(List<HouseBean> data) {
-                        list.clear();
-                        list.addAll(data);
-                        adapter.notifyDataSetChanged();
+                    public void onSuccess(List<HouseBean> list) {
+                        adapter.setNewData(list);
                     }
                 });
     }
 
     private void initView() {
         recycler.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        adapter = new QianYueFangYuanAdapter(list);
+        adapter = new KaiFaFangYuanAdapter(list);
         recycler.setAdapter(adapter);
-
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -91,5 +125,14 @@ public class QianYueFangYuanActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @OnClick({R.id.iv_back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                onBackPressed();
+                break;
+        }
     }
 }

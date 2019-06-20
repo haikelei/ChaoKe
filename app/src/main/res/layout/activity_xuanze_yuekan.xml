@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#f5f5f5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/back_black"
+            android:padding="13dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:text="选择约看房源"
+            android:textSize="15sp"
+            android:layout_centerInParent="true"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/search_gray"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+    <LinearLayout
+        android:background="#ffffff"
+        android:id="@+id/rl_container"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <luyuan.tech.com.chaoke.widget.DownMenuButton
+            app:mTitle="区域"
+            android:id="@+id/quyu_button"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:background="#898989"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <luyuan.tech.com.chaoke.widget.DownMenuButton
+            app:mTitle="租金"
+            android:id="@+id/zujin_button"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:background="#898989"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <luyuan.tech.com.chaoke.widget.DownMenuButton
+            app:mTitle="排序"
+            android:id="@+id/paixu_button"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:background="#898989"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <luyuan.tech.com.chaoke.widget.DownMenuButton
+            app:mTitle="筛选"
+            android:id="@+id/shaixuan_button"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+        <include
+            android:id="@+id/pop_quyu"
+            layout="@layout/popup_quyu"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/pop_zujin"
+            layout="@layout/layout_popup_zujin"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/pop_paixu"
+            layout="@layout/layout_popup_paixu"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/pop_shaixuan"
+            layout="@layout/layout_popup_shaixuan"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

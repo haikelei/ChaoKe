@@ -1,6 +1,5 @@
 package luyuan.tech.com.chaoke.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,11 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.youth.banner.Banner;
-import com.youth.banner.loader.ImageLoader;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,7 +63,7 @@ public class XianChangDaiKanActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_xianchang_daikan);
+        setContentView(R.layout.activity_qianyue_daikan);
         ButterKnife.bind(this);
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
@@ -83,9 +79,7 @@ public class XianChangDaiKanActivity extends BaseActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), HeToneXinXiOneActivity.class);
-                intent.putExtra("id",id);
-                startActivity(intent);
+                startActivity(new Intent(getBaseContext(),));
             }
         });
     }
