@@ -74,9 +74,13 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
         });
         setDatePickerListener(slFukuanjieshu);
         setDatePickerListener(slFukuankaishi);
-        setDatePickerListener(slYajinleixing);
-        setDatePickerListener(slFukuanfangshi);
         setDatePickerListener(slFenqijiekuan);
+
+        String[] arr = {"压1","压2","无押金"};
+        setSelectLListener(slYajinleixing,arr,"押金类型");
+
+        String[] arr1 = {"一次性结清","分期"};
+        setSelectLListener(slFukuanfangshi,arr1,"付款方式");
     }
 
     private void loadData() {
@@ -85,11 +89,11 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
                 .params("con_id", bean.getCon_id())
                 .params("cons_id", bean.getCons_id())
                 .params("price", inputZujin.getText().trim())
-                .params("pay_starttime", slFukuankaishi.getText())
+                .params("pay_starttime", slFukuankaishi.getText().trim())
                 .params("pay_endtime", slFukuanjieshu.getText())
-                .params("deposit_type", slYajinleixing.getText())
+                .params("deposit_type",((int)slYajinleixing.getTag()+1)+"")
                 .params("deposit_price", inputYajin.getText().trim())
-                .params("pay_type",slFukuanfangshi.getText())
+                .params("pay_type",((int)slFukuanfangshi.getTag()+1)+"")
                 .params("by_stages_endtime",slFenqijiekuan.getText())
                 .params("other_price",inputFuwuguanjia.getText().trim())
                 .execute(new SimpleCallBack<HeTongIdBean>() {

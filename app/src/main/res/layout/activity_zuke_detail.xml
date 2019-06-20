@@ -156,11 +156,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/tv_quyu"
                     android:text="区域:滨江区"
                     android:paddingLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/tv_zujin"
                     android:layout_marginTop="10dp"
                     android:text="租金:1000-2000元/月"
                     android:paddingLeft="20dp"
@@ -173,11 +175,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/tv_jushi"
                         android:text="居室:一室一厅"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/tv_zhuangxiu"
                         android:layout_centerHorizontal="true"
                         android:text="装修:无"
                         android:layout_width="wrap_content"
@@ -190,11 +194,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/tv_xiwangruzhuri"
                         android:text="希望入住日:2019-04-20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/tv_renshu"
                         android:layout_centerHorizontal="true"
                         android:text="人数:无"
                         android:layout_width="wrap_content"

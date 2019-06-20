@@ -119,10 +119,10 @@ public class DaiKanFangYuanActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getBaseContext(),.class);
-                HouseBean houseBean = list.get(position);
-                intent.putExtra("data",houseBean);
-                startActivity(intent);
+//                Intent intent = new Intent(getBaseContext(),.class);
+//                HouseBean houseBean = list.get(position);
+//                intent.putExtra("data",houseBean);
+//                startActivity(intent);
             }
         });
     }

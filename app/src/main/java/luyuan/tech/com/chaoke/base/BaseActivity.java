@@ -1,7 +1,9 @@
 package luyuan.tech.com.chaoke.base;
 
+import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -10,6 +12,7 @@ import com.flyco.dialog.widget.NormalListDialog;
 
 import java.util.List;
 
+import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
 
@@ -23,30 +26,45 @@ import luyuan.tech.com.chaoke.widget.SelectLayout;
 public class BaseActivity extends AppCompatActivity {
 
 
-
+    public Activity getActivity() {
+        return this;
+    }
 
     protected void setSelectLListener(final SelectLayout selectLayout, final String[] arr) {
+        setSelectLListener(selectLayout, arr, null);
+    }
+
+
+    protected void setSelectLListener(final SelectLayout selectLayout, final String[] arr, final String title) {
         selectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NormalListDialog dialog = new NormalListDialog(getBaseContext(),arr);
+                final NormalListDialog dialog = new NormalListDialog(getActivity(), arr);
+                dialog.titleBgColor(getResources().getColor(R.color.colorPrimary));
+                dialog.titleTextColor(getResources().getColor(R.color.white));
+                if (!TextUtils.isEmpty(title)) {
+                    dialog.title(title);
+                }
                 dialog.show();
                 dialog.setOnOperItemClickL(new OnOperItemClickL() {
                     @Override
                     public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String s = arr[position];
                         selectLayout.setText(s);
+                        selectLayout.setTag(position);
+                        dialog.dismiss();
                     }
                 });
             }
         });
     }
 
-    protected void setDatePickerListener(final SelectLayout selectLayout){
+    protected void setDatePickerListener(final SelectLayout selectLayout) {
         selectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final DatePickerDialogFragment datePickerDialogFragment = DatePickerDialogFragment.create(true);
+                datePickerDialogFragment.show(getSupportFragmentManager(), "tag");
                 datePickerDialogFragment.setOnSelectListener(new DatePickerDialogFragment.OnDateSelectListener() {
                     @Override
                     public void onSelect(List<String> date) {

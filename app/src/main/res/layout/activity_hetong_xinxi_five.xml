@@ -50,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/tv_wuyedizhi"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -68,6 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/tv_chuzudizhi"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -86,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/tv_zukexingming"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -104,6 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/tv_shoujihaoma"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -122,6 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/tv_qianyueshijian"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -140,6 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/tv_qianyuezhuangtai"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"

@@ -140,10 +140,39 @@ public class HeToneXinXiFourActivity extends BaseActivity {
         setDatePickerListener(slXueli);
         setDatePickerListener(slJiaofuriqi);
         String[] arr = {"电费","水费","燃气","物业及能耗费"};
-        setSelectLListener(slJiafangchegndan,arr);
+        setSelectLListener(slJiafangchegndan,arr,"甲方承担");
     }
 
     private void loadData() {
+        StringBuilder handoverList = new StringBuilder();
+        handoverList.append(numDianshi.getText()+",")
+                .append(numDianshi.getText()+",")
+                .append(numKongtiao.getText()+",")
+                .append(numBingxiang.getText()+",")
+                .append(numXiyiji.getText()+",")
+                .append(numHongganji.getText()+",")
+                .append(numWeibolu.getText()+",")
+                .append(numMeiqizao.getText()+",")
+                .append(numDiancilu.getText()+",")
+                .append(numChuang.getText()+",")
+                .append(numChuangdian.getText()+",")
+                .append(numShafa.getText()+",")
+                .append(numYigui.getText()+",")
+                .append(numShuzhuo.getText()+",")
+                .append(numYizi.getText()+",")
+                .append(numChuanglian.getText()+",")
+                .append(numChuangtougui.getText()+",")
+                .append(numDitan.getText()+",")
+                .append(numXiegui.getText()+",")
+                .append(numCanzhuo.getText()+",")
+                .append(numCanyi.getText()+",")
+                .append(numChaji.getText()+",")
+                .append(numAigui.getText()+",")
+                .append(numYinshuiji.getText()+",")
+                .append(numReshuiqi.getText()+",")
+                .append(numMenka.getText() );
+
+
         HttpManager.post(HttpManager.HETONG_TOUR)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("con_id",bean.getCon_id())
@@ -162,7 +191,7 @@ public class HeToneXinXiFourActivity extends BaseActivity {
                 .params("gas_value",inputZongbeiqi.getText().trim())
                 .params("water_all","")
                 .params("first_party_pay",slJiafangchegndan.getText())
-                .params("handover_list","")
+                .params("handover_list",handoverList.toString())
                 .execute(new SimpleCallBack<HeTongIdBean>() {
 
                     @Override
@@ -172,7 +201,9 @@ public class HeToneXinXiFourActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(HeTongIdBean data) {
-                        startActivity(new Intent(getBaseContext(), HeToneXinXiFiveActivity.class));
+                        Intent intent = new Intent(getBaseContext(), HeToneXinXiFiveActivity.class);
+                        intent.putExtra("data",bean);
+                        startActivity(intent);
                     }
                 });
     }

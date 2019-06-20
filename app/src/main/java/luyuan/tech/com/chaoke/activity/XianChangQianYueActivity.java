@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -110,16 +111,28 @@ public class XianChangQianYueActivity extends BaseActivity {
     }
 
     private void fillData(HouseDetailBean data) {
-        banner.setImages(data.getPics());
-        banner.setImageLoader(new NormalImageLoader());
-        tvName.setText(data.getRoom_name());
-        tvMoney.setText(data.getLong_price());
-        tvJushi.setText(data.getApartment());
-        tvSize.setText(data.getArea());
+        if (data.getPics()!=null){
+            banner.setImages(data.getPics());
+            banner.setImageLoader(new NormalImageLoader());
+        }
+        if (!TextUtils.isEmpty(data.getRoom_name())){
+            tvName.setText(data.getRoom_name());
+        }
+        if (!TextUtils.isEmpty(data.getLong_price())){
+            tvMoney.setText(data.getLong_price());
+        }
+        if (!TextUtils.isEmpty(data.getApartment())){
+            tvJushi.setText(data.getApartment());
+        }
+        if (!TextUtils.isEmpty(data.getArea())){
+            tvSize.setText(data.getArea());
+        }
 //        tvFangyuanzhuangtai.setText();
         tvChaoxiang.setText(data.getOrientation()+"");
 //        tvZhuangxiuqingkuang.setText();
-        tvLouceng.setText(data.getFloor());
+        if (!TextUtils.isEmpty(data.getFloor())){
+            tvLouceng.setText(data.getFloor());
+        }
 //        tvWuyeyongtu.setText();
 //        tvFankangzhuangtai.setText();
 

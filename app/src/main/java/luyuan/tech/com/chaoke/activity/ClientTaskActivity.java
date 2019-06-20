@@ -84,7 +84,9 @@ public class ClientTaskActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(ClientTaskActivity.this,ZuKeDetailActivity.class));
+                Intent intent = new Intent(ClientTaskActivity.this,ZuKeDetailActivity.class);
+                intent.putExtra("id",String.valueOf(list.get(position).getId()));
+                startActivity(intent);
             }
         });
     }

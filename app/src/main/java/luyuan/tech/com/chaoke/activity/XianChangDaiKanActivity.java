@@ -79,7 +79,7 @@ public class XianChangDaiKanActivity extends BaseActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),));
+                startActivity(new Intent(getBaseContext(),XianChangQianYueActivity.class));
             }
         });
     }

@@ -102,21 +102,8 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                 loadData();
             }
         });
-        slXingbie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String[] arr = {"男","女"};
-                final NormalListDialog dialog = new NormalListDialog(getBaseContext(),arr);
-                dialog.show();
-                dialog.setOnOperItemClickL(new OnOperItemClickL() {
-                    @Override
-                    public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        slXingbie.setText(arr[position]);
-                        dialog.dismiss();
-                    }
-                });
-            }
-        });
+        String[] arr = {"男","女"};
+        setSelectLListener(slXingbie,arr,"性别");
 
         setDatePickerListener(slZhengjianyouxiaojiezhi);
         setDatePickerListener(slZhengjianyouxiaokaishi);
@@ -130,15 +117,15 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                         .minSelectNum(1)// 最小选择数量
                         .imageSpanCount(4)// 每行显示个数
                         .selectionMode(PictureConfig.SINGLE)// 多选 or 单选
-                        .previewImage(true)// 是否可预览图片
+                        .previewImage(false)// 是否可预览图片
                         .isCamera(true)// 是否显示拍照按钮
                         .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
-                        .enableCrop(true)// 是否裁剪
+                        .enableCrop(false)// 是否裁剪
                         .compress(true)// 是否压缩
                         .synOrAsy(true)//同步true或异步false 压缩 默认同步
                         .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
-                        .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
-                        .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+                        .freeStyleCropEnabled(false)// 裁剪框是否可拖拽
+                        .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
 //                        .selectionMedia(selectList)// 是否传入已选图片
                         .minimumCompressSize(100)// 小于100kb的图片不压缩
                         .forResult(CODE_ZHENGMIAN);//结果回调onActivityResult code
@@ -154,15 +141,15 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                         .minSelectNum(1)// 最小选择数量
                         .imageSpanCount(4)// 每行显示个数
                         .selectionMode(PictureConfig.SINGLE)// 多选 or 单选
-                        .previewImage(true)// 是否可预览图片
+                        .previewImage(false)// 是否可预览图片
                         .isCamera(true)// 是否显示拍照按钮
                         .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
-                        .enableCrop(true)// 是否裁剪
+                        .enableCrop(false)// 是否裁剪
                         .compress(true)// 是否压缩
                         .synOrAsy(true)//同步true或异步false 压缩 默认同步
                         .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
-                        .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
-                        .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+                        .freeStyleCropEnabled(false)// 裁剪框是否可拖拽
+                        .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
 //                        .selectionMedia(selectList)// 是否传入已选图片
                         .minimumCompressSize(100)// 小于100kb的图片不压缩
                         .forResult(CODE_FANMIAN);//结果回调onActivityResult code
@@ -193,9 +180,7 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                             .params("file", file,path, MediaType.parse("multipart/form-data"),new ProgressResponseCallBack() {
                                 @Override
                                 public void onResponseProgress(long bytesWritten, long contentLength, boolean done) {
-                                    if (done) {
-                                        Glide.with(getBaseContext()).load(path).into(ivZhengmian);
-                                    }
+//
                                 }
                             }).execute(new SimpleCallBack<List<NameBean>>() {
                         @Override
@@ -206,6 +191,7 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                         @Override
                         public void onSuccess(List<NameBean> list) {
                             zhengmianImageName = list.get(0).getName();
+                            Glide.with(getBaseContext()).load(path).into(ivZhengmian);
                         }
                     });
                     break;
@@ -217,9 +203,6 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                             .params("file", file1,path1, MediaType.parse("multipart/form-data"),new ProgressResponseCallBack() {
                                 @Override
                                 public void onResponseProgress(long bytesWritten, long contentLength, boolean done) {
-                                    if (done) {
-                                        Glide.with(getBaseContext()).load(path1).into(ivFanmian);
-                                    }
                                 }
                             }).execute(new SimpleCallBack<List<NameBean>>() {
                         @Override
@@ -230,6 +213,7 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                         @Override
                         public void onSuccess(List<NameBean> list) {
                             fanmianImageName = list.get(0).getName();
+                            Glide.with(getBaseContext()).load(path1).into(ivFanmian);
                         }
                     });
                     break;

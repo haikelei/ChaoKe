@@ -97,11 +97,13 @@
         <activity android:name=".activity.HeToneXinXiOneActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.HeToneXinXiTwoActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.HeToneXinXiThreeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.HeToneXinXiFourActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ZuKeXinXiActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ZuKeXinXiQiTaActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.XiuGaiZhuangTaiActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.XianChangQianYueActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.YuYueDaiKanActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.HeToneXinXiFiveActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

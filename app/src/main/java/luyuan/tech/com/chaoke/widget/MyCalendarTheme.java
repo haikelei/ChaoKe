@@ -10,10 +10,10 @@ import cn.aigestudio.datepicker.bizs.themes.DPBaseTheme;
 
 
 public class MyCalendarTheme extends DPBaseTheme {
-//    @Override
-//    public int colorTitleBG() {
-//        return 0xFF60d1c8;
-//    }
+    @Override
+    public int colorTitleBG() {
+        return 0xFF60d1c8;
+    }
 //
 //    @Override
 //    public int colorWeekend() {

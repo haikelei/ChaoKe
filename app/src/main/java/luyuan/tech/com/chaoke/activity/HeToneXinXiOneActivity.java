@@ -16,6 +16,7 @@ import com.flyco.dialog.widget.NormalListDialog;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,6 +26,7 @@ import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HeTongIdBean;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
@@ -88,51 +90,30 @@ public class HeToneXinXiOneActivity extends BaseActivity {
         setDatePickerListener(slShoucifukuan);
         setDatePickerListener(slChengzuqisuan);
         setDatePickerListener(slChengzujiezhi);
-        slFukuanfangshi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String[] arr = {"一次性付款","年付","月付","季付","半年付"};
-                final NormalListDialog dialog = new NormalListDialog(getBaseContext(),arr);
-                dialog.show();
-                dialog.setOnOperItemClickL(new OnOperItemClickL() {
-                    @Override
-                    public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String s = arr[position];
-                        slFukuanfangshi.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-            }
-        });
-        slYongtu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String[] arr = {"居住","商业"};
-                final NormalListDialog dialog = new NormalListDialog(getBaseContext(),arr);
-                dialog.show();
-                dialog.setOnOperItemClickL(new OnOperItemClickL() {
-                    @Override
-                    public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String s = arr[position];
-                        slYongtu.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-            }
-        });
+
+        String[] arr = {"一次性付款","年付","月付","季付","半年付"};
+        setSelectLListener(slFukuanfangshi,arr,"付款方式");
+
+        String[] arr1 = {"居住","商业"};
+        setSelectLListener(slYongtu,arr1,"用途");
+
+
+
 
 
     }
 
     private void loadData() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        int i = (int) slFukuanfangshi.getTag();
         HttpManager.post(HttpManager.HETONG_ONE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("rent_id", id)
                 .params("phone",UserInfoUtils.getInstance().getPhone())
-                .params("address","")
-                .params("lessee","")
-                .params("payway",slShoucifukuan.getText())
-                .params("purpose",slYongtu.getText())
+                .params("address",inputTongxundizhi.getText())
+                .params("lessee", AppStorageUtils.getInstance().getZuKeDetailBean().getId()+"")
+                .params("payway",String.valueOf(i+1))
+                .params("purpose",slYongtu.getText().equals("居住")?"1":"2")
                 .params("postal_address",inputTongxundizhi.getText())
                 .params("first_paytime",slShoucifukuan.getText())
                 .params("lessee_starttime",slChengzuqisuan.getText())
