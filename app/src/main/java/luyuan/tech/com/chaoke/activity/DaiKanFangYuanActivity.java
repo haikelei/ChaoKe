@@ -106,8 +106,10 @@ public class DaiKanFangYuanActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onSuccess(List<HouseBean> list) {
-                        adapter.setNewData(list);
+                    public void onSuccess(List<HouseBean> data) {
+                        list.clear();
+                        list.addAll(data);
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }
@@ -119,10 +121,10 @@ public class DaiKanFangYuanActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                Intent intent = new Intent(getBaseContext(),.class);
-//                HouseBean houseBean = list.get(position);
-//                intent.putExtra("data",houseBean);
-//                startActivity(intent);
+                Intent intent = new Intent(getBaseContext(),XianChangDaiKanActivity.class);
+                HouseBean houseBean = list.get(position);
+                intent.putExtra("id",houseBean.getId()+"");
+                startActivity(intent);
             }
         });
     }

@@ -99,6 +99,32 @@ public class HttpManager {
      */
     public static final String HETONG_DETAIL = "/api/Contract/lease_contract_detail";
 
+    /**
+     * 带看约看
+     */
+    public static final String DAIKAN_YUEKAN = "/api/agent/tenant_look";
+
+
+    public static final String GEN_JIN = "/api/agent/tenant_follow";
+
+    /**
+     * 租客信息
+     */
+    public static final String ZUKEXINXI_ONE = "/api/agent/add_rent_first";
+
+    public static final String ZUKEXINXI_TWO = "/api/agent/add_rent_second";
+
+    /**
+     * 获取城市
+     */
+    public static final String CITYS = "/api/agent/all_city";
+
+
+    /**
+     * 修改状态
+     */
+    public static final String CHANGE_STATE = "/api/agent/edit_tenant";
+
 
 
 }

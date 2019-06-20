@@ -93,7 +93,7 @@
 
     <luyuan.tech.com.chaoke.widget.SelectLayout
         android:layout_marginTop="20dp"
-        android:id="@+id/sl_unity_name"
+        android:id="@+id/sl_xuanzejieguo"
         app:mTitle="选择一项结果"
         app:mHint="请选择"
         android:paddingLeft="15dp"
@@ -102,6 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <EditText
+        android:id="@+id/et_input"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:gravity="left"

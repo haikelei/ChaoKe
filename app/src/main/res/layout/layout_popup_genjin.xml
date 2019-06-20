@@ -35,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <CheckBox
+            android:id="@+id/cb_liaojiexuqiu"
             android:textColor="@drawable/selector_genjin_textcolor"
             android:background="@drawable/selector_bg_genjin"
             android:paddingBottom="5dp"
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/cb_tuijianfangyuan"
             android:layout_marginLeft="40dp"
             android:textColor="@drawable/selector_genjin_textcolor"
             android:background="@drawable/selector_bg_genjin"
@@ -66,18 +68,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <CheckBox
+            android:id="@+id/cb_shihouqiatan"
             android:textColor="@drawable/selector_genjin_textcolor"
             android:background="@drawable/selector_bg_genjin"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="时候洽谈"
+            android:text="事后洽谈"
             android:button="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/cb_yuyuedaikan"
             android:layout_marginLeft="40dp"
             android:textColor="@drawable/selector_genjin_textcolor"
             android:background="@drawable/selector_bg_genjin"
@@ -97,6 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <CheckBox
+            android:id="@+id/cb_qianyuehetong"
             android:textColor="@drawable/selector_genjin_textcolor"
             android:background="@drawable/selector_bg_genjin"
             android:paddingBottom="5dp"
@@ -109,6 +114,7 @@
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/cb_qitagenjin"
             android:layout_marginLeft="40dp"
             android:textColor="@drawable/selector_genjin_textcolor"
             android:background="@drawable/selector_bg_genjin"
@@ -123,6 +129,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/et"
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -137,6 +144,7 @@
         android:layout_height="100dp" />
 
     <Button
+        android:id="@+id/btn_commit"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="30dp"
         android:textSize="18sp"

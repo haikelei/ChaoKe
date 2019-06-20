@@ -104,6 +104,8 @@
         <activity android:name=".activity.XianChangQianYueActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.YuYueDaiKanActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.HeToneXinXiFiveActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.XianChangDaiKanActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.XianChangDaiKanTwoActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

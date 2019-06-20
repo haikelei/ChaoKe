@@ -115,7 +115,8 @@ public class ZuKeDetailActivity extends BaseActivity {
                 quYuPopup.setOnPopupClickListener(new ZuKeBianJiPopup.OnPopupClickListener() {
                     @Override
                     public void onZukexinxiClick(View view) {
-
+                        Intent intent = new Intent(getBaseContext(),ZuKeXinXiActivity.class);
+                        startActivity(intent);
                     }
 
                     @Override
@@ -125,7 +126,8 @@ public class ZuKeDetailActivity extends BaseActivity {
 
                     @Override
                     public void onXiugaizhuangtai(View view) {
-
+                        Intent intent = new Intent(getBaseContext(),XiuGaiZhuangTaiActivity.class);
+                        startActivity(intent);
                     }
                 });
                 break;
@@ -136,7 +138,7 @@ public class ZuKeDetailActivity extends BaseActivity {
                 startActivity(new Intent(getBaseContext(), DaiKanFangYuanActivity.class));
                 break;
             case R.id.ll_genjin_bottom:
-                GenJinPopup genJinPopup = new GenJinPopup(ZuKeDetailActivity.this);
+                GenJinPopup genJinPopup = new GenJinPopup(ZuKeDetailActivity.this,id);
                 genJinPopup.setPopupGravity(Gravity.CENTER);
                 genJinPopup.showPopupWindow();
                 break;

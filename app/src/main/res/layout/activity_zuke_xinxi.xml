@@ -32,6 +32,7 @@
                 android:textSize="15sp" />
         </RelativeLayout>
         <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#ffffff"
@@ -41,6 +42,7 @@
             app:mTitle="姓名" />
 
         <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_xingbie"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
@@ -51,6 +53,7 @@
             app:mTitle="性别" />
 
         <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/input_shouji"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
@@ -63,6 +66,7 @@
 
 
         <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_zukelaiyuan"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
@@ -73,6 +77,7 @@
             app:mTitle="租客来源" />
 
         <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_zukedengji"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
@@ -82,6 +87,7 @@
             app:mHint="请选择"
             app:mTitle="求租等级" />
         <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_shehuizizhi"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"

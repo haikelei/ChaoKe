@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -58,7 +59,6 @@ public class XianChangDaiKanActivity extends BaseActivity {
     @BindView(R.id.tv_fankangzhuangtai)
     TextView tvFankangzhuangtai;
     private String id;
-    private HouseDetailBean bean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,10 +76,13 @@ public class XianChangDaiKanActivity extends BaseActivity {
                 onBackPressed();
             }
         });
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),XianChangQianYueActivity.class));
+                Intent intent = new Intent(getBaseContext(),XianChangDaiKanTwoActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
     }
@@ -97,23 +100,34 @@ public class XianChangDaiKanActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(HouseDetailBean data) {
-                        bean = data;
                         fillData(data);
                     }
                 });
     }
 
     private void fillData(HouseDetailBean data) {
-        banner.setImages(data.getPics());
-        banner.setImageLoader(new NormalImageLoader());
-        tvName.setText(data.getRoom_name());
-        tvMoney.setText(data.getLong_price());
-        tvJushi.setText(data.getApartment());
-        tvSize.setText(data.getArea());
+        if (data.getPics()!=null){
+            banner.setImages(data.getPics());
+            banner.setImageLoader(new NormalImageLoader());
+        }
+        if (!TextUtils.isEmpty(data.getRoom_name())){
+            tvName.setText(data.getRoom_name());
+        }
+        if (!TextUtils.isEmpty(data.getLong_price())){
+            tvMoney.setText(data.getLong_price());
+        }
+        if (!TextUtils.isEmpty(data.getApartment())){
+            tvJushi.setText(data.getApartment());
+        }
+        if (!TextUtils.isEmpty(data.getArea())){
+            tvSize.setText(data.getArea());
+        }
 //        tvFangyuanzhuangtai.setText();
         tvChaoxiang.setText(data.getOrientation()+"");
 //        tvZhuangxiuqingkuang.setText();
-        tvLouceng.setText(data.getFloor());
+        if (!TextUtils.isEmpty(data.getFloor())){
+            tvLouceng.setText(data.getFloor());
+        }
 //        tvWuyeyongtu.setText();
 //        tvFankangzhuangtai.setText();
 

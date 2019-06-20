@@ -33,6 +33,7 @@
         </RelativeLayout>
 
         <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_city"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
@@ -64,6 +65,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/et_zujin_low"
                     android:layout_gravity="center_vertical"
                     android:textSize="12sp"
                     android:gravity="center"
@@ -79,6 +81,7 @@
                     android:layout_height="2dp" />
 
                 <EditText
+                    android:id="@+id/et_zujin_high"
                     android:layout_gravity="center_vertical"
                     android:textSize="12sp"
                     android:gravity="center"
@@ -98,6 +101,7 @@
         </RelativeLayout>
 
         <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_huxing"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
@@ -105,9 +109,21 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             app:mHint="请选择"
+            app:mTitle="户型" />
+
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/sl_ruzhurenshu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请输入"
             app:mTitle="入住人数" />
 
         <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_ruzhushijian"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
@@ -117,6 +133,7 @@
             app:mHint="请选择"
             app:mTitle="入住时间" />
         <EditText
+            android:id="@+id/et_more"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:gravity="left"
