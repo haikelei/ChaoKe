@@ -80,6 +80,7 @@ public class XianChangDaiKanTwoActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(String data) {
+                        T.showShort(getBaseContext(), "提交成功");
                         startActivity(new Intent(getBaseContext(), MainActivity.class));
                     }
                 });

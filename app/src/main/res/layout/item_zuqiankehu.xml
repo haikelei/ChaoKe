@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="14dp"
+    android:paddingBottom="14dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="10dp"
+    android:layout_marginBottom="1dp"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+
+        android:id="@+id/rl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_avatar"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:text="王先生"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:background="@drawable/shape_r999_9c9c9c"
+            android:textSize="11sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_name"
+            android:layout_marginLeft="10dp"
+            android:text="A类"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_other"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/rl_top"
+        android:text="滨江区"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        android:textColor="#d12324"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/tv_other"
+        android:text="5000元"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/tel"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+</RelativeLayout>

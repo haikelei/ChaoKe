@@ -52,8 +52,8 @@ public class LineFragment extends Fragment {
             mPointArrayList.add(new PointF(points[i][0], points[i][1]));
         }
         mLineData.setValue(mPointArrayList);
-        mLineData.setColor(Color.MAGENTA);
-        mLineData.setPaintWidth(SizeUtils.px2dp(getContext(),3));
+        mLineData.setColor(getResources().getColor(R.color.colorPrimary));
+        mLineData.setPaintWidth(SizeUtils.px2dp(getContext(),7));
         mLineData.setTextSize(SizeUtils.px2dp(getContext(),10));
         lineChart.setData(mLineData);
     }

@@ -125,6 +125,11 @@ public class HttpManager {
      */
     public static final String CHANGE_STATE = "/api/agent/edit_tenant";
 
+    /**
+     * 租客列表
+     */
+    public static final String ZUKE_LIST = "/api/agent/rent_customer";
+
 
 
 }

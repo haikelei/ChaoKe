@@ -34,6 +34,7 @@ import luyuan.tech.com.chaoke.activity.KaiFaFangYuanActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangShenPiListActivity;
 import luyuan.tech.com.chaoke.activity.WeiTuoHeTongActivity;
 import luyuan.tech.com.chaoke.activity.ZiYingFangYuanActivity;
+import luyuan.tech.com.chaoke.activity.ZuQianKeHuActivity;
 import luyuan.tech.com.chaoke.adapter.LinePagerAdapter;
 
 /**
@@ -87,6 +88,7 @@ public class HomeFragment extends Fragment {
         }).start();
 
         viewPager.setAdapter(new LinePagerAdapter(getChildFragmentManager()));
+        viewPager.setOffscreenPageLimit(3);
         tabLayout.setViewPager(viewPager);
     }
 
@@ -125,6 +127,7 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), ZiYingFangYuanActivity.class));
                 break;
             case R.id.ll_zuqiankehu:
+                startActivity(new Intent(getContext(), ZuQianKeHuActivity.class));
                 break;
             case R.id.ll_kaifafangyuan:
                 startActivity(new Intent(getContext(), KaiFaFangYuanActivity.class));
