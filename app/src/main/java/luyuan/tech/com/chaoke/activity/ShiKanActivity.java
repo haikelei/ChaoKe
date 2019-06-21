@@ -41,21 +41,19 @@ import static com.zhouyou.http.EasyHttp.getContext;
  */
 
 
-public class ShouFangShenPiActivity extends BaseActivity {
+public class ShiKanActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.btn_next)
-    Button btnNext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shoufang_shenpi);
+        setContentView(R.layout.activity_shikan);
         ButterKnife.bind(this);
-        btnNext.setOnClickListener(new View.OnClickListener() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),MainActivity.class));
+                onBackPressed();
             }
         });
     }

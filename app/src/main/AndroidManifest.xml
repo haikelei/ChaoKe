@@ -86,7 +86,7 @@
         <activity android:name=".activity.HouseTaskActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ClientTaskActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.HeTongTiaoKuanActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ShouFangShenPiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ShouFangShenPiListActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.WeiTuoHeTongActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ZiYingFangYuanActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait"/>
@@ -106,6 +106,20 @@
         <activity android:name=".activity.HeToneXinXiFiveActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.XianChangDaiKanActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.XianChangDaiKanTwoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ShouFangShenPiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ShiKanActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GenJinActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueOneActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueTwoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueThreeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueFourActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueFiveActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueSixActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueSevenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueEightActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueNineActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueTenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.HeToneXiangQingActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
