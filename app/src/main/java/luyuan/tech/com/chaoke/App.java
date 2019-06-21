@@ -9,6 +9,7 @@ import com.zhouyou.http.model.HttpHeaders;
 import com.zhouyou.http.model.HttpParams;
 
 import luyuan.tech.com.chaoke.net.TokenInterceptor;
+import luyuan.tech.com.chaoke.utils.CrashHandler;
 
 
 /**
@@ -26,6 +27,7 @@ public class App extends Application {
         super.onCreate();
         app = this;
         initNet();
+        CrashHandler.getInstance().init(this);
     }
 
     public static Context getAppContext(){
