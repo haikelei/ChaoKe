@@ -5,26 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f5f5f5">
-    <RelativeLayout
-        android:background="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/et"
-            android:background="@drawable/shape_r999_efeef3"
-            android:paddingLeft="20dp"
-            android:drawableStart="@mipmap/search_gray"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:drawablePadding="10dp"
-            android:hint="输入搜索关键词"
-            android:textSize="11sp"
-            android:layout_width="match_parent"
-            android:layout_height="30dp" />
-
-    </RelativeLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"

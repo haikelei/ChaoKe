@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="13dp"
+            android:src="@mipmap/back_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="收房交割"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="产权人信息"
+                android:textSize="15sp" />
+
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_xiaoqudizhi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="小区地址房号" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_dianlihuhao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="电力户号" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_chufangjiage"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="出房价格" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_zongdian"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="总电(非必填)" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_fengdian"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="峰电" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_gudian"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="谷电" />
+
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_shuibiao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="水表" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_ranqihuhao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="燃气户号" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_ranqidushu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="燃气度数" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="水电燃气照片"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shuidianranqi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/shape_r6_60d1c8"
+                android:text="提交"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

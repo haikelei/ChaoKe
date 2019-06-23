@@ -152,5 +152,16 @@ public class HttpManager {
     public static final String SHIKAN_TUPIAN = "/api/agent/upload_pics";
 
 
+    /**
+     * 保存出房交割
+     */
+    public static final String CHUFANG_JIAOGE = "/api/agent/out_house";
+
+    /**
+     * 保存收房交割
+     */
+    public static final String SHOUFANG_JIAOGE = "/api/agent/collect_house";
+
+
 
 }

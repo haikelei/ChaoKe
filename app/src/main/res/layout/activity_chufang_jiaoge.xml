@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="13dp"
+            android:src="@mipmap/back_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="出房交割"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="产权人信息"
+                android:textSize="15sp" />
+
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_xiaoqudizhi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="小区地址" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_hetongbianhao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="合同编号" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_chufangjiage"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="出房价格" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_zongjine"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="总金额(大写,元)" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_zukexingming"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="租客姓名" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_zukeshoujihao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="租客手机号" />
+
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_hetongqisuanri"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请选择"
+                app:mTitle="合同起算日" />
+
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_hetongjieshuri"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请选择"
+                app:mTitle="合同结束日" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合同资料"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_hetongziliao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="租客身份证正反面照片"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shenfenzheng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="物业交割"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_wuyejiaoge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/shape_r6_60d1c8"
+                android:text="提交"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

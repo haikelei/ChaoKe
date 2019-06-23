@@ -122,6 +122,9 @@
         <activity android:name=".activity.HeToneXiangQingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ZuQianKeHuActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.FangYuanXiangQingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChuZuHeTongActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChuFangJiaoGeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ShouFangJiaoGeActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
