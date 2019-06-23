@@ -29,63 +29,42 @@
     </RelativeLayout>
 
     <ScrollView
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
 
         <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RelativeLayout
+                android:id="@+id/rl_add"
+                android:background="@drawable/xuxian_9c9c9c_r10"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="第一年租金策略"
-                android:textSize="15sp" />
-
-            <luyuan.tech.com.chaoke.widget.SelectLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请选择"
-                app:mTitle="委托周期" />
-
-            <luyuan.tech.com.chaoke.widget.SelectLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请选择"
-                app:mTitle="免租周期" />
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="每月租金" />
-
-
-
-            <Button
-                android:id="@+id/btn_next"
-                android:layout_width="240dp"
-                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/shape_r6_60d1c8"
-                android:text="下一步"
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
+                android:layout_width="120dp"
+                android:layout_height="120dp">
+                <ImageView
+                    android:src="@mipmap/add_black"
+                    android:layout_centerInParent="true"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
 
         </LinearLayout>
+
     </ScrollView>
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_r6_60d1c8"
+        android:text="下一步"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
 </LinearLayout>

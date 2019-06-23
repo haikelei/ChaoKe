@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="第一年租金策略"
+        android:textSize="15sp" />
+
+    <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_weituokaishi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:mHint="请选择"
+        app:mTitle="委托开始日" />
+    <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_weituojieshu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:mHint="请选择"
+        app:mTitle="委托结束日" />
+
+    <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_mianzukaishiri"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:mHint="请选择"
+        app:mTitle="免租开始日" />
+    <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_mianzujieshuri"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:mHint="请选择"
+        app:mTitle="免租结束日" />
+    <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_meiyuezujin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:mHint="请输入"
+        app:mTitle="每月租金" />
+</LinearLayout>

@@ -47,6 +47,7 @@
                 android:textSize="15sp" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_shoukuanrenleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -56,6 +57,7 @@
                 app:mTitle="收款人类型" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhengjianleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -64,6 +66,7 @@
                 app:mHint="请选择"
                 app:mTitle="证件类型" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_xinging"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -72,6 +75,7 @@
                 app:mHint="请输入"
                 app:mTitle="姓名" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_zhengjianhaoma"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -88,6 +92,7 @@
                 android:text="收款账号信息"
                 android:textSize="15sp" />
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhanghaoleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -95,7 +100,8 @@
                 android:paddingRight="15dp"
                 app:mHint="请选择"
                 app:mTitle="账号类型" />
-            <luyuan.tech.com.chaoke.widget.SelectLayout
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_shoukuanzhenghao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -104,6 +110,7 @@
                 app:mHint="请选择"
                 app:mTitle="收款账号" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_shoukuanjigou"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -112,13 +119,14 @@
                 app:mHint="请输入"
                 app:mTitle="收款机构" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_shoukuanzhihang"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 app:mHint="请输入"
-                app:mTitle="收款账号" />
+                app:mTitle="收款支行" />
 
             <Button
                 android:id="@+id/btn_next"

@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="租金策略"
+            android:text="房产信息"
             android:textColor="#000000"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_chanquandizhi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -45,6 +46,7 @@
                 app:mHint="请输入"
                 app:mTitle="产权地址" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_jianzhumianji"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -53,6 +55,7 @@
                 app:mHint="请输入"
                 app:mTitle="建筑面积㎡" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_huxing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -61,6 +64,7 @@
                 app:mHint="请输入"
                 app:mTitle="户型" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_gongyouqingkuang"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -70,6 +74,7 @@
                 app:mTitle="共有情况" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_yongtu"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -79,6 +84,7 @@
                 app:mTitle="用途" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_fangdaidiya"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"

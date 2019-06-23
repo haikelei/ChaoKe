@@ -39,6 +39,7 @@
 
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_gongyuleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -48,6 +49,7 @@
                 app:mTitle="公寓类型" />
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_gaizaoxinxi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -58,6 +60,7 @@
                 app:mTitle="改造信息" />
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_hetongleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -68,6 +71,7 @@
                 app:mTitle="合同类型" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhuangxiuqisuanri"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -78,6 +82,7 @@
                 app:mTitle="装修起算日" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhuangxiujiezhiri"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -97,6 +102,7 @@
                 android:textSize="15sp" />
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_dianfeifeng"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -106,6 +112,7 @@
                 app:mTitle="电费(峰)" />
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_dianfeigu"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -115,6 +122,7 @@
                 app:mTitle="电费(谷)" />
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_dianlihuhao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -124,15 +132,7 @@
                 app:mTitle="电力户号" />
 
             <luyuan.tech.com.chaoke.widget.InputLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="电费(谷)" />
-
-            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_zongdian"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -142,6 +142,7 @@
                 app:mTitle="总电" />
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_zongmeiqi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -150,7 +151,8 @@
                 app:mHint="请输入"
                 app:mTitle="总煤气" />
 
-            <luyuan.tech.com.chaoke.widget.SelectLayout
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_jiafangchegndan"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"

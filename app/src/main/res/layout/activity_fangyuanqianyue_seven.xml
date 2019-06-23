@@ -47,6 +47,7 @@
                 android:textSize="15sp" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_chanquanrenleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -56,6 +57,7 @@
                 app:mTitle="产权人类型" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhengjianleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -64,6 +66,7 @@
                 app:mHint="请选择"
                 app:mTitle="证件类型" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_xingming"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -72,6 +75,7 @@
                 app:mHint="请输入"
                 app:mTitle="姓名" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_zhengjianhaoma"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -80,6 +84,7 @@
                 app:mHint="请输入"
                 app:mTitle="证件号码" />
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhengjiankaishiri"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -88,6 +93,7 @@
                 app:mHint="请选择"
                 app:mTitle="证件有效开始日" />
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zhengjianjiezhiri"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -95,8 +101,53 @@
                 android:paddingRight="15dp"
                 app:mHint="请选择"
                 app:mTitle="证件有效截止日" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份证正面"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shenfenzhengmian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份证反面"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shenfenfanmian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_chanquanzhengleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -104,14 +155,149 @@
                 android:paddingRight="15dp"
                 app:mHint="请选择"
                 app:mTitle="产权证类型" />
-            <luyuan.tech.com.chaoke.widget.SelectLayout
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_chanquanzhengbianhao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                app:mHint="请选择"
+                app:mHint="请输入"
                 app:mTitle="产权证编号" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="带证号页(有产权证编号页)"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_daizhenghaoye"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主页(有业主姓名/物业地址页)"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_zhuye"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="附记页"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_fujiye"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="原户型图"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_yuanhuxingtu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分户图"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_fenhutu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="其他"
+                    android:textColor="#000000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_qita"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
             <Button
                 android:id="@+id/btn_next"
                 android:layout_width="240dp"

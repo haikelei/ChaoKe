@@ -88,25 +88,33 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         llShoufangBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),ShouFangShenPiActivity.class));
+                Intent intent = new Intent(getBaseContext(),ShouFangShenPiActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
         llQianyueBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),FangYuanQianYueOneActivity.class));
+                Intent intent = new Intent(getBaseContext(),FangYuanQianYueOneActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
         llShikanBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),ShiKanActivity.class));
+                Intent intent = new Intent(getBaseContext(),ShiKanActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
         llGenjinBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),GenJinActivity.class));
+                Intent intent = new Intent(getBaseContext(),GenJinActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
         llCall.setOnClickListener(new View.OnClickListener() {

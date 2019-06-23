@@ -26,6 +26,7 @@
     </RelativeLayout>
 
     <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_fukuanxinxi"
         app:mTitle="付款信息"
         app:mHint="请选择"
         android:paddingLeft="15dp"
@@ -34,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_fukuantianshu"
         android:layout_marginTop="1dp"
         app:mTitle="付款天数"
         app:mHint="请输入"
@@ -43,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_mianzhutianshu"
         android:layout_marginTop="1dp"
         app:mTitle="免租天数"
         app:mHint="请输入"
@@ -52,6 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_weituoqisuanri"
         android:layout_marginTop="1dp"
         app:mTitle="委托起算日"
         app:mHint="请选择"
@@ -61,6 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_weituodaoqiri"
         android:layout_marginTop="1dp"
         app:mTitle="委托到期日"
         app:mHint="请选择"

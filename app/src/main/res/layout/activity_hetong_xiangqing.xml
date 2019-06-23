@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/tv_chuzudizhi"
+                android:id="@+id/tv_fangdongxingming"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/tv_zukexingming"
+                android:id="@+id/tv_shoujihaoma"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/tv_shoujihaoma"
+                android:id="@+id/tv_qianyueshijian"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/tv_qianyueshijian"
+                android:id="@+id/tv_qianyuezhuangtai"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="这是地址"
@@ -149,6 +149,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_erweima"
                     android:background="#d12324"
                     android:layout_width="180dp"
                     android:layout_height="180dp" />

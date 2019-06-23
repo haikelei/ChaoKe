@@ -40,6 +40,7 @@
 
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_wuyedizhi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -50,6 +51,7 @@
                 app:mTitle="物业地址" />
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_fangyuanbianhao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -60,6 +62,7 @@
                 app:mTitle="房源编号" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_fangwulaiyuan"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -69,6 +72,7 @@
                 app:mTitle="房源来源" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_qianyueleixing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -77,16 +81,18 @@
                 app:mHint="请选择"
                 app:mTitle="签约类型" />
 
-            <luyuan.tech.com.chaoke.widget.SelectLayout
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_hetongbianhao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                app:mHint="请选择"
+                app:mHint="请输入"
                 app:mTitle="合同编号" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_qianyueriqi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -96,6 +102,7 @@
                 app:mTitle="签约日期" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_jiaofangriqi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -105,6 +112,7 @@
                 app:mTitle="交房日期" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_jiafangchizheng"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -114,6 +122,7 @@
                 app:mTitle="甲方持证" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_fangwuyongtu"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"

@@ -7,16 +7,20 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.NormalListDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.utils.AppManager;
+import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
+import luyuan.tech.com.chaoke.widget.InputLayout;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
 
 /**
@@ -28,6 +32,8 @@ import luyuan.tech.com.chaoke.widget.SelectLayout;
 
 public class BaseActivity extends AppCompatActivity {
 
+
+    private List<View> list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +95,44 @@ public class BaseActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    protected String getValue(InputLayout inputLayout){
+        return inputLayout.getText().toString().trim();
+    }
+
+    protected String getValue(SelectLayout selectLayout){
+        if (selectLayout.getTag()==null){
+            return "";
+        }
+        return ((int)selectLayout.getTag()+1)+"";
+    }
+
+
+    protected void showSuccess() {
+        T.showShort(getBaseContext(), "提交成功");
+    }
+
+
+    protected void checkEmptyInfo(){
+        if (list==null){
+            list = getAllChildViews(getWindow().getDecorView());
+        }
+    }
+
+    //获取 activity中的所有view
+    private List<View> getAllChildViews(View view) {
+        List<View> allchildren = new ArrayList<View>();
+        if (view instanceof ViewGroup) {
+            ViewGroup vp = (ViewGroup) view;
+            for (int i = 0; i < vp.getChildCount(); i++) {
+                View viewchild = vp.getChildAt(i);
+                allchildren.add(viewchild);
+                //再次 调用本身（递归）
+                allchildren.addAll(getAllChildViews(viewchild));
+            }
+        }
+        return allchildren;
     }
 
 

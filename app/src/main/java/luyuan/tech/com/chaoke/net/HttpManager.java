@@ -37,7 +37,7 @@ public class HttpManager {
     /**
      * 收房审批
      */
-    public static final String SHOUFANGSHENPI = "/api/agent/collect_check";
+    public static final String SHOUFANGSHENPI_List = "/api/agent/collect_check";
 
     /**
      * 小区名称
@@ -129,6 +129,27 @@ public class HttpManager {
      * 租客列表
      */
     public static final String ZUKE_LIST = "/api/agent/rent_customer";
+
+    /**
+     * 收房审批信息保存
+     */
+    public static final String SHOUFANG_SHENPI = "/api/agent/check_again";
+
+    /**
+     * 保存房源跟进
+     */
+    public static final String GENJIN_FANGYUAN = "/api/agent/up_follow";
+
+
+    /**
+     * 房屋签约第一步
+     */
+    public static final String FANGYUANQIANYUE = "/api/agent/house_signing";
+
+    /**
+     * 上传实勘图片
+     */
+    public static final String SHIKAN_TUPIAN = "/api/agent/upload_pics";
 
 
 

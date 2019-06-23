@@ -57,7 +57,7 @@ public class SelectLayout extends RelativeLayout {
             tvTitle.setText(title);
         }
         if (!TextUtils.isEmpty(content)) {
-            tvContent.setHint(content);
+            tvContent.setText(content);
         }
     }
 

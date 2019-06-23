@@ -26,6 +26,7 @@
     </RelativeLayout>
 
     <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_daikanjilu"
         app:mTitle="带看记录"
         app:mHint="请选择"
         android:paddingLeft="15dp"
@@ -35,6 +36,7 @@
         android:layout_height="50dp"/>
 
     <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_fangyuuanzhuangtai"
         android:layout_marginTop="1dp"
         app:mTitle="房源状态"
         app:mHint="请选择"
@@ -58,7 +60,7 @@
     <Button
         android:id="@+id/btn_next"
         android:textSize="18sp"
-        android:text="下一步"
+        android:text="提交"
         android:textColor="#ffffff"
         android:background="@drawable/shape_r6_60d1c8"
         android:layout_marginTop="50dp"

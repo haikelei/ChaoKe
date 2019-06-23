@@ -16,7 +16,7 @@
         android:drawablePadding="3dp"
         android:textSize="15sp"
         android:gravity="right|center"
-        android:layout_toRightOf="@id/tv"
+        android:layout_toRightOf="@id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <TextView

@@ -20,8 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.DaiChuShenAdapter;
-import luyuan.tech.com.chaoke.adapter.DaiGenJinAdapter;
-import luyuan.tech.com.chaoke.bean.LoginBean;
 import luyuan.tech.com.chaoke.bean.ShouFangShenPiBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
@@ -73,14 +71,14 @@ public class ShouFangDaiChuShenFragment extends Fragment {
     }
 
     private void loadData() {
-        HttpManager.post(HttpManager.SHOUFANGSHENPI)
+        HttpManager.post(HttpManager.SHOUFANGSHENPI_List)
                 .params("token",UserInfoUtils.getInstance().getToken())
                 .params("type",String.valueOf(type))
                 .execute(new SimpleCallBack<ShouFangShenPiBean>() {
 
                     @Override
                     public void onError(ApiException e) {
-                        T.showShort(getContext(),e.getMessage());
+                        T.showShort(getActivity(),e.getMessage());
                     }
 
                     @Override

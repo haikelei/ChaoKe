@@ -39,6 +39,7 @@
 
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_meiyuefangzu"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -49,6 +50,7 @@
                 app:mTitle="每月房租(元)" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_shoucifukuanri"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -58,6 +60,7 @@
                 app:mTitle="首次付款日" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_shifoudaichewei"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -67,6 +70,7 @@
                 app:mTitle="是否带车位委托" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_mianzukaishiri"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -76,6 +80,7 @@
                 app:mTitle="免租开始日" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_mianzudaoqiri"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
@@ -85,6 +90,7 @@
                 app:mTitle="免租到期日" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_zujinzhifufangshi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
