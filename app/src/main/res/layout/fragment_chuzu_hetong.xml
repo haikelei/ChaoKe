@@ -6,25 +6,8 @@
     android:paddingRight="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_marginTop="20dp"
-        android:textSize="10sp"
-        android:text="更新于2019-05-14 14:41:26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/_000000"
-        android:text="资产委托合同服务"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="30dp"
-        android:textSize="12sp"
-        android:textColor="@color/_000000"
-        android:text="资产委托合同服务"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

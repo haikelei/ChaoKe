@@ -163,5 +163,11 @@ public class HttpManager {
     public static final String SHOUFANG_JIAOGE = "/api/agent/collect_house";
 
 
+    /**
+     * 通讯录
+     */
+    public static final String TONG_XUN_LU = "/api/agent/mail_list";
+
+
 
 }

@@ -33,8 +33,10 @@ import luyuan.tech.com.chaoke.activity.ClientTaskActivity;
 import luyuan.tech.com.chaoke.activity.HeTongTiaoKuanActivity;
 import luyuan.tech.com.chaoke.activity.HouseTaskActivity;
 import luyuan.tech.com.chaoke.activity.KaiFaFangYuanActivity;
+import luyuan.tech.com.chaoke.activity.LoginActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangJiaoGeActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangShenPiListActivity;
+import luyuan.tech.com.chaoke.activity.TongXunLuActivity;
 import luyuan.tech.com.chaoke.activity.WeiTuoHeTongActivity;
 import luyuan.tech.com.chaoke.activity.ZiYingFangYuanActivity;
 import luyuan.tech.com.chaoke.activity.ZuQianKeHuActivity;
@@ -108,6 +110,7 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), AddHouseActivity.class));
                 break;
             case R.id.iv_sao:
+                startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
         }
     }
@@ -125,6 +128,7 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), ShouFangShenPiListActivity.class));
                 break;
             case R.id.ll_tongxunlu:
+                startActivity(new Intent(getContext(), TongXunLuActivity.class));
                 break;
             case R.id.ll_ziyingfangyuan:
                 startActivity(new Intent(getContext(), ZiYingFangYuanActivity.class));

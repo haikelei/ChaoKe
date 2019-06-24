@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.flyco.tablayout.SlidingTabLayout;
@@ -34,6 +35,12 @@ public class HeTongTiaoKuanActivity extends BaseActivity {
         setContentView(R.layout.activity_he_tong_tiao_kuan);
         ButterKnife.bind(this);
         initView();
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void initView() {
