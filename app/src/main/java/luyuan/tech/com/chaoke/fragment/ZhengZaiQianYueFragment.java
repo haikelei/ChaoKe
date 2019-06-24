@@ -27,8 +27,6 @@ import luyuan.tech.com.chaoke.adapter.WeiTuoHeTongAdapter;
 
 
 public class ZhengZaiQianYueFragment extends Fragment {
-    @BindView(R.id.et)
-    AppCompatEditText et;
     @BindView(R.id.recycler)
     RecyclerView recycler;
     Unbinder unbinder;

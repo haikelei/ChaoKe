@@ -79,7 +79,12 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoufang_jiaoge);
         ButterKnife.bind(this);
-
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

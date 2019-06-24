@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity {
 
     private void loadData() {
 //        startActivity(new Intent(getBaseContext(),HeToneXinXiThreeActivity.class));
-        startActivity(new Intent(getBaseContext(),FangYuanQianYueSevenActivity.class));
+//        startActivity(new Intent(getBaseContext(),FangYuanQianYueSevenActivity.class));
     }
 
     @OnClick({R.id.ll0, R.id.ll1, R.id.ll2, R.id.ll3})
