@@ -72,6 +72,7 @@ public class LoginMIMaFragment extends Fragment {
 
                             @Override
                             public void onSuccess(LoginBean loginBean) {
+                                T.showShort(getContext(),"登录成功");
                                 UserInfoUtils.getInstance().updateUserInfo(loginBean);
                                 getActivity().finish();
                             }
