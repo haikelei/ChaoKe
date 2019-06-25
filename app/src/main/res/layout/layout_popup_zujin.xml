@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_zujinbuxian"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -18,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <TextView
+        android:id="@+id/tv_zujin_1500"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -30,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <TextView
+        android:id="@+id/tv_zujin_2000"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -42,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <TextView
+        android:id="@+id/tv_zujin_2500"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -54,6 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <TextView
+        android:id="@+id/tv_zujin_4000"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -66,6 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <TextView
+        android:id="@+id/tv_zujin_4000_high"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -111,6 +117,7 @@
             android:layout_width="80dp"
             android:layout_height="40dp" />
         <Button
+            android:id="@+id/btn_zujin"
             android:layout_marginLeft="20dp"
             android:textSize="11sp"
             android:textColor="#ffffff"

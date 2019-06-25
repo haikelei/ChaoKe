@@ -175,5 +175,23 @@ public class HttpManager {
     public static final String ZHEXIANTU = "/api/agent/statistics_data";
 
 
+    /**
+     * 消息详情
+     */
+    public static final String XIAOXI_XIANAGQING = "/api/agent/msg_detail";
+
+
+    /**
+     * 消息列表
+     */
+    public static final String XIAOXI_LIST = "/api/agent/user_msg";
+
+
+    /**
+     * 筛选获取的城市以及商圈
+     */
+    public static final String CHENGSHI_LIST = "/api/agent/city_list";
+
+
 
 }

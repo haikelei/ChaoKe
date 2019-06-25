@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.NormalListDialog;
@@ -114,10 +115,24 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    protected void checkEmptyInfo(){
-        if (list==null){
-            list = getAllChildViews(getWindow().getDecorView());
+    protected boolean checkEmptyInfo(){
+        List<View> list = getAllChildViews(getWindow().getDecorView());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) instanceof SelectLayout){
+                SelectLayout selectLayout = (SelectLayout) list.get(i);
+                if (TextUtils.isEmpty(selectLayout.getText())){
+                    T.showShort(this,"请选择"+selectLayout.getTitle());
+                    return false;
+                }
+            }else if (list.get(i) instanceof InputLayout){
+                InputLayout inputLayout = (InputLayout) list.get(i);
+                if (TextUtils.isEmpty(inputLayout.getText().toString().trim())){
+                    T.showShort(this,"请输入"+inputLayout.getTitle());
+                    return false;
+                }
+            }
         }
+        return true;
     }
 
     //获取 activity中的所有view
@@ -134,6 +149,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         return allchildren;
     }
+
 
 
 }

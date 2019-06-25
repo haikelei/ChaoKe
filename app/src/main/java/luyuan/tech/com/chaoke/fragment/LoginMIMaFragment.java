@@ -75,9 +75,9 @@ public class LoginMIMaFragment extends Fragment {
 
                             @Override
                             public void onSuccess(LoginBean loginBean) {
-                                EventBus.getDefault().post(new LoginEvent());
-                                T.showShort(getContext(),"登录成功");
                                 UserInfoUtils.getInstance().updateUserInfo(loginBean);
+                                T.showShort(getContext(),"登录成功");
+                                EventBus.getDefault().post(new LoginEvent());
                                 getActivity().finish();
                             }
                         });

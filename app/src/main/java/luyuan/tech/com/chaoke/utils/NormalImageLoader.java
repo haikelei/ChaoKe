@@ -19,6 +19,6 @@ public class NormalImageLoader extends ImageLoader {
     public void displayImage(Context context, Object path, ImageView imageView) {
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.centerCrop();
-        Glide.with(context).load(path).apply(requestOptions).into(imageView);
+        Glide.with(context).load(Constant.IMAGE_PRE+path).apply(requestOptions).into(imageView);
     }
 }

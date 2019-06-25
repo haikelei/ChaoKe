@@ -4,23 +4,32 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.adapter.GenJinAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.AppStorageUtils;
+import luyuan.tech.com.chaoke.utils.Constant;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.GenJinPopup;
@@ -61,7 +70,23 @@ public class ZuKeDetailActivity extends BaseActivity {
     TextView tvRenshu;
     @BindView(R.id.container)
     LinearLayout container;
+    @BindView(R.id.iv_avatar)
+    ImageView ivAvatar;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_leixing)
+    TextView tvLeixing;
+    @BindView(R.id.tv_youxiao)
+    TextView tvYouxiao;
+    @BindView(R.id.tv_bianhao)
+    TextView tvBianhao;
+    @BindView(R.id.tv_createtime)
+    TextView tvCreatetime;
+    @BindView(R.id.recycler)
+    RecyclerView recycler;
     private String id;
+    private List<ZuKeDetailBean.FollowDataBean> list;
+    private GenJinAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +96,26 @@ public class ZuKeDetailActivity extends BaseActivity {
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.error(R.mipmap.moren_touxiang);
+        Glide.with(this).load(Constant.IMAGE_PRE + UserInfoUtils.getInstance().getAvatar()).apply(requestOptions).into(ivAvatar);
+        tvName.setText(UserInfoUtils.getInstance().getUserName());
+        list = new ArrayList<>();
+        recycler.setLayoutManager(new LinearLayoutManager(this) {
+            @Override
+            public boolean canScrollVertically() {
+                //解决ScrollView里存在多个RecyclerView时滑动卡顿的问题
+                //如果你的RecyclerView是水平滑动的话可以重写canScrollHorizontally方法
+                return false;
+            }
+        });
+        //解决数据加载不完的问题
+        recycler.setNestedScrollingEnabled(false);
+        recycler.setHasFixedSize(true);
+        //解决数据加载完成后, 没有停留在顶部的问题
+        recycler.setFocusable(false);
+        adapter = new GenJinAdapter(list);
+        recycler.setAdapter(adapter);
         loadData();
     }
 
@@ -94,12 +139,20 @@ public class ZuKeDetailActivity extends BaseActivity {
     }
 
     private void fillData(ZuKeDetailBean data) {
-        tvQuyu.setText("区域:"+data.getCity_name());
-        tvZujin.setText("租金:"+data.getRent_min());
-        tvJushi.setText("居室:"+data.getRoom()+"室"+data.getOffice()+"厅"+data.getToilet()+"卫");
+        tvYouxiao.setText(data.getStatus() == 1 ? "有效" : "无效");
+        tvCreatetime.setText(data.createtime);
+        tvBianhao.setText("编号:" + data.getTenant_num() + "");
+        tvQuyu.setText("区域:" + data.getCity_name());
+        tvZujin.setText("租金:" + data.getRent_min());
+        tvJushi.setText("居室:" + data.getRoom() + "室" + data.getOffice() + "厅" + data.getToilet() + "卫");
 //        tvZhuangxiu.setText("装修:"+);
-        tvXiwangruzhuri.setText("希望入住日:"+data.getCheckin_time());
-        tvRenshu.setText("人数:"+data.getPeople_num());
+        tvXiwangruzhuri.setText("希望入住日:" + data.getCheckin_time());
+        tvRenshu.setText("人数:" + data.getPeople_num());
+        if (data.getFollow_data() != null) {
+            list.clear();
+            list.addAll(data.getFollow_data());
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @OnClick({R.id.iv_back, R.id.tv_edit, R.id.ll_qianyue_bottom, R.id.ll_daikan_bottom, R.id.ll_genjin_bottom, R.id.ll_call})
@@ -115,7 +168,7 @@ public class ZuKeDetailActivity extends BaseActivity {
                 quYuPopup.setOnPopupClickListener(new ZuKeBianJiPopup.OnPopupClickListener() {
                     @Override
                     public void onZukexinxiClick(View view) {
-                        Intent intent = new Intent(getBaseContext(),ZuKeXinXiActivity.class);
+                        Intent intent = new Intent(getBaseContext(), ZuKeXinXiActivity.class);
                         startActivity(intent);
                     }
 
@@ -126,7 +179,7 @@ public class ZuKeDetailActivity extends BaseActivity {
 
                     @Override
                     public void onXiugaizhuangtai(View view) {
-                        Intent intent = new Intent(getBaseContext(),XiuGaiZhuangTaiActivity.class);
+                        Intent intent = new Intent(getBaseContext(), XiuGaiZhuangTaiActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -138,7 +191,7 @@ public class ZuKeDetailActivity extends BaseActivity {
                 startActivity(new Intent(getBaseContext(), DaiKanFangYuanActivity.class));
                 break;
             case R.id.ll_genjin_bottom:
-                GenJinPopup genJinPopup = new GenJinPopup(ZuKeDetailActivity.this,id);
+                GenJinPopup genJinPopup = new GenJinPopup(ZuKeDetailActivity.this, id);
                 genJinPopup.setPopupGravity(Gravity.CENTER);
                 genJinPopup.showPopupWindow();
                 break;

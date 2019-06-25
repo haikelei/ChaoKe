@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -29,7 +30,7 @@ public class TongXunLuAdapter extends BaseQuickAdapter<TongXunLuBean,BaseViewHol
     @Override
     protected void convert(BaseViewHolder helper, final TongXunLuBean item) {
         TextView tvName = helper.getView(R.id.tv_name);
-        TextView ivCall = helper.getView(R.id.iv_call);
+        ImageView ivCall = helper.getView(R.id.iv_call);
         tvName.setText(item.getNickname());
         ivCall.setOnClickListener(new View.OnClickListener() {
             @Override

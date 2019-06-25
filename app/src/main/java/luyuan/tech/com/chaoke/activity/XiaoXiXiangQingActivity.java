@@ -2,24 +2,20 @@ package luyuan.tech.com.chaoke.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
-import luyuan.tech.com.chaoke.adapter.TongXunLuAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
-import luyuan.tech.com.chaoke.bean.TongXunLuBean;
+import luyuan.tech.com.chaoke.bean.XiaoXiXiangQingBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -31,36 +27,42 @@ import luyuan.tech.com.chaoke.utils.UserInfoUtils;
  */
 
 
-public class TongXunLuActivity extends BaseActivity {
+public class XiaoXiXiangQingActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.recycler)
-    RecyclerView recycler;
-    List<TongXunLuBean> list;
-    TongXunLuAdapter adapter;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.tv_desc)
+    TextView tvDesc;
+    @BindView(R.id.web_view)
+    WebView webView;
+    private String id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gxunluton);
+        setContentView(R.layout.activity_xiaoxi_xiangqing);
         ButterKnife.bind(this);
+        if (getIntent()!=null){
+            id = getIntent().getStringExtra("id");
+        }
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
-        list = new ArrayList<>();
-        recycler.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        adapter = new TongXunLuAdapter(list);
-        recycler.setAdapter(adapter);
         loadData();
     }
 
     private void loadData() {
-        HttpManager.post(HttpManager.TONG_XUN_LU)
+        HttpManager.post(HttpManager.XIAOXI_XIANAGQING)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .execute(new SimpleCallBack<List<TongXunLuBean>>() {
+                .params("id", id)
+                .params("type", "1")
+                .execute(new SimpleCallBack<XiaoXiXiangQingBean>() {
 
                     @Override
                     public void onError(ApiException e) {
@@ -68,10 +70,11 @@ public class TongXunLuActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onSuccess(List<TongXunLuBean> data) {
-                        list.clear();
-                        list.addAll(data);
-                        adapter.notifyDataSetChanged();
+                    public void onSuccess(XiaoXiXiangQingBean data) {
+                        tvTime.setText(data.getCreatetime());
+                        tvDesc.setText(data.getDesc());
+                        tvTime.setText(data.getTitle());
+                        webView.loadDataWithBaseURL(null, data.getContent(), "text/html", "UTF-8", null);
                     }
                 });
     }

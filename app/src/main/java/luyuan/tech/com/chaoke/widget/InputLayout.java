@@ -63,4 +63,8 @@ public class InputLayout extends RelativeLayout {
     public String getText(){
         return et.getText().toString().trim();
     }
+
+    public String getTitle(){
+        return title;
+    }
 }

@@ -52,6 +52,7 @@ public class ZuKeDetailBean {
     private String city_name;
     private int tenant_num;
     private List<FollowDataBean> follow_data;
+    public String createtime;
 
     public int getId() {
         return id;

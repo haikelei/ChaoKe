@@ -23,6 +23,8 @@ import luyuan.tech.com.chaoke.R;
 public class SelectLayout extends RelativeLayout {
     String title;
     String content;
+
+
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.tv_content)
@@ -69,5 +71,9 @@ public class SelectLayout extends RelativeLayout {
 
     public String getText(){
         return tv.getText().toString().trim();
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

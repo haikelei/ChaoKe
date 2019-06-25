@@ -117,6 +117,9 @@ public class AddHouseActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         PostRequest postRequest = HttpManager.post(HttpManager.FABUONE)
                 .params("token",UserInfoUtils.getInstance().getToken())
                 .params("rid",xiaoquMap.get(slUnityName.getText().toString()))

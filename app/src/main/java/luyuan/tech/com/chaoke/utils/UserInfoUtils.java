@@ -46,16 +46,35 @@ public class UserInfoUtils {
         helper.put("phone",phone);
     }
 
+    public String getAvatar(){
+        return (String) helper.getSharedPreference("avatar","");
+    }
+
+    public void setAvatar(String avatar) {
+        helper.put("avatar",avatar);
+    }
 
 
+    public String getUserName(){
+        return (String) helper.getSharedPreference("name","");
+    }
+
+    public void setUserName(String name) {
+        helper.put("name",name);
+    }
 
 
     public void updateUserInfo(LoginBean bean){
         setToken(bean.getToken());
         setPhone(bean.getPhone());
+        setAvatar(bean.getHeadimgurl());
+        setUserName(bean.getNickname());
     }
 
     public void logout() {
         setToken("");
+        setPhone("");
+        setAvatar("");
+        setUserName("");
     }
 }

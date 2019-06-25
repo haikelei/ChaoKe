@@ -83,6 +83,9 @@ public class ZuKeXinXiActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.ZUKEXINXI_ONE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("id", AppStorageUtils.getZuKeDetailBean().getId()+"")

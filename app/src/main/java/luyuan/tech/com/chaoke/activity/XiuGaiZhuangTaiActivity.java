@@ -109,6 +109,9 @@ public class XiuGaiZhuangTaiActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         int status = 1;
         if (rb1.isChecked()){
             status = 2;

@@ -151,8 +151,8 @@
                 app:mHint="请输入"
                 app:mTitle="总煤气" />
 
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_jiafangchegndan"
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_jiafangchegndan"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"

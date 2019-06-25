@@ -190,6 +190,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <TextView
+            android:id="@+id/btn_shaixuan"
             android:text="确定"
             android:gravity="center"
             android:textColor="#ffffff"

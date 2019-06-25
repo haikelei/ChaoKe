@@ -56,8 +56,8 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
     InputLayout inputZongdian;
     @BindView(R.id.input_zongmeiqi)
     InputLayout inputZongmeiqi;
-    @BindView(R.id.input_jiafangchegndan)
-    InputLayout inputJiafangchegndan;
+    @BindView(R.id.sl_jiafangchegndan)
+    SelectLayout slJiafangchegndan;
     @BindView(R.id.num_dianshi)
     InputLayout numDianshi;
     @BindView(R.id.num_kongtiao)
@@ -133,6 +133,9 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
         String[] arr = {"普通公寓","商用公寓","住宅公寓","复式公寓","品牌公寓"};
         setSelectLListener(slGongyuleixing,arr,"公寓类型");
 
+        String[] arr1 = {"电费","水费","燃气费","物业及能耗费"};
+        setSelectLListener(slJiafangchegndan,arr1,"甲方承担");
+
         setDatePickerListener(slZhuangxiujiezhiri);
         setDatePickerListener(slZhuangxiuqisuanri);
 
@@ -181,7 +184,7 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
                 .params("electric_num",getValue(inputDianlihuhao))
                 .params("total_electric", getValue(inputZongdian))
                 .params("total_coal",getValue(inputZongmeiqi))
-                .params("first_cost", getValue(inputJiafangchegndan))
+                .params("first_cost", getValue(slJiafangchegndan))
                 .params("config",handoverList.toString());
         if (!TextUtils.isEmpty(oldId)){
             postRequest.params("old_id",oldId);
