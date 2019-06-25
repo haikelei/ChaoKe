@@ -13,11 +13,14 @@ import android.widget.EditText;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.bean.LoginBean;
+import luyuan.tech.com.chaoke.event.LoginEvent;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -72,6 +75,7 @@ public class LoginMIMaFragment extends Fragment {
 
                             @Override
                             public void onSuccess(LoginBean loginBean) {
+                                EventBus.getDefault().post(new LoginEvent());
                                 T.showShort(getContext(),"登录成功");
                                 UserInfoUtils.getInstance().updateUserInfo(loginBean);
                                 getActivity().finish();

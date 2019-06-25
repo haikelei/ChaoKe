@@ -28,9 +28,12 @@ public class LinePagerAdapter extends FragmentStatePagerAdapter {
         titles.add("进客");
         titles.add("出租");
         titles.add("委托");
-        fragments.add(new LineFragment());
-        fragments.add(new LineFragment());
-        fragments.add(new LineFragment());
+        fragments.add(LineFragment.newInstance(1));
+        fragments.add(LineFragment.newInstance(2));
+        fragments.add(LineFragment.newInstance(3));
+//        fragments.add(new LineFragment());
+//        fragments.add(new LineFragment());
+//        fragments.add(new LineFragment());
     }
 
     @Nullable

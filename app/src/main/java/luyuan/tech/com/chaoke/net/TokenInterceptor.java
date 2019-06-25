@@ -8,6 +8,8 @@ import com.zhouyou.http.model.ApiResult;
 
 import luyuan.tech.com.chaoke.App;
 import luyuan.tech.com.chaoke.activity.LoginActivity;
+import luyuan.tech.com.chaoke.activity.MainActivity;
+import luyuan.tech.com.chaoke.utils.AppManager;
 import okhttp3.Response;
 
 /**
@@ -37,7 +39,10 @@ public class TokenInterceptor extends BaseExpiredInterceptor {
         try {
             switch (apiResult.getCode()) {
                 case Code.TOKEN_INVAILD: //AccessToken错误或已过期
-                    App.getAppContext().startActivity(new Intent(App.getAppContext(), LoginActivity.class));
+                    if (!(AppManager.get().currentActivity() instanceof MainActivity)){
+                        AppManager.get().finishCurrActivity();
+                    }
+                    AppManager.get().currentActivity().startActivity(new Intent(App.getAppContext(), LoginActivity.class));
                     Response response = chain.proceed(chain.request());
                     return response;
                 default:

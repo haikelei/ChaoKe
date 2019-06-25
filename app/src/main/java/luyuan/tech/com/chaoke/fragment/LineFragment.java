@@ -1,6 +1,6 @@
 package luyuan.tech.com.chaoke.fragment;
 
-import android.graphics.Color;
+import android.content.Context;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,14 +10,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.idtk.smallchart.chart.LineChart;
-import com.idtk.smallchart.data.LineData;
-import com.idtk.smallchart.interfaces.iData.ILineData;
+import com.zhouyou.http.callback.SimpleCallBack;
+import com.zhouyou.http.exception.ApiException;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
-import luyuan.tech.com.chaoke.utils.SizeUtils;
+import luyuan.tech.com.chaoke.bean.LineChartData;
+import luyuan.tech.com.chaoke.bean.ZheXianBean;
+import luyuan.tech.com.chaoke.event.LoginEvent;
+import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.T;
+import luyuan.tech.com.chaoke.utils.UserInfoUtils;
+import luyuan.tech.com.chaoke.widget.LineChart;
 
 /**
  * @author: lujialei
@@ -28,33 +41,93 @@ import luyuan.tech.com.chaoke.utils.SizeUtils;
 
 public class LineFragment extends Fragment {
 
-    private LineChart lineChart;
-    private LineData mLineData = new LineData();
-    private ArrayList<PointF> mPointArrayList = new ArrayList<>();
-    float[][] points = new float[][]{{1,10}, {2,47}, {3,11}, {4,38}, {5,9},{6,52}, {7,14}, {8,37}, {9,29}, {10,31}};
+    Unbinder unbinder;
+    @BindView(R.id.line_chart)
+    LineChart lineChart;
+    private ArrayList<LineChartData> list = new ArrayList<>();
+    private int id = 1;//1进客 2出租 3委托
+
+    public static Fragment newInstance(int id) {
+        LineFragment fragment = new LineFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_zhexian, container, false);
+        View view = inflater.inflate(R.layout.layout_zhexian, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        if (getArguments() != null) {
+            id = getArguments().getInt("id", 1);
+        }
         super.onViewCreated(view, savedInstanceState);
-        lineChart = view.findViewById(R.id.chart);
         loadData();
-
     }
 
     private void loadData() {
-        for (int i = 0; i < 8; i++) {
-            mPointArrayList.add(new PointF(points[i][0], points[i][1]));
+        HttpManager.post(HttpManager.ZHEXIANTU)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("id", id + "")
+                .execute(new SimpleCallBack<List<ZheXianBean>>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getActivity(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(List<ZheXianBean> data) {
+                        handleData(data);
+                    }
+                });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onGetMessage(LoginEvent event) {
+        if (list.size() == 0) {
+            loadData();
         }
-        mLineData.setValue(mPointArrayList);
-        mLineData.setColor(getResources().getColor(R.color.colorPrimary));
-        mLineData.setPaintWidth(SizeUtils.px2dp(getContext(),7));
-        mLineData.setTextSize(SizeUtils.px2dp(getContext(),10));
-        lineChart.setData(mLineData);
+    }
+
+    private void handleData(List<ZheXianBean> data) {
+        if (data == null || data.size() == 0) {
+            return;
+        }
+        list.clear();
+        for (int i = 0; i < data.size(); i++) {
+            ZheXianBean bean = data.get(i);
+            LineChartData lineChartData = new LineChartData();
+            lineChartData.setItem(bean.getMonth()+"月");
+            lineChartData.setPoint(bean.getCount());
+            list.add(lineChartData);
+        }
+        lineChart.setData(list);
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

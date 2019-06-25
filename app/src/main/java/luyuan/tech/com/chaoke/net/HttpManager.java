@@ -169,5 +169,11 @@ public class HttpManager {
     public static final String TONG_XUN_LU = "/api/agent/mail_list";
 
 
+    /**
+     * 首页折线图
+     */
+    public static final String ZHEXIANTU = "/api/agent/statistics_data";
+
+
 
 }
