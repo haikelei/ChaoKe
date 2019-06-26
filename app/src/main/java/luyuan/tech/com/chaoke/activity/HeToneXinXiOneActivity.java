@@ -104,6 +104,9 @@ public class HeToneXinXiOneActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         int i = (int) slFukuanfangshi.getTag();
         HttpManager.post(HttpManager.HETONG_ONE)

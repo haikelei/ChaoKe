@@ -120,6 +120,9 @@ public class ZuKeDetailActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.ZUKE_DETAIL)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("id", id)

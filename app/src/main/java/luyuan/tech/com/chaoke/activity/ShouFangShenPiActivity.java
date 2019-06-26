@@ -225,6 +225,9 @@ public class ShouFangShenPiActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.SHOUFANG_SHENPI)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("rent_id",id)

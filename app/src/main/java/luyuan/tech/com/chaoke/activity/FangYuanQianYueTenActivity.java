@@ -57,7 +57,9 @@ public class FangYuanQianYueTenActivity extends BaseActivity {
     }
 
     private void loadData() {
-
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("total_id",id)

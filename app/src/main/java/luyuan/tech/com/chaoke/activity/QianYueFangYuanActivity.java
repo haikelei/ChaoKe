@@ -59,6 +59,9 @@ public class QianYueFangYuanActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.HOUSE_LIST)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .execute(new SimpleCallBack<List<HouseBean>>() {

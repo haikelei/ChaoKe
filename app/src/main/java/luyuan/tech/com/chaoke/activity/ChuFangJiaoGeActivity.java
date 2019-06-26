@@ -187,6 +187,9 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
 
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         PostRequest request = HttpManager.post(HttpManager.CHUFANG_JIAOGE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("room_address",getValue(inputXiaoqudizhi))

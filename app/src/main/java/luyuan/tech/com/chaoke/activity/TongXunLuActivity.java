@@ -58,6 +58,9 @@ public class TongXunLuActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.TONG_XUN_LU)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .execute(new SimpleCallBack<List<TongXunLuBean>>() {

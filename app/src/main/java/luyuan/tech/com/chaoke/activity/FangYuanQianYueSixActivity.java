@@ -73,6 +73,9 @@ public class FangYuanQianYueSixActivity extends BaseActivity {
 
     private String oldId;
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         PostRequest request = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("total_id",id)

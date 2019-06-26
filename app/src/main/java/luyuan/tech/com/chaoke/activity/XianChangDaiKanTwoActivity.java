@@ -81,6 +81,9 @@ public class XianChangDaiKanTwoActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.DAIKAN_YUEKAN)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("type", "2")

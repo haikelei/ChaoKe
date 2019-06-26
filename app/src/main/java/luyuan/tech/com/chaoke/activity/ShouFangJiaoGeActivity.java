@@ -145,6 +145,9 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
 
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         PostRequest request = HttpManager.post(HttpManager.SHOUFANG_JIAOGE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("room_number", getValue(inputXiaoqudizhi))

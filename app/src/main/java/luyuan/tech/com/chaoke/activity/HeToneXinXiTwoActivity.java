@@ -84,6 +84,9 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.HETONG_TWO)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("con_id", bean.getCon_id())

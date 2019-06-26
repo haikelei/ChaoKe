@@ -222,6 +222,9 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.HETONG_THREE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("con_id",bean.getCon_id())

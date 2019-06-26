@@ -98,6 +98,9 @@ public class ZuQianKeHuActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.ZUKE_LIST)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .execute(new SimpleCallBack<List<ZuKeListBean>>() {

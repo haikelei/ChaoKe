@@ -58,6 +58,9 @@ public class XiaoXiXiangQingActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.XIAOXI_XIANAGQING)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("id", id)

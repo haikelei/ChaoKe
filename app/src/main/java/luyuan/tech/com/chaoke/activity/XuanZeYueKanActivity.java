@@ -96,6 +96,9 @@ public class XuanZeYueKanActivity extends BaseActivity {
 
     private void loadData() {
         // TODO: 2019/6/18  选择带看房源接口
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.HOUSE_LIST)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .execute(new SimpleCallBack<List<HouseBean>>() {

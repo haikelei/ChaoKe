@@ -69,6 +69,9 @@ public class GenJinActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.GENJIN_FANGYUAN)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("id",id)

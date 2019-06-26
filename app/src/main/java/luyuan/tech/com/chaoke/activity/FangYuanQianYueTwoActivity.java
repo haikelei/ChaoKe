@@ -143,6 +143,9 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
 
     private String oldId;
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         StringBuilder handoverList = new StringBuilder();
         handoverList.append(numDianshi.getText()+",")
                 .append(numDianshi.getText()+",")

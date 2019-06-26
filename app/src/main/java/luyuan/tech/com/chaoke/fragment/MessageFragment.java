@@ -74,7 +74,7 @@ public class MessageFragment extends Fragment {
     private void loadData() {
         HttpManager.post(HttpManager.XIAOXI_LIST)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("type", "1")
+                .params("type", "2")//	1为全部 2为公告 3为业务
                 .execute(new SimpleCallBack<List<XiaoXiListBean>>() {
 
                     @Override

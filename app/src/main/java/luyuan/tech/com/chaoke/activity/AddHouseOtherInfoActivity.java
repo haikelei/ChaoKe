@@ -101,6 +101,9 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     }
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         HttpManager.post(HttpManager.FABUTWO)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("ren_id", id)
