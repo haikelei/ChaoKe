@@ -3,6 +3,7 @@
     <declare-styleable name="InputLayout">
         <attr name="mTitle" format="string"/>
         <attr name="mHint" format="string"/>
+        <attr name="must" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="LineChart">

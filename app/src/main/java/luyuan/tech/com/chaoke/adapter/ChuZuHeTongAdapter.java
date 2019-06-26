@@ -10,7 +10,6 @@ import java.util.List;
 
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.bean.ChuZuHeTongBean;
-import luyuan.tech.com.chaoke.bean.WeiTuoHeTongBean;
 
 /**
  * @author: lujialei
@@ -19,17 +18,17 @@ import luyuan.tech.com.chaoke.bean.WeiTuoHeTongBean;
  */
 
 
-public class WeiTuoHeTongAdapter extends BaseQuickAdapter<WeiTuoHeTongBean,BaseViewHolder> {
-    public WeiTuoHeTongAdapter(@Nullable List<WeiTuoHeTongBean> data) {
+public class ChuZuHeTongAdapter extends BaseQuickAdapter<ChuZuHeTongBean.ListBean,BaseViewHolder> {
+    public ChuZuHeTongAdapter(@Nullable List<ChuZuHeTongBean.ListBean> data) {
         super(R.layout.layout_weituohetong_item,data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, WeiTuoHeTongBean item) {
+    protected void convert(BaseViewHolder helper, ChuZuHeTongBean.ListBean item) {
         TextView tvTitle = helper.getView(R.id.tv_title);
         TextView tvTime = helper.getView(R.id.tv_time);
         TextView tvState = helper.getView(R.id.tv_state);
-        tvTitle.setText(item.getWuye_address());
+        tvTitle.setText(item.getAddress());
         tvTime.setText(item.getCreatetime());
         String s = "";
         if (item.getState()==1){

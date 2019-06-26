@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
@@ -19,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.activity.ChongZhiMiMaActivity;
 import luyuan.tech.com.chaoke.bean.LoginBean;
 import luyuan.tech.com.chaoke.event.LoginEvent;
 import luyuan.tech.com.chaoke.net.HttpManager;
@@ -40,6 +43,8 @@ public class LoginMIMaFragment extends Fragment {
     @BindView(R.id.btn_login)
     Button btnLogin;
     Unbinder unbinder;
+    @BindView(R.id.tv_wangjimima)
+    TextView tvWangjimima;
 
     @Nullable
     @Override
@@ -62,25 +67,31 @@ public class LoginMIMaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 HttpManager.post(HttpManager.LOGIN)
-                        .params("role","2")
-                        .params("login_type","1")
-                        .params("phone",etPhone.getText().toString().trim())
-                        .params("password",etPwd.getText().toString().trim())
+                        .params("role", "2")
+                        .params("login_type", "1")
+                        .params("phone", etPhone.getText().toString().trim())
+                        .params("password", etPwd.getText().toString().trim())
                         .execute(new SimpleCallBack<LoginBean>() {
 
                             @Override
                             public void onError(ApiException e) {
-                                T.showShort(getContext(),e.getMessage());
+                                T.showShort(getContext(), e.getMessage());
                             }
 
                             @Override
                             public void onSuccess(LoginBean loginBean) {
                                 UserInfoUtils.getInstance().updateUserInfo(loginBean);
-                                T.showShort(getContext(),"登录成功");
+                                T.showShort(getContext(), "登录成功");
                                 EventBus.getDefault().post(new LoginEvent());
                                 getActivity().finish();
                             }
                         });
+            }
+        });
+        tvWangjimima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ChongZhiMiMaActivity.class));
             }
         });
     }

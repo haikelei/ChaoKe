@@ -213,6 +213,27 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
                 </LinearLayout>
+                <TextView
+                    android:gravity="center_vertical"
+                    android:text="位置地图"
+                    android:paddingLeft="15dp"
+                    android:textColor="#000000"
+                    android:background="#ffffff"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+                <RelativeLayout
+                    android:background="#d12324"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"></RelativeLayout>
+                <TextView
+                    android:gravity="center_vertical"
+                    android:text="房屋配置"
+                    android:paddingLeft="15dp"
+                    android:textColor="#000000"
+                    android:background="#ffffff"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
             </LinearLayout>
             <Button
                 android:id="@+id/btn_next"

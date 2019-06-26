@@ -120,13 +120,13 @@ public class BaseActivity extends AppCompatActivity {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) instanceof SelectLayout){
                 SelectLayout selectLayout = (SelectLayout) list.get(i);
-                if (TextUtils.isEmpty(selectLayout.getText())){
+                if (selectLayout.getMust()&&TextUtils.isEmpty(selectLayout.getText())){
                     T.showShort(this,"请选择"+selectLayout.getTitle());
                     return false;
                 }
             }else if (list.get(i) instanceof InputLayout){
                 InputLayout inputLayout = (InputLayout) list.get(i);
-                if (TextUtils.isEmpty(inputLayout.getText().toString().trim())){
+                if (inputLayout.getMust()&&TextUtils.isEmpty(inputLayout.getText().toString().trim())){
                     T.showShort(this,"请输入"+inputLayout.getTitle());
                     return false;
                 }

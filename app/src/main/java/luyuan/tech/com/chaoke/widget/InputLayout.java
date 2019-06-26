@@ -24,6 +24,7 @@ import luyuan.tech.com.chaoke.R;
 public class InputLayout extends RelativeLayout {
     String title;
     String hint;
+    boolean must;
     @BindView(R.id.tv)
     TextView tv;
     @BindView(R.id.et)
@@ -49,6 +50,7 @@ public class InputLayout extends RelativeLayout {
             TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.InputLayout);
             hint = a.getString(R.styleable.InputLayout_mHint);
             title = a.getString(R.styleable.InputLayout_mTitle);
+            must = a.getBoolean(R.styleable.InputLayout_must,true);
         }
         View view = LayoutInflater.from(context).inflate(R.layout.layout_input, this, true);
         ButterKnife.bind(this,view);
@@ -66,5 +68,9 @@ public class InputLayout extends RelativeLayout {
 
     public String getTitle(){
         return title;
+    }
+
+    public boolean getMust(){
+        return must;
     }
 }

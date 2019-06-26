@@ -131,10 +131,22 @@ public class XianChangQianYueActivity extends BaseActivity {
             tvSize.setText(data.getArea());
         }
 //        tvFangyuanzhuangtai.setText();
-        tvChaoxiang.setText(data.getOrientation()+"");
+        //朝向 1朝南 2为朝北 3为朝东 4为朝西
+        int ori = data.getOrientation();
+        String s = "朝南";
+        if (ori==1){
+            s = "朝南";
+        }else if (ori==2){
+            s = "朝北";
+        }else if (ori==3){
+            s = "朝东";
+        }else if (ori==4){
+            s = "朝西";
+        }
+        tvChaoxiang.setText("朝向:"+s);
 //        tvZhuangxiuqingkuang.setText();
         if (!TextUtils.isEmpty(data.getFloor())){
-            tvLouceng.setText(data.getFloor());
+            tvLouceng.setText("楼层:"+data.getFloor());
         }
 //        tvWuyeyongtu.setText();
 //        tvFankangzhuangtai.setText();

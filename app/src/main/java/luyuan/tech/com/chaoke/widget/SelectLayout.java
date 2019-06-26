@@ -23,6 +23,7 @@ import luyuan.tech.com.chaoke.R;
 public class SelectLayout extends RelativeLayout {
     String title;
     String content;
+    boolean must;//是否必填 默认必填
 
 
     @BindView(R.id.tv_title)
@@ -52,6 +53,7 @@ public class SelectLayout extends RelativeLayout {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.InputLayout);
             content = a.getString(R.styleable.InputLayout_mHint);
             title = a.getString(R.styleable.InputLayout_mTitle);
+            must = a.getBoolean(R.styleable.InputLayout_must,true);
         }
         View view = LayoutInflater.from(context).inflate(R.layout.layout_select, this, true);
         ButterKnife.bind(this, view);
@@ -75,5 +77,9 @@ public class SelectLayout extends RelativeLayout {
 
     public String getTitle() {
         return title;
+    }
+
+    public boolean getMust(){
+        return must;
     }
 }

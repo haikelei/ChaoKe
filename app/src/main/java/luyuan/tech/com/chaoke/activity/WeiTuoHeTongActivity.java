@@ -18,6 +18,8 @@ import luyuan.tech.com.chaoke.adapter.HouseTaskPagerAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.fragment.MessageFragment;
 import luyuan.tech.com.chaoke.fragment.SuoYouHeTongFragment;
+import luyuan.tech.com.chaoke.fragment.WeiTuoSuoYouFragment;
+import luyuan.tech.com.chaoke.fragment.WeiTuoZhengZaiQianYueFragment;
 import luyuan.tech.com.chaoke.fragment.ZhengZaiQianYueFragment;
 
 /**
@@ -53,8 +55,8 @@ public class WeiTuoHeTongActivity extends BaseActivity {
 //        viewPager.setAdapter(new HouseTaskPagerAdapter(getSupportFragmentManager()));
         String[] arr = {"正在签约", "所有合同"};
         ArrayList<Fragment> list = new ArrayList<>();
-        list.add(new ZhengZaiQianYueFragment());
-        list.add(new SuoYouHeTongFragment());
+        list.add(new WeiTuoZhengZaiQianYueFragment());
+        list.add(new WeiTuoSuoYouFragment());
         tabLayout.setTabData(arr, this,R.id.container,list);
 
     }

@@ -124,7 +124,7 @@ public class GenJinPopup extends BasePopupWindow {
     }
 
     private void loadData() {
-        int position = 1;
+        int position = 0;
         if (cb0.isChecked()){
             position=1;
         }else if (cb1.isChecked()){
@@ -137,6 +137,10 @@ public class GenJinPopup extends BasePopupWindow {
             position=5;
         }else if (cb5.isChecked()){
             position=6;
+        }
+        if (position==0){
+            T.showShort(getContext(),"请选择至少一项");
+            return;
         }
         HttpManager.post(HttpManager.GEN_JIN)
                 .params("token", UserInfoUtils.getInstance().getToken())
@@ -152,6 +156,7 @@ public class GenJinPopup extends BasePopupWindow {
 
                     @Override
                     public void onSuccess(String data) {
+                        T.showShort(getContext(),"跟进成功");
                        dismiss();
                     }
                 });

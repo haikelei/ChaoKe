@@ -10,14 +10,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zhouyou.http.callback.SimpleCallBack;
+import com.zhouyou.http.exception.ApiException;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ChuZuHeTongAdapter;
-import luyuan.tech.com.chaoke.bean.ChuZuHeTongBean;
+import luyuan.tech.com.chaoke.adapter.WeiTuoHeTongAdapter;
+import luyuan.tech.com.chaoke.bean.WeiTuoHeTongBean;
+import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.T;
+import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
 /**
  * @author: lujialei
@@ -26,11 +34,12 @@ import luyuan.tech.com.chaoke.bean.ChuZuHeTongBean;
  */
 
 
-public class ZhengZaiQianYueFragment extends Fragment {
+public class WeiTuoZhengZaiQianYueFragment extends Fragment {
     @BindView(R.id.recycler)
     RecyclerView recycler;
     Unbinder unbinder;
-    ArrayList<ChuZuHeTongBean.ListBean> list;
+    ArrayList<WeiTuoHeTongBean> list;
+    private WeiTuoHeTongAdapter adapter;
 
     @Nullable
     @Override
@@ -43,11 +52,31 @@ public class ZhengZaiQianYueFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (getArguments()!=null){
-            list = getArguments().getParcelableArrayList("data");
-        }
+        list = new ArrayList<>();
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycler.setAdapter(new ChuZuHeTongAdapter(list));
+        adapter = new WeiTuoHeTongAdapter(list);
+        recycler.setAdapter(adapter);
+        loadData();
+    }
+
+    private void loadData() {
+        HttpManager.post(HttpManager.WEITUOHETONG_LIST)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("type", "1")
+                .execute(new SimpleCallBack<List<WeiTuoHeTongBean>>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getActivity(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(List<WeiTuoHeTongBean> data) {
+                        list.clear();
+                        list.addAll(data);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     @Override
@@ -56,11 +85,4 @@ public class ZhengZaiQianYueFragment extends Fragment {
         unbinder.unbind();
     }
 
-    public static Fragment instance(ArrayList<ChuZuHeTongBean.ListBean> list) {
-        ZhengZaiQianYueFragment fragment = new ZhengZaiQianYueFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("data",list);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
 }

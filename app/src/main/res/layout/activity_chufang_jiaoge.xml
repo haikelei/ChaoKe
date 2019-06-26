@@ -37,15 +37,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="产权人信息"
-                android:textSize="15sp" />
-
             <luyuan.tech.com.chaoke.widget.InputLayout
                 android:id="@+id/input_xiaoqudizhi"
                 android:layout_width="match_parent"
@@ -80,7 +71,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                app:mHint="请输入"
+                app:mHint="租金付款总金额"
                 app:mTitle="总金额(大写,元)" />
             <luyuan.tech.com.chaoke.widget.InputLayout
                 android:id="@+id/input_zukexingming"

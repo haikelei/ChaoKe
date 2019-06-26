@@ -193,5 +193,28 @@ public class HttpManager {
     public static final String CHENGSHI_LIST = "/api/agent/city_list";
 
 
+    /**
+     * 重置密码
+     */
+    public static final String CHONGZHIMIMA = "/api/login/edit_pwd";
+
+
+    /**
+     * 验证码
+     */
+    public static final String YANZHENGMA = "/api/login/sendCode";
+
+    /**
+     * 出租合同列表
+     */
+    public static final String CHUZUHETONG_LIST = "/api/agent/lease_contract";
+
+
+    /**
+     * 委托合同列表
+     */
+    public static final String WEITUOHETONG_LIST = "/api/agent/entrust_contract";
+
+
 
 }

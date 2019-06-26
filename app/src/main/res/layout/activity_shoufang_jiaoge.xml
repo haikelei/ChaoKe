@@ -37,15 +37,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="产权人信息"
-                android:textSize="15sp" />
-
             <luyuan.tech.com.chaoke.widget.InputLayout
                 android:id="@+id/input_xiaoqudizhi"
                 android:layout_width="match_parent"

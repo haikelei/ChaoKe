@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
 import com.flyco.dialog.widget.NormalListDialog;
@@ -27,6 +29,7 @@ import luyuan.tech.com.chaoke.bean.HeTongIdBean;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.AppStorageUtils;
+import luyuan.tech.com.chaoke.utils.Constant;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
@@ -73,6 +76,11 @@ public class HeToneXinXiOneActivity extends BaseActivity {
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
+
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.error(R.mipmap.moren_touxiang);
+        Glide.with(this).load(Constant.IMAGE_PRE + UserInfoUtils.getInstance().getAvatar()).apply(requestOptions).into(ivAvatar);
+        ivName.setText(UserInfoUtils.getInstance().getUserName());
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

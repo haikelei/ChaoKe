@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <EditText
+        android:id="@+id/et_phone"
         android:paddingLeft="10dp"
         android:hint="手机号"
         android:background="@drawable/shape_r6_ffffff"
@@ -18,12 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <EditText
+            android:id="@+id/et_yanzhengma"
             android:paddingLeft="10dp"
             android:hint="短信验证码"
             android:background="@drawable/shape_r6_ffffff"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <TextView
+            android:id="@+id/tv_yanzhengma"
             android:textSize="12sp"
             android:padding="5dp"
             android:background="#f5f5f5"
@@ -35,12 +38,14 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
     <TextView
+        android:id="@+id/tv_wangjimima"
         android:layout_marginTop="10dp"
         android:layout_gravity="right"
         android:text="忘记密码"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
+        android:id="@+id/btn_login"
         android:layout_marginTop="20dp"
         android:textColor="#ffffff"
         android:text="登录"

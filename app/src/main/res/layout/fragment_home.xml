@@ -216,8 +216,8 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@mipmap/ziying" />
 
                     <TextView
@@ -239,8 +239,8 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@mipmap/zuqiankehu" />
 
                     <TextView
@@ -262,8 +262,8 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@mipmap/kaifafangyuan" />
 
                     <TextView
@@ -285,8 +285,8 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@mipmap/weituohetong" />
 
                     <TextView
@@ -308,8 +308,8 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@mipmap/weituohetong" />
 
                     <TextView
@@ -331,8 +331,8 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@mipmap/hetong" />
 
                     <TextView
@@ -354,8 +354,8 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@mipmap/weituohetong" />
 
                     <TextView
@@ -377,8 +377,8 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@mipmap/shoufang" />
 
                     <TextView
