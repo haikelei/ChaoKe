@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,9 @@ import luyuan.tech.com.chaoke.fragment.MineFragment;
 import luyuan.tech.com.chaoke.fragment.TelFragment;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
+import luyuan.tech.com.chaoke.utils.PermissionHelper;
+import luyuan.tech.com.chaoke.utils.PermissionInterface;
+import luyuan.tech.com.chaoke.utils.T;
 
 public class MainActivity extends BaseActivity {
 
@@ -68,6 +72,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        initPermissions();
         HomeFragment f0 = new HomeFragment();
         TelFragment f1 = new TelFragment();
         MessageFragment f2 = new MessageFragment();
@@ -84,6 +89,7 @@ public class MainActivity extends BaseActivity {
                 .commit();
         ll0.performClick();
         loadData();
+
     }
 
     private void loadData() {
@@ -159,5 +165,37 @@ public class MainActivity extends BaseActivity {
                 tv3.setSelected(true);
                 break;
         }
+    }
+
+    private PermissionHelper mPermissionHelper;
+
+    private void initPermissions() {
+        mPermissionHelper = new PermissionHelper(this, new PermissionInterface() {
+            @Override
+            public int getPermissionsRequestCode() {
+                return 10000;
+            }
+
+            @Override
+            public String[] getPermissions() {
+                return new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                };
+            }
+
+            @Override
+            public void requestPermissionsSuccess() {
+
+            }
+
+            @Override
+            public void requestPermissionsFail() {
+                T.showShort(getBaseContext(),"权限申请失败");
+                finish();
+            }
+        });
+        mPermissionHelper.requestPermissions();
+
     }
 }
