@@ -216,5 +216,11 @@ public class HttpManager {
     public static final String WEITUOHETONG_LIST = "/api/agent/entrust_contract";
 
 
+    /**
+     * 出租合同详情
+     */
+    public static final String CHUZUHETONG_XIANGQING = "/api/agent/lease_detail";
+
+
 
 }

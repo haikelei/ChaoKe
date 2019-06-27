@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
@@ -28,7 +31,6 @@ import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ImageSelectAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
-import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.bean.ImageBean;
 import luyuan.tech.com.chaoke.bean.NameBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
@@ -47,6 +49,8 @@ public class ShiKanActivity extends BaseActivity {
     ImageView ivBack;
     @BindView(R.id.rv)
     RecyclerView rv;
+    @BindView(R.id.map)
+    MapView mMapView;
     private String id;
     private ImageSelectAdapter adapter;
     private ArrayList<ImageBean> list;
@@ -58,7 +62,7 @@ public class ShiKanActivity extends BaseActivity {
             HttpManager.post(HttpManager.SHIKAN_TUPIAN)
                     .params("token", UserInfoUtils.getInstance().getToken())
                     .params("id", id)
-                    .params("pics",getListJson(list))
+                    .params("pics", getListJson(list))
                     .execute(new SimpleCallBack<String>() {
 
                         @Override
@@ -73,14 +77,15 @@ public class ShiKanActivity extends BaseActivity {
                     });
         }
     };
+    private AMap aMap;
 
-    private String getListJson(List<ImageBean> data){
+    private String getListJson(List<ImageBean> data) {
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             list.add(data.get(i).getPath());
         }
         String s = new Gson().toJson(list);
-        return  s;
+        return s;
     }
 
     @Override
@@ -88,6 +93,13 @@ public class ShiKanActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shikan);
         ButterKnife.bind(this);
+        mMapView.onCreate(savedInstanceState);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initMap();
+            }
+        },2000);
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
@@ -112,6 +124,20 @@ public class ShiKanActivity extends BaseActivity {
                 onClick(imageBean, CODE_SHIKAN);
             }
         });
+    }
+
+    private void initMap() {
+        //初始化地图控制器对象
+        if (aMap == null) {
+            aMap = mMapView.getMap();
+        }
+        MyLocationStyle myLocationStyle;
+        myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
+        myLocationStyle.interval(2000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW) ;
+        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+        aMap.getUiSettings().setMyLocationButtonEnabled(true);//设置默认定位按钮是否显示，非必需设置。
+        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
     }
 
     private void onClick(ImageBean imageBean, int code) {
@@ -145,7 +171,7 @@ public class ShiKanActivity extends BaseActivity {
             switch (requestCode) {
                 case CODE_SHIKAN:
                     // 图片选择结果回调
-                    onResult(data,list,adapter);
+                    onResult(data, list, adapter);
                     break;
             }
         }
@@ -157,7 +183,7 @@ public class ShiKanActivity extends BaseActivity {
             final String path = media.getCompressPath();
             File file = new File(path);
             HttpManager.post(HttpManager.IMAGE)
-                    .params("file", file,new ProgressResponseCallBack() {
+                    .params("file", file, new ProgressResponseCallBack() {
                         @Override
                         public void onResponseProgress(long bytesWritten, long contentLength, boolean done) {
 //
@@ -172,13 +198,39 @@ public class ShiKanActivity extends BaseActivity {
                 public void onSuccess(List<NameBean> data) {
                     ImageBean bean = new ImageBean();
                     bean.setPath(data.get(0).getName());
-                    list.add(0,bean);
+                    list.add(0, bean);
                     adapter.notifyDataSetChanged();
                     handler.post(uploadRunnable);
                 }
             });
 
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
+        mMapView.onDestroy();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
+        mMapView.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //在activity执行onPause时执行mMapView.onPause ()，暂停地图的绘制
+        mMapView.onPause();
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
+        mMapView.onSaveInstanceState(outState);
     }
 
 
