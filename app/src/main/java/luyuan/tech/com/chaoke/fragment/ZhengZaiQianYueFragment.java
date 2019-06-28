@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,12 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.activity.ChuZuHeTongXiangQingActivity;
+import luyuan.tech.com.chaoke.activity.WeiTuoHeTongXiangQingActivity;
 import luyuan.tech.com.chaoke.adapter.ChuZuHeTongAdapter;
 import luyuan.tech.com.chaoke.bean.ChuZuHeTongBean;
 
@@ -47,7 +52,17 @@ public class ZhengZaiQianYueFragment extends Fragment {
             list = getArguments().getParcelableArrayList("data");
         }
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycler.setAdapter(new ChuZuHeTongAdapter(list));
+        ChuZuHeTongAdapter adapter = new ChuZuHeTongAdapter(list);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                String id = list.get(position).getId()+"";
+                Intent intent = new Intent(getActivity(), ChuZuHeTongXiangQingActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
+        recycler.setAdapter(adapter);
     }
 
     @Override

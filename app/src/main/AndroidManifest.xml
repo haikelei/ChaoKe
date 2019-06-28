@@ -136,6 +136,7 @@
         <activity android:name=".activity.XiaoXiXiangQingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ChongZhiMiMaActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ChuZuHeTongXiangQingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.WeiTuoHeTongXiangQingActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

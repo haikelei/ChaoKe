@@ -18,10 +18,15 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
 import com.zhouyou.http.body.ProgressResponseCallBack;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.request.PostRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,6 +40,7 @@ import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ImageBean;
 import luyuan.tech.com.chaoke.bean.NameBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
@@ -306,24 +312,21 @@ public class ShouFangShenPiActivity extends BaseActivity {
         for (LocalMedia media : selectList) {
             final String path = media.getCompressPath();
             File file = new File(path);
-            HttpManager.post(HttpManager.IMAGE)
-                    .params("file", file,new ProgressResponseCallBack() {
-                        @Override
-                        public void onResponseProgress(long bytesWritten, long contentLength, boolean done) {
-//
+            ImageUploadUtils.getInstance().uploadImage(file, new UpCompletionHandler() {
+                @Override
+                public void complete(String key, ResponseInfo info, JSONObject response) {
+                    //res包含hash、key等信息，具体字段取决于上传策略的设置
+                    if (info.isOK()) {
+                        try {
+                            String name = response.getString("key");
+                            ImageBean bean = new ImageBean();
+                            bean.setPath(name);
+                            list.add(0, bean);
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    }).execute(new SimpleCallBack<List<NameBean>>() {
-                @Override
-                public void onError(ApiException e) {
-
-                }
-
-                @Override
-                public void onSuccess(List<NameBean> data) {
-                    ImageBean bean = new ImageBean();
-                    bean.setPath(data.get(0).getName());
-                    list.add(0,bean);
-                    adapter.notifyDataSetChanged();
+                    }
                 }
             });
 

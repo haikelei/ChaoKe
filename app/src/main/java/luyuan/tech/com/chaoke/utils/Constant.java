@@ -8,5 +8,5 @@ package luyuan.tech.com.chaoke.utils;
 
 
 public class Constant {
-    public static final String IMAGE_PRE = "http://renting.liebianzhe.com";
+    public static final String IMAGE_PRE = "http://rentpic.sayyin.com/";
 }

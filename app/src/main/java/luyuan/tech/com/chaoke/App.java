@@ -3,6 +3,8 @@ package luyuan.tech.com.chaoke;
 import android.app.Application;
 import android.content.Context;
 
+import com.qiniu.android.common.FixedZone;
+import com.qiniu.android.storage.Configuration;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.converter.SerializableDiskConverter;
 import com.zhouyou.http.model.HttpHeaders;

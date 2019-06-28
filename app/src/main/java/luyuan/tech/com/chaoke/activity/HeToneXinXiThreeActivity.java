@@ -18,9 +18,14 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
 import com.zhouyou.http.body.ProgressResponseCallBack;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.List;
@@ -30,8 +35,10 @@ import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HeTongIdBean;
+import luyuan.tech.com.chaoke.bean.ImageBean;
 import luyuan.tech.com.chaoke.bean.NameBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
@@ -176,22 +183,19 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                     }
                     final String path = selectList.get(0).getCompressPath();
                     File file = new File(path);
-                    HttpManager.post(HttpManager.IMAGE)
-                            .params("file", file,path, MediaType.parse("multipart/form-data"),new ProgressResponseCallBack() {
-                                @Override
-                                public void onResponseProgress(long bytesWritten, long contentLength, boolean done) {
-//
+                    ImageUploadUtils.getInstance().uploadImage(file, new UpCompletionHandler() {
+                        @Override
+                        public void complete(String key, ResponseInfo info, JSONObject response) {
+                            //res包含hash、key等信息，具体字段取决于上传策略的设置
+                            if (info.isOK()) {
+                                try {
+                                    String name = response.getString("key");
+                                    zhengmianImageName = name;
+                                    Glide.with(getBaseContext()).load(path).into(ivZhengmian);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            }).execute(new SimpleCallBack<List<NameBean>>() {
-                        @Override
-                        public void onError(ApiException e) {
-
-                        }
-
-                        @Override
-                        public void onSuccess(List<NameBean> list) {
-                            zhengmianImageName = list.get(0).getName();
-                            Glide.with(getBaseContext()).load(path).into(ivZhengmian);
+                            }
                         }
                     });
                     break;
@@ -199,21 +203,19 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                     // 图片选择结果回调
                     final String path1 = PictureSelector.obtainMultipleResult(data).get(0).getCompressPath();
                     File file1 = new File(path1);
-                    HttpManager.post(HttpManager.IMAGE)
-                            .params("file", file1,path1, MediaType.parse("multipart/form-data"),new ProgressResponseCallBack() {
-                                @Override
-                                public void onResponseProgress(long bytesWritten, long contentLength, boolean done) {
+                    ImageUploadUtils.getInstance().uploadImage(file1, new UpCompletionHandler() {
+                        @Override
+                        public void complete(String key, ResponseInfo info, JSONObject response) {
+                            //res包含hash、key等信息，具体字段取决于上传策略的设置
+                            if (info.isOK()) {
+                                try {
+                                    String name = response.getString("key");
+                                    fanmianImageName = name;
+                                    Glide.with(getBaseContext()).load(path1).into(ivFanmian);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            }).execute(new SimpleCallBack<List<NameBean>>() {
-                        @Override
-                        public void onError(ApiException e) {
-
-                        }
-
-                        @Override
-                        public void onSuccess(List<NameBean> list) {
-                            fanmianImageName = list.get(0).getName();
-                            Glide.with(getBaseContext()).load(path1).into(ivFanmian);
+                            }
                         }
                     });
                     break;

@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
@@ -20,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.activity.WeiTuoHeTongXiangQingActivity;
 import luyuan.tech.com.chaoke.adapter.WeiTuoHeTongAdapter;
 import luyuan.tech.com.chaoke.bean.WeiTuoHeTongBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
@@ -54,6 +57,15 @@ public class WeiTuoSuoYouFragment extends Fragment {
         list = new ArrayList<>();
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new WeiTuoHeTongAdapter(list);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                String id = list.get(position).getId()+"";
+                Intent intent = new Intent(getActivity(), WeiTuoHeTongXiangQingActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
         recycler.setAdapter(adapter);
         loadData();
     }

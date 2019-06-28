@@ -86,7 +86,7 @@ public class HttpManager {
     /**
      * 上传图片
      */
-    public static final String IMAGE = "/api/login/upload";
+//    public static final String IMAGE = "/api/login/upload";
 
 
     /**
@@ -220,6 +220,14 @@ public class HttpManager {
      * 出租合同详情
      */
     public static final String CHUZUHETONG_XIANGQING = "/api/agent/lease_detail";
+
+    /**
+     * 委托合同详情
+     */
+    public static final String WEITUOHETONG_XIANGQING = "/api/agent/contract_detail";
+
+
+    public static final String IMAGE_TOKEN = "/api/Qniu/get_token";
 
 
 
