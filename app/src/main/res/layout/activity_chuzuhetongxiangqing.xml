@@ -52,6 +52,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_wuyedizhi"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -67,6 +68,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_chuzuleixing"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -74,6 +76,7 @@
                 android:text="出租类型:" />
 
             <TextView
+                android:id="@+id/tv_chengzuleibie"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -89,6 +92,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_tijiaoriqi"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -96,6 +100,7 @@
                 android:text="提交日期:" />
 
             <TextView
+                android:id="@+id/tv_hetongzhuangtai"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -122,6 +127,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_chengzuqisuan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -129,6 +135,7 @@
                 android:text="承租起算:" />
 
             <TextView
+                android:id="@+id/tv_chengzudaoqi"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -144,6 +151,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_qianyueriqi"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -151,6 +159,7 @@
                 android:text="签约日期:" />
 
             <TextView
+                android:id="@+id/tv_shoucifukuan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -166,6 +175,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_fukuanfangshi"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -173,6 +183,7 @@
                 android:text="付款方式:" />
 
             <TextView
+                android:id="@+id/tv_fukuanzhouqi"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -188,6 +199,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_shuifeichengdan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -203,6 +215,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_qianyuegongsi"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -218,6 +231,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_hetongbianhao"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -233,6 +247,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_hetongbeizhu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -258,6 +273,7 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_xingming"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -273,24 +289,30 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_xingbie"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="性别:" />
+
             <TextView
+                android:id="@+id/tv_nianling"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="年龄:" />
+
             <TextView
+                android:id="@+id/tv_xingzuo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="星座:" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -299,12 +321,14 @@
             android:paddingLeft="20dp">
 
             <TextView
+                android:id="@+id/tv_chengzuriqi"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="承租日期:" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -314,18 +338,21 @@
             android:paddingLeft="15dp"
             android:text="入住人信息"
             android:textColor="#000000" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="姓名:" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -333,6 +360,7 @@
                 android:gravity="center_vertical"
                 android:text="入住日期:" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -342,58 +370,71 @@
             android:paddingLeft="15dp"
             android:text="委托信息"
             android:textColor="#000000" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
+
             <TextView
+                android:id="@+id/tv_weituoqisuanri"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="委托起算日:" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
+
             <TextView
+                android:id="@+id/tv_weituodaoqiri"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="委托到期日:" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
+
             <TextView
+                android:id="@+id/tv_hetongbianhao1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="合同编号:" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
+
             <TextView
+                android:id="@+id/tv_hetongbeizhu1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="合同备注:" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -403,9 +444,111 @@
             android:paddingLeft="15dp"
             android:text="角色人信息"
             android:textColor="#000000" />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="收房人:" />
+
+                <TextView
+                    android:id="@+id/tv_name0"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="名字:"
+                    android:textColor="@color/_000000" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_tel0"
+                android:src="@mipmap/tel"
+                android:layout_alignParentRight="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="出房人:" />
+
+                <TextView
+                    android:id="@+id/tv_name1"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="名字:"
+                    android:textColor="@color/_000000" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_tel1"
+                android:src="@mipmap/tel"
+                android:layout_alignParentRight="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="服务管家:" />
+
+                <TextView
+                    android:id="@+id/tv_name2"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="名字:"
+                    android:textColor="@color/_000000" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_tel2"
+                android:src="@mipmap/tel"
+                android:layout_alignParentRight="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>

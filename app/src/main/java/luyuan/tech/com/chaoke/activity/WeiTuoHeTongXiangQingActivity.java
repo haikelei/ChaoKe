@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
@@ -15,6 +16,7 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.WeiTuoHeTongDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.Constant;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
@@ -212,7 +214,112 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     }
 
     private void fillData(WeiTuoHeTongDetailBean data) {
+        //合同信息
         tvWuyedizhi.setText(data.getContract_data().getWuye_address());
         tvFangyuanbianhao.setText(data.getContract_data().getRent_num());
+        int laiyuan = data.getContract_data().getFrom_by();
+        String laiyuanString = getLaiyuan(laiyuan);
+        tvFangyuanlaiyuan.setText(laiyuanString);
+        tvQianyueleixing.setText(data.getContract_data().getSigning_type());
+        tvHetongbianhao.setText(data.getContract_data().getIdentifier());
+        tvQianyueriqi.setText(data.getContract_data().getSigning_time());
+        tvJiaofangriqi.setText(data.getContract_data().getOver_time());
+        //委托信息
+        tvFukuanxinxi.setText(data.getEntrust().getPayment_msg()+"");
+        tvFukuantianshu.setText(data.getEntrust().getPayment_day()+"");
+        tvMianzutianshu.setText(data.getEntrust().getRent_day()+"");
+        tvWeituoqisuanri.setText(data.getEntrust().getEntrust_begin());
+        tvWeituodaoqiri.setText(data.getEntrust().getEntrust_end());
+        //租金信息
+        tvShoucifukuanri.setText(data.getRent().getFirst_pay());
+        tvShifoudaichewei.setText(data.getRent().getIs_parking()==1?"带车位":"不带");
+        tvMeiyuefangzu.setText(data.getRent().getRent_price());
+       //租金策略
+        data.getStrategy();
+
+        //房产信息
+        tvChanquandizhi.setText(data.getProperty().getProperty_address());
+        tvJianzhumianji.setText(data.getProperty().getArea()+"");
+        tvHuxing.setText(data.getProperty().getApartment());
+        tvGongyouqingkuang.setText(data.getProperty().getShare_desc());
+        tvYongtu.setText(data.getProperty().getUsed_type()+"");
+        tvShifouyoufangdai.setText(data.getProperty().getIs_loan()==1?"有":"无");
+
+        //产权人信息
+        tvChanquanrenleixing.setText(data.getProperty1().getPeople_type()==1?"个人":"企业");
+        tvZhengjianleixing.setText(data.getProperty1().getCard_type()+"");
+        tvXingming.setText(data.getProperty1().getUsername());
+        tvZhengjianhaoma.setText(data.getProperty1().getCard_num()+"");
+        tvZhengjianyouxiaori.setText(data.getProperty1().getCard_begin());
+        tvZhengjianjiezhiri.setText(data.getProperty1().getCard_end());
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty1().getCard_zpic()).into(ivZhengjian);
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty1().getCard_fpic()).into(ivZhengjian1);
+        tvChanquanzhengleixing.setText(data.getProperty1().getProperty_type()+"");
+        tvChanquanzhengbianhao.setText(data.getProperty1().getProperty_num()+"");
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty1().getNum_pic()).into(ivDaizhenghaoye);
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty1().getHome_pic()).into(ivZhuye);
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty1().getAttach_pic()).into(ivFujiye);
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty1().getOld_pic()).into(ivYuanhuxingtu);
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty1().getHousehold_pic()).into(ivFenhutu);
+        //共有产权人信息
+        tvChanquanrenleixing1.setText(data.getProperty2().getPeople_type()==1?"个人":"企业");
+        tvZhengjianleixing1.setText(data.getProperty2().getCard_type()+"");
+        tvXingming1.setText(data.getProperty2().getUsername());
+        tvZhengjianhaoma1.setText(data.getProperty2().getCard_num()+"");
+        tvZhengjianyouxiaori1.setText(data.getProperty2().getCard_begin());
+        tvZhengjianjiezhiri1.setText(data.getProperty2().getCard_end());
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty2().getCard_zpic()).into(ivZhengjian2);
+        Glide.with(getActivity()).load(Constant.IMAGE_PRE+data.getProperty2().getCard_fpic()).into(ivZhengjian3);
+        tvGongyouchanquanbianhao.setText(data.getProperty2().getProperty_num()+"");
+        //出租人信息
+        tvZhengjianleixing2.setText(data.getOut_people().getCard_type()+"");
+        tvXingming2.setText(data.getOut_people().getUsername());
+        tvZhengjianhaoma2.setText(data.getOut_people().getCard_num()+"");
+        tvDianhua.setText(data.getOut_people().getPhone());
+        tvYouxiangdizhi.setText(data.getOut_people().getEmail_address());
+        tvTongxundizhi.setText(data.getOut_people().getComm_address());
+        //共租人信息
+        tvZhengjianleixing3.setText(data.getCommon_people().getCard_type()+"");
+        tvXingming3.setText(data.getCommon_people().getUsername());
+        tvZhengjianhaoma3.setText(data.getCommon_people().getCard_num()+"");
+        tvYouxiangdizhi1.setText(data.getCommon_people().getEmail_address());
+        tvTongxundizhi1.setText(data.getCommon_people().getComm_address());
+        //收款人信息
+        tvShoukuanrenleixing.setText(data.getPayee().getPeople_type()+"");
+        tvZhengjianleixing4.setText(data.getPayee().getCard_type()+"");
+        tvXingming4.setText(data.getPayee().getUsername()+"");
+        tvZhengjianhaoma3.setText(data.getPayee().getCard_num()+"");
+        tvZhanghaoleixing.setText(data.getPayee().getNumber_type()+"");
+        tvShoukuanzhanghao.setText(data.getPayee().getNumber_num()+"");
+        tvShoukuanjigou.setText(data.getPayee().getMechanism()+"");
+        tvShoukuanzhihang.setText(data.getPayee().getBranch()+"");
+        //紧急联系人
+        tvXingming5.setText(data.getUrgent_people().getUsername());
+        tvShoujihaoma2.setText(data.getUrgent_people().getPhone());
+
+
+
+
+    }
+
+    public String getLaiyuan(int i){
+        if (i==1){
+            return "中介合作";
+        }else if (i==2){
+            return "转介绍";
+        }else if (i==3){
+            return "老客户";
+        }else if (i==4){
+            return "网络端口";
+        }else if (i==5){
+            return "地推";
+        }else if (i==6){
+            return "房东上门";
+        }else if (i==7){
+            return "名单获取";
+        }else if (i==8){
+            return "销冠";
+        }
+        return  "";
     }
 }

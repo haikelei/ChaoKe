@@ -22,6 +22,7 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.activity.ChuZuHeTongXiangQingActivity;
 import luyuan.tech.com.chaoke.adapter.ChuZuHeTongAdapter;
 import luyuan.tech.com.chaoke.bean.ChuZuHeTongBean;
+import luyuan.tech.com.chaoke.utils.T;
 
 /**
  * @author: lujialei
@@ -63,6 +64,10 @@ public class SuoYouHeTongFragment extends Fragment {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if ( list.get(position).user_id<=0){
+                    T.showShort(getActivity(),"id小于0");
+                    return;
+                }
                 String id = list.get(position).getId()+"";
                 Intent intent = new Intent(getActivity(), ChuZuHeTongXiangQingActivity.class);
                 intent.putExtra("id",id);

@@ -45,6 +45,7 @@ public class ChuZuHeTongBean {
         private String address;
         private String createtime;
         private int state;
+        public int user_id;
 
         public int getId() {
             return id;
