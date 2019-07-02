@@ -2,7 +2,9 @@ package luyuan.tech.com.chaoke.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -42,8 +44,6 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     InputLayout inputMoney;
     @BindView(R.id.input_size)
     InputLayout inputSize;
-    @BindView(R.id.sl_huxing)
-    SelectLayout slHuxing;
     @BindView(R.id.sl_chaoxiang)
     SelectLayout slChaoxiang;
     @BindView(R.id.sl_zulingongsi)
@@ -56,6 +56,14 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     SelectLayout slKanfangfangshi;
     @BindView(R.id.et_beizhu)
     EditText etBeizhu;
+    @BindView(R.id.input_shi)
+    InputLayout inputShi;
+    @BindView(R.id.input_ting)
+    InputLayout inputTing;
+    @BindView(R.id.input_wei)
+    InputLayout inputWei;
+    @BindView(R.id.btn_submmit)
+    Button btnSubmmit;
     private String id;
 
     @Override
@@ -66,15 +74,12 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.iv_back, R.id.sl_huxing, R.id.sl_chaoxiang, R.id.sl_zulingongsi, R.id.sl_daoqiri, R.id.sl_kanfangri, R.id.sl_kanfangfangshi, R.id.btn_submmit})
+    @OnClick({R.id.iv_back, R.id.sl_chaoxiang, R.id.sl_zulingongsi, R.id.sl_daoqiri, R.id.sl_kanfangri, R.id.sl_kanfangfangshi, R.id.btn_submmit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 setResult(RESULT_CANCELED);
                 finish();
-                break;
-            case R.id.sl_huxing:
-
                 break;
             case R.id.sl_chaoxiang:
                 String[] arrChaoxiang = {"朝南", "朝北", "朝东", "朝西"};
@@ -101,7 +106,11 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     }
 
     private void loadData() {
-        if (!checkEmptyInfo()){
+        if (TextUtils.isEmpty(inputShi.getText().toString())||TextUtils.isEmpty(inputTing.getText().toString())||TextUtils.isEmpty(inputWei.getText().toString())){
+            T.showShort(getActivity(),"请完整输入户型,若没有可填写0");
+            return;
+        }
+        if (!checkEmptyInfo()) {
             return;
         }
         HttpManager.post(HttpManager.FABUTWO)
@@ -115,7 +124,10 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
                 .params("expiretime", slDaoqiri.getText().toString())
                 .params("see_time", slKanfangri.getText().toString())
                 .params("see_type", slKanfangfangshi.getText().toString())
-                .params("describe",etBeizhu.getText().toString().trim())
+                .params("describe", etBeizhu.getText().toString().trim())
+                .params("room",inputShi.getText().toString())
+                .params("office",inputTing.getText().toString())
+                .params("guard",inputWei.getText().toString())
                 .execute(new SimpleCallBack<List>() {
 
                     @Override

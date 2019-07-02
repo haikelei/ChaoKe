@@ -222,9 +222,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp" />
                 <RelativeLayout
-                    android:background="#d12324"
+                    android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"></RelativeLayout>
+                    android:layout_height="150dp">
+
+                    <com.amap.api.maps.MapView
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></com.amap.api.maps.MapView>
+                </RelativeLayout>
                 <TextView
                     android:gravity="center_vertical"
                     android:text="房屋配置"

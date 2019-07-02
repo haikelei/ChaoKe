@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.youth.banner.Banner;
+import com.youth.banner.loader.ImageLoader;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
@@ -156,8 +160,13 @@ public class FangYuanXiangQingActivity extends BaseActivity {
 
     private void fillData(HouseDetailBean data) {
         if (data.getPics() != null) {
-            banner.setImages(data.getPics());
-            banner.setImageLoader(new NormalImageLoader());
+            banner.setImages(data.getPics()).setImageLoader(new ImageLoader() {
+                @Override
+                public void displayImage(Context context, Object path, ImageView imageView) {
+                    RequestOptions requestOptions = RequestOptions.centerCropTransform();
+                    Glide.with(context).load(path).apply(requestOptions).into(imageView);
+                }
+            }).start();
         }
         if (!TextUtils.isEmpty(data.getRoom_name())) {
             tvName.setText(data.getRoom_name());

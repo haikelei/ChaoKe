@@ -109,7 +109,8 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
             }
         });
 
-
+        setDatePickerListener(slHetongqisuanri);
+        setDatePickerListener(slHetongjieshuri);
         initView();
         initListener();
     }

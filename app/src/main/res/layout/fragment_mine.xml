@@ -1,12 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="#f5f5f5"
     android:layout_height="match_parent">
-    <TextView
-        android:text="mine"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:background="#7eefe1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="30dp"
+                android:src="@mipmap/moren_touxiang"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <TextView
+                android:id="@+id/tv_name"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:text="用户名"
+                android:layout_marginLeft="15dp"
+                android:layout_alignTop="@id/iv_avatar"
+                android:layout_toRightOf="@id/iv_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/tv_other"
+                android:textSize="12sp"
+                android:textColor="#ffffff"
+                android:text="杭州市西兴"
+                android:layout_marginLeft="15dp"
+                android:layout_alignBottom="@id/iv_avatar"
+                android:layout_toRightOf="@id/iv_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/iv_settings"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/shezhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="75dp">
+            <RelativeLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="17sp"
+                        android:text="21.33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="11sp"
+                        android:text="业绩量"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_gerenyeji"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="17sp"
+                        android:text="21.33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="11sp"
+                        android:text="业绩销量排名"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="75dp">
+            <RelativeLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="17sp"
+                        android:text="21.33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="11sp"
+                        android:text="出房量"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_gerenxiaoliang"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="17sp"
+                        android:text="21.33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="11sp"
+                        android:text="出房量排名"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_app_tuiguang"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="#ffffff"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:src="@mipmap/tuiguang"
+                android:layout_centerVertical="true"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="40dp"
+                android:layout_centerVertical="true"
+                android:text="App推广"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/arrow_gray_right"
+                android:layout_centerVertical="true"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_yijianfankui"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="#ffffff"
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:src="@mipmap/yijianfankui"
+                android:layout_centerVertical="true"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="40dp"
+                android:layout_centerVertical="true"
+                android:text="意见反馈"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/arrow_gray_right"
+                android:layout_centerVertical="true"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_gerentuiguang"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="#ffffff"
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:src="@mipmap/gerentuiguang"
+                android:layout_centerVertical="true"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="40dp"
+                android:layout_centerVertical="true"
+                android:text="个人推广"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/arrow_gray_right"
+                android:layout_centerVertical="true"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

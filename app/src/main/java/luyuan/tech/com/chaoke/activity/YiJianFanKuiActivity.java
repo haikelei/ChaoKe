@@ -1,38 +1,22 @@
 package luyuan.tech.com.chaoke.activity;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
-import com.amap.api.maps.AMap;
-import com.amap.api.maps.CameraUpdateFactory;
-import com.amap.api.maps.LocationSource;
-import com.amap.api.maps.MapView;
-import com.amap.api.maps.model.LatLng;
-import com.amap.api.maps.model.Marker;
-import com.amap.api.maps.model.MarkerOptions;
-import com.amap.api.maps.model.MyLocationStyle;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
-import com.zhouyou.http.body.ProgressResponseCallBack;
-import com.zhouyou.http.callback.SimpleCallBack;
-import com.zhouyou.http.exception.ApiException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,11 +31,7 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ImageSelectAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ImageBean;
-import luyuan.tech.com.chaoke.bean.NameBean;
-import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
-import luyuan.tech.com.chaoke.utils.T;
-import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
 /**
  * @author: lujialei
@@ -60,63 +40,25 @@ import luyuan.tech.com.chaoke.utils.UserInfoUtils;
  */
 
 
-public class ShiKanActivity extends BaseActivity {
+public class YiJianFanKuiActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.rv)
+    @BindView(R.id.et_more)
+    EditText etMore;
+    @BindView(R.id.recycler)
     RecyclerView rv;
-    @BindView(R.id.map)
-    MapView mMapView;
-    private String id;
+    @BindView(R.id.btn_next)
+    Button btnNext;
     private ImageSelectAdapter adapter;
     private ArrayList<ImageBean> list;
-    public static final int CODE_SHIKAN = 160;
-    Handler handler = new Handler();
-    Runnable uploadRunnable = new Runnable() {
-        @Override
-        public void run() {
-            HttpManager.post(HttpManager.SHIKAN_TUPIAN)
-                    .params("token", UserInfoUtils.getInstance().getToken())
-                    .params("id", id)
-                    .params("pics", getListJson(list))
-                    .execute(new SimpleCallBack<String>() {
+    public static final int COKE_YIJIAN = 130;
 
-                        @Override
-                        public void onError(ApiException e) {
-                            T.showShort(getBaseContext(), e.getMessage());
-                        }
-
-                        @Override
-                        public void onSuccess(String data) {
-                            T.showShort(getBaseContext(), "图片上传成功");
-                        }
-                    });
-        }
-    };
-    private AMap aMap;
-
-    private String getListJson(List<ImageBean> data) {
-        ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            list.add(data.get(i).getPath());
-        }
-        String s = new Gson().toJson(list);
-        return s;
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shikan);
+        setContentView(R.layout.activity_yijianfankui);
         ButterKnife.bind(this);
-        //初始化地图控制器对象
-        if (aMap == null) {
-            aMap = mMapView.getMap();
-        }
-        mMapView.onCreate(savedInstanceState);
-        if (getIntent() != null) {
-            id = getIntent().getStringExtra("id");
-        }
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,23 +77,7 @@ public class ShiKanActivity extends BaseActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ImageBean imageBean = list.get(position);
-                onClick(imageBean, CODE_SHIKAN);
-            }
-        });
-        initMap();
-    }
-
-    private void initMap() {
-        MyLocationStyle myLocationStyle = new MyLocationStyle();;
-        myLocationStyle.interval(2000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
-        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);
-        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
-        aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-
+                onClick(imageBean, COKE_YIJIAN);
             }
         });
     }
@@ -185,7 +111,7 @@ public class ShiKanActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case CODE_SHIKAN:
+                case COKE_YIJIAN:
                     // 图片选择结果回调
                     onResult(data, list, adapter);
                     break;
@@ -217,32 +143,6 @@ public class ShiKanActivity extends BaseActivity {
             });
 
         }
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
-        mMapView.onDestroy();
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
-        mMapView.onResume();
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //在activity执行onPause时执行mMapView.onPause ()，暂停地图的绘制
-        mMapView.onPause();
-    }
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
-        mMapView.onSaveInstanceState(outState);
     }
 
 

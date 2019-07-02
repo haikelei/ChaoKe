@@ -137,6 +137,13 @@
         <activity android:name=".activity.ChongZhiMiMaActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ChuZuHeTongXiangQingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.WeiTuoHeTongXiangQingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SettingsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AboutChaoKeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TuiGuangActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.YiJianFanKuiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GeRenTuiGuangActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GeRenYeJiPaiMingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GeRenXiaoLiangPaiMingActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

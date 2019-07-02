@@ -229,6 +229,15 @@ public class HttpManager {
 
     public static final String IMAGE_TOKEN = "/api/Qniu/get_token";
 
+    /**
+     * 个人业绩
+     */
+    public static final String GERENYEJI = "/api/agent/ranking_order";
+
+
+
+
+
 
 
 }

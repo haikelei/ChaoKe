@@ -115,7 +115,9 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
             @Override
             public void onSuccess(TotalIdBean data) {
                 oldId = data.getOld_id();
-                startActivity(new Intent(getBaseContext(), FangYuanQianYueFiveActivity.class));
+                Intent intent = new Intent(getBaseContext(), FangYuanQianYueFiveActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
     }

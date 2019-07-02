@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +10,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.youth.banner.Banner;
+import com.youth.banner.loader.ImageLoader;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
@@ -19,6 +23,7 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.Constant;
 import luyuan.tech.com.chaoke.utils.NormalImageLoader;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -85,6 +90,15 @@ public class XianChangDaiKanActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        banner.setImageLoader(new ImageLoader() {
+            @Override
+            public void displayImage(Context context, Object path, ImageView imageView) {
+                RequestOptions requestOptions = new RequestOptions();
+                requestOptions.centerCrop();
+                Glide.with(context).load(path).apply(requestOptions).into(imageView);
+            }
+        });
     }
 
     private void loadData() {
@@ -110,8 +124,7 @@ public class XianChangDaiKanActivity extends BaseActivity {
 
     private void fillData(HouseDetailBean data) {
         if (data.getPics()!=null){
-            banner.setImages(data.getPics());
-            banner.setImageLoader(new NormalImageLoader());
+            banner.setImages(data.getPics()).start();
         }
         if (!TextUtils.isEmpty(data.getRoom_name())){
             tvName.setText(data.getRoom_name());
