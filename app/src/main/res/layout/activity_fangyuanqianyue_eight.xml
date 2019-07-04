@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="产权人信息"
+            android:text="共有产权人信息"
             android:textColor="#000000"
             android:textSize="15sp" />
     </RelativeLayout>

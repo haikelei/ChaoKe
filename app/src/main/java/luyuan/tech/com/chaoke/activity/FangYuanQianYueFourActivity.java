@@ -94,10 +94,10 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("total_id", id)
                 .params("rent_price", getValue(inputMeiyuefangzu))
-                .params("first_pay",getValue(slShoucifukuanri))
+                .params("first_pay",slShoucifukuanri.getText())
                 .params("is_parking", getValue(slShifoudaichewei))
-                .params("rent_begin", getValue(slMianzukaishiri))
-                .params("rent_end",getValue(slMianzudaoqiri))
+                .params("rent_begin", slMianzukaishiri.getText())
+                .params("rent_end",slMianzudaoqiri.getText())
                 .params("pay_type", getValue(slZujinzhifufangshi))
                 .params("other_desc", etMore.getText().toString().trim())
                 .params("step","4");

@@ -146,6 +146,9 @@
         <activity android:name=".activity.GeRenXiaoLiangPaiMingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ShouFangJiaoGeListActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ChuFangJiaoGeListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueEightChuZuRenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueEightGongZuRenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueEightJiaFangDaiLiRenActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

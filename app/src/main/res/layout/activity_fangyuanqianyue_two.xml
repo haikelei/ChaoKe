@@ -92,64 +92,16 @@
                 app:mHint="请选择"
                 app:mTitle="装修截止日" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="水电费"
-                android:textSize="15sp" />
-
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_dianfeifeng"
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_jiafangchegndan"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="1dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="电费(峰)" />
-
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_dianfeigu"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="电费(谷)" />
-
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_dianlihuhao"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="电力户号" />
-
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_zongdian"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="总电" />
-
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_zongmeiqi"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="总煤气" />
+                app:mHint="请选择"
+                app:mTitle="请选择甲方承担" />
 
 
             <Button

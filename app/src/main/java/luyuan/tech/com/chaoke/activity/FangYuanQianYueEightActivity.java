@@ -87,7 +87,7 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fangyuanqianyue_seven);
+        setContentView(R.layout.activity_fangyuanqianyue_eight);
         ButterKnife.bind(this);
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
@@ -103,7 +103,7 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
         setSelectLListener(slChanquanrenleixing, arr, "产权人类型");
 
         String[] arr1 = {"身份证", "护照", "军人证"};
-        setSelectLListener(slZhengjianleixing, arr1, "产权人类型");
+        setSelectLListener(slZhengjianleixing, arr1, "产权证类型");
 
 
         setDatePickerListener(slZhengjianjiezhiri);
@@ -188,8 +188,8 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
                 .params("card_type", getValue(slZhengjianleixing))
                 .params("username", getValue(inputXingming))
                 .params("card_num", getValue(inputZhengjianhaoma))
-                .params("card_begin", getValue(slZhengjiankaishiri))
-                .params("card_end", getValue(slZhengjianjiezhiri))
+                .params("card_begin", slZhengjiankaishiri.getText())
+                .params("card_end", slZhengjianjiezhiri.getText())
                 .params("card_zpic", getSingleJson(listShenfenzhengmian))
                 .params("card_fpic", getSingleJson(listShenfenfanmian))
                 .params("property_num", getValue(inputChanquanzhengbianhao));
@@ -207,7 +207,7 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
             @Override
             public void onSuccess(TotalIdBean data) {
                 oldId = data.getOld_id();
-                Intent intent = new Intent(getBaseContext(), FangYuanQianYueNineActivity.class);
+                Intent intent = new Intent(getBaseContext(), FangYuanQianYueEightChuZuRenActivity.class);
                 intent.putExtra("id",id);
                 startActivity(intent);
             }

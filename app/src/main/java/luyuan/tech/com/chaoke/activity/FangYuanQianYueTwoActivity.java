@@ -46,16 +46,8 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
     SelectLayout slZhuangxiuqisuanri;
     @BindView(R.id.sl_zhuangxiujiezhiri)
     SelectLayout slZhuangxiujiezhiri;
-    @BindView(R.id.input_dianfeifeng)
-    InputLayout inputDianfeifeng;
-    @BindView(R.id.input_dianfeigu)
-    InputLayout inputDianfeigu;
-    @BindView(R.id.input_dianlihuhao)
-    InputLayout inputDianlihuhao;
-    @BindView(R.id.input_zongdian)
-    InputLayout inputZongdian;
-    @BindView(R.id.input_zongmeiqi)
-    InputLayout inputZongmeiqi;
+    @BindView(R.id.sl_jiafangchegndan)
+    SelectLayout slJiafangchegndan;
     private String id;
 
     @Override
@@ -84,6 +76,8 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
         setDatePickerListener(slZhuangxiujiezhiri);
         setDatePickerListener(slZhuangxiuqisuanri);
 
+        String[] arr1 = {"电费", "水费", "燃气费", "物业及能耗费"};
+        setSelectLListener(slJiafangchegndan, arr1, "甲方承担");
     }
 
     private String oldId;
@@ -99,13 +93,9 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
                 .params("house_type",getValue(slGongyuleixing))
                 .params("reform_data",getValue(inputGaizaoxinxi))
                 .params("contract_type",getValue(inputHetongleixing))
-                .params("renovation_begin",getValue(slZhuangxiuqisuanri))
-                .params("renovation_end",getValue(slZhuangxiujiezhiri))
-                .params("electric_max",getValue(inputDianfeifeng))
-                .params("electric_min", getValue(inputDianfeigu))
-                .params("electric_num",getValue(inputDianlihuhao))
-                .params("total_electric", getValue(inputZongdian))
-                .params("total_coal",getValue(inputZongmeiqi));
+                .params("renovation_begin",slZhuangxiuqisuanri.getText().toString())
+                .params("renovation_end",slZhuangxiujiezhiri.getText())
+                .params("first_cost", getValue(slJiafangchegndan));
         if (!TextUtils.isEmpty(oldId)){
             postRequest.params("old_id",oldId);
         }

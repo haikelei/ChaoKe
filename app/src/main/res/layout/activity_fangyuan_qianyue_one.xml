@@ -38,17 +38,61 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_wuyedizhi"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
-                android:background="#ffffff"
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_unity_name"
+                app:mTitle="小区名称"
+                app:mHint="输入小区名称"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="物业地址" />
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+            <LinearLayout
+                android:background="#ffffff"
+                android:paddingRight="20dp"
+                android:paddingLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:textSize="16sp"
+                    android:text="物业地址"
+                    android:textColor="@color/_000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <luyuan.tech.com.chaoke.widget.InputLayout
+                    android:id="@+id/input_lou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="楼"
+                    android:textColor="@color/_000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <luyuan.tech.com.chaoke.widget.InputLayout
+                    android:id="@+id/input_danyuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="单元"
+                    android:textColor="@color/_000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <luyuan.tech.com.chaoke.widget.InputLayout
+                    android:id="@+id/input_hao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="号"
+                    android:textColor="@color/_000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
 
             <luyuan.tech.com.chaoke.widget.InputLayout
                 android:id="@+id/input_fangyuanbianhao"

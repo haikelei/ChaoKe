@@ -30,74 +30,70 @@ import luyuan.tech.com.chaoke.widget.SelectLayout;
  */
 
 
-public class FangYuanQianYueNineActivity extends BaseActivity {
+public class FangYuanQianYueEightGongZuRenActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.btn_next)
     Button btnNext;
-    @BindView(R.id.sl_shoukuanrenleixing)
-    SelectLayout slShoukuanrenleixing;
     @BindView(R.id.sl_zhengjianleixing)
     SelectLayout slZhengjianleixing;
-    @BindView(R.id.input_xinging)
-    InputLayout inputXinging;
+    @BindView(R.id.input_xingming)
+    InputLayout inputXingming;
     @BindView(R.id.input_zhengjianhaoma)
     InputLayout inputZhengjianhaoma;
-    @BindView(R.id.sl_zhanghaoleixing)
-    SelectLayout slZhanghaoleixing;
-    @BindView(R.id.input_shoukuanzhenghao)
-    InputLayout inputShoukuanzhenghao;
-    @BindView(R.id.input_shoukuanjigou)
-    InputLayout inputShoukuanjigou;
-    @BindView(R.id.input_shoukuanzhihang)
-    InputLayout inputShoukuanzhihang;
+    @BindView(R.id.input_shoujihaoma)
+    InputLayout inputShoujihaoma;
+    @BindView(R.id.input_youxiangdizhi)
+    InputLayout inputYouxiangdizhi;
+    @BindView(R.id.input_tongxundizhi)
+    InputLayout inputTongxundizhi;
     private String id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fangyuanqianyue_nine);
+        setContentView(R.layout.activity_qianyuefangyuan_eight_gongzuren);
         ButterKnife.bind(this);
-        if (getIntent()!=null){
+        if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loadData();
             }
         });
-
-        String[] arr = {"产权人","共有产权人"};
-        setSelectLListener(slShoukuanrenleixing,arr,"收款人类型");
         String[] arr1 = {"居民身份证","护照","军人证"};
         setSelectLListener(slZhengjianleixing,arr1,"证件类型");
-        String[] arr2 = {"银行卡"};
-        setSelectLListener(slZhanghaoleixing,arr2,"账号类型");
+
     }
 
     private String oldId;
+
     private void loadData() {
-        if (!checkEmptyInfo()){
+        if (!checkEmptyInfo()) {
             return;
         }
-        PostRequest request = HttpManager.post(HttpManager.FANGYUANQIANYUE)
+        PostRequest postRequest = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("total_id",id)
-                .params("step","12")
-                .params("people_type",getValue(slShoukuanrenleixing))
-                .params("card_type", "2")
-                .params("username", getValue(inputXinging))
-                .params("card_num", getValue(inputZhengjianhaoma))
-                .params("number_type", "2")
-                .params("number_num",getValue(inputShoukuanzhenghao) )
-                .params("mechanism", getValue(inputShoukuanjigou))
-                .params("branch", getValue(inputShoukuanzhihang));
-        if (!TextUtils.isEmpty(oldId)){
-            request.params("old_id",oldId);
+                .params("total_id", id)
+                .params("card_type",getValue(slZhengjianleixing))
+                .params("username",getValue(inputXingming))
+                .params("card_num",getValue(inputZhengjianhaoma))
+                .params("phone",getValue(inputShoujihaoma))
+                .params("email_address",getValue(inputYouxiangdizhi))
+                .params("comm_address",getValue(inputTongxundizhi))
+                .params("step", "10");
+        if (!TextUtils.isEmpty(oldId)) {
+            postRequest.params("old_id", oldId);
         }
-
-        request.execute(new SimpleCallBack<TotalIdBean>() {
+        postRequest.execute(new SimpleCallBack<TotalIdBean>() {
 
             @Override
             public void onError(ApiException e) {
@@ -106,9 +102,9 @@ public class FangYuanQianYueNineActivity extends BaseActivity {
 
             @Override
             public void onSuccess(TotalIdBean data) {
-                oldId = data.getOld_id();
-                Intent intent = new Intent(getBaseContext(), FangYuanQianYueTenActivity.class);
-                intent.putExtra("id",id);
+                oldId = data.getTotal_id();
+                Intent intent = new Intent(getBaseContext(), FangYuanQianYueEightJiaFangDaiLiRenActivity.class);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });

@@ -12,16 +12,25 @@ import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.request.PostRequest;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.ItemBean;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
+import luyuan.tech.com.chaoke.bean.XiaoQuBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
+import luyuan.tech.com.chaoke.widget.SelectDialogFragment;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
+
+import static com.zhouyou.http.EasyHttp.getContext;
 
 /**
  * @author: lujialei
@@ -35,8 +44,6 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
     ImageView ivBack;
     @BindView(R.id.btn_next)
     Button btnNext;
-    @BindView(R.id.input_wuyedizhi)
-    InputLayout inputWuyedizhi;
     @BindView(R.id.input_fangyuanbianhao)
     InputLayout inputFangyuanbianhao;
     @BindView(R.id.sl_fangwulaiyuan)
@@ -53,7 +60,16 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
     SelectLayout slJiafangchizheng;
     @BindView(R.id.sl_fangwuyongtu)
     SelectLayout slFangwuyongtu;
+    @BindView(R.id.input_lou)
+    InputLayout inputLou;
+    @BindView(R.id.input_danyuan)
+    InputLayout inputDanyuan;
+    @BindView(R.id.input_hao)
+    InputLayout inputHao;
+    @BindView(R.id.sl_unity_name)
+    SelectLayout slUnityName;
     private String id;
+    private HashMap<String, String> xiaoquMap = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,6 +107,59 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         String[] arr3 = {"首签", "续签"};
         setSelectLListener(slQianyueleixing, arr3, "签约类型");
 
+        slUnityName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadXiaoQu();
+            }
+        });
+
+    }
+
+    public void loadXiaoQu(){
+        HttpManager.post(HttpManager.XIAOQUMINGCHENG)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .execute(new SimpleCallBack<List<XiaoQuBean>>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(List<XiaoQuBean> list) {
+                        if (list == null || list.size() == 0) {
+                            T.showShort(getContext(), "暂无小区数据");
+                            return;
+                        }
+                        String[] arr = new String[list.size()];
+                        xiaoquMap.clear();
+                        for (int i = 0; i < list.size(); i++) {
+                            XiaoQuBean bean = list.get(i);
+                            arr[i] = bean.getReside_name();
+                            xiaoquMap.put(bean.getReside_name(), String.valueOf(bean.getId()));
+                        }
+                        createDialog(arr, slUnityName);
+                    }
+                });
+    }
+
+    private void createDialog(String[] arr, final SelectLayout sl) {
+        ArrayList<ItemBean> datas = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            ItemBean itemBean = new ItemBean();
+            itemBean.setTitle(arr[i]);
+            itemBean.setChecked(sl.getText().equals(arr[i]));
+            datas.add(itemBean);
+        }
+        SelectDialogFragment dialogFragment = SelectDialogFragment.create(datas);
+        dialogFragment.show(getSupportFragmentManager());
+        dialogFragment.setOnSelectListener(new SelectDialogFragment.OnSelectListener() {
+            @Override
+            public void onSelect(String s) {
+                sl.setText(s);
+            }
+        });
     }
 
     private String totalId;
@@ -103,12 +172,15 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("id", id)
                 .params("step", "1")
-                .params("wuye_address", getValue(inputWuyedizhi))
+                .params("floor_count",inputLou.getText().toString().trim())
+                .params("unit",inputDanyuan.getText().toString().trim())
+                .params("number",inputHao.getText().toString().trim())
+                .params("reside_id", xiaoquMap.get(slUnityName.getText().toString()))
                 .params("rent_num", getValue(inputFangyuanbianhao))
                 .params("from_by", getValue(slFangwulaiyuan))
                 .params("signing_type", getValue(slQianyueleixing))
-                .params("signing_time", getValue(slQianyueriqi))
-                .params("over_time", getValue(slJiaofangriqi))
+                .params("signing_time", slQianyueriqi.getText().toString())
+                .params("over_time", slJiaofangriqi.getText().toString())
                 .params("certificate", getValue(slJiafangchizheng))
                 .params("used_by", getValue(slFangwuyongtu));
         if (!TextUtils.isEmpty(totalId)) {

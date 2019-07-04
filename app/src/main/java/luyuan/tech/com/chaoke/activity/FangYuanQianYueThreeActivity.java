@@ -86,8 +86,8 @@ public class FangYuanQianYueThreeActivity extends BaseActivity {
                 .params("payment_msg", getValue(slFukuanxinxi))
                 .params("payment_day", getValue(inputFukuantianshu))
                 .params("rent_day", getValue(inputMianzhutianshu))
-                .params("entrust_begin", getValue(slWeituoqisuanri))
-                .params("entrust_end", getValue(slWeituodaoqiri))
+                .params("entrust_begin", slWeituoqisuanri.getText())
+                .params("entrust_end", slWeituodaoqiri.getText())
                 .params("step", "3");
         if (!TextUtils.isEmpty(oldId)) {
             postRequest.params("old_id", oldId);
