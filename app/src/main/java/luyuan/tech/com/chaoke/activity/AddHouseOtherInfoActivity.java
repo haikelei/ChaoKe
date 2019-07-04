@@ -21,6 +21,7 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ItemBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
@@ -128,7 +129,7 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
                 .params("room",inputShi.getText().toString())
                 .params("office",inputTing.getText().toString())
                 .params("guard",inputWei.getText().toString())
-                .execute(new SimpleCallBack<List>() {
+                .execute(new SimpleCallBack<String>() {
 
                     @Override
                     public void onError(ApiException e) {
@@ -136,10 +137,12 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onSuccess(List list) {
-                        setResult(RESULT_OK);
-                        finish();
-
+                    public void onSuccess(String s) {
+                        if (NetParser.isOk(s)){
+                            T.showShort(getActivity(),"新增成功");
+                            setResult(RESULT_OK);
+                            finish();
+                        }
                     }
                 });
     }

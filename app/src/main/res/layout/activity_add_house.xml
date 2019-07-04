@@ -34,6 +34,51 @@
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
+    <LinearLayout
+        android:background="#ffffff"
+        android:paddingRight="20dp"
+        android:paddingLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="16sp"
+            android:text="小区地址"
+            android:textColor="@color/_000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/input_lou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:text="楼"
+            android:textColor="@color/_000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/input_danyuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:text="单元"
+            android:textColor="@color/_000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/input_hao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:text="号"
+            android:textColor="@color/_000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <luyuan.tech.com.chaoke.widget.InputLayout
         android:id="@+id/input_unity_address"
         android:layout_marginTop="1dp"
@@ -59,6 +104,16 @@
         android:layout_marginTop="1dp"
         app:mTitle="房源状态"
         app:mHint="选择房源状态"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_chuzufangshi"
+        android:layout_marginTop="1dp"
+        app:mTitle="出租方式"
+        app:mHint="选择出租方式"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:background="#ffffff"

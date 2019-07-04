@@ -144,6 +144,8 @@
         <activity android:name=".activity.GeRenTuiGuangActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.GeRenYeJiPaiMingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.GeRenXiaoLiangPaiMingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ShouFangJiaoGeListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChuFangJiaoGeListActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

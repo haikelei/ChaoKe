@@ -56,58 +56,6 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
     InputLayout inputZongdian;
     @BindView(R.id.input_zongmeiqi)
     InputLayout inputZongmeiqi;
-    @BindView(R.id.sl_jiafangchegndan)
-    SelectLayout slJiafangchegndan;
-    @BindView(R.id.num_dianshi)
-    InputLayout numDianshi;
-    @BindView(R.id.num_kongtiao)
-    InputLayout numKongtiao;
-    @BindView(R.id.num_bingxiang)
-    InputLayout numBingxiang;
-    @BindView(R.id.num_xiyiji)
-    InputLayout numXiyiji;
-    @BindView(R.id.num_hongganji)
-    InputLayout numHongganji;
-    @BindView(R.id.num_weibolu)
-    InputLayout numWeibolu;
-    @BindView(R.id.num_meiqizao)
-    InputLayout numMeiqizao;
-    @BindView(R.id.num_diancilu)
-    InputLayout numDiancilu;
-    @BindView(R.id.num_chuang)
-    InputLayout numChuang;
-    @BindView(R.id.num_chuangdian)
-    InputLayout numChuangdian;
-    @BindView(R.id.num_shafa)
-    InputLayout numShafa;
-    @BindView(R.id.num_yigui)
-    InputLayout numYigui;
-    @BindView(R.id.num_shuzhuo)
-    InputLayout numShuzhuo;
-    @BindView(R.id.num_yizi)
-    InputLayout numYizi;
-    @BindView(R.id.num_chuanglian)
-    InputLayout numChuanglian;
-    @BindView(R.id.num_chuangtougui)
-    InputLayout numChuangtougui;
-    @BindView(R.id.num_ditan)
-    InputLayout numDitan;
-    @BindView(R.id.num_xiegui)
-    InputLayout numXiegui;
-    @BindView(R.id.num_canzhuo)
-    InputLayout numCanzhuo;
-    @BindView(R.id.num_canyi)
-    InputLayout numCanyi;
-    @BindView(R.id.num_chaji)
-    InputLayout numChaji;
-    @BindView(R.id.num_aigui)
-    InputLayout numAigui;
-    @BindView(R.id.num_yinshuiji)
-    InputLayout numYinshuiji;
-    @BindView(R.id.num_reshuiqi)
-    InputLayout numReshuiqi;
-    @BindView(R.id.num_menka)
-    InputLayout numMenka;
     private String id;
 
     @Override
@@ -133,9 +81,6 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
         String[] arr = {"普通公寓","商用公寓","住宅公寓","复式公寓","品牌公寓"};
         setSelectLListener(slGongyuleixing,arr,"公寓类型");
 
-        String[] arr1 = {"电费","水费","燃气费","物业及能耗费"};
-        setSelectLListener(slJiafangchegndan,arr1,"甲方承担");
-
         setDatePickerListener(slZhuangxiujiezhiri);
         setDatePickerListener(slZhuangxiuqisuanri);
 
@@ -146,33 +91,7 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
         if (!checkEmptyInfo()){
             return;
         }
-        StringBuilder handoverList = new StringBuilder();
-        handoverList.append(numDianshi.getText()+",")
-                .append(numDianshi.getText()+",")
-                .append(numKongtiao.getText()+",")
-                .append(numBingxiang.getText()+",")
-                .append(numXiyiji.getText()+",")
-                .append(numHongganji.getText()+",")
-                .append(numWeibolu.getText()+",")
-                .append(numMeiqizao.getText()+",")
-                .append(numDiancilu.getText()+",")
-                .append(numChuang.getText()+",")
-                .append(numChuangdian.getText()+",")
-                .append(numShafa.getText()+",")
-                .append(numYigui.getText()+",")
-                .append(numShuzhuo.getText()+",")
-                .append(numYizi.getText()+",")
-                .append(numChuanglian.getText()+",")
-                .append(numChuangtougui.getText()+",")
-                .append(numDitan.getText()+",")
-                .append(numXiegui.getText()+",")
-                .append(numCanzhuo.getText()+",")
-                .append(numCanyi.getText()+",")
-                .append(numChaji.getText()+",")
-                .append(numAigui.getText()+",")
-                .append(numYinshuiji.getText()+",")
-                .append(numReshuiqi.getText()+",")
-                .append(numMenka.getText() );
+
         PostRequest postRequest = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("step","2")
@@ -186,9 +105,7 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
                 .params("electric_min", getValue(inputDianfeigu))
                 .params("electric_num",getValue(inputDianlihuhao))
                 .params("total_electric", getValue(inputZongdian))
-                .params("total_coal",getValue(inputZongmeiqi))
-                .params("first_cost", getValue(slJiafangchegndan))
-                .params("config",handoverList.toString());
+                .params("total_coal",getValue(inputZongmeiqi));
         if (!TextUtils.isEmpty(oldId)){
             postRequest.params("old_id",oldId);
         }

@@ -234,6 +234,17 @@ public class HttpManager {
      */
     public static final String GERENYEJI = "/api/agent/ranking_order";
 
+    /**
+     * 收房交割列表
+     */
+    public static final String SHOUFANGJIAOGE_LIST = "/api/agent/collect_list";
+
+
+    /**
+     * 出房交割列表
+     */
+    public static final String CHUFANGJIAOGE_LIST = "/api/agent/out_list";
+
 
 
 

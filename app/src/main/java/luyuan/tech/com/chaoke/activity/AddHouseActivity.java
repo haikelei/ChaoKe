@@ -22,7 +22,6 @@ import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ItemBean;
-import luyuan.tech.com.chaoke.bean.LoginBean;
 import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.bean.XiaoQuBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
@@ -59,8 +58,16 @@ public class AddHouseActivity extends BaseActivity {
     InputLayout inputHostTel;
     @BindView(R.id.btn_next)
     Button btnNext;
+    @BindView(R.id.input_lou)
+    InputLayout inputLou;
+    @BindView(R.id.input_danyuan)
+    InputLayout inputDanyuan;
+    @BindView(R.id.input_hao)
+    InputLayout inputHao;
+    @BindView(R.id.sl_chuzufangshi)
+    SelectLayout slChuzufangshi;
     private String houseId;
-    private HashMap<String,String> xiaoquMap = new HashMap<>();
+    private HashMap<String, String> xiaoquMap = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,7 +76,7 @@ public class AddHouseActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.iv_back, R.id.sl_unity_name, R.id.sl_house_from, R.id.sl_house_state, R.id.btn_next})
+    @OnClick({R.id.iv_back, R.id.sl_unity_name, R.id.sl_house_from, R.id.sl_house_state, R.id.btn_next,R.id.sl_chuzufangshi})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -77,38 +84,42 @@ public class AddHouseActivity extends BaseActivity {
                 break;
             case R.id.sl_unity_name:
                 HttpManager.post(HttpManager.XIAOQUMINGCHENG)
-                        .params("token",UserInfoUtils.getInstance().getToken())
+                        .params("token", UserInfoUtils.getInstance().getToken())
                         .execute(new SimpleCallBack<List<XiaoQuBean>>() {
 
                             @Override
                             public void onError(ApiException e) {
-                                T.showShort(getContext(),e.getMessage());
+                                T.showShort(getContext(), e.getMessage());
                             }
 
                             @Override
                             public void onSuccess(List<XiaoQuBean> list) {
-                                if (list==null||list.size()==0){
-                                    T.showShort(getContext(),"暂无小区数据");
+                                if (list == null || list.size() == 0) {
+                                    T.showShort(getContext(), "暂无小区数据");
                                     return;
                                 }
                                 String[] arr = new String[list.size()];
                                 xiaoquMap.clear();
                                 for (int i = 0; i < list.size(); i++) {
-                                    XiaoQuBean bean =  list.get(i);
+                                    XiaoQuBean bean = list.get(i);
                                     arr[i] = bean.getReside_name();
-                                    xiaoquMap.put(bean.getReside_name(),String.valueOf(bean.getId()));
+                                    xiaoquMap.put(bean.getReside_name(), String.valueOf(bean.getId()));
                                 }
-                                createDialog(arr,slUnityName);
+                                createDialog(arr, slUnityName);
                             }
                         });
                 break;
             case R.id.sl_house_from:
-                String[] arr = {"中介合作","转介绍","老客户","网络端口","地推","房东上门","名单获取","销冠","其他"};
-                createDialog(arr,slHouseFrom);
+                String[] arr = {"中介合作", "转介绍", "老客户", "网络端口", "地推", "房东上门", "名单获取", "销冠", "其他"};
+                createDialog(arr, slHouseFrom);
                 break;
             case R.id.sl_house_state:
-                String[] arr1 = {"业主待租","非自营在租","业主自用"};
-                createDialog(arr1,slHouseState);
+                String[] arr1 = {"业主待租", "非自营在租", "业主自用"};
+                createDialog(arr1, slHouseState);
+                break;
+            case R.id.sl_chuzufangshi:
+                String[] arr2 = {"整租", "分租"};
+                createDialog(arr2, slChuzufangshi);
                 break;
             case R.id.btn_next:
                 loadData();
@@ -117,38 +128,43 @@ public class AddHouseActivity extends BaseActivity {
     }
 
     private void loadData() {
-        if (!checkEmptyInfo()){
+        if (!checkEmptyInfo()) {
             return;
         }
         PostRequest postRequest = HttpManager.post(HttpManager.FABUONE)
-                .params("token",UserInfoUtils.getInstance().getToken())
-                .params("rid",xiaoquMap.get(slUnityName.getText().toString()))
-                .params("address",inputUnityAddress.getText().toString().trim())
-                .params("source",slHouseFrom.getText().toString())
-                .params("rent_state",slHouseState.getText().toString())
-                .params("landlady_name",inputHostName.getText().toString().trim())
-                .params("landlady_phone",inputHostTel.getText().toString().trim());
-        if (!TextUtils.isEmpty(houseId)){
-            postRequest.params("first_id",houseId);
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("rid", xiaoquMap.get(slUnityName.getText().toString()))
+                .params("address", inputUnityAddress.getText().toString().trim())
+                .params("source", slHouseFrom.getText().toString())
+                .params("rent_state", slHouseState.getText().toString())
+                .params("landlady_name", inputHostName.getText().toString().trim())
+                .params("mode",slHouseState.getText().equals("整租")?"1":"2")
+                .params("floor_count",inputLou.getText().toString().trim())
+                .params("unit",inputDanyuan.getText().toString().trim())
+                .params("number",inputHao.getText().toString().trim())
+                .params("landlady_phone", inputHostTel.getText().toString().trim());
+
+        if (!TextUtils.isEmpty(houseId)) {
+            postRequest.params("first_id", houseId);
         }
         postRequest.execute(new SimpleCallBack<String>() {
 
-                    @Override
-                    public void onError(ApiException e) {
-                        T.showShort(getContext(),e.getMessage());
-                    }
+            @Override
+            public void onError(ApiException e) {
+                T.showShort(getContext(), e.getMessage());
+            }
 
-                    @Override
-                    public void onSuccess(String s) {
-                        if (NetParser.isOk(s)){
-                            StringDataResponse response = NetParser.parse(s,StringDataResponse.class);
-                            houseId = response.getData();
-                            Intent intent = new Intent(getBaseContext(),AddHouseOtherInfoActivity.class);
-                            intent.putExtra("id",houseId);
-                            startActivityForResult(intent,199);
-                        }
-                    }
-                });
+            @Override
+            public void onSuccess(String s) {
+                if (NetParser.isOk(s)) {
+                    StringDataResponse response = NetParser.parse(s, StringDataResponse.class);
+                    houseId = response.getData();
+                    Intent intent = new Intent(getBaseContext(), AddHouseOtherInfoActivity.class);
+                    intent.putExtra("id", houseId);
+                    startActivityForResult(intent, 199);
+                }
+            }
+        });
     }
 
     private void createDialog(String[] arr, final SelectLayout sl) {
@@ -172,8 +188,8 @@ public class AddHouseActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==199){
-            if (resultCode==RESULT_OK){
+        if (requestCode == 199) {
+            if (resultCode == RESULT_OK) {
                 finish();
             }
         }

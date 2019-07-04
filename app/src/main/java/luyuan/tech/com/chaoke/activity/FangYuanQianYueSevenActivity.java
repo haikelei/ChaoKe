@@ -127,6 +127,12 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

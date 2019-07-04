@@ -41,6 +41,7 @@ import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
+import luyuan.tech.com.chaoke.widget.SelectLayout;
 
 /**
  * @author: lujialei
@@ -75,6 +76,62 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
     @BindView(R.id.input_ranqidushu)
     InputLayout inputRanqidushu;
 
+    @BindView(R.id.sl_jiafangchegndan)
+    SelectLayout slJiafangchegndan;
+    @BindView(R.id.num_dianshi)
+    InputLayout numDianshi;
+    @BindView(R.id.num_kongtiao)
+    InputLayout numKongtiao;
+    @BindView(R.id.num_bingxiang)
+    InputLayout numBingxiang;
+    @BindView(R.id.num_xiyiji)
+    InputLayout numXiyiji;
+    @BindView(R.id.num_hongganji)
+    InputLayout numHongganji;
+    @BindView(R.id.num_weibolu)
+    InputLayout numWeibolu;
+    @BindView(R.id.num_meiqizao)
+    InputLayout numMeiqizao;
+    @BindView(R.id.num_diancilu)
+    InputLayout numDiancilu;
+    @BindView(R.id.num_chuang)
+    InputLayout numChuang;
+    @BindView(R.id.num_chuangdian)
+    InputLayout numChuangdian;
+    @BindView(R.id.num_shafa)
+    InputLayout numShafa;
+    @BindView(R.id.num_yigui)
+    InputLayout numYigui;
+    @BindView(R.id.num_shuzhuo)
+    InputLayout numShuzhuo;
+    @BindView(R.id.num_yizi)
+    InputLayout numYizi;
+    @BindView(R.id.num_chuanglian)
+    InputLayout numChuanglian;
+    @BindView(R.id.num_chuangtougui)
+    InputLayout numChuangtougui;
+    @BindView(R.id.num_ditan)
+    InputLayout numDitan;
+    @BindView(R.id.num_xiegui)
+    InputLayout numXiegui;
+    @BindView(R.id.num_canzhuo)
+    InputLayout numCanzhuo;
+    @BindView(R.id.num_canyi)
+    InputLayout numCanyi;
+    @BindView(R.id.num_chaji)
+    InputLayout numChaji;
+    @BindView(R.id.num_aigui)
+    InputLayout numAigui;
+    @BindView(R.id.num_yinshuiji)
+    InputLayout numYinshuiji;
+    @BindView(R.id.num_reshuiqi)
+    InputLayout numReshuiqi;
+    @BindView(R.id.num_menka)
+    InputLayout numMenka;
+    @BindView(R.id.sl_qingdanjiaofuriqi)
+    SelectLayout slQingdanjiaofuriqi;
+    private String id;
+
 
     private ImageSelectAdapter adapterShuidianranqi;
     private ArrayList<ImageBean> listShuidianranqi;
@@ -85,6 +142,9 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoufang_jiaoge);
         ButterKnife.bind(this);
+        if (getIntent()!= null){
+            id = getIntent().getStringExtra("id");
+        }
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,6 +214,33 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
         if (!checkEmptyInfo()){
             return;
         }
+        StringBuilder handoverList = new StringBuilder();
+        handoverList.append(numDianshi.getText()+",")
+                .append(numDianshi.getText()+",")
+                .append(numKongtiao.getText()+",")
+                .append(numBingxiang.getText()+",")
+                .append(numXiyiji.getText()+",")
+                .append(numHongganji.getText()+",")
+                .append(numWeibolu.getText()+",")
+                .append(numMeiqizao.getText()+",")
+                .append(numDiancilu.getText()+",")
+                .append(numChuang.getText()+",")
+                .append(numChuangdian.getText()+",")
+                .append(numShafa.getText()+",")
+                .append(numYigui.getText()+",")
+                .append(numShuzhuo.getText()+",")
+                .append(numYizi.getText()+",")
+                .append(numChuanglian.getText()+",")
+                .append(numChuangtougui.getText()+",")
+                .append(numDitan.getText()+",")
+                .append(numXiegui.getText()+",")
+                .append(numCanzhuo.getText()+",")
+                .append(numCanyi.getText()+",")
+                .append(numChaji.getText()+",")
+                .append(numAigui.getText()+",")
+                .append(numYinshuiji.getText()+",")
+                .append(numReshuiqi.getText()+",")
+                .append(numMenka.getText() );
         PostRequest request = HttpManager.post(HttpManager.SHOUFANG_JIAOGE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("room_number", getValue(inputXiaoqudizhi))
@@ -164,6 +251,11 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
                 .params("water_meter", getValue(inputShuibiao))
                 .params("gas_number",getValue(inputRanqihuhao) )
                 .params("gas_degree",getValue(inputRanqidushu) )
+                .params("first_cost", getValue(slJiafangchegndan))
+                .params("handover_time", getValue(slQingdanjiaofuriqi))
+                .params("contract_id",id)
+                .params("config",handoverList.toString())
+
                 .params("pics", getListJson(listShuidianranqi));
 
         request.execute(new SimpleCallBack<String>() {

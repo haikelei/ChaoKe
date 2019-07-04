@@ -28,6 +28,7 @@ import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.activity.AddHouseActivity;
 import luyuan.tech.com.chaoke.activity.ChuFangJiaoGeActivity;
+import luyuan.tech.com.chaoke.activity.ChuFangJiaoGeListActivity;
 import luyuan.tech.com.chaoke.activity.ChuZuHeTongActivity;
 import luyuan.tech.com.chaoke.activity.ClientTaskActivity;
 import luyuan.tech.com.chaoke.activity.HeTongTiaoKuanActivity;
@@ -35,6 +36,7 @@ import luyuan.tech.com.chaoke.activity.HouseTaskActivity;
 import luyuan.tech.com.chaoke.activity.KaiFaFangYuanActivity;
 import luyuan.tech.com.chaoke.activity.LoginActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangJiaoGeActivity;
+import luyuan.tech.com.chaoke.activity.ShouFangJiaoGeListActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangShenPiListActivity;
 import luyuan.tech.com.chaoke.activity.TongXunLuActivity;
 import luyuan.tech.com.chaoke.activity.WeiTuoHeTongActivity;
@@ -149,10 +151,10 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), HeTongTiaoKuanActivity.class));
                 break;
             case R.id.ll_chufangjiaoge:
-                startActivity(new Intent(getContext(), ChuFangJiaoGeActivity.class));
+                startActivity(new Intent(getContext(), ChuFangJiaoGeListActivity.class));
                 break;
             case R.id.ll_shoufangjiaoge:
-                startActivity(new Intent(getContext(), ShouFangJiaoGeActivity.class));
+                startActivity(new Intent(getContext(), ShouFangJiaoGeListActivity.class));
                 break;
         }
     }

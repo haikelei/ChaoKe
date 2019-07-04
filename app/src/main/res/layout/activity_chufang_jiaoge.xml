@@ -181,6 +181,259 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
             </LinearLayout>
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_qingdanjiaofuriqi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请选择"
+                app:mTitle="房屋交接清单交付日期" />
+            <luyuan.tech.com.chaoke.widget.SelectLayout
+                android:id="@+id/sl_jiafangchegndan"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请选择"
+                app:mTitle="请选择甲方承担运费" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="交接清单"
+                android:textSize="15sp" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_dianshi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="电视机" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_kongtiao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="空调" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_bingxiang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="冰箱" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_xiyiji"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="洗衣机" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_hongganji"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="烘干机" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_weibolu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="微波炉" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_meiqizao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="煤气灶" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_diancilu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="电磁炉" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_chuang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="床" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_chuangdian"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="床垫" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_shafa"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="沙发" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_yigui"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="衣柜" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_shuzhuo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="书桌" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_yizi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="椅子" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_chuanglian"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="窗帘" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_chuangtougui"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="床头柜" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_ditan"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="地毯" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_xiegui"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="鞋柜" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_canzhuo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="餐桌" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_canyi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="餐椅" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_chaji"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="茶几" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_aigui"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="矮柜" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_yinshuiji"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="饮水机" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_reshuiqi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="热水器" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_menka"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="门卡" />
 
             <Button
                 android:id="@+id/btn_next"
