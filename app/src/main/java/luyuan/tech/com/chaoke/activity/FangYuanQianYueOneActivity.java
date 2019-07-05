@@ -69,7 +69,6 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
     @BindView(R.id.sl_unity_name)
     SelectLayout slUnityName;
     private String id;
-    private HashMap<String, String> xiaoquMap = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,38 +109,10 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         slUnityName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadXiaoQu();
+                startActivityForResult(new Intent(getActivity(),XuanZeXiaoQuActivity.class),134);
             }
         });
 
-    }
-
-    public void loadXiaoQu(){
-        HttpManager.post(HttpManager.XIAOQUMINGCHENG)
-                .params("token", UserInfoUtils.getInstance().getToken())
-                .execute(new SimpleCallBack<List<XiaoQuBean>>() {
-
-                    @Override
-                    public void onError(ApiException e) {
-                        T.showShort(getContext(), e.getMessage());
-                    }
-
-                    @Override
-                    public void onSuccess(List<XiaoQuBean> list) {
-                        if (list == null || list.size() == 0) {
-                            T.showShort(getContext(), "暂无小区数据");
-                            return;
-                        }
-                        String[] arr = new String[list.size()];
-                        xiaoquMap.clear();
-                        for (int i = 0; i < list.size(); i++) {
-                            XiaoQuBean bean = list.get(i);
-                            arr[i] = bean.getReside_name();
-                            xiaoquMap.put(bean.getReside_name(), String.valueOf(bean.getId()));
-                        }
-                        createDialog(arr, slUnityName);
-                    }
-                });
     }
 
     private void createDialog(String[] arr, final SelectLayout sl) {
@@ -175,7 +146,6 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
                 .params("floor_count",inputLou.getText().toString().trim())
                 .params("unit",inputDanyuan.getText().toString().trim())
                 .params("number",inputHao.getText().toString().trim())
-                .params("reside_id", xiaoquMap.get(slUnityName.getText().toString()))
                 .params("rent_num", getValue(inputFangyuanbianhao))
                 .params("from_by", getValue(slFangwulaiyuan))
                 .params("signing_type", getValue(slQianyueleixing))
@@ -183,6 +153,9 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
                 .params("over_time", slJiaofangriqi.getText().toString())
                 .params("certificate", getValue(slJiafangchizheng))
                 .params("used_by", getValue(slFangwuyongtu));
+        if (bean!=null){
+            postRequest.params("reside_id", bean.getId()+"");
+        }
         if (!TextUtils.isEmpty(totalId)) {
             postRequest.params("total_id", totalId);
         }
@@ -201,6 +174,18 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private XiaoQuBean bean;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==134){
+            if (resultCode == RESULT_OK) {
+                bean = (XiaoQuBean) data.getSerializableExtra("data");
+                slUnityName.setText(bean.getReside_name());
+            }
+        }
     }
 
 }

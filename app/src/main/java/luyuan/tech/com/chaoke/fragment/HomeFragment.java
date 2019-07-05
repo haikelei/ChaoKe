@@ -27,15 +27,13 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.activity.AddHouseActivity;
-import luyuan.tech.com.chaoke.activity.ChuFangJiaoGeActivity;
 import luyuan.tech.com.chaoke.activity.ChuFangJiaoGeListActivity;
 import luyuan.tech.com.chaoke.activity.ChuZuHeTongActivity;
 import luyuan.tech.com.chaoke.activity.ClientTaskActivity;
 import luyuan.tech.com.chaoke.activity.HeTongTiaoKuanActivity;
+import luyuan.tech.com.chaoke.activity.HouseSearchActivity;
 import luyuan.tech.com.chaoke.activity.HouseTaskActivity;
 import luyuan.tech.com.chaoke.activity.KaiFaFangYuanActivity;
-import luyuan.tech.com.chaoke.activity.LoginActivity;
-import luyuan.tech.com.chaoke.activity.ShouFangJiaoGeActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangJiaoGeListActivity;
 import luyuan.tech.com.chaoke.activity.ShouFangShenPiListActivity;
 import luyuan.tech.com.chaoke.activity.TongXunLuActivity;
@@ -67,6 +65,8 @@ public class HomeFragment extends Fragment {
     SlidingTabLayout tabLayout;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+    @BindView(R.id.rl_search)
+    RelativeLayout rlSearch;
 
 
     @Nullable
@@ -81,6 +81,12 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
+        rlSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), HouseSearchActivity.class));
+            }
+        });
     }
 
     private void initView() {

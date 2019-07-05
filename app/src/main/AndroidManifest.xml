@@ -150,6 +150,9 @@
         <activity android:name=".activity.FangYuanQianYueEightGongZuRenActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.FangYuanQianYueEightJiaFangDaiLiRenActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.XuanZeYueKanFangYuanActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.HouseSearchActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.KeHuSearchActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.XuanZeXiaoQuActivity" android:screenOrientation="portrait"/>
 
 
 

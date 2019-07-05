@@ -250,6 +250,11 @@ public class HttpManager {
      */
     public static final String XUANQIAN = "/api/agent/signing_again";
 
+    /**
+     * 搜索
+     */
+    public static final String SEARCH = "/api/agent/do_search";
+
 
 
 

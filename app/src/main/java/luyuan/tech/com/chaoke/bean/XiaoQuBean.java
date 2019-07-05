@@ -1,5 +1,7 @@
 package luyuan.tech.com.chaoke.bean;
 
+import java.io.Serializable;
+
 /**
  * @author: lujialei
  * @date: 2019/6/16
@@ -7,7 +9,7 @@ package luyuan.tech.com.chaoke.bean;
  */
 
 
-public class XiaoQuBean {
+public class XiaoQuBean implements Serializable {
 
     /**
      * id : 1
@@ -18,6 +20,8 @@ public class XiaoQuBean {
      * lng_pos : 39.944916
      */
 
+    public String username;
+    public String room_name;
     private int id;
     private String reside_name;
     private int aid;

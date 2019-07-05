@@ -60,6 +60,8 @@ public class ZuQianKeHuActivity extends BaseActivity {
     RecyclerView recycler;
     @BindView(R.id.iv_add)
     ImageView ivAdd;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
     private ArrayList<ZuKeListBean> list = new ArrayList<>();
     private ZuQianKeHuAdapter adapter;
 
@@ -70,10 +72,16 @@ public class ZuQianKeHuActivity extends BaseActivity {
         ButterKnife.bind(this);
         initView();
         loadData();
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),KeHuSearchActivity.class));
+            }
+        });
         ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(),ZuKeXinXiActivity.class));
+                startActivity(new Intent(getActivity(), ZuKeXinXiActivity.class));
             }
         });
         quyuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {

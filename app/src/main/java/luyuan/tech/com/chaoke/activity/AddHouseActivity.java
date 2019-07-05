@@ -67,7 +67,7 @@ public class AddHouseActivity extends BaseActivity {
     @BindView(R.id.sl_chuzufangshi)
     SelectLayout slChuzufangshi;
     private String houseId;
-    private HashMap<String, String> xiaoquMap = new HashMap<>();
+    private XiaoQuBean bean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,31 +83,7 @@ public class AddHouseActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.sl_unity_name:
-                HttpManager.post(HttpManager.XIAOQUMINGCHENG)
-                        .params("token", UserInfoUtils.getInstance().getToken())
-                        .execute(new SimpleCallBack<List<XiaoQuBean>>() {
-
-                            @Override
-                            public void onError(ApiException e) {
-                                T.showShort(getContext(), e.getMessage());
-                            }
-
-                            @Override
-                            public void onSuccess(List<XiaoQuBean> list) {
-                                if (list == null || list.size() == 0) {
-                                    T.showShort(getContext(), "暂无小区数据");
-                                    return;
-                                }
-                                String[] arr = new String[list.size()];
-                                xiaoquMap.clear();
-                                for (int i = 0; i < list.size(); i++) {
-                                    XiaoQuBean bean = list.get(i);
-                                    arr[i] = bean.getReside_name();
-                                    xiaoquMap.put(bean.getReside_name(), String.valueOf(bean.getId()));
-                                }
-                                createDialog(arr, slUnityName);
-                            }
-                        });
+                startActivityForResult(new Intent(getActivity(),XuanZeXiaoQuActivity.class),133);
                 break;
             case R.id.sl_house_from:
                 String[] arr = {"中介合作", "转介绍", "老客户", "网络端口", "地推", "房东上门", "名单获取", "销冠", "其他"};
@@ -133,7 +109,6 @@ public class AddHouseActivity extends BaseActivity {
         }
         PostRequest postRequest = HttpManager.post(HttpManager.FABUONE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("rid", xiaoquMap.get(slUnityName.getText().toString()))
                 .params("address", inputUnityAddress.getText().toString().trim())
                 .params("source", slHouseFrom.getText().toString())
                 .params("rent_state", slHouseState.getText().toString())
@@ -144,6 +119,9 @@ public class AddHouseActivity extends BaseActivity {
                 .params("number",inputHao.getText().toString().trim())
                 .params("landlady_phone", inputHostTel.getText().toString().trim());
 
+        if (bean!=null){
+            postRequest.params("rid", bean.getId()+"");
+        }
         if (!TextUtils.isEmpty(houseId)) {
             postRequest.params("first_id", houseId);
         }
@@ -191,6 +169,11 @@ public class AddHouseActivity extends BaseActivity {
         if (requestCode == 199) {
             if (resultCode == RESULT_OK) {
                 finish();
+            }
+        }else if (requestCode==133){
+            if (resultCode == RESULT_OK) {
+                bean = (XiaoQuBean) data.getSerializableExtra("data");
+                slUnityName.setText(bean.getReside_name());
             }
         }
     }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.request.PostRequest;
@@ -25,7 +23,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
-import luyuan.tech.com.chaoke.adapter.KaiFaFangYuanAdapter;
 import luyuan.tech.com.chaoke.adapter.ZiYingYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseBean;
@@ -100,6 +97,8 @@ public class ZiYingFangYuanActivity extends BaseActivity {
     TextView tvPaixuMianjilow;
     @BindView(R.id.btn_shaixuan)
     TextView btnShaixuan;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
     private ArrayList<HouseBean> list = new ArrayList<>();
     private ZiYingYuanAdapter adapter;
 
@@ -108,6 +107,12 @@ public class ZiYingFangYuanActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ziying_fangyuan);
         ButterKnife.bind(this);
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),HouseSearchActivity.class));
+            }
+        });
         quyuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
@@ -153,7 +158,7 @@ public class ZiYingFangYuanActivity extends BaseActivity {
 
     private void loadData() {
         PostRequest request = HttpManager.post(HttpManager.HOUSE_LIST)
-                .params("type","1")
+                .params("type", "1")
                 .params("token", UserInfoUtils.getInstance().getToken());
         request.execute(new SimpleCallBack<List<HouseBean>>() {
 
