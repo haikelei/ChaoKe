@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -34,7 +35,9 @@ public class GeRenYeJiAdapter extends BaseQuickAdapter<GeRenYeJiBean,BaseViewHol
         ImageView ivAvatar = helper.getView(R.id.iv_avatar);
         tvName.setText(item.getNickname());
         tvMoney.setText(item.getRes_count());
-        Glide.with(helper.itemView.getContext()).load(item.getHeadimgurl()).into(ivAvatar);
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.error(R.mipmap.default_image);
+        Glide.with(helper.itemView.getContext()).load(item.getHeadimgurl()).apply(requestOptions).into(ivAvatar);
         tvZu.setText(item.getStore_name());
 
     }

@@ -490,7 +490,7 @@ public class WeiTuoHeTongDetailBean {
         private String attach_pic;
         private String old_pic;
         private String household_pic;
-        private String other_pic;
+        private List<String> other_pic;
 
         public int getPeople_type() {
             return people_type;
@@ -612,11 +612,11 @@ public class WeiTuoHeTongDetailBean {
             this.household_pic = household_pic;
         }
 
-        public String getOther_pic() {
+        public List<String>  getOther_pic() {
             return other_pic;
         }
 
-        public void setOther_pic(String other_pic) {
+        public void setOther_pic(List<String> other_pic) {
             this.other_pic = other_pic;
         }
     }

@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -41,7 +42,9 @@ public class ImageSelectAdapter extends BaseMultiItemQuickAdapter<ImageBean,Base
     protected void convert(BaseViewHolder helper, ImageBean item) {
         if (!item.isAddItem()){
             ImageView iv = helper.getView(R.id.iv);
-            Glide.with(helper.itemView.getContext()).load(Constant.IMAGE_PRE+item.getPath()).into(iv);
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.error(R.mipmap.default_image);
+            Glide.with(helper.itemView.getContext()).load(Constant.IMAGE_PRE+item.getPath()).apply(requestOptions).into(iv);
         }
     }
 }

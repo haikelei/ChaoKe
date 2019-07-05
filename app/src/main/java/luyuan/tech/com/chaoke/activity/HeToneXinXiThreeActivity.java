@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.NormalListDialog;
 import com.luck.picture.lib.PictureSelector;
@@ -191,7 +192,9 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                                 try {
                                     String name = response.getString("key");
                                     zhengmianImageName = name;
-                                    Glide.with(getBaseContext()).load(path).into(ivZhengmian);
+                                    RequestOptions requestOptions = new RequestOptions();
+                                    requestOptions.error(R.mipmap.default_image);
+                                    Glide.with(getBaseContext()).load(path).apply(requestOptions).into(ivZhengmian);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -211,7 +214,9 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
                                 try {
                                     String name = response.getString("key");
                                     fanmianImageName = name;
-                                    Glide.with(getBaseContext()).load(path1).into(ivFanmian);
+                                    RequestOptions requestOptions = new RequestOptions();
+                                    requestOptions.error(R.mipmap.default_image);
+                                    Glide.with(getBaseContext()).load(path1).apply(requestOptions).into(ivFanmian);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

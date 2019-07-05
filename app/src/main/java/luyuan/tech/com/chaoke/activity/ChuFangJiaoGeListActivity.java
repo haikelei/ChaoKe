@@ -39,7 +39,7 @@ public class ChuFangJiaoGeListActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shou_fang_jiaoge_list);
+        setContentView(R.layout.activity_chu_fang_jiaoge_list);
         ButterKnife.bind(this);
         initView();
         initListener();

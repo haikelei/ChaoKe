@@ -104,7 +104,7 @@ public class XianChangQianYueActivity extends BaseActivity {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
                 RequestOptions requestOptions = new RequestOptions();
-                requestOptions.centerCrop();
+                requestOptions.centerCrop().error(R.mipmap.default_image);
                 Glide.with(context).load(path).apply(requestOptions).into(imageView);
             }
         });

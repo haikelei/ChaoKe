@@ -17,7 +17,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp" />
         <TextView
-            android:text="收房交割"
+            android:text="出房交割"
             android:textSize="15sp"
             android:layout_centerInParent="true"
             android:textColor="#000000"

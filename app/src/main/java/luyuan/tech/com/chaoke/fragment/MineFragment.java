@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +66,9 @@ public class MineFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Glide.with(getActivity()).load(UserInfoUtils.getInstance().getAvatar()).into(ivAvatar);
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.error(R.mipmap.default_image);
+        Glide.with(getActivity()).load(UserInfoUtils.getInstance().getAvatar()).apply(requestOptions).into(ivAvatar);
         tvName.setText(UserInfoUtils.getInstance().getUserName());
         ivSettings.setOnClickListener(new View.OnClickListener() {
             @Override

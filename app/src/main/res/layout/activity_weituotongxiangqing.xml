@@ -907,7 +907,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -916,13 +916,12 @@
             <ImageView
                 android:id="@+id/iv_zhengjian"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -931,8 +930,7 @@
             <ImageView
                 android:id="@+id/iv_zhengjian1"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <TextView
@@ -1006,7 +1004,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -1015,8 +1013,7 @@
             <ImageView
                 android:id="@+id/iv_daizhenghaoye"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <TextView
@@ -1031,7 +1028,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -1040,8 +1037,7 @@
             <ImageView
                 android:id="@+id/iv_zhuye"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <TextView
@@ -1056,7 +1052,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -1065,8 +1061,7 @@
             <ImageView
                 android:id="@+id/iv_fujiye"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
         <TextView
@@ -1081,7 +1076,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -1090,8 +1085,7 @@
             <ImageView
                 android:id="@+id/iv_yuanhuxingtu"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <TextView
@@ -1106,7 +1100,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -1115,8 +1109,7 @@
             <ImageView
                 android:id="@+id/iv_fenhutu"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent"/>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -1129,16 +1122,16 @@
             android:textColor="#000000" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
 
             <ImageView
+                android:id="@+id/iv_qita"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent" />
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -1296,7 +1289,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -1305,12 +1298,11 @@
             <ImageView
                 android:id="@+id/iv_zhengjian2"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="200dp"
             android:background="#ffffff"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -1319,8 +1311,7 @@
             <ImageView
                 android:id="@+id/iv_zhengjian3"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="#d12324" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <TextView

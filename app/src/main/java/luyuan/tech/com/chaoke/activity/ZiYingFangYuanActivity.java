@@ -140,15 +140,15 @@ public class ZiYingFangYuanActivity extends BaseActivity {
         recycler.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         adapter = new ZiYingYuanAdapter(list);
         recycler.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getBaseContext(), XianChangDaiKanActivity.class);
-                HouseBean houseBean = list.get(position);
-                intent.putExtra("id", houseBean.getId() + "");
-                startActivity(intent);
-            }
-        });
+//        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                Intent intent = new Intent(getBaseContext(), XianChangDaiKanActivity.class);
+//                HouseBean houseBean = list.get(position);
+//                intent.putExtra("id", houseBean.getId() + "");
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private void loadData() {

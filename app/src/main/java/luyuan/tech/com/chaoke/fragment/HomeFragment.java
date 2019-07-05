@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
         banner.setImages(list).setImageLoader(new ImageLoader() {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
-                RequestOptions requestOptions = RequestOptions.centerCropTransform();
+                RequestOptions requestOptions = RequestOptions.centerCropTransform().error(R.mipmap.default_image);
                 Glide.with(context).load(path).apply(requestOptions).into(imageView);
             }
         }).start();
@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), AddHouseActivity.class));
                 break;
             case R.id.iv_sao:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+//                startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
         }
     }
