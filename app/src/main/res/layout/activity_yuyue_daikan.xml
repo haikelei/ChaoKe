@@ -95,6 +95,7 @@
     </LinearLayout>
 
     <luyuan.tech.com.chaoke.widget.SelectLayout
+        android:id="@+id/sl_yyueshijian"
         app:mTitle="预约时间"
         app:mHint="请选择"
         android:paddingLeft="15dp"
@@ -102,16 +103,18 @@
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
-    <luyuan.tech.com.chaoke.widget.InputLayout
-        android:id="@+id/input_unity_address"
-        android:layout_marginTop="1dp"
-        app:mTitle="见面地点"
-        app:mHint="请输入"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:background="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/input_jianmiandizhi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请输入"
+            app:mTitle="见面地点" />
 
     <RelativeLayout
         android:paddingLeft="20dp"
@@ -127,7 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <CheckBox
-            android:id="@+id/cb_chengzuren"
+            android:id="@+id/cb_duanxin"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
@@ -135,7 +138,7 @@
     </RelativeLayout>
 
     <luyuan.tech.com.chaoke.widget.InputLayout
-        android:id="@+id/input_host_name"
+        android:id="@+id/input_shoujihao"
         android:layout_marginTop="1dp"
         app:mTitle="手机号"
         app:mHint="请输入"
@@ -154,6 +157,7 @@
         android:text="约看房源"
         android:textSize="13sp" />
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>

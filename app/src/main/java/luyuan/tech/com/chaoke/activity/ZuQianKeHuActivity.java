@@ -20,11 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
-import luyuan.tech.com.chaoke.adapter.KaiFaFangYuanAdapter;
 import luyuan.tech.com.chaoke.adapter.ZuQianKeHuAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
-import luyuan.tech.com.chaoke.bean.HouseBean;
-import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
 import luyuan.tech.com.chaoke.bean.ZuKeListBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
@@ -61,6 +58,8 @@ public class ZuQianKeHuActivity extends BaseActivity {
     LinearLayout llshaixuan;
     @BindView(R.id.recycler)
     RecyclerView recycler;
+    @BindView(R.id.iv_add)
+    ImageView ivAdd;
     private ArrayList<ZuKeListBean> list = new ArrayList<>();
     private ZuQianKeHuAdapter adapter;
 
@@ -71,6 +70,12 @@ public class ZuQianKeHuActivity extends BaseActivity {
         ButterKnife.bind(this);
         initView();
         loadData();
+        ivAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),ZuKeXinXiActivity.class));
+            }
+        });
         quyuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
@@ -98,7 +103,7 @@ public class ZuQianKeHuActivity extends BaseActivity {
     }
 
     private void loadData() {
-        if (!checkEmptyInfo()){
+        if (!checkEmptyInfo()) {
             return;
         }
         HttpManager.post(HttpManager.ZUKE_LIST)
@@ -107,7 +112,7 @@ public class ZuQianKeHuActivity extends BaseActivity {
 
                     @Override
                     public void onError(ApiException e) {
-                        T.showShort(getContext(),e.getMessage());
+                        T.showShort(getContext(), e.getMessage());
                     }
 
                     @Override
@@ -126,9 +131,9 @@ public class ZuQianKeHuActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getBaseContext(),ZuKeDetailActivity.class);
+                Intent intent = new Intent(getBaseContext(), ZuKeDetailActivity.class);
                 ZuKeListBean bean = list.get(position);
-                intent.putExtra("id",bean.getId()+"");
+                intent.putExtra("id", bean.getId() + "");
                 startActivity(intent);
             }
         });

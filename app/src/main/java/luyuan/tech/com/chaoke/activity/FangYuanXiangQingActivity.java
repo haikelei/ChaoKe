@@ -181,15 +181,48 @@ public class FangYuanXiangQingActivity extends BaseActivity {
             tvSize.setText(data.getArea());
         }
 //        tvFangyuanzhuangtai.setText();
-        tvChaoxiang.setText(data.getOrientation() + "");
+        tvChaoxiang.setText("朝向:"+getOrientation(data.getOrientation()));
 //        tvZhuangxiuqingkuang.setText();
         if (!TextUtils.isEmpty(data.getFloor())) {
-            tvLouceng.setText(data.getFloor());
+            tvLouceng.setText("楼层:"+data.getFloor());
         }
 //        tvWuyeyongtu.setText();
-//        tvFankangzhuangtai.setText();
+        tvFankangzhuangtai.setText("看房方式:"+getSeeType(data.getSee_type()));
 
+    }
 
+    public String getSeeType(int i){
+//        朝向 1朝南 2为朝北 3为朝东 4为朝西
+        if (i==1){
+            return "房屋出租";
+        } else if (i==2){
+            return "预约";
+        }else if (i==3){
+            return "直接";
+        }else if (i==4){
+            return "借钥";
+        }
+        else if (i==5){
+            return "有钥";
+        }
+        else if (i==6){
+            return "智能锁";
+        }
+        return "智能锁";
+    }
+
+    public String getOrientation(int i){
+//        朝向 1朝南 2为朝北 3为朝东 4为朝西
+        if (i==1){
+            return "朝南";
+        } else if (i==2){
+            return "朝北";
+        }else if (i==3){
+            return "朝东";
+        }else if (i==4){
+            return "朝西";
+        }
+        return "朝南";
     }
 
     private void initView() {

@@ -23,7 +23,6 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.KaiFaFangYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseBean;
-import luyuan.tech.com.chaoke.bean.XiaoQuBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -59,6 +58,8 @@ public class KaiFaFangYuanActivity extends BaseActivity {
     LinearLayout llshaixuan;
     @BindView(R.id.recycler)
     RecyclerView recycler;
+    @BindView(R.id.iv_add)
+    ImageView ivAdd;
     private ArrayList<HouseBean> list = new ArrayList<>();
     private KaiFaFangYuanAdapter adapter;
 
@@ -93,19 +94,26 @@ public class KaiFaFangYuanActivity extends BaseActivity {
                 llshaixuan.setVisibility(checked ? View.VISIBLE : View.GONE);
             }
         });
+        ivAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(),AddHouseActivity.class));
+            }
+        });
     }
 
     private void loadData() {
-        if (!checkEmptyInfo()){
+        if (!checkEmptyInfo()) {
             return;
         }
         HttpManager.post(HttpManager.HOUSE_LIST)
                 .params("token", UserInfoUtils.getInstance().getToken())
+                .params("type", "2")
                 .execute(new SimpleCallBack<List<HouseBean>>() {
 
                     @Override
                     public void onError(ApiException e) {
-                        T.showShort(getContext(),e.getMessage());
+                        T.showShort(getContext(), e.getMessage());
                     }
 
                     @Override
@@ -124,8 +132,8 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getBaseContext(),FangYuanXiangQingActivity.class);
-                intent.putExtra("id",list.get(position).getId()+"");
+                Intent intent = new Intent(getBaseContext(), FangYuanXiangQingActivity.class);
+                intent.putExtra("id", list.get(position).getId() + "");
                 startActivity(intent);
             }
         });

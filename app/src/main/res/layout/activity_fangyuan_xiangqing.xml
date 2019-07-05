@@ -17,7 +17,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp" />
         <TextView
-            android:text="现场带看"
+            android:text="房源详情"
             android:textSize="15sp"
             android:layout_centerInParent="true"
             android:textColor="#000000"
@@ -48,15 +48,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tv_money"
+            <RelativeLayout
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
-                android:text="5000元/月"
-                android:textColor="#d12324"
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_money"
+                    android:text="5000元/月"
+                    android:textColor="#d12324"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_youxiao"
+                    android:layout_marginRight="30dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:background="@drawable/shape_r999_9c9c9c"
+                    android:textSize="11sp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:text="有效"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
 
             <TextView
                 android:layout_marginTop="8dp"
@@ -160,6 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
                     <TextView
+                        android:visibility="invisible"
                         android:id="@+id/tv_fangyuanzhuangtai"
                         android:gravity="center_vertical"
                         android:text="房源状态:自营待租"

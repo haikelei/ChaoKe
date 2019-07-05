@@ -66,7 +66,7 @@ public class FangYuanQianYueSixActivity extends BaseActivity {
         String[] arr = {"住宅","商用"};
         setSelectLListener(slYongtu,arr,"用途");
 
-        String[] arr1 = {"有房贷","无房贷"};
+        String[] arr1 = {"有抵押","无抵押"};
         setSelectLListener(slFangdaidiya,arr1,"房贷抵押");
     }
 

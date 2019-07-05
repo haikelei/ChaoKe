@@ -1,5 +1,8 @@
 package luyuan.tech.com.chaoke.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 /**
@@ -9,7 +12,7 @@ import java.io.Serializable;
  */
 
 
-public class HouseBean implements Serializable{
+public class HouseBean implements Serializable, Parcelable {
 
     /**
      * id : 1
@@ -34,6 +37,7 @@ public class HouseBean implements Serializable{
     private String apartment;
     private int fit_up;
     private String area;
+    public boolean checked;
 
     public int getId() {
         return id;
@@ -114,4 +118,53 @@ public class HouseBean implements Serializable{
     public void setArea(String area) {
         this.area = area;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.room_name);
+        dest.writeString(this.cover);
+        dest.writeString(this.long_price);
+        dest.writeString(this.region);
+        dest.writeInt(this.type);
+        dest.writeInt(this.orientation);
+        dest.writeString(this.apartment);
+        dest.writeInt(this.fit_up);
+        dest.writeString(this.area);
+        dest.writeByte(this.checked ? (byte) 1 : (byte) 0);
+    }
+
+    public HouseBean() {
+    }
+
+    protected HouseBean(Parcel in) {
+        this.id = in.readInt();
+        this.room_name = in.readString();
+        this.cover = in.readString();
+        this.long_price = in.readString();
+        this.region = in.readString();
+        this.type = in.readInt();
+        this.orientation = in.readInt();
+        this.apartment = in.readString();
+        this.fit_up = in.readInt();
+        this.area = in.readString();
+        this.checked = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<HouseBean> CREATOR = new Parcelable.Creator<HouseBean>() {
+        @Override
+        public HouseBean createFromParcel(Parcel source) {
+            return new HouseBean(source);
+        }
+
+        @Override
+        public HouseBean[] newArray(int size) {
+            return new HouseBean[size];
+        }
+    };
 }

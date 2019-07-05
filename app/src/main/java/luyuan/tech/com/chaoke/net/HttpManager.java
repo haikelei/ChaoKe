@@ -245,6 +245,11 @@ public class HttpManager {
      */
     public static final String CHUFANGJIAOGE_LIST = "/api/agent/out_list";
 
+    /**
+     * 续签
+     */
+    public static final String XUANQIAN = "/api/agent/signing_again";
+
 
 
 

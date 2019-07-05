@@ -105,7 +105,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginBottom="60dp"
             android:background="@drawable/shape_r6_60d1c8"
-            android:text="提交"
+            android:text="下一步"
             android:textColor="#ffffff"
             android:textSize="18sp" />
 

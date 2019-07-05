@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zhouyou.http.callback.SimpleCallBack;
@@ -90,6 +91,28 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
     TextView tvName2;
     @BindView(R.id.iv_tel2)
     ImageView ivTel2;
+    @BindView(R.id.tv_time_yajin)
+    TextView tvTimeYajin;
+    @BindView(R.id.tv_money_yajin)
+    TextView tvMoneyYajin;
+    @BindView(R.id.tv_zhuangtai_yajin)
+    TextView tvZhuangtaiYajin;
+    @BindView(R.id.tv_time_shouqiyajin)
+    TextView tvTimeShouqiyajin;
+    @BindView(R.id.tv_jine_shouqiyajin)
+    TextView tvJineShouqiyajin;
+    @BindView(R.id.tv_zhuangtai_shouqiyajin)
+    TextView tvZhuangtaiShouqiyajin;
+    @BindView(R.id.tv_time_zujin)
+    TextView tvTimeZujin;
+    @BindView(R.id.tv_money_zujin)
+    TextView tvMoneyZujin;
+    @BindView(R.id.tv_zhuangtai_zujin)
+    TextView tvZhuangtaiZujin;
+    @BindView(R.id.rl_xuqian)
+    RelativeLayout rlXuqian;
+    @BindView(R.id.rl_hetongzhengben)
+    RelativeLayout rlHetongzhengben;
     private String id;
 
     @Override
@@ -104,6 +127,20 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+        rlXuqian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), XuQianActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
+        rlHetongzhengben.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
         loadData();
@@ -158,27 +195,39 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
         tvHetongbianhao1.setText("合同编号:" + data.getEntrust().getIdentifier());
         tvHetongbeizhu1.setText("合同备注:" + data.getEntrust().getSide_letter());
         //角色人信息
-        tvName0.setText("姓名:"+data.getRole().get(0).getUsername());
+        tvName0.setText("姓名:" + data.getRole().get(0).getUsername());
         ivTel0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callPhone(data.getRole().get(0).getPhone());
             }
         });
-        tvName1.setText("姓名:"+data.getRole().get(1).getUsername());
+        tvName1.setText("姓名:" + data.getRole().get(1).getUsername());
         ivTel1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callPhone(data.getRole().get(1).getPhone());
             }
         });
-        tvName2.setText("姓名:"+data.getRole().get(2).getUsername());
+        tvName2.setText("姓名:" + data.getRole().get(2).getUsername());
         ivTel2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callPhone(data.getRole().get(2).getPhone());
             }
         });
+//        押金
+        tvTimeYajin.setText(data.getContract_bill().getDeposit().get(0).getBillstart_time());
+        tvMoneyYajin.setText(data.getContract_bill().getDeposit().get(0).getPrice());
+        tvZhuangtaiYajin.setText(data.getContract_bill().getDeposit().get(0).getPay_state());
+        //首期租金
+        tvTimeShouqiyajin.setText(data.getContract_bill().getFirst_rent().get(0).getBillstart_time());
+        tvJineShouqiyajin.setText(data.getContract_bill().getFirst_rent().get(0).getPrice());
+        tvZhuangtaiShouqiyajin.setText(data.getContract_bill().getFirst_rent().get(0).getPay_state());
+        //租金
+//        tvTimeZujin.setText(data.getContract_bill().getRent_list().get(0));
+//        tvMoneyZujin.setText();
+//        tvZhuangtaiZujin.setText();
     }
 
 

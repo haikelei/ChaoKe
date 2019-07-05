@@ -48,70 +48,8 @@ public class HeToneXinXiFourActivity extends BaseActivity {
     InputLayout inputJinjixingming;
     @BindView(R.id.input_jinjishouji)
     InputLayout inputJinjishouji;
-    @BindView(R.id.sl_jiaofuriqi)
-    SelectLayout slJiaofuriqi;
-    @BindView(R.id.input_dianfeifeng)
-    InputLayout inputDianfeifeng;
-    @BindView(R.id.input_dianfeigu)
-    InputLayout inputDianfeigu;
-    @BindView(R.id.input_dianlihuhao)
-    InputLayout inputDianlihuhao;
-    @BindView(R.id.input_zongdian)
-    InputLayout inputZongdian;
-    @BindView(R.id.input_zongbeiqi)
-    InputLayout inputZongbeiqi;
     @BindView(R.id.sl_jiafangchegndan)
     SelectLayout slJiafangchegndan;
-    @BindView(R.id.num_dianshi)
-    InputLayout numDianshi;
-    @BindView(R.id.num_kongtiao)
-    InputLayout numKongtiao;
-    @BindView(R.id.num_bingxiang)
-    InputLayout numBingxiang;
-    @BindView(R.id.num_xiyiji)
-    InputLayout numXiyiji;
-    @BindView(R.id.num_hongganji)
-    InputLayout numHongganji;
-    @BindView(R.id.num_weibolu)
-    InputLayout numWeibolu;
-    @BindView(R.id.num_meiqizao)
-    InputLayout numMeiqizao;
-    @BindView(R.id.num_diancilu)
-    InputLayout numDiancilu;
-    @BindView(R.id.num_chuang)
-    InputLayout numChuang;
-    @BindView(R.id.num_chuangdian)
-    InputLayout numChuangdian;
-    @BindView(R.id.num_shafa)
-    InputLayout numShafa;
-    @BindView(R.id.num_yigui)
-    InputLayout numYigui;
-    @BindView(R.id.num_shuzhuo)
-    InputLayout numShuzhuo;
-    @BindView(R.id.num_yizi)
-    InputLayout numYizi;
-    @BindView(R.id.num_chuanglian)
-    InputLayout numChuanglian;
-    @BindView(R.id.num_chuangtougui)
-    InputLayout numChuangtougui;
-    @BindView(R.id.num_ditan)
-    InputLayout numDitan;
-    @BindView(R.id.num_xiegui)
-    InputLayout numXiegui;
-    @BindView(R.id.num_canzhuo)
-    InputLayout numCanzhuo;
-    @BindView(R.id.num_canyi)
-    InputLayout numCanyi;
-    @BindView(R.id.num_chaji)
-    InputLayout numChaji;
-    @BindView(R.id.num_aigui)
-    InputLayout numAigui;
-    @BindView(R.id.num_yinshuiji)
-    InputLayout numYinshuiji;
-    @BindView(R.id.num_reshuiqi)
-    InputLayout numReshuiqi;
-    @BindView(R.id.num_menka)
-    InputLayout numMenka;
     @BindView(R.id.et_buchogntiaokuan)
     EditText etBuchogntiaokuan;
     private HeTongIdBean bean;
@@ -137,44 +75,18 @@ public class HeToneXinXiFourActivity extends BaseActivity {
 
             }
         });
-        setDatePickerListener(slXueli);
-        setDatePickerListener(slJiaofuriqi);
+
         String[] arr = {"电费","水费","燃气","物业及能耗费"};
         setSelectLListener(slJiafangchegndan,arr,"甲方承担");
+
+        String[] arr1 = {"专科以下","专科","本科","研究生","博士"};
+        setSelectLListener(slXueli,arr1,"学历");
     }
 
     private void loadData() {
         if (!checkEmptyInfo()){
             return;
         }
-        StringBuilder handoverList = new StringBuilder();
-        handoverList.append(numDianshi.getText()+",")
-                .append(numDianshi.getText()+",")
-                .append(numKongtiao.getText()+",")
-                .append(numBingxiang.getText()+",")
-                .append(numXiyiji.getText()+",")
-                .append(numHongganji.getText()+",")
-                .append(numWeibolu.getText()+",")
-                .append(numMeiqizao.getText()+",")
-                .append(numDiancilu.getText()+",")
-                .append(numChuang.getText()+",")
-                .append(numChuangdian.getText()+",")
-                .append(numShafa.getText()+",")
-                .append(numYigui.getText()+",")
-                .append(numShuzhuo.getText()+",")
-                .append(numYizi.getText()+",")
-                .append(numChuanglian.getText()+",")
-                .append(numChuangtougui.getText()+",")
-                .append(numDitan.getText()+",")
-                .append(numXiegui.getText()+",")
-                .append(numCanzhuo.getText()+",")
-                .append(numCanyi.getText()+",")
-                .append(numChaji.getText()+",")
-                .append(numAigui.getText()+",")
-                .append(numYinshuiji.getText()+",")
-                .append(numReshuiqi.getText()+",")
-                .append(numMenka.getText() );
-
 
         HttpManager.post(HttpManager.HETONG_TOUR)
                 .params("token", UserInfoUtils.getInstance().getToken())
@@ -182,19 +94,11 @@ public class HeToneXinXiFourActivity extends BaseActivity {
                 .params("cons_id",bean.getCons_id())
                 .params("phone",inputShouji.getText().trim())
                 .params("email",inputYouxiang.getText().trim())
-                .params("education",slXueli.getText())
+                .params("education",slXueli.getText().toString())
                 .params("urgent_man",inputJinjixingming.getText().trim())
                 .params("urgent_phone",inputJinjishouji.getText())
-                .params("other_msg",slJiaofuriqi.getText())
                 .params("side_letter",etBuchogntiaokuan.getText().toString().trim())
-                .params("elect_peak_value",inputDianfeifeng.getText().trim())
-                .params("elect_valley_value",inputDianfeigu.getText().trim() )
-                .params("elect_number",inputDianlihuhao.getText().trim())
-                .params("elect_all",inputZongdian.getText().trim())
-                .params("gas_value",inputZongbeiqi.getText().trim())
-                .params("water_all","")
                 .params("first_party_pay",slJiafangchegndan.getText())
-                .params("handover_list",handoverList.toString())
                 .execute(new SimpleCallBack<HeTongIdBean>() {
 
                     @Override

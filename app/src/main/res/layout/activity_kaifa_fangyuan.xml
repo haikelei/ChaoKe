@@ -24,10 +24,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="55dp"
             android:src="@mipmap/search_gray"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/add_black"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:layout_width="20dp"
             android:layout_height="20dp" />
     </RelativeLayout>

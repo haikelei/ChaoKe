@@ -149,6 +149,11 @@
         <activity android:name=".activity.FangYuanQianYueEightChuZuRenActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.FangYuanQianYueEightGongZuRenActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.FangYuanQianYueEightJiaFangDaiLiRenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.XuanZeYueKanFangYuanActivity" android:screenOrientation="portrait"/>
+
+
+
+        <activity android:name=".activity.XuQianActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

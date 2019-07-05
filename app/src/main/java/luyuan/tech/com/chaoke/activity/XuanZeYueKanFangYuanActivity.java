@@ -5,10 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +13,6 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
-import com.zhouyou.http.request.PostRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
-import luyuan.tech.com.chaoke.adapter.KaiFaFangYuanAdapter;
-import luyuan.tech.com.chaoke.adapter.ZiYingYuanAdapter;
+import luyuan.tech.com.chaoke.adapter.DuoXuanFangYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
@@ -43,7 +38,7 @@ import static com.zhouyou.http.EasyHttp.getContext;
  */
 
 
-public class ZiYingFangYuanActivity extends BaseActivity {
+public class XuanZeYueKanFangYuanActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.quyu_button)
@@ -62,52 +57,24 @@ public class ZiYingFangYuanActivity extends BaseActivity {
     LinearLayout llpaixu;
     @BindView(R.id.pop_shaixuan)
     LinearLayout llshaixuan;
-    @BindView(R.id.rl_container)
-    LinearLayout rlContainer;
     @BindView(R.id.recycler)
     RecyclerView recycler;
-    @BindView(R.id.recycler_left)
-    RecyclerView recyclerLeft;
-    @BindView(R.id.recycler_right)
-    RecyclerView recyclerRight;
-    @BindView(R.id.tv_zujinbuxian)
-    TextView tvZujinbuxian;
-    @BindView(R.id.tv_zujin_1500)
-    TextView tvZujin1500;
-    @BindView(R.id.tv_zujin_2000)
-    TextView tvZujin2000;
-    @BindView(R.id.tv_zujin_2500)
-    TextView tvZujin2500;
-    @BindView(R.id.tv_zujin_4000)
-    TextView tvZujin4000;
-    @BindView(R.id.tv_zujin_4000_high)
-    TextView tvZujin4000High;
-    @BindView(R.id.et_from)
-    EditText etFrom;
-    @BindView(R.id.et_to)
-    EditText etTo;
-    @BindView(R.id.btn_zujin)
-    Button btnZujin;
-    @BindView(R.id.tv_paixu_buxian)
-    TextView tvPaixuBuxian;
-    @BindView(R.id.tv_paixu_zujinhigh)
-    TextView tvPaixuZujinhigh;
-    @BindView(R.id.tv_paixu_zujinlow)
-    TextView tvPaixuZujinlow;
-    @BindView(R.id.tv_paixu_mianjihigh)
-    TextView tvPaixuMianjihigh;
-    @BindView(R.id.tv_paixu_mianjilow)
-    TextView tvPaixuMianjilow;
-    @BindView(R.id.btn_shaixuan)
-    TextView btnShaixuan;
+    @BindView(R.id.iv_add)
+    ImageView ivAdd;
+    @BindView(R.id.tv_xuanzhong)
+    TextView tvXuanzhong;
+    @BindView(R.id.tv_netx)
+    TextView tvNetx;
     private ArrayList<HouseBean> list = new ArrayList<>();
-    private ZiYingYuanAdapter adapter;
+    private DuoXuanFangYuanAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ziying_fangyuan);
+        setContentView(R.layout.activity_xuanzeyuekan_fangyuan);
         ButterKnife.bind(this);
+        initView();
+        loadData();
         quyuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
@@ -132,43 +99,74 @@ public class ZiYingFangYuanActivity extends BaseActivity {
                 llshaixuan.setVisibility(checked ? View.VISIBLE : View.GONE);
             }
         });
-        initView();
-        loadData();
+        ivAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(), AddHouseActivity.class));
+            }
+        });
+        tvNetx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<HouseBean> data = new ArrayList<>();
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).checked){
+                        data.add(list.get(i));
+                    }
+                }
+                Intent intent = new Intent(getActivity(),YuYueDaiKanActivity.class);
+                intent.putParcelableArrayListExtra("data",data);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void loadData() {
+        if (!checkEmptyInfo()) {
+            return;
+        }
+        HttpManager.post(HttpManager.HOUSE_LIST)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("type", "2")
+                .execute(new SimpleCallBack<List<HouseBean>>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(List<HouseBean> data) {
+                        list.clear();
+                        list.addAll(data);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     private void initView() {
         recycler.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        adapter = new ZiYingYuanAdapter(list);
+        adapter = new DuoXuanFangYuanAdapter(list);
         recycler.setAdapter(adapter);
-//        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                Intent intent = new Intent(getBaseContext(), XianChangDaiKanActivity.class);
-//                HouseBean houseBean = list.get(position);
-//                intent.putExtra("id", houseBean.getId() + "");
-//                startActivity(intent);
-//            }
-//        });
-    }
-
-    private void loadData() {
-        PostRequest request = HttpManager.post(HttpManager.HOUSE_LIST)
-                .params("type","1")
-                .params("token", UserInfoUtils.getInstance().getToken());
-        request.execute(new SimpleCallBack<List<HouseBean>>() {
-
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onError(ApiException e) {
-                T.showShort(getContext(), e.getMessage());
-            }
-
-            @Override
-            public void onSuccess(List<HouseBean> data) {
-                list.clear();
-                list.addAll(data);
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                HouseBean bean = list.get(position);
+                bean.checked = !bean.checked;
                 adapter.notifyDataSetChanged();
+                updateText();
             }
         });
+    }
+
+    private void updateText() {
+        int count = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).checked){
+                count++;
+            }
+        }
+        tvXuanzhong.setText("选中"+count+"套");
     }
 
     @OnClick({R.id.iv_back})

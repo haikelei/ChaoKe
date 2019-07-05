@@ -96,7 +96,21 @@ public class HeToneXinXiFiveActivity extends BaseActivity {
         tvZukexingming.setText(data.getUsername());
         tvShoujihaoma.setText(data.getPhone());
         tvQianyueshijian.setText(data.getSubtime());
-        tvQianyuezhuangtai.setText(data.getState()+"");
+        tvQianyuezhuangtai.setText(getState(data.getState()));
+    }
+
+    public String getState(int i){
+//        0为信息未完全填写 1为待签约 2为合同有效【已签约】 3为合同无效
+        if (i==0){
+         return "信息未完全填写";
+        }else if (i==1){
+            return "待签约";
+        }else if (i==2){
+            return "已签约";
+        }else if (i==3){
+            return "合同无效";
+        }
+        return "合同无效";
     }
 
 }

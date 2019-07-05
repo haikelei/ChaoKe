@@ -84,6 +84,10 @@ public class ZuKeDetailActivity extends BaseActivity {
     TextView tvCreatetime;
     @BindView(R.id.recycler)
     RecyclerView recycler;
+    @BindView(R.id.ll_user)
+    LinearLayout llUser;
+    @BindView(R.id.ll_yuekan_bottom)
+    LinearLayout llYuekanBottom;
     private String id;
     private List<ZuKeDetailBean.FollowDataBean> list;
     private GenJinAdapter adapter;
@@ -120,7 +124,7 @@ public class ZuKeDetailActivity extends BaseActivity {
     }
 
     private void loadData() {
-        if (!checkEmptyInfo()){
+        if (!checkEmptyInfo()) {
             return;
         }
         HttpManager.post(HttpManager.ZUKE_DETAIL)
@@ -158,7 +162,7 @@ public class ZuKeDetailActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_edit, R.id.ll_qianyue_bottom, R.id.ll_daikan_bottom, R.id.ll_genjin_bottom, R.id.ll_call})
+    @OnClick({R.id.iv_back, R.id.tv_edit, R.id.ll_qianyue_bottom, R.id.ll_daikan_bottom, R.id.ll_genjin_bottom,R.id.ll_yuekan_bottom, R.id.ll_call})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -197,6 +201,9 @@ public class ZuKeDetailActivity extends BaseActivity {
                 GenJinPopup genJinPopup = new GenJinPopup(ZuKeDetailActivity.this, id);
                 genJinPopup.setPopupGravity(Gravity.CENTER);
                 genJinPopup.showPopupWindow();
+                break;
+            case R.id.ll_yuekan_bottom:
+                startActivity(new Intent(getActivity(),XuanZeYueKanFangYuanActivity.class));
                 break;
             case R.id.ll_call:
                 callPhone("13800000000");

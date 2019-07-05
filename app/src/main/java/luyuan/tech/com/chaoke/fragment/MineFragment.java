@@ -109,6 +109,26 @@ public class MineFragment extends Fragment {
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.error(R.mipmap.default_image);
+            Glide.with(getActivity()).load(UserInfoUtils.getInstance().getAvatar()).apply(requestOptions).into(ivAvatar);
+            tvName.setText(UserInfoUtils.getInstance().getUserName());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.error(R.mipmap.default_image);
+        Glide.with(getActivity()).load(UserInfoUtils.getInstance().getAvatar()).apply(requestOptions).into(ivAvatar);
+        tvName.setText(UserInfoUtils.getInstance().getUserName());
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();

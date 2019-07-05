@@ -17,7 +17,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp" />
         <TextView
-            android:text="意见反馈"
+            android:text="续签"
             android:textSize="15sp"
             android:layout_centerInParent="true"
             android:textColor="#000000"
@@ -25,30 +25,36 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/et_more"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:gravity="left"
-        android:textSize="12sp"
-        android:hint="请输入您的宝贵意见,不少于10个字"
+    <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_kehuxingming"
+        android:layout_marginTop="1dp"
+        app:mTitle="客户姓名"
+        app:mHint="请输入"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:background="#ffffff"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
-    <TextView
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:text="请上传图片"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <android.support.v7.widget.RecyclerView
+        android:layout_height="50dp"/>
+    <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_wuyedizhi"
+        android:layout_marginTop="1dp"
+        app:mTitle="物业地址"
+        app:mHint="请输入"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:background="#ffffff"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="50dp"/>
+    <luyuan.tech.com.chaoke.widget.InputLayout
+        android:id="@+id/input_lianxidianhua"
+        android:layout_marginTop="1dp"
+        app:mTitle="联系电话"
+        app:mHint="请输入"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 
     <Button
         android:id="@+id/btn_next"
@@ -56,7 +62,7 @@
         android:text="提交"
         android:textColor="#ffffff"
         android:background="@drawable/shape_r6_60d1c8"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="240dp"
         android:layout_height="50dp" />
