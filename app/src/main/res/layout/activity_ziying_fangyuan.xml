@@ -88,22 +88,7 @@
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-        <include layout="@layout/popup_quyu"
-            android:visibility="gone"
-            android:id="@+id/pop_quyu"
-            />
-        <include layout="@layout/layout_popup_zujin"
-            android:visibility="gone"
-            android:id="@+id/pop_zujin"
-            />
-        <include layout="@layout/layout_popup_paixu"
-            android:visibility="gone"
-            android:id="@+id/pop_paixu"
-            />
-        <include layout="@layout/layout_popup_shaixuan"
-            android:visibility="gone"
-            android:id="@+id/pop_shaixuan"
-            />
+
     </RelativeLayout>
 
 </LinearLayout>

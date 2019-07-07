@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.bean.CityBean;
 
 /**
  * @author: lujialei
@@ -18,15 +19,15 @@ import luyuan.tech.com.chaoke.R;
  */
 
 
-public class QuYuRightAdapter extends BaseQuickAdapter<Integer,BaseViewHolder> {
-    public QuYuRightAdapter(@Nullable List<Integer> data) {
+public class QuYuRightAdapter extends BaseQuickAdapter<CityBean.ChildCityBean.ChildAreaBean,BaseViewHolder> {
+    public QuYuRightAdapter(@Nullable List<CityBean.ChildCityBean.ChildAreaBean> data) {
         super(R.layout.layout_item_quyu_right,data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Integer item) {
+    protected void convert(BaseViewHolder helper, CityBean.ChildCityBean.ChildAreaBean item) {
         TextView textView = helper.getView(R.id.tv);
-
+        textView.setText(item.getArea_name());
     }
 
 }

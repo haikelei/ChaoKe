@@ -37,7 +37,7 @@ public class QianYueFangYuanAdapter extends BaseQuickAdapter<HouseBean,BaseViewH
         tvName.setText(item.getRoom_name());
         tvOther.setText(item.getArea());
         tvMoney.setText(item.getLong_price());
-        RequestOptions options = new RequestOptions().centerCrop();
+        RequestOptions options = new RequestOptions().centerCrop().error(R.mipmap.default_image);
         Glide.with(helper.itemView.getContext()).load(item.getCover()).apply(options).into(iv);
     }
 }

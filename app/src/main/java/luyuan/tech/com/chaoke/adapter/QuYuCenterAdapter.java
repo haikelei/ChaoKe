@@ -18,13 +18,13 @@ import luyuan.tech.com.chaoke.bean.CityBean;
  */
 
 
-public class QuYuLeftAdapter extends BaseQuickAdapter<CityBean,BaseViewHolder> {
-    public QuYuLeftAdapter(@Nullable List<CityBean> data) {
+public class QuYuCenterAdapter extends BaseQuickAdapter<CityBean.ChildCityBean,BaseViewHolder> {
+    public QuYuCenterAdapter(@Nullable List<CityBean.ChildCityBean> data) {
         super(R.layout.layout_item_quyu_left,data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, CityBean item) {
+    protected void convert(BaseViewHolder helper, CityBean.ChildCityBean item) {
         TextView textView = helper.getView(R.id.tv);
         textView.setText(item.getCity_name());
     }

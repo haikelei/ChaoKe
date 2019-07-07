@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,11 +27,18 @@ import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ZiYingYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.CityBean;
 import luyuan.tech.com.chaoke.bean.HouseBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.DownMenuButton;
+import luyuan.tech.com.chaoke.widget.PaiXuPopup;
+import luyuan.tech.com.chaoke.widget.QuYuPopup;
+import luyuan.tech.com.chaoke.widget.ShaiXuanPopup;
+import luyuan.tech.com.chaoke.widget.ZuJinPopup;
+import luyuan.tech.com.chaoke.widget.ZuKeBianJiPopup;
+import razerdp.basepopup.BasePopupWindow;
 
 import static com.zhouyou.http.EasyHttp.getContext;
 
@@ -51,56 +60,26 @@ public class ZiYingFangYuanActivity extends BaseActivity {
     DownMenuButton paixuButton;
     @BindView(R.id.shaixuan_button)
     DownMenuButton shaixuanButton;
-    @BindView(R.id.pop_quyu)
-    LinearLayout llquyu;
-    @BindView(R.id.pop_zujin)
-    LinearLayout llzujin;
-    @BindView(R.id.pop_paixu)
-    LinearLayout llpaixu;
-    @BindView(R.id.pop_shaixuan)
-    LinearLayout llshaixuan;
     @BindView(R.id.rl_container)
     LinearLayout rlContainer;
     @BindView(R.id.recycler)
     RecyclerView recycler;
-    @BindView(R.id.recycler_left)
-    RecyclerView recyclerLeft;
-    @BindView(R.id.recycler_right)
-    RecyclerView recyclerRight;
-    @BindView(R.id.tv_zujinbuxian)
-    TextView tvZujinbuxian;
-    @BindView(R.id.tv_zujin_1500)
-    TextView tvZujin1500;
-    @BindView(R.id.tv_zujin_2000)
-    TextView tvZujin2000;
-    @BindView(R.id.tv_zujin_2500)
-    TextView tvZujin2500;
-    @BindView(R.id.tv_zujin_4000)
-    TextView tvZujin4000;
-    @BindView(R.id.tv_zujin_4000_high)
-    TextView tvZujin4000High;
-    @BindView(R.id.et_from)
-    EditText etFrom;
-    @BindView(R.id.et_to)
-    EditText etTo;
-    @BindView(R.id.btn_zujin)
-    Button btnZujin;
-    @BindView(R.id.tv_paixu_buxian)
-    TextView tvPaixuBuxian;
-    @BindView(R.id.tv_paixu_zujinhigh)
-    TextView tvPaixuZujinhigh;
-    @BindView(R.id.tv_paixu_zujinlow)
-    TextView tvPaixuZujinlow;
-    @BindView(R.id.tv_paixu_mianjihigh)
-    TextView tvPaixuMianjihigh;
-    @BindView(R.id.tv_paixu_mianjilow)
-    TextView tvPaixuMianjilow;
-    @BindView(R.id.btn_shaixuan)
-    TextView btnShaixuan;
     @BindView(R.id.iv_search)
     ImageView ivSearch;
     private ArrayList<HouseBean> list = new ArrayList<>();
     private ZiYingYuanAdapter adapter;
+    private String zujinLow;
+    private String zujinHigh;
+    private String orderBy;
+    private String areaId;
+    private String rent_state;
+    private String fit_up;
+    private String orientation;
+    private String source;
+    private ZuJinPopup zuJinPopup;
+    private PaiXuPopup paiXuPopup;
+    private ShaiXuanPopup shaiXuanPopup;
+    private QuYuPopup quYuPopup;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,32 +92,125 @@ public class ZiYingFangYuanActivity extends BaseActivity {
                 startActivity(new Intent(getActivity(),HouseSearchActivity.class));
             }
         });
+        initPopup();
         quyuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChage(View view, boolean checked) {
-                llquyu.setVisibility(checked ? View.VISIBLE : View.GONE);
+                if (checked){
+                    quYuPopup.showPopupWindow(view);
+                }
             }
         });
         zujinButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
-                llzujin.setVisibility(checked ? View.VISIBLE : View.GONE);
+                if (checked){
+                    zuJinPopup.showPopupWindow(view);
+                }
             }
         });
         paixuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
-                llpaixu.setVisibility(checked ? View.VISIBLE : View.GONE);
+                if (checked){
+                    paiXuPopup.showPopupWindow(view);
+                }
             }
         });
         shaixuanButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
-                llshaixuan.setVisibility(checked ? View.VISIBLE : View.GONE);
+                if (checked){
+                    shaiXuanPopup.showPopupWindow(view);
+                }
             }
         });
         initView();
         loadData();
+    }
+
+    private void initPopup() {
+//        区域
+        quYuPopup = new QuYuPopup(getActivity());
+        quYuPopup.setPopupGravity(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR, Gravity.BOTTOM);
+        quYuPopup.setOnQuYuSelectListener(new QuYuPopup.OnQuYuSelectListener() {
+            @Override
+            public void onQuYuSelect(CityBean.ChildCityBean.ChildAreaBean bean) {
+                areaId = bean.getId()+"";
+            }
+        });
+        quYuPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                quyuButton.setChecked(false);
+                loadData();
+            }
+        });
+//        租金
+        zuJinPopup = new ZuJinPopup(getActivity());
+        zuJinPopup.setPopupGravity(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR, Gravity.BOTTOM);
+        zuJinPopup.setOnZuJinListener(new ZuJinPopup.OnZuJinListener() {
+            @Override
+            public void onZuJinSelected(String low, String high) {
+                zujinLow = low;
+                zujinHigh = high;
+            }
+        });
+        zuJinPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                zujinButton.setChecked(false);
+                loadData();
+            }
+        });
+//        排序
+        paiXuPopup = new PaiXuPopup(getActivity());
+        paiXuPopup.setPopupGravity(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR, Gravity.BOTTOM);
+        paiXuPopup.setOnPaiXuListener(new PaiXuPopup.OnPaiXuListener() {
+            @Override
+            public void onZuJinSelected(String index) {
+                orderBy = index;
+            }
+        });
+        paiXuPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                paixuButton.setChecked(false);
+                loadData();
+            }
+        });
+//        筛选
+        shaiXuanPopup = new ShaiXuanPopup(getActivity());
+        shaiXuanPopup.setPopupGravity(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR, Gravity.BOTTOM);
+        shaiXuanPopup.setOnShaiXuanSelectListener(new ShaiXuanPopup.OnShaiXuanSelectListener() {
+            @Override
+            public void onSource(String s) {
+                source = s;
+            }
+
+            @Override
+            public void onOrientation(String s) {
+                orientation = s;
+            }
+
+            @Override
+            public void onFitUp(String s) {
+                fit_up = s;
+            }
+
+            @Override
+            public void onRentState(String s) {
+                rent_state = s;
+            }
+        });
+        shaiXuanPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                shaixuanButton.setChecked(false);
+                loadData();
+            }
+        });
     }
 
     private void initView() {
@@ -160,6 +232,27 @@ public class ZiYingFangYuanActivity extends BaseActivity {
         PostRequest request = HttpManager.post(HttpManager.HOUSE_LIST)
                 .params("type", "1")
                 .params("token", UserInfoUtils.getInstance().getToken());
+        if (!TextUtils.isEmpty(zujinLow)&&!TextUtils.isEmpty(zujinHigh)){
+            request.params("price_min",zujinLow).params("price_max",zujinHigh);
+        }
+        if (!TextUtils.isEmpty(orderBy)){
+            request.params("order_by",orderBy);
+        }
+        if (!TextUtils.isEmpty(areaId)){
+            request.params("area_id",areaId);
+        }
+        if (!TextUtils.isEmpty(source)){
+            request.params("source",source);
+        }
+        if (!TextUtils.isEmpty(orientation)){
+            request.params("orientation",orientation);
+        }
+        if (!TextUtils.isEmpty(fit_up)){
+            request.params("fit_up",fit_up);
+        }
+        if (!TextUtils.isEmpty(rent_state)){
+            request.params("rent_state",rent_state);
+        }
         request.execute(new SimpleCallBack<List<HouseBean>>() {
 
             @Override

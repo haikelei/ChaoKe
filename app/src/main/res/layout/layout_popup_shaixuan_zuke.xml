@@ -11,185 +11,116 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="房源状态"
+            android:text="租客状态"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <GridLayout
-            android:id="@+id/container_rent_state"
-            android:layout_marginTop="10dp"
-            android:columnCount="3"
-            android:rowCount="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <CheckBox
-                android:id="@+id/rent_state1"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="业主待租"
-                android:background="@drawable/selector_cb_ziying"
-                />
-            <CheckBox
-                android:id="@+id/rent_state2"
-                android:layout_marginLeft="10dp"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="非自营在租"
-                android:background="@drawable/selector_cb_ziying"
-                />
-            <CheckBox
-                android:id="@+id/rent_state3"
-                android:layout_marginLeft="10dp"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="业主自用"
-                android:background="@drawable/selector_cb_ziying"
-                />
-
-        </GridLayout>
-        <TextView
-            android:layout_marginTop="20dp"
-            android:text="装修情况"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <GridLayout
-            android:id="@+id/container_fit_up"
-            android:layout_marginTop="10dp"
-            android:columnCount="3"
-            android:rowCount="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <CheckBox
-                android:id="@+id/fit_up1"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="毛坯"
-                android:background="@drawable/selector_cb_ziying"
-                />
-            <CheckBox
-                android:id="@+id/fit_up2"
-                android:layout_marginLeft="10dp"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="简装"
-                android:background="@drawable/selector_cb_ziying"
-                />
-            <CheckBox
-                android:id="@+id/fit_up3"
-                android:layout_marginLeft="10dp"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="精装配置齐全"
-                android:background="@drawable/selector_cb_ziying"
-                />
-            <CheckBox
-                android:id="@+id/fit_up4"
-                android:layout_marginLeft="10dp"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="精装配置不全"
-                android:background="@drawable/selector_cb_ziying"
-                />
-            <CheckBox
-                android:id="@+id/fit_up5"
-                android:layout_marginLeft="10dp"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="豪华装修"
-                android:background="@drawable/selector_cb_ziying"
-                />
-
-        </GridLayout>
-        <TextView
-            android:layout_marginTop="20dp"
-            android:text="朝向"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <GridLayout
-            android:id="@+id/container_orientation"
+            android:id="@+id/container_status"
             android:layout_marginTop="10dp"
             android:columnCount="4"
             android:rowCount="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <CheckBox
-                android:id="@+id/orientation1"
+                android:id="@+id/rent_status1"
                 android:textColor="@drawable/selector_tc_ziying"
                 android:padding="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="朝南"
+                android:text="有效"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
-                android:id="@+id/orientation2"
+                android:id="@+id/rent_status2"
                 android:layout_marginLeft="10dp"
                 android:textColor="@drawable/selector_tc_ziying"
                 android:padding="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="朝北"
+                android:text="暂缓"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
-                android:id="@+id/orientation3"
+                android:id="@+id/rent_status3"
                 android:layout_marginLeft="10dp"
                 android:textColor="@drawable/selector_tc_ziying"
                 android:padding="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="朝东"
+                android:text="他租"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
-                android:id="@+id/orientation4"
+                android:id="@+id/rent_status4"
                 android:layout_marginLeft="10dp"
                 android:textColor="@drawable/selector_tc_ziying"
                 android:padding="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="朝西"
+                android:text="失效"
+                android:background="@drawable/selector_cb_ziying"
+                />
+        </GridLayout>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:text="性别"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <GridLayout
+            android:id="@+id/container_sex"
+            android:layout_marginTop="10dp"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/sex1"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="未知"
+                android:background="@drawable/selector_cb_ziying"
+                />
+            <CheckBox
+                android:id="@+id/sex2"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="男"
+                android:background="@drawable/selector_cb_ziying"
+                />
+            <CheckBox
+                android:id="@+id/sex3"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="女"
                 android:background="@drawable/selector_cb_ziying"
                 />
 
         </GridLayout>
         <TextView
             android:layout_marginTop="20dp"
-            android:text="房屋来源"
+            android:text="租客来源"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <GridLayout
             android:id="@+id/container_source"
             android:layout_marginTop="10dp"
-            android:columnCount="3"
+            android:columnCount="4"
             android:rowCount="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -200,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="中介合作"
+                android:text="安居客"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
@@ -211,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="转介绍"
+                android:text="贝壳"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
@@ -222,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="老客户"
+                android:text="老带新"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
@@ -233,7 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="网络端口"
+                android:text="58同城"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
@@ -244,53 +175,67 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="地推"
+                android:text="自己开发"
+                android:background="@drawable/selector_cb_ziying"
+                />
+
+        </GridLayout>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:text="求租等级"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <GridLayout
+            android:id="@+id/container_grade"
+            android:layout_marginTop="10dp"
+            android:columnCount="4"
+            android:rowCount="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/grade1"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="A类"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
-                android:id="@+id/source6"
+                android:id="@+id/grade2"
                 android:layout_marginLeft="10dp"
                 android:textColor="@drawable/selector_tc_ziying"
                 android:padding="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="房东上门"
+                android:text="B类"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
-                android:id="@+id/source8"
+                android:id="@+id/grade3"
                 android:layout_marginLeft="10dp"
                 android:textColor="@drawable/selector_tc_ziying"
                 android:padding="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="名单获取"
+                android:text="C类"
                 android:background="@drawable/selector_cb_ziying"
                 />
             <CheckBox
-                android:id="@+id/source9"
+                android:id="@+id/grade4"
                 android:layout_marginLeft="10dp"
                 android:textColor="@drawable/selector_tc_ziying"
                 android:padding="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:text="销冠"
+                android:text="未分类"
                 android:background="@drawable/selector_cb_ziying"
                 />
-            <CheckBox
-                android:id="@+id/source10"
-                android:layout_marginLeft="10dp"
-                android:textColor="@drawable/selector_tc_ziying"
-                android:padding="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="其他"
-                android:background="@drawable/selector_cb_ziying"
-                />
+
         </GridLayout>
     </LinearLayout>
     <LinearLayout
