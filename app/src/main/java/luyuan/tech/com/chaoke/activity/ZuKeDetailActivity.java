@@ -139,7 +139,6 @@ public class ZuKeDetailActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(ZuKeDetailBean data) {
-                        AppStorageUtils.getInstance().setZuKeDetailBean(data);
                         fillData(data);
                     }
                 });

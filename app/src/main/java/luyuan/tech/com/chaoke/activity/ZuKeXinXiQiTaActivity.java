@@ -135,9 +135,6 @@ public class ZuKeXinXiQiTaActivity extends BaseActivity {
     }
 
     private void loadCity() {
-        if (!checkEmptyInfo()){
-            return;
-        }
         HttpManager.post(HttpManager.CITYS)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .execute(new SimpleCallBack<List<CityBean>>() {

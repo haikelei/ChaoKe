@@ -32,6 +32,7 @@ public class GeRenYeJiAdapter extends BaseQuickAdapter<GeRenYeJiBean,BaseViewHol
         TextView tvName = helper.getView(R.id.tv_title);
         TextView tvMoney = helper.getView(R.id.tv_money);
         TextView tvZu = helper.getView(R.id.tv_zu);
+        TextView tvPosition = helper.getView(R.id.tv_position);
         ImageView ivAvatar = helper.getView(R.id.iv_avatar);
         tvName.setText(item.getNickname());
         tvMoney.setText(item.getRes_count()+"");
@@ -39,6 +40,7 @@ public class GeRenYeJiAdapter extends BaseQuickAdapter<GeRenYeJiBean,BaseViewHol
         requestOptions.error(R.mipmap.default_image);
         Glide.with(helper.itemView.getContext()).load(item.getHeadimgurl()).apply(requestOptions).into(ivAvatar);
         tvZu.setText(item.getStore_name());
+        tvPosition.setText(String.valueOf(helper.getAdapterPosition()+3));
 
     }
 }

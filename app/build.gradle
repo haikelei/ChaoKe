@@ -69,6 +69,7 @@ dependencies {
     }
     api 'org.greenrobot:eventbus:3.0.0'
     api 'com.qiniu:qiniu-android-sdk:7.3.15'
+    api 'com.baoyz.actionsheet:library:1.1.7'
     //    地图
     //定位功能
     implementation 'com.amap.api:location:latest.integration'

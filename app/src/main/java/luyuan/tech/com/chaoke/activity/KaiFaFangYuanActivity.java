@@ -61,6 +61,10 @@ public class KaiFaFangYuanActivity extends BaseActivity {
     RecyclerView recycler;
     @BindView(R.id.iv_add)
     ImageView ivAdd;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
+    @BindView(R.id.rl_container)
+    LinearLayout rlContainer;
     private ArrayList<HouseBean> list = new ArrayList<>();
     private KaiFaFangYuanAdapter adapter;
     private String zujinLow;
@@ -71,6 +75,9 @@ public class KaiFaFangYuanActivity extends BaseActivity {
     private String fit_up;
     private String orientation;
     private String source;
+    private String hasPic;
+    private String floorMin;
+    private String floorMax;
     private ZuJinPopup zuJinPopup;
     private PaiXuPopup paiXuPopup;
     private ShaiXuanPopup shaiXuanPopup;
@@ -82,11 +89,18 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         setContentView(R.layout.activity_kaifa_fangyuan);
         ButterKnife.bind(this);
         initPopup();
+
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),HouseSearchActivity.class));
+            }
+        });
         quyuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChage(View view, boolean checked) {
-                if (checked){
+                if (checked) {
                     quYuPopup.showPopupWindow(view);
                 }
             }
@@ -94,7 +108,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         zujinButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
-                if (checked){
+                if (checked) {
                     zuJinPopup.showPopupWindow(view);
                 }
             }
@@ -102,7 +116,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         paixuButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
-                if (checked){
+                if (checked) {
                     paiXuPopup.showPopupWindow(view);
                 }
             }
@@ -110,7 +124,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         shaixuanButton.setOnCheckedChangeListener(new DownMenuButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChage(View view, boolean checked) {
-                if (checked){
+                if (checked) {
                     shaiXuanPopup.showPopupWindow(view);
                 }
             }
@@ -121,7 +135,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),AddHouseActivity.class));
+                startActivity(new Intent(getBaseContext(), AddHouseActivity.class));
             }
         });
     }
@@ -133,7 +147,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         quYuPopup.setOnQuYuSelectListener(new QuYuPopup.OnQuYuSelectListener() {
             @Override
             public void onQuYuSelect(CityBean.ChildCityBean.ChildAreaBean bean) {
-                areaId = bean.getId()+"";
+                areaId = bean.getId() + "";
             }
         });
         quYuPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
@@ -181,23 +195,13 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         shaiXuanPopup.setPopupGravity(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR, Gravity.BOTTOM);
         shaiXuanPopup.setOnShaiXuanSelectListener(new ShaiXuanPopup.OnShaiXuanSelectListener() {
             @Override
-            public void onSource(String s) {
-                source = s;
-            }
-
-            @Override
-            public void onOrientation(String s) {
-                orientation = s;
-            }
-
-            @Override
-            public void onFitUp(String s) {
-                fit_up = s;
-            }
-
-            @Override
-            public void onRentState(String s) {
-                rent_state = s;
+            public void onConfirm(String source, String orientation, String fitUp, String rentState, String hasPic, String floormin, String floormax) {
+                KaiFaFangYuanActivity.this.source = source;
+                KaiFaFangYuanActivity.this.fit_up = fitUp;
+                KaiFaFangYuanActivity.this.rent_state = rentState;
+                KaiFaFangYuanActivity.this.hasPic = hasPic;
+                KaiFaFangYuanActivity.this.floorMin = floormin;
+                KaiFaFangYuanActivity.this.floorMax = floorMax;
             }
         });
         shaiXuanPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
@@ -213,26 +217,36 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         PostRequest request = HttpManager.post(HttpManager.HOUSE_LIST)
                 .params("type", "2")
                 .params("token", UserInfoUtils.getInstance().getToken());
-        if (!TextUtils.isEmpty(zujinLow)&&!TextUtils.isEmpty(zujinHigh)){
-            request.params("price_min",zujinLow).params("price_max",zujinHigh);
+        if (!TextUtils.isEmpty(zujinLow) && !TextUtils.isEmpty(zujinHigh)) {
+            request.params("price_min", zujinLow).params("price_max", zujinHigh);
         }
-        if (!TextUtils.isEmpty(orderBy)){
-            request.params("order_by",orderBy);
+        if (!TextUtils.isEmpty(orderBy)) {
+            request.params("order_by", orderBy);
         }
-        if (!TextUtils.isEmpty(areaId)){
-            request.params("area_id",areaId);
+        if (!TextUtils.isEmpty(areaId)) {
+            request.params("area_id", areaId);
         }
-        if (!TextUtils.isEmpty(source)){
-            request.params("source",source);
+        if (!TextUtils.isEmpty(source)) {
+            request.params("source", source);
         }
-        if (!TextUtils.isEmpty(orientation)){
-            request.params("orientation",orientation);
+        if (!TextUtils.isEmpty(orientation)) {
+            request.params("orientation", orientation);
         }
-        if (!TextUtils.isEmpty(fit_up)){
-            request.params("fit_up",fit_up);
+        if (!TextUtils.isEmpty(fit_up)) {
+            request.params("fit_up", fit_up);
         }
-        if (!TextUtils.isEmpty(rent_state)){
-            request.params("rent_state",rent_state);
+        if (!TextUtils.isEmpty(rent_state)) {
+            request.params("rent_state", rent_state);
+        }
+
+        if (!TextUtils.isEmpty(hasPic)){
+            request.params("has_pic",hasPic);
+        }
+        if (!TextUtils.isEmpty(floorMin)){
+            request.params("floor_min",floorMin);
+        }
+        if (!TextUtils.isEmpty(hasPic)){
+            request.params("floor_max",floorMax);
         }
         request.execute(new SimpleCallBack<List<HouseBean>>() {
 

@@ -15,15 +15,6 @@ import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
 
 public class AppStorageUtils {
     private static AppStorageUtils instance;
-    private static ZuKeDetailBean zuKeDetailBean;
-
-    public static ZuKeDetailBean getZuKeDetailBean() {
-        return zuKeDetailBean;
-    }
-
-    public static void setZuKeDetailBean(ZuKeDetailBean zuKeDetailBean) {
-        AppStorageUtils.zuKeDetailBean = zuKeDetailBean;
-    }
 
     private AppStorageUtils(){
     }

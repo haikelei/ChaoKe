@@ -30,6 +30,12 @@ public class ShaiXuanPopup extends BasePopupWindow {
     TextView tvReset;
     @BindView(R.id.tv_confirm)
     TextView tvConfirm;
+    @BindView(R.id.container_has_pic)
+    GridLayout containerHasPic;
+    @BindView(R.id.input_floor_min)
+    InputLayout inputFloorMin;
+    @BindView(R.id.input_floor_max)
+    InputLayout inputFloorMax;
 
     public ShaiXuanPopup(Context context) {
         super(context);
@@ -48,9 +54,7 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onRentState((finalI + 1) + "");
-                            }
+                            rentState = (finalI + 1) + "";
                         }
                     }
                 });
@@ -66,9 +70,7 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onFitUp((finalI + 1) + "");
-                            }
+                            fitUp = (finalI + 1) + "";
                         }
                     }
                 });
@@ -84,7 +86,7 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
                             if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onOrientation((finalI + 1) + "");
+                                orientation = (finalI + 1) + "";
                             }
                         }
                     }
@@ -101,8 +103,23 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
                             if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onSource((finalI + 1) + "");
+                                source = (finalI + 1) + "";
                             }
+                        }
+                    }
+                });
+            }
+        }
+        ////        快捷
+        for (int i = 0; i < containerHasPic.getChildCount(); i++) {
+            if (containerHasPic.getChildAt(i) instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) containerHasPic.getChildAt(i);
+                final int finalI = i;
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        if (b) {
+                            hasPic = (finalI + 1) + "";
                         }
                     }
                 });
@@ -112,17 +129,17 @@ public class ShaiXuanPopup extends BasePopupWindow {
         tvReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mOnShaiXuanSelectListener!=null){
-                    mOnShaiXuanSelectListener.onSource("");
-                    mOnShaiXuanSelectListener.onFitUp("");
-                    mOnShaiXuanSelectListener.onRentState("");
-                    mOnShaiXuanSelectListener.onOrientation("");
-                }
+                dismiss();
             }
         });
         tvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mOnShaiXuanSelectListener!=null){
+                    floormax = inputFloorMax.getText().toString().trim();
+                    floormin = inputFloorMin.getText().toString().trim();
+                    mOnShaiXuanSelectListener.onConfirm(source,orientation,fitUp,rentState,hasPic,floormin,floormax);
+                }
                 dismiss();
             }
         });
@@ -135,14 +152,16 @@ public class ShaiXuanPopup extends BasePopupWindow {
     }
 
 
+    String source = "";
+    String orientation= "";
+    String fitUp= "";
+    String rentState= "";
+    String hasPic= "";
+    String floormin= "";
+    String floormax= "";
+
     public interface OnShaiXuanSelectListener {
-        void onSource(String s);
-
-        void onOrientation(String s);
-
-        void onFitUp(String s);
-
-        void onRentState(String s);
+        void onConfirm(String source, String orientation, String fitUp, String rentState, String hasPic, String floormin, String floormax);
     }
 
     private OnShaiXuanSelectListener mOnShaiXuanSelectListener;

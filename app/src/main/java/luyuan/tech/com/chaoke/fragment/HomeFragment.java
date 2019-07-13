@@ -18,6 +18,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
+import com.zhouyou.http.callback.SimpleCallBack;
+import com.zhouyou.http.exception.ApiException;
 
 import java.util.ArrayList;
 
@@ -41,6 +43,11 @@ import luyuan.tech.com.chaoke.activity.WeiTuoHeTongActivity;
 import luyuan.tech.com.chaoke.activity.ZiYingFangYuanActivity;
 import luyuan.tech.com.chaoke.activity.ZuQianKeHuActivity;
 import luyuan.tech.com.chaoke.adapter.LinePagerAdapter;
+import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
+import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.AppStorageUtils;
+import luyuan.tech.com.chaoke.utils.T;
+import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
 /**
  * @author: lujialei
@@ -163,5 +170,10 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), ShouFangJiaoGeListActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

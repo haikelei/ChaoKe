@@ -65,6 +65,28 @@
                 android:text="失效"
                 android:background="@drawable/selector_cb_ziying"
                 />
+            <CheckBox
+                android:id="@+id/rent_status5"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="已预订"
+                android:background="@drawable/selector_cb_ziying"
+                />
+            <CheckBox
+                android:id="@+id/rent_status6"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="已签约"
+                android:background="@drawable/selector_cb_ziying"
+                />
         </GridLayout>
         <TextView
             android:layout_marginTop="20dp"
@@ -120,8 +142,7 @@
         <GridLayout
             android:id="@+id/container_source"
             android:layout_marginTop="10dp"
-            android:columnCount="4"
-            android:rowCount="2"
+            android:columnCount="5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <CheckBox
@@ -176,6 +197,74 @@
                 android:layout_height="wrap_content"
                 android:button="@null"
                 android:text="自己开发"
+                android:background="@drawable/selector_cb_ziying"
+                />
+
+        </GridLayout>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:text="户型"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <GridLayout
+            android:id="@+id/container_room"
+            android:layout_marginTop="10dp"
+            android:columnCount="5"
+            android:rowCount="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/room1"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="一室"
+                android:background="@drawable/selector_cb_ziying"
+                />
+            <CheckBox
+                android:id="@+id/room2"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="两室"
+                android:background="@drawable/selector_cb_ziying"
+                />
+            <CheckBox
+                android:id="@+id/room3"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="三室"
+                android:background="@drawable/selector_cb_ziying"
+                />
+            <CheckBox
+                android:id="@+id/room4"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="四室"
+                android:background="@drawable/selector_cb_ziying"
+                />
+            <CheckBox
+                android:id="@+id/room5"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/selector_tc_ziying"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="五室及以上"
                 android:background="@drawable/selector_cb_ziying"
                 />
 

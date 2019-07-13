@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,7 +18,9 @@ import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ChuZuDetailBean;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
@@ -140,10 +143,38 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
         rlHetongzhengben.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (TextUtils.isEmpty(url)){
+                    T.showShort(getActivity(),"url不存在");
+                }else {
+                    Html5Activity.start(getActivity(),url);
+                }
             }
         });
+        loadHeTongUrl();
         loadData();
+    }
+
+    private String url;
+    public void loadHeTongUrl(){
+        HttpManager.post(HttpManager.CHUZUHETONGZHENGBEN)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("id", id)
+                .execute(new SimpleCallBack<String>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(String data) {
+                        if (NetParser.isOk(data)){
+                            StringDataResponse response = NetParser.parse(data,StringDataResponse.class);
+                            url = response.getData();
+                        }
+                    }
+                });
+
     }
 
     private void loadData() {

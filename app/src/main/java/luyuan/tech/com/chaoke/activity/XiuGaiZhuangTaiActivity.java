@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -11,13 +12,16 @@ import android.widget.RadioButton;
 
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+import com.zhouyou.http.request.PostRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -108,6 +112,7 @@ public class XiuGaiZhuangTaiActivity extends BaseActivity {
         });
     }
 
+    private String id;
     private void loadData() {
         if (!checkEmptyInfo()){
             return;
@@ -120,24 +125,34 @@ public class XiuGaiZhuangTaiActivity extends BaseActivity {
         }else if (rb3.isChecked()){
             status = 4;
         }
-        HttpManager.post(HttpManager.CHANGE_STATE)
+        final PostRequest request = HttpManager.post(HttpManager.CHANGE_STATE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("tenant_id", AppStorageUtils.getZuKeDetailBean().getId()+"")
                 .params("status",status+"")
-                .params("reason",((int)slShixiaoliyou.getTag()+"")+"")
-                .execute(new SimpleCallBack<String>() {
+                .params("reason",((int)slShixiaoliyou.getTag()+"")+"");
+        if (TextUtils.isEmpty(id)){
+            request.params("tenant_id", id);
+        }
+        request.execute(new SimpleCallBack<String>() {
 
-                    @Override
-                    public void onError(ApiException e) {
-                        T.showShort(getBaseContext(), e.getMessage());
-                    }
+            @Override
+            public void onError(ApiException e) {
+                T.showShort(getBaseContext(), e.getMessage());
+            }
 
-                    @Override
-                    public void onSuccess(String data) {
-                        T.showShort(getBaseContext(), "提交成功");
-                        startActivity(new Intent(getBaseContext(), MainActivity.class));
-                    }
-                });
+            @Override
+            public void onSuccess(String data) {
+                if (NetParser.isOk(data)){
+                    T.showShort(getBaseContext(), "提交成功");
+                    StringDataResponse response = NetParser.parse(data, StringDataResponse.class);
+                    id = response.getData();
+                    startActivity(new Intent(getBaseContext(), MainActivity.class));
+                }else {
+                    T.showShort(getBaseContext(), "提交失败");
+                }
+
+            }
+        });
+
     }
 
 

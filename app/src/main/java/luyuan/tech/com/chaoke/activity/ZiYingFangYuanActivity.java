@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.request.PostRequest;
@@ -76,6 +77,9 @@ public class ZiYingFangYuanActivity extends BaseActivity {
     private String fit_up;
     private String orientation;
     private String source;
+    private String hasPic;
+    private String floorMin;
+    private String floorMax;
     private ZuJinPopup zuJinPopup;
     private PaiXuPopup paiXuPopup;
     private ShaiXuanPopup shaiXuanPopup;
@@ -185,23 +189,13 @@ public class ZiYingFangYuanActivity extends BaseActivity {
         shaiXuanPopup.setPopupGravity(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR, Gravity.BOTTOM);
         shaiXuanPopup.setOnShaiXuanSelectListener(new ShaiXuanPopup.OnShaiXuanSelectListener() {
             @Override
-            public void onSource(String s) {
-                source = s;
-            }
-
-            @Override
-            public void onOrientation(String s) {
-                orientation = s;
-            }
-
-            @Override
-            public void onFitUp(String s) {
-                fit_up = s;
-            }
-
-            @Override
-            public void onRentState(String s) {
-                rent_state = s;
+            public void onConfirm(String source, String orientation, String fitUp, String rentState, String hasPic, String floormin, String floormax) {
+                ZiYingFangYuanActivity.this.source = source;
+                ZiYingFangYuanActivity.this.fit_up = fitUp;
+                ZiYingFangYuanActivity.this.rent_state = rentState;
+                ZiYingFangYuanActivity.this.hasPic = hasPic;
+                ZiYingFangYuanActivity.this.floorMin = floormin;
+                ZiYingFangYuanActivity.this.floorMax = floorMax;
             }
         });
         shaiXuanPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
@@ -217,15 +211,15 @@ public class ZiYingFangYuanActivity extends BaseActivity {
         recycler.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         adapter = new ZiYingYuanAdapter(list);
         recycler.setAdapter(adapter);
-//        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                Intent intent = new Intent(getBaseContext(), XianChangDaiKanActivity.class);
-//                HouseBean houseBean = list.get(position);
-//                intent.putExtra("id", houseBean.getId() + "");
-//                startActivity(intent);
-//            }
-//        });
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getBaseContext(), FangYuanXiangQingActivity.class);
+                HouseBean houseBean = list.get(position);
+                intent.putExtra("id", houseBean.getId() + "");
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadData() {
@@ -252,6 +246,15 @@ public class ZiYingFangYuanActivity extends BaseActivity {
         }
         if (!TextUtils.isEmpty(rent_state)){
             request.params("rent_state",rent_state);
+        }
+        if (!TextUtils.isEmpty(hasPic)){
+            request.params("has_pic",hasPic);
+        }
+        if (!TextUtils.isEmpty(floorMin)){
+            request.params("floor_min",floorMin);
+        }
+        if (!TextUtils.isEmpty(hasPic)){
+            request.params("floor_max",floorMax);
         }
         request.execute(new SimpleCallBack<List<HouseBean>>() {
 

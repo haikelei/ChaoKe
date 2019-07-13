@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+import com.zhouyou.http.request.PostRequest;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,9 @@ import luyuan.tech.com.chaoke.adapter.KaiFaFangYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseBean;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.Constant;
 import luyuan.tech.com.chaoke.utils.T;
@@ -96,36 +100,46 @@ public class YuYueDaiKanActivity extends BaseActivity {
         recycler.setAdapter(new KaiFaFangYuanAdapter(data));
     }
 
+    private String id;
+
     private void loadData() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < data.size(); i++) {
             stringBuilder.append(data.get(i).getId());
-            if (i!=data.size()-1){
+            if (i != data.size() - 1) {
                 stringBuilder.append(",");
             }
         }
-        HttpManager.post(HttpManager.DAIKAN_YUEKAN)
+        PostRequest request = HttpManager.post(HttpManager.DAIKAN_YUEKAN)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("type", "1")
-                .params("tenant_id", AppStorageUtils.getZuKeDetailBean().getId() + "")
-                .params("rent_id",stringBuilder.toString())
+                .params("rent_id", stringBuilder.toString())
                 .params("time", getValue(slYyueshijian))
-                .params("see_address",getValue(inputJianmiandizhi))
-                .params("is_msg",cbDuanxin.isChecked()+"")
-                .params("phone",getValue(inputShoujihao))
-                .execute(new SimpleCallBack<String>() {
+                .params("see_address", getValue(inputJianmiandizhi))
+                .params("is_msg", cbDuanxin.isChecked() + "")
+                .params("phone", getValue(inputShoujihao));
+        if (TextUtils.isEmpty(id)) {
+            request.params("tenant_id", id);
+        }
+        request.execute(new SimpleCallBack<String>() {
 
-                    @Override
-                    public void onError(ApiException e) {
-                        T.showShort(getBaseContext(), e.getMessage());
-                    }
+            @Override
+            public void onError(ApiException e) {
+                T.showShort(getBaseContext(), e.getMessage());
+            }
 
-                    @Override
-                    public void onSuccess(String data) {
-                        T.showShort(getBaseContext(), "提交成功");
-                        startActivity(new Intent(getBaseContext(), MainActivity.class));
-                    }
-                });
+            @Override
+            public void onSuccess(String data) {
+                if (NetParser.isOk(data)){
+                    T.showShort(getBaseContext(), "提交成功");
+                    StringDataResponse response = NetParser.parse(data, StringDataResponse.class);
+                    id = response.getData();
+                    startActivity(new Intent(getBaseContext(), MainActivity.class));
+                }else {
+                    T.showShort(getBaseContext(), "提交失败");
+                }
+            }
+        });
     }
 
 }

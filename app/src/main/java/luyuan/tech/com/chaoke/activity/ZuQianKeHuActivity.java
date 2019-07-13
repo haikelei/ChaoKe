@@ -79,6 +79,7 @@ public class ZuQianKeHuActivity extends BaseActivity {
     private ZuKePaiXuPopup paiXuPopup;
     private ZuKeShaiXuanPopup shaiXuanPopup;
     private QuYuPopup quYuPopup;
+    private String room;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -208,6 +209,11 @@ public class ZuQianKeHuActivity extends BaseActivity {
             public void onSex(String s) {
                 sex = s;
             }
+
+            @Override
+            public void onRoom(String s) {
+                room = s;
+            }
         });
         shaiXuanPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
             @Override
@@ -241,6 +247,8 @@ public class ZuQianKeHuActivity extends BaseActivity {
         }
         if (!TextUtils.isEmpty(status)) {
             request.params("status", status);
+        }if (!TextUtils.isEmpty(room)) {
+            request.params("room", room);
         }
         request.execute(new SimpleCallBack<List<ZuKeListBean>>() {
 

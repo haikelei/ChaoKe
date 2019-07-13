@@ -2,8 +2,10 @@ package luyuan.tech.com.chaoke.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -15,8 +17,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.HouseDetailBean;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.bean.WeiTuoHeTongDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
@@ -178,7 +183,12 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     TextView tvDianhua;
     @BindView(R.id.iv_qita)
     ImageView ivQita;
+    @BindView(R.id.rl_hetongzhengben)
+    RelativeLayout rlHetongzhengben;
+    @BindView(R.id.rl_xuqian)
+    RelativeLayout rlXuqian;
     private String id;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -194,7 +204,47 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
                 onBackPressed();
             }
         });
+        rlHetongzhengben.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(url)){
+                    T.showShort(getActivity(),"url不存在");
+                }else {
+                    Html5Activity.start(getActivity(),url);
+                }
+            }
+        });
+        rlXuqian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        loadHeTongUrl();
         loadData();
+    }
+
+    private String url;
+    public void loadHeTongUrl(){
+        HttpManager.post(HttpManager.WEITUOHETONGZHENGBEN)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("id", id)
+                .execute(new SimpleCallBack<String>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(String data) {
+                        if (NetParser.isOk(data)){
+                            StringDataResponse response = NetParser.parse(data,StringDataResponse.class);
+                            url = response.getData();
+                        }
+                    }
+                });
+
     }
 
     private void loadData() {
@@ -265,7 +315,7 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         Glide.with(getActivity()).load(data.getProperty1().getAttach_pic()).apply(requestOptions).into(ivFujiye);
         Glide.with(getActivity()).load(data.getProperty1().getOld_pic()).apply(requestOptions).into(ivYuanhuxingtu);
         Glide.with(getActivity()).load(data.getProperty1().getHousehold_pic()).apply(requestOptions).into(ivFenhutu);
-        if (data.getProperty1().getOther_pic()!=null&&data.getProperty1().getOther_pic().size()>0){
+        if (data.getProperty1().getOther_pic() != null && data.getProperty1().getOther_pic().size() > 0) {
             Glide.with(getActivity()).load(data.getProperty1().getOther_pic().get(0)).apply(requestOptions).into(ivQita);
         }
 

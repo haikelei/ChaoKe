@@ -153,6 +153,9 @@
         <activity android:name=".activity.HouseSearchActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.KeHuSearchActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.XuanZeXiaoQuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChangePasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GeRenYeJiMingXiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.Html5Activity" android:screenOrientation="portrait"/>
 
 
 

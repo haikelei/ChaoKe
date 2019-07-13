@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +26,8 @@ public class SettingsActivity extends BaseActivity {
     ImageView ivBack;
     @BindView(R.id.btn_next)
     Button btnNext;
+    @BindView(R.id.rl_change_password)
+    RelativeLayout rlChangePassword;
 
 
     @Override
@@ -38,11 +41,17 @@ public class SettingsActivity extends BaseActivity {
                 onBackPressed();
             }
         });
+        rlChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(), ChangePasswordActivity.class));
+            }
+        });
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UserInfoUtils.getInstance().logout();
-                startActivity(new Intent(getBaseContext(),MainActivity.class));
+                startActivity(new Intent(getBaseContext(), LoginActivity.class));
             }
         });
     }

@@ -123,25 +123,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
         </LinearLayout>
-        <include
-            android:id="@+id/pop_quyu"
-            layout="@layout/popup_quyu"
-            android:visibility="gone" />
-
-        <include
-            android:id="@+id/pop_zujin"
-            layout="@layout/layout_popup_zujin"
-            android:visibility="gone" />
-
-        <include
-            android:id="@+id/pop_paixu"
-            layout="@layout/layout_popup_paixu"
-            android:visibility="gone" />
-
-        <include
-            android:id="@+id/pop_shaixuan"
-            layout="@layout/layout_popup_shaixuan"
-            android:visibility="gone" />
     </RelativeLayout>
 
 </LinearLayout>

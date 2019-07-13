@@ -29,6 +29,8 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
     GridLayout containerSource;
     @BindView(R.id.container_grade)
     GridLayout containerGrade;
+    @BindView(R.id.container_room)
+    GridLayout containerRoom;
 
     public ZuKeShaiXuanPopup(Context context) {
         super(context);
@@ -108,6 +110,24 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
             }
         }
 
+        //        户型
+        for (int i = 0; i < containerRoom.getChildCount(); i++) {
+            if (containerRoom.getChildAt(i) instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) containerRoom.getChildAt(i);
+                final int finalI = i;
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        if (b) {
+                            if (mOnShaiXuanSelectListener != null) {
+                                mOnShaiXuanSelectListener.onRoom((finalI + 1) + "");
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
         tvReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +162,8 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
         void onGrade(String s);
 
         void onSex(String s);
+
+        void onRoom(String s);
     }
 
     private OnShaiXuanSelectListener mOnShaiXuanSelectListener;

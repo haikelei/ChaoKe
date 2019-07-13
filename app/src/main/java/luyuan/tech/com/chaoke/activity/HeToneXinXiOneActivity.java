@@ -122,7 +122,8 @@ public class HeToneXinXiOneActivity extends BaseActivity {
                 .params("rent_id", id)
                 .params("phone",UserInfoUtils.getInstance().getPhone())
                 .params("address",inputTongxundizhi.getText())
-                .params("lessee", AppStorageUtils.getInstance().getZuKeDetailBean().getId()+"")
+                // TODO: 2019/7/13
+//                .params("lessee", AppStorageUtils.getInstance().getZuKeDetailBean().getId()+"")
                 .params("payway",String.valueOf(i+1))
                 .params("purpose",slYongtu.getText().equals("居住")?"1":"2")
                 .params("postal_address",inputTongxundizhi.getText())

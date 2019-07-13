@@ -255,6 +255,23 @@ public class HttpManager {
      */
     public static final String SEARCH = "/api/agent/do_search";
 
+    /**
+     * 修改密码
+     */
+    public static final String CHANGE_PWD = "/api/login/edit_pwd";
+
+    /**
+     * 个人业绩明细
+     */
+    public static final String YEJIMINGXI = "/api/agent/achievement_detail";
+
+    /**
+     * 委托合同正本
+     */
+    public static final String WEITUOHETONGZHENGBEN = "/api/agent/showSigningContract";
+
+    public static final String CHUZUHETONGZHENGBEN = "/api/agent/showRentContract";
+
 
 
 
