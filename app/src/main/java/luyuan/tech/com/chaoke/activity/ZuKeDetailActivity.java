@@ -28,8 +28,6 @@ import luyuan.tech.com.chaoke.adapter.GenJinAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
-import luyuan.tech.com.chaoke.utils.AppStorageUtils;
-import luyuan.tech.com.chaoke.utils.Constant;
 import luyuan.tech.com.chaoke.utils.SettingManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -89,6 +87,8 @@ public class ZuKeDetailActivity extends BaseActivity {
     LinearLayout llUser;
     @BindView(R.id.ll_yuekan_bottom)
     LinearLayout llYuekanBottom;
+    @BindView(R.id.tv_qita)
+    TextView tvQita;
     private String id;
     private List<ZuKeDetailBean.FollowDataBean> list;
     private GenJinAdapter adapter;
@@ -146,12 +146,14 @@ public class ZuKeDetailActivity extends BaseActivity {
         requestOptions.error(R.mipmap.moren_touxiang);
         Glide.with(this).load("").apply(requestOptions).into(ivAvatar);
         tvName.setText(data.getUsername());
+        tvLeixing.setText(getLeixing(data.getGrade()));
         SettingManager.getInstance().setZuKeDetailBean(data);
         tvYouxiao.setText(data.getStatus() == 1 ? "有效" : "无效");
         tvCreatetime.setText(data.createtime);
+        tvQita.setText("其他需求:"+data.getDesc());
         tvBianhao.setText("编号:" + data.getTenant_num() + "");
         tvQuyu.setText("区域:" + data.getCity_name());
-        tvZujin.setText("租金:" + data.getRent_min());
+        tvZujin.setText("租金:" + data.getRent_min() + "-" + data.getRent_max());
         tvJushi.setText("居室:" + data.getRoom() + "室" + data.getOffice() + "厅" + data.getToilet() + "卫");
 //        tvZhuangxiu.setText("装修:"+);
         tvXiwangruzhuri.setText("希望入住日:" + data.getCheckin_time());
@@ -163,7 +165,18 @@ public class ZuKeDetailActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_edit, R.id.ll_qianyue_bottom, R.id.ll_daikan_bottom, R.id.ll_genjin_bottom,R.id.ll_yuekan_bottom, R.id.ll_call})
+    private String getLeixing(int grade) {
+        if (grade == 1) {
+            return "A类";
+        } else if (grade == 2) {
+            return "B类";
+        } else if (grade == 3) {
+            return "C类";
+        }
+        return "其他";
+    }
+
+    @OnClick({R.id.iv_back, R.id.tv_edit, R.id.ll_qianyue_bottom, R.id.ll_daikan_bottom, R.id.ll_genjin_bottom, R.id.ll_yuekan_bottom, R.id.ll_call})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -204,7 +217,7 @@ public class ZuKeDetailActivity extends BaseActivity {
                 genJinPopup.showPopupWindow();
                 break;
             case R.id.ll_yuekan_bottom:
-                startActivity(new Intent(getActivity(),XuanZeYueKanFangYuanActivity.class));
+                startActivity(new Intent(getActivity(), XuanZeYueKanFangYuanActivity.class));
                 break;
             case R.id.ll_call:
                 callPhone("13800000000");

@@ -159,6 +159,9 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
         });
 
 
+        setDatePickerListener(slQingdanjiaofuriqi);
+        String[] arr1 = {"电费", "水费", "燃气费", "物业及能耗费"};
+        setSelectLListener(slJiafangchegndan, arr1, "甲方承担");
         initView();
         initListener();
     }

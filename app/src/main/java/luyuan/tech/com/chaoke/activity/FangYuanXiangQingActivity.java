@@ -28,6 +28,7 @@ import luyuan.tech.com.chaoke.utils.NormalImageLoader;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
+
 /**
  * @author: lujialei
  * @date: 2019/6/12
@@ -110,7 +111,7 @@ public class FangYuanXiangQingActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(),ShiKanActivity.class);
                 intent.putExtra("id",id);
-                startActivity(intent);
+                startActivityForResult(intent,201);
             }
         });
         llGenjinBottom.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +190,14 @@ public class FangYuanXiangQingActivity extends BaseActivity {
 //        tvWuyeyongtu.setText();
         tvFankangzhuangtai.setText("看房方式:"+getSeeType(data.getSee_type()));
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK&&requestCode== 201){
+            loadData();
+        }
     }
 
     public String getSeeType(int i){

@@ -140,6 +140,10 @@ public class XuanZeYueKanFangYuanActivity extends BaseActivity {
                         data.add(list.get(i));
                     }
                 }
+                if (data.size()==0){
+                    T.showShort(getActivity(),"没有选中的房源");
+                    return;
+                }
                 Intent intent = new Intent(getActivity(), YuYueDaiKanActivity.class);
                 intent.putParcelableArrayListExtra("data", data);
                 startActivity(intent);

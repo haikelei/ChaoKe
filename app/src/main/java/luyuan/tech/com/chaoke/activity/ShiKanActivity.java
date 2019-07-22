@@ -81,6 +81,8 @@ public class ShiKanActivity extends BaseActivity {
                         @Override
                         public void onSuccess(String data) {
                             T.showShort(getBaseContext(), "图片上传成功");
+                            setResult(RESULT_OK);
+                            onBackPressed();
                         }
                     });
         }
@@ -112,7 +114,7 @@ public class ShiKanActivity extends BaseActivity {
         btnSubmmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                handler.post(uploadRunnable);
             }
         });
         ivBack.setOnClickListener(new View.OnClickListener() {

@@ -288,15 +288,14 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
                 .params("out_price", getValue(inputChufangjiage))
                 .params("total_price", getValue(inputZongjine))
                 .params("tenant_name", getValue(inputZukexingming))
-                .params("contract_begin", getValue(slHetongqisuanri))
-                .params("contract_end", getValue(slHetongjieshuri))
+                .params("contract_begin", slHetongqisuanri.getText().toString())
+                .params("contract_end", slHetongjieshuri.getText().toString())
                 .params("contract_pics", getListJson(listHetognziliao))
                 .params("tenant_pics", getListJson(listShenfenzheng))
                 .params("first_cost", getValue(slJiafangchegndan))
-                .params("handover_time", getValue(slQingdanjiaofuriqi))
+                .params("handover_time", slQingdanjiaofuriqi.getText().toString())
                 .params("contract_id",id)
                 .params("config",handoverList.toString())
-
                 .params("delivery_pics", getListJson(listWuyejiaoge));
 
         request.execute(new SimpleCallBack<String>() {

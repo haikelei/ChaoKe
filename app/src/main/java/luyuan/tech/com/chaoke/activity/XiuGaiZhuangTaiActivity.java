@@ -23,6 +23,7 @@ import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.AppStorageUtils;
+import luyuan.tech.com.chaoke.utils.SettingManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
@@ -128,10 +129,8 @@ public class XiuGaiZhuangTaiActivity extends BaseActivity {
         final PostRequest request = HttpManager.post(HttpManager.CHANGE_STATE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("status",status+"")
+                .params("tenant_id", SettingManager.getInstance().getZuKeDetailBean().getId()+"")
                 .params("reason",((int)slShixiaoliyou.getTag()+"")+"");
-        if (TextUtils.isEmpty(id)){
-            request.params("tenant_id", id);
-        }
         request.execute(new SimpleCallBack<String>() {
 
             @Override

@@ -62,6 +62,7 @@ public class PeiZhiPopup extends BasePopupWindow {
                     }
                     listener.onGetData(stringBuilder.toString());
                 }
+                dismiss();
             }
         });
     }

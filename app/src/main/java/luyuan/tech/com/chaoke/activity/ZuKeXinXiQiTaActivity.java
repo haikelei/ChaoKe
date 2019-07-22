@@ -112,9 +112,9 @@ public class ZuKeXinXiQiTaActivity extends BaseActivity {
         OptionsPickerView pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                shi = options1;
-                wei = options3;
-                ting= options2;
+                shi = options1+1;
+                wei = options3+1;
+                ting= options2+1;
                 String tx = shiList.get(options1) + tingList.get(options1) + weiList.get(options1);
                 slHuxing.setText(tx);
 //                Toast.makeText(getActivity(), tx, Toast.LENGTH_SHORT).show();
