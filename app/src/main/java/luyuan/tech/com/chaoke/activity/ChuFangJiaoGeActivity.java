@@ -53,28 +53,27 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
     ImageView ivBack;
     @BindView(R.id.btn_next)
     Button btnNext;
+    @BindView(R.id.rv_shuidianranqi)
+    RecyclerView rvShuidianranqi;
     @BindView(R.id.input_xiaoqudizhi)
     InputLayout inputXiaoqudizhi;
-    @BindView(R.id.input_hetongbianhao)
-    InputLayout inputHetongbianhao;
+    @BindView(R.id.input_dianlihuhao)
+    InputLayout inputDianlihuhao;
     @BindView(R.id.input_chufangjiage)
     InputLayout inputChufangjiage;
-    @BindView(R.id.input_zongjine)
-    InputLayout inputZongjine;
-    @BindView(R.id.input_zukexingming)
-    InputLayout inputZukexingming;
-    @BindView(R.id.input_zukeshoujihao)
-    InputLayout inputZukeshoujihao;
-    @BindView(R.id.sl_hetongqisuanri)
-    SelectLayout slHetongqisuanri;
-    @BindView(R.id.sl_hetongjieshuri)
-    SelectLayout slHetongjieshuri;
-    @BindView(R.id.rv_hetongziliao)
-    RecyclerView rvHetongziliao;
-    @BindView(R.id.rv_shenfenzheng)
-    RecyclerView rvShenfenzheng;
-    @BindView(R.id.rv_wuyejiaoge)
-    RecyclerView rvWuyejiaoge;
+    @BindView(R.id.input_zongdian)
+    InputLayout inputZongdian;
+    @BindView(R.id.input_fengdian)
+    InputLayout inputFengdian;
+    @BindView(R.id.input_gudian)
+    InputLayout inputGudian;
+    @BindView(R.id.input_shuibiao)
+    InputLayout inputShuibiao;
+    @BindView(R.id.input_ranqihuhao)
+    InputLayout inputRanqihuhao;
+    @BindView(R.id.input_ranqidushu)
+    InputLayout inputRanqidushu;
+
     @BindView(R.id.sl_jiafangchegndan)
     SelectLayout slJiafangchegndan;
     @BindView(R.id.num_dianshi)
@@ -129,25 +128,21 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
     InputLayout numMenka;
     @BindView(R.id.sl_qingdanjiaofuriqi)
     SelectLayout slQingdanjiaofuriqi;
+    @BindView(R.id.num_youyanji)
+    InputLayout numYouyanji;
     private String id;
 
 
-    private ImageSelectAdapter adapterHetognziliao;
-    private ImageSelectAdapter adapterShenfenzheng;
-    private ImageSelectAdapter adapterWuyejiaoge;
-    private ArrayList<ImageBean> listHetognziliao;
-    private ArrayList<ImageBean> listShenfenzheng;
-    private ArrayList<ImageBean> listWuyejiaoge;
-    public static final int CODE_Hetognziliao = 190;
-    public static final int CODE_Shenfenzheng = 191;
-    public static final int CODE_Wuyejiaoge = 192;
+    private ImageSelectAdapter adapterShuidianranqi;
+    private ArrayList<ImageBean> listShuidianranqi;
+    public static final int CODE_Shuidianranqi = 195;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chufang_jiaoge);
         ButterKnife.bind(this);
-        if (getIntent()!= null){
+        if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
         ivBack.setOnClickListener(new View.OnClickListener() {
@@ -163,8 +158,7 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
             }
         });
 
-        setDatePickerListener(slHetongqisuanri);
-        setDatePickerListener(slHetongjieshuri);
+
         setDatePickerListener(slQingdanjiaofuriqi);
         String[] arr1 = {"电费", "水费", "燃气费", "物业及能耗费"};
         setSelectLListener(slJiafangchegndan, arr1, "甲方承担");
@@ -173,27 +167,12 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
     }
 
     private void initListener() {
-        adapterHetognziliao.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ImageBean imageBean = listHetognziliao.get(position);
-                onMultyClick(imageBean, CODE_Hetognziliao);
-            }
-        });
 
-        adapterShenfenzheng.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        adapterShuidianranqi.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ImageBean imageBean = listShenfenzheng.get(position);
-                onMultyClick(imageBean, CODE_Shenfenzheng);
-            }
-        });
-
-        adapterWuyejiaoge.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ImageBean imageBean = listWuyejiaoge.get(position);
-                onMultyClick(imageBean, CODE_Wuyejiaoge);
+                ImageBean imageBean = listShuidianranqi.get(position);
+                onMultyClick(imageBean, CODE_Shuidianranqi);
             }
         });
     }
@@ -223,30 +202,14 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
     }
 
     private void initView() {
-        //合同资料
-        listHetognziliao = new ArrayList<>();
-        ImageBean bean = new ImageBean();
-        bean.setAddItem(true);
-        listHetognziliao.add(bean);
-        adapterHetognziliao = new ImageSelectAdapter(listHetognziliao);
-        rvHetongziliao.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvHetongziliao.setAdapter(adapterHetognziliao);
-        //身份证明
-        listShenfenzheng = new ArrayList<>();
-        ImageBean bean1 = new ImageBean();
-        bean1.setAddItem(true);
-        listShenfenzheng.add(bean1);
-        adapterShenfenzheng = new ImageSelectAdapter(listShenfenzheng);
-        rvShenfenzheng.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvShenfenzheng.setAdapter(adapterShenfenzheng);
-        //物业交割
-        listWuyejiaoge = new ArrayList<>();
+        //水电燃气
+        listShuidianranqi = new ArrayList<>();
         ImageBean bean2 = new ImageBean();
         bean2.setAddItem(true);
-        listWuyejiaoge.add(bean2);
-        adapterWuyejiaoge = new ImageSelectAdapter(listWuyejiaoge);
-        rvWuyejiaoge.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvWuyejiaoge.setAdapter(adapterWuyejiaoge);
+        listShuidianranqi.add(bean2);
+        adapterShuidianranqi = new ImageSelectAdapter(listShuidianranqi);
+        rvShuidianranqi.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
+        rvShuidianranqi.setAdapter(adapterShuidianranqi);
     }
 
 
@@ -255,48 +218,49 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
             return;
         }
         StringBuilder handoverList = new StringBuilder();
-        handoverList.append(numDianshi.getText()+",")
-                .append(numDianshi.getText()+",")
-                .append(numKongtiao.getText()+",")
-                .append(numBingxiang.getText()+",")
-                .append(numXiyiji.getText()+",")
-                .append(numHongganji.getText()+",")
-                .append(numWeibolu.getText()+",")
-                .append(numMeiqizao.getText()+",")
-                .append(numDiancilu.getText()+",")
-                .append(numChuang.getText()+",")
-                .append(numChuangdian.getText()+",")
-                .append(numShafa.getText()+",")
-                .append(numYigui.getText()+",")
-                .append(numShuzhuo.getText()+",")
-                .append(numYizi.getText()+",")
-                .append(numChuanglian.getText()+",")
-                .append(numChuangtougui.getText()+",")
-                .append(numDitan.getText()+",")
-                .append(numXiegui.getText()+",")
-                .append(numCanzhuo.getText()+",")
-                .append(numCanyi.getText()+",")
-                .append(numChaji.getText()+",")
-                .append(numAigui.getText()+",")
-                .append(numYinshuiji.getText()+",")
-                .append(numReshuiqi.getText()+",")
-                .append(numMenka.getText() );
+        handoverList.append(numDianshi.getText() + ",")
+                .append(numDianshi.getText() + ",")
+                .append(numKongtiao.getText() + ",")
+                .append(numBingxiang.getText() + ",")
+                .append(numXiyiji.getText() + ",")
+                .append(numHongganji.getText() + ",")
+                .append(numWeibolu.getText() + ",")
+                .append(numYouyanji.getText()+",")
+                .append(numMeiqizao.getText() + ",")
+                .append(numDiancilu.getText() + ",")
+                .append(numChuang.getText() + ",")
+                .append(numChuangdian.getText() + ",")
+                .append(numShafa.getText() + ",")
+                .append(numYigui.getText() + ",")
+                .append(numShuzhuo.getText() + ",")
+                .append(numYizi.getText() + ",")
+                .append(numChuanglian.getText() + ",")
+                .append(numChuangtougui.getText() + ",")
+                .append(numDitan.getText() + ",")
+                .append(numXiegui.getText() + ",")
+                .append(numCanzhuo.getText() + ",")
+                .append(numCanyi.getText() + ",")
+                .append(numChaji.getText() + ",")
+                .append(numAigui.getText() + ",")
+                .append(numYinshuiji.getText() + ",")
+                .append(numReshuiqi.getText() + ",")
+                .append(numMenka.getText());
         PostRequest request = HttpManager.post(HttpManager.CHUFANG_JIAOGE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("room_address", getValue(inputXiaoqudizhi))
-                .params("contract_num", getValue(inputHetongbianhao))
-                .params("out_price", getValue(inputChufangjiage))
-                .params("total_price", getValue(inputZongjine))
-                .params("tenant_name", getValue(inputZukexingming))
-                .params("contract_begin", slHetongqisuanri.getText().toString())
-                .params("contract_end", slHetongjieshuri.getText().toString())
-                .params("contract_pics", getListJson(listHetognziliao))
-                .params("tenant_pics", getListJson(listShenfenzheng))
+                .params("room_number", getValue(inputXiaoqudizhi))
+                .params("power_number", getValue(inputDianlihuhao))
+                .params("total_power", getValue(inputZongdian))
+                .params("peak_power", getValue(inputFengdian))
+                .params("valley_power", getValue(inputGudian))
+                .params("water_meter", getValue(inputShuibiao))
+                .params("gas_number", getValue(inputRanqihuhao))
+                .params("gas_degree", getValue(inputRanqidushu))
                 .params("first_cost", getValue(slJiafangchegndan))
                 .params("handover_time", slQingdanjiaofuriqi.getText().toString())
-                .params("contract_id",id)
-                .params("config",handoverList.toString())
-                .params("delivery_pics", getListJson(listWuyejiaoge));
+                .params("contract_id", id)
+                .params("config", handoverList.toString())
+
+                .params("pics", getListJson(listShuidianranqi));
 
         request.execute(new SimpleCallBack<String>() {
 
@@ -330,17 +294,9 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case CODE_Hetognziliao:
+                case CODE_Shuidianranqi:
                     // 图片选择结果回调
-                    onMultyResult(data, listHetognziliao, adapterHetognziliao);
-                    break;
-                case CODE_Shenfenzheng:
-                    // 图片选择结果回调
-                    onMultyResult(data, listShenfenzheng, adapterShenfenzheng);
-                    break;
-                case CODE_Wuyejiaoge:
-                    // 图片选择结果回调
-                    onMultyResult(data, listWuyejiaoge, adapterWuyejiaoge);
+                    onMultyResult(data, listShuidianranqi, adapterShuidianranqi);
                     break;
             }
         }

@@ -17,7 +17,6 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
-import com.zhouyou.http.body.ProgressResponseCallBack;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.request.PostRequest;
@@ -35,7 +34,6 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ImageSelectAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ImageBean;
-import luyuan.tech.com.chaoke.bean.NameBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
 import luyuan.tech.com.chaoke.utils.T;
@@ -130,6 +128,8 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
     InputLayout numMenka;
     @BindView(R.id.sl_qingdanjiaofuriqi)
     SelectLayout slQingdanjiaofuriqi;
+    @BindView(R.id.num_youyanji)
+    InputLayout numYouyanji;
     private String id;
 
 
@@ -142,7 +142,7 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoufang_jiaoge);
         ButterKnife.bind(this);
-        if (getIntent()!= null){
+        if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
         ivBack.setOnClickListener(new View.OnClickListener() {
@@ -214,50 +214,51 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
 
 
     private void loadData() {
-        if (!checkEmptyInfo()){
+        if (!checkEmptyInfo()) {
             return;
         }
         StringBuilder handoverList = new StringBuilder();
-        handoverList.append(numDianshi.getText()+",")
-                .append(numDianshi.getText()+",")
-                .append(numKongtiao.getText()+",")
-                .append(numBingxiang.getText()+",")
-                .append(numXiyiji.getText()+",")
-                .append(numHongganji.getText()+",")
-                .append(numWeibolu.getText()+",")
-                .append(numMeiqizao.getText()+",")
-                .append(numDiancilu.getText()+",")
-                .append(numChuang.getText()+",")
-                .append(numChuangdian.getText()+",")
-                .append(numShafa.getText()+",")
-                .append(numYigui.getText()+",")
-                .append(numShuzhuo.getText()+",")
-                .append(numYizi.getText()+",")
-                .append(numChuanglian.getText()+",")
-                .append(numChuangtougui.getText()+",")
-                .append(numDitan.getText()+",")
-                .append(numXiegui.getText()+",")
-                .append(numCanzhuo.getText()+",")
-                .append(numCanyi.getText()+",")
-                .append(numChaji.getText()+",")
-                .append(numAigui.getText()+",")
-                .append(numYinshuiji.getText()+",")
-                .append(numReshuiqi.getText()+",")
-                .append(numMenka.getText() );
+        handoverList.append(numDianshi.getText() + ",")
+                .append(numDianshi.getText() + ",")
+                .append(numKongtiao.getText() + ",")
+                .append(numBingxiang.getText() + ",")
+                .append(numXiyiji.getText() + ",")
+                .append(numHongganji.getText() + ",")
+                .append(numWeibolu.getText() + ",")
+                .append(numYouyanji.getText()+",")
+                .append(numMeiqizao.getText() + ",")
+                .append(numDiancilu.getText() + ",")
+                .append(numChuang.getText() + ",")
+                .append(numChuangdian.getText() + ",")
+                .append(numShafa.getText() + ",")
+                .append(numYigui.getText() + ",")
+                .append(numShuzhuo.getText() + ",")
+                .append(numYizi.getText() + ",")
+                .append(numChuanglian.getText() + ",")
+                .append(numChuangtougui.getText() + ",")
+                .append(numDitan.getText() + ",")
+                .append(numXiegui.getText() + ",")
+                .append(numCanzhuo.getText() + ",")
+                .append(numCanyi.getText() + ",")
+                .append(numChaji.getText() + ",")
+                .append(numAigui.getText() + ",")
+                .append(numYinshuiji.getText() + ",")
+                .append(numReshuiqi.getText() + ",")
+                .append(numMenka.getText());
         PostRequest request = HttpManager.post(HttpManager.SHOUFANG_JIAOGE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("room_number", getValue(inputXiaoqudizhi))
                 .params("power_number", getValue(inputDianlihuhao))
                 .params("total_power", getValue(inputZongdian))
-                .params("peak_power",getValue(inputFengdian) )
-                .params("valley_power",getValue(inputGudian) )
+                .params("peak_power", getValue(inputFengdian))
+                .params("valley_power", getValue(inputGudian))
                 .params("water_meter", getValue(inputShuibiao))
-                .params("gas_number",getValue(inputRanqihuhao) )
-                .params("gas_degree",getValue(inputRanqidushu) )
+                .params("gas_number", getValue(inputRanqihuhao))
+                .params("gas_degree", getValue(inputRanqidushu))
                 .params("first_cost", getValue(slJiafangchegndan))
                 .params("handover_time", getValue(slQingdanjiaofuriqi))
-                .params("contract_id",id)
-                .params("config",handoverList.toString())
+                .params("contract_id", id)
+                .params("config", handoverList.toString())
 
                 .params("pics", getListJson(listShuidianranqi));
 

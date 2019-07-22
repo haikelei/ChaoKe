@@ -228,6 +228,15 @@
                 app:mHint="请输入数量"
                 app:mTitle="微波炉" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_youyanji"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="油烟机" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
                 android:id="@+id/num_meiqizao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

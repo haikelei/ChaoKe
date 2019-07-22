@@ -45,16 +45,16 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 app:mHint="请输入"
-                app:mTitle="小区地址" />
+                app:mTitle="小区地址房号" />
             <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_hetongbianhao"
+                android:id="@+id/input_dianlihuhao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 app:mHint="请输入"
-                app:mTitle="合同编号" />
+                app:mTitle="电力户号" />
             <luyuan.tech.com.chaoke.widget.InputLayout
                 android:id="@+id/input_chufangjiage"
                 android:layout_width="match_parent"
@@ -65,52 +65,61 @@
                 app:mHint="请输入"
                 app:mTitle="出房价格" />
             <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_zongjine"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="租金付款总金额"
-                app:mTitle="总金额(大写,元)" />
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_zukexingming"
+                android:id="@+id/input_zongdian"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 app:mHint="请输入"
-                app:mTitle="租客姓名" />
+                app:mTitle="总电(非必填)" />
             <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_zukeshoujihao"
+                android:id="@+id/input_fengdian"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 app:mHint="请输入"
-                app:mTitle="租客手机号" />
-
-            <luyuan.tech.com.chaoke.widget.SelectLayout
-                android:id="@+id/sl_hetongqisuanri"
+                app:mTitle="峰电" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_gudian"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                app:mHint="请选择"
-                app:mTitle="合同起算日" />
+                app:mHint="请输入"
+                app:mTitle="谷电" />
 
-            <luyuan.tech.com.chaoke.widget.SelectLayout
-                android:id="@+id/sl_hetongjieshuri"
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_shuibiao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                app:mHint="请选择"
-                app:mTitle="合同结束日" />
+                app:mHint="请输入"
+                app:mTitle="水表" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_ranqihuhao"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="燃气户号" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_ranqidushu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="燃气度数" />
+
 
 
             <LinearLayout
@@ -126,61 +135,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="合同资料"
+                    android:text="水电燃气照片"
                     android:textColor="#000000" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_hetongziliao"
+                    android:id="@+id/rv_shuidianranqi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="#ffffff"
-                android:orientation="vertical"
-                android:paddingBottom="30dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="30dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="租客身份证正反面照片"
-                    android:textColor="#000000" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_shenfenzheng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="#ffffff"
-                android:orientation="vertical"
-                android:paddingBottom="30dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="30dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="物业交割"
-                    android:textColor="#000000" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_wuyejiaoge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
-            </LinearLayout>
             <luyuan.tech.com.chaoke.widget.SelectLayout
                 android:id="@+id/sl_qingdanjiaofuriqi"
                 android:layout_width="match_parent"
@@ -200,7 +164,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 app:mHint="请选择"
-                app:mTitle="请选择甲方承担" />
+                app:mTitle="请选择甲方承担运费" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -263,6 +227,15 @@
                 android:paddingRight="20dp"
                 app:mHint="请输入数量"
                 app:mTitle="微波炉" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/num_youyanji"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:mHint="请输入数量"
+                app:mTitle="油烟机" />
             <luyuan.tech.com.chaoke.widget.InputLayout
                 android:id="@+id/num_meiqizao"
                 android:layout_width="match_parent"
@@ -434,6 +407,8 @@
                 android:paddingRight="20dp"
                 app:mHint="请输入数量"
                 app:mTitle="门卡" />
+
+
 
             <Button
                 android:id="@+id/btn_next"
