@@ -30,6 +30,7 @@ import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.Constant;
+import luyuan.tech.com.chaoke.utils.SettingManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.GenJinPopup;
@@ -100,10 +101,6 @@ public class ZuKeDetailActivity extends BaseActivity {
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.error(R.mipmap.moren_touxiang);
-        Glide.with(this).load(Constant.IMAGE_PRE + UserInfoUtils.getInstance().getAvatar()).apply(requestOptions).into(ivAvatar);
-        tvName.setText(UserInfoUtils.getInstance().getUserName());
         list = new ArrayList<>();
         recycler.setLayoutManager(new LinearLayoutManager(this) {
             @Override
@@ -145,6 +142,11 @@ public class ZuKeDetailActivity extends BaseActivity {
     }
 
     private void fillData(ZuKeDetailBean data) {
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.error(R.mipmap.moren_touxiang);
+        Glide.with(this).load("").apply(requestOptions).into(ivAvatar);
+        tvName.setText(data.getUsername());
+        SettingManager.getInstance().setZuKeDetailBean(data);
         tvYouxiao.setText(data.getStatus() == 1 ? "有效" : "无效");
         tvCreatetime.setText(data.createtime);
         tvBianhao.setText("编号:" + data.getTenant_num() + "");

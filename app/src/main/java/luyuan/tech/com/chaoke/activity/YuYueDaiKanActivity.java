@@ -33,6 +33,7 @@ import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.Constant;
+import luyuan.tech.com.chaoke.utils.SettingManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
@@ -87,7 +88,6 @@ public class YuYueDaiKanActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 loadData();
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
             }
         });
         RequestOptions requestOptions = new RequestOptions();
@@ -103,6 +103,9 @@ public class YuYueDaiKanActivity extends BaseActivity {
     private String id;
 
     private void loadData() {
+        if (!checkEmptyInfo()){
+            return;
+        }
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < data.size(); i++) {
             stringBuilder.append(data.get(i).getId());
@@ -113,14 +116,12 @@ public class YuYueDaiKanActivity extends BaseActivity {
         PostRequest request = HttpManager.post(HttpManager.DAIKAN_YUEKAN)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("type", "1")
+                .params("tenant_id", SettingManager.getInstance().getZuKeDetailBean().getId()+"")
                 .params("rent_id", stringBuilder.toString())
-                .params("time", getValue(slYyueshijian))
+                .params("time", slYyueshijian.getText().toString())
                 .params("see_address", getValue(inputJianmiandizhi))
                 .params("is_msg", cbDuanxin.isChecked() + "")
                 .params("phone", getValue(inputShoujihao));
-        if (TextUtils.isEmpty(id)) {
-            request.params("tenant_id", id);
-        }
         request.execute(new SimpleCallBack<String>() {
 
             @Override
@@ -136,7 +137,8 @@ public class YuYueDaiKanActivity extends BaseActivity {
                     id = response.getData();
                     startActivity(new Intent(getBaseContext(), MainActivity.class));
                 }else {
-                    T.showShort(getBaseContext(), "提交失败");
+                    StringDataResponse response = NetParser.parse(data, StringDataResponse.class);
+                    T.showShort(getBaseContext(), "提交失败:"+response.getMsg());
                 }
             }
         });

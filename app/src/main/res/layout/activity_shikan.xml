@@ -1,66 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f5f5f5"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#ffffff">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:padding="13dp"
-            android:src="@mipmap/back_black" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="实勘"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#ffffff">
-
-        <com.amap.api.maps.MapView
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.amap.api.maps.MapView>
-    </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="#ffffff"
-        android:orientation="vertical"
-        android:paddingBottom="30dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="30dp">
+        android:layout_height="match_parent"
+        android:background="#f5f5f5"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="上传实勘图片(最多只能上传9张)"
-            android:textColor="#000000" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv"
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:padding="13dp"
+                android:src="@mipmap/back_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="实勘"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:background="#ffffff">
+
+            <com.amap.api.maps.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.amap.api.maps.MapView>
+        </RelativeLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            android:layout_marginTop="20dp"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:paddingBottom="30dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上传实勘图片(最多只能上传9张)"
+                android:textColor="#000000" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_submmit"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/shape_r6_60d1c8"
+            android:text="提交"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

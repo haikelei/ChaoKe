@@ -99,6 +99,26 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/input_floor"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请输入楼层"
+            app:mTitle="楼层" />
+
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_zhuangxiu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="装修" />
         <luyuan.tech.com.chaoke.widget.SelectLayout
             android:id="@+id/sl_chaoxiang"
             android:layout_width="match_parent"
@@ -153,6 +173,95 @@
             android:paddingRight="15dp"
             app:mHint="请选择(必填)"
             app:mTitle="看房方式" />
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_fangwuyongtu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="房屋用途" />
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_duanzu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="是否短租" />
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_shoucichuzu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="是否首次出租" />
+        <luyuan.tech.com.chaoke.widget.SelectLayout
+            android:id="@+id/sl_peizhi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mTitle="配置" />
+        <luyuan.tech.com.chaoke.widget.ChooesLayout
+            android:id="@+id/cl_dianti"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="是否有电梯" />
+        <luyuan.tech.com.chaoke.widget.ChooesLayout
+            android:id="@+id/cl_zhinengsuo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="是否有智能锁" />
+        <luyuan.tech.com.chaoke.widget.ChooesLayout
+            android:id="@+id/cl_duwei"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="是否独卫" />
+        <luyuan.tech.com.chaoke.widget.ChooesLayout
+            android:id="@+id/cl_yangtai"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="是否有阳台" />
+        <luyuan.tech.com.chaoke.widget.ChooesLayout
+            android:id="@+id/cl_piaochaung"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请选择(必填)"
+            app:mTitle="是否有飘窗" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -97,7 +97,7 @@ public class ZuKeXinXiActivity extends BaseActivity {
                 .params("source", ((int) slZukelaiyuan.getTag() + 1) + "")
                 .params("grade", ((int) slZukedengji.getTag() + 1) + "")
                 .params("social", ((int) slShehuizizhi.getTag() + 1) + "");
-        if (TextUtils.isEmpty(id)) {
+        if (!TextUtils.isEmpty(id)) {
             request.params("tenant_id", id);
         }
         request.execute(new SimpleCallBack<String>() {

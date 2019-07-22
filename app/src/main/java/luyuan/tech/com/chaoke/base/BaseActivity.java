@@ -20,6 +20,7 @@ import java.util.List;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.utils.AppManager;
 import luyuan.tech.com.chaoke.utils.T;
+import luyuan.tech.com.chaoke.widget.ChooesLayout;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
 import luyuan.tech.com.chaoke.widget.InputLayout;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
@@ -107,6 +108,10 @@ public class BaseActivity extends AppCompatActivity {
             return "";
         }
         return ((int)selectLayout.getTag()+1)+"";
+    }
+
+    protected String getValue(ChooesLayout chooesLayout){
+        return chooesLayout.getCheckedPosition();
     }
 
 

@@ -20,12 +20,15 @@ import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ItemBean;
+import luyuan.tech.com.chaoke.bean.PeiZhiBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
+import luyuan.tech.com.chaoke.widget.ChooesLayout;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
 import luyuan.tech.com.chaoke.widget.InputLayout;
+import luyuan.tech.com.chaoke.widget.PeiZhiPopup;
 import luyuan.tech.com.chaoke.widget.SelectDialogFragment;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
 
@@ -65,7 +68,31 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     InputLayout inputWei;
     @BindView(R.id.btn_submmit)
     Button btnSubmmit;
+    @BindView(R.id.sl_zhuangxiu)
+    SelectLayout slZhuangxiu;
+    @BindView(R.id.input_floor)
+    InputLayout inputFloor;
+    @BindView(R.id.sl_fangwuyongtu)
+    SelectLayout slFangwuyongtu;
+    @BindView(R.id.sl_duanzu)
+    SelectLayout slDuanzu;
+    @BindView(R.id.sl_shoucichuzu)
+    SelectLayout slShoucichuzu;
+    @BindView(R.id.cl_dianti)
+    ChooesLayout clDianti;
+    @BindView(R.id.cl_zhinengsuo)
+    ChooesLayout clZhinengsuo;
+    @BindView(R.id.cl_duwei)
+    ChooesLayout clDuwei;
+    @BindView(R.id.cl_yangtai)
+    ChooesLayout clYangtai;
+    @BindView(R.id.cl_piaochaung)
+    ChooesLayout clPiaochaung;
+    @BindView(R.id.sl_peizhi)
+    SelectLayout slPeizhi;
     private String id;
+    PeiZhiPopup peiZhiPopup;
+    private String config = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,32 +100,76 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
         id = getIntent().getStringExtra("id");
         setContentView(R.layout.activity_add_house_other_info);
         ButterKnife.bind(this);
+//        1为 2为 3为 4为 5为
+        String[] arr = {"毛坯", "简装", "精装配置齐全", "精装配置不齐全", "豪华装修"};
+        setSelectLListener(slZhuangxiu, arr);
+
+        String[] arr1 = {"住宅", "出租"};
+        setSelectLListener(slFangwuyongtu, arr1);
+
+        String[] arr2 = {"仅长租", "仅短租", "都可租"};
+        setSelectLListener(slDuanzu, arr2);
+
+        String[] arr3 = {"首次出租", "非首次出租"};
+        setSelectLListener(slShoucichuzu, arr3);
+
+        String[] arrChaoxiang = {"朝南", "朝北", "朝东", "朝西"};
+        setSelectLListener(slChaoxiang, arrChaoxiang);
+
+        String[] arr4 = {"房东出租", "58同城", "A公司", "B公司", "C公司", "D公司"};
+        setSelectLListener(slZulingongsi, arr4);
+
+        String[] arr5 = {"房东出租", "预约", "直接", "借钥", "有钥", "智能锁"};
+        setSelectLListener(slKanfangfangshi, arr5);
+
+        setDatePickerListener(slDaoqiri);
+
+        setDatePickerListener(slKanfangri);
+
+
+        slPeizhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                peiZhiPopup.showPopupWindow();
+            }
+        });
+        peiZhiPopup = new PeiZhiPopup(getActivity());
+        peiZhiPopup.setOnPeiZhiListener(new PeiZhiPopup.OnPeiZhiListener() {
+            @Override
+            public void onGetData(String s) {
+                config = s;
+            }
+        });
+        loadPeiZhi();
     }
 
-    @OnClick({R.id.iv_back, R.id.sl_chaoxiang, R.id.sl_zulingongsi, R.id.sl_daoqiri, R.id.sl_kanfangri, R.id.sl_kanfangfangshi, R.id.btn_submmit})
+    private void loadPeiZhi() {
+        HttpManager.post(HttpManager.PEIZHI)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("id", id)
+                .execute(new SimpleCallBack<List<PeiZhiBean>>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(List<PeiZhiBean> datas) {
+                        if (datas != null && datas.size() > 0) {
+                            peiZhiPopup.setData(datas);
+                        }
+                    }
+                });
+
+    }
+
+    @OnClick({R.id.iv_back, R.id.btn_submmit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 setResult(RESULT_CANCELED);
                 finish();
-                break;
-            case R.id.sl_chaoxiang:
-                String[] arrChaoxiang = {"朝南", "朝北", "朝东", "朝西"};
-                createDialog(arrChaoxiang, slChaoxiang);
-                break;
-            case R.id.sl_zulingongsi:
-                String[] arr = {"房东出租", "58同城", "A公司", "B公司", "C公司", "D公司"};
-                createDialog(arr, slZulingongsi);
-                break;
-            case R.id.sl_daoqiri:
-                createDataPickerDialog(true, slDaoqiri);
-                break;
-            case R.id.sl_kanfangri:
-                createDataPickerDialog(false, slKanfangri);
-                break;
-            case R.id.sl_kanfangfangshi:
-                String[] arr1 = {"房东出租", "预约", "直接", "借钥", "有钥", "智能锁"};
-                createDialog(arr1, slKanfangfangshi);
                 break;
             case R.id.btn_submmit:
                 loadData();
@@ -107,8 +178,8 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     }
 
     private void loadData() {
-        if (TextUtils.isEmpty(inputShi.getText().toString())||TextUtils.isEmpty(inputTing.getText().toString())||TextUtils.isEmpty(inputWei.getText().toString())){
-            T.showShort(getActivity(),"请完整输入户型,若没有可填写0");
+        if (TextUtils.isEmpty(inputShi.getText().toString()) || TextUtils.isEmpty(inputTing.getText().toString()) || TextUtils.isEmpty(inputWei.getText().toString())) {
+            T.showShort(getActivity(), "请完整输入户型,若没有可填写0");
             return;
         }
         if (!checkEmptyInfo()) {
@@ -117,18 +188,29 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
         HttpManager.post(HttpManager.FABUTWO)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("ren_id", id)
-                .params("long_price", inputMoney.getText().trim().trim())
-                .params("area", inputSize.getText().trim().trim())
+                .params("long_price", getValue(inputMoney))
+                .params("area", getValue(inputSize))
                 .params("apartment", "")
-                .params("orientation", slChaoxiang.getText().toString())
-                .params("company_id", slZulingongsi.getText().toString())
-                .params("expiretime", slDaoqiri.getText().toString())
-                .params("see_time", slKanfangri.getText().toString())
-                .params("see_type", slKanfangfangshi.getText().toString())
+                .params("is_first_rent", getValue(slShoucichuzu))
+                .params("used_type", getValue(slFangwuyongtu))
+                .params("type", getValue(slDuanzu))
+                .params("floor", getValue(inputFloor))
+                .params("fit_up", getValue(slZhuangxiu))
+                .params("is_lift", getValue(clDianti))
+                .params("is_mind", getValue(clZhinengsuo))
+                .params("is_toilet", getValue(clDuwei))
+                .params("is_balcony", getValue(clYangtai))
+                .params("is_bw", getValue(clPiaochaung))
+                .params("configure", config)
+                .params("orientation", getValue(slChaoxiang))
+                .params("company_id", getValue(slZulingongsi))
+                .params("expiretime", getValue(slDaoqiri))
+                .params("see_time", getValue(slKanfangri))
+                .params("see_type", getValue(slKanfangfangshi))
                 .params("describe", etBeizhu.getText().toString().trim())
-                .params("room",inputShi.getText().toString())
-                .params("office",inputTing.getText().toString())
-                .params("guard",inputWei.getText().toString())
+                .params("room", getValue(inputShi))
+                .params("office", getValue(inputTing))
+                .params("guard", getValue(inputWei))
                 .execute(new SimpleCallBack<String>() {
 
                     @Override
@@ -138,8 +220,8 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(String s) {
-                        if (NetParser.isOk(s)){
-                            T.showShort(getActivity(),"新增成功");
+                        if (NetParser.isOk(s)) {
+                            T.showShort(getActivity(), "新增成功");
                             setResult(RESULT_OK);
                             finish();
                         }

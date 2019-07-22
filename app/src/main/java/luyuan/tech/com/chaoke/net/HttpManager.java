@@ -272,6 +272,11 @@ public class HttpManager {
 
     public static final String CHUZUHETONGZHENGBEN = "/api/agent/showRentContract";
 
+    /**
+     * 房屋配置
+     */
+    public static final String PEIZHI = "/api/agent/house_config";
+
 
 
 

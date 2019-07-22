@@ -25,6 +25,7 @@ import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.Constant;
+import luyuan.tech.com.chaoke.utils.SettingManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
@@ -94,11 +95,12 @@ public class XianChangDaiKanTwoActivity extends BaseActivity {
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("type", "2")
                 .params("rent_id", id)
+                .params("tenant_id", SettingManager.getInstance().getZuKeDetailBean().getId()+"")
                 .params("result", ((int) slXuanzejieguo.getTag() + 1) + "")
                 .params("desc", etInput.getText().toString().trim());
-        if (TextUtils.isEmpty(id)) {
-            request.params("tenant_id", tenant_id);
-        }
+//        if (TextUtils.isEmpty(id)) {
+//            request.params("tenant_id", tenant_id);
+//        }
         request.execute(new SimpleCallBack<String>() {
 
             @Override

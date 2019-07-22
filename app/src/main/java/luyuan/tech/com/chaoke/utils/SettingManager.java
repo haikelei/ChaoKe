@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.utils;
 import android.text.TextUtils;
 
 import luyuan.tech.com.chaoke.App;
+import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
 
 
 /**
@@ -26,4 +27,13 @@ public class SettingManager {
         return instance;
     }
 
+    private ZuKeDetailBean zuKeDetailBean = new ZuKeDetailBean();
+
+    public ZuKeDetailBean getZuKeDetailBean() {
+        return zuKeDetailBean;
+    }
+
+    public void setZuKeDetailBean(ZuKeDetailBean zuKeDetailBean) {
+        this.zuKeDetailBean = zuKeDetailBean;
+    }
 }

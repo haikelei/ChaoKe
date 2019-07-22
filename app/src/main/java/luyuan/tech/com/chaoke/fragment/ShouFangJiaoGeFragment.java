@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.activity.ChuFangJiaoGeActivity;
+import luyuan.tech.com.chaoke.activity.ShouFangJiaoGeActivity;
 import luyuan.tech.com.chaoke.adapter.DaiChuShenAdapter;
 import luyuan.tech.com.chaoke.adapter.ShouFangJiaoGeAdapter;
 import luyuan.tech.com.chaoke.bean.ShouFangJiaoGeListBean;
@@ -75,7 +76,7 @@ public class ShouFangJiaoGeFragment extends Fragment {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getActivity(), ShouFangJiaoGeAdapter.class);
+                Intent intent = new Intent(getActivity(), ShouFangJiaoGeActivity.class);
                 intent.putExtra("id",list.get(position).getId()+"");
                 startActivity(intent);
             }

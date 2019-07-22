@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.LoginBean;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.event.LoginEvent;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
@@ -53,6 +54,12 @@ public class ChangePasswordActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
         ButterKnife.bind(this);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,7 +130,8 @@ public class ChangePasswordActivity extends BaseActivity {
                             T.showShort(getActivity(), "修改成功");
                             getActivity().finish();
                         }else {
-                            T.showShort(getActivity(), "修改失败");
+                            StringDataResponse stringDataResponse = NetParser.parse(s,StringDataResponse.class);
+                            T.showShort(getActivity(), "修改失败:"+stringDataResponse.getMsg());
                         }
 
                     }
