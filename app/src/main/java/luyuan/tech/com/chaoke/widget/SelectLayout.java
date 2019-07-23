@@ -82,4 +82,12 @@ public class SelectLayout extends RelativeLayout {
     public boolean getMust(){
         return must;
     }
+
+    private String value="";
+    public void setvalue(String s) {
+        value = s;
+    }
+    public String getValue() {
+        return value;
+    }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/recycler"
+        android:gravity="center"
+        android:id="@+id/btn_submmit"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape_r6_60d1c8"
+        android:text="提交"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+</RelativeLayout>

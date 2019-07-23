@@ -77,7 +77,7 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
         setDatePickerListener(slZhuangxiuqisuanri);
 
         String[] arr1 = {"电费", "水费", "燃气费", "物业及能耗费"};
-        setSelectLListener(slJiafangchegndan, arr1, "甲方承担");
+        setMultiSelectListener(slJiafangchegndan, arr1, "甲方承担");
     }
 
     private String oldId;

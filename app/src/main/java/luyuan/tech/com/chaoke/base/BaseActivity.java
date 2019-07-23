@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,11 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.bean.MultySelectBean;
 import luyuan.tech.com.chaoke.utils.AppManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.widget.ChooesLayout;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
 import luyuan.tech.com.chaoke.widget.InputLayout;
+import luyuan.tech.com.chaoke.widget.MultySelectPopup;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
 
 /**
@@ -55,6 +58,37 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void setSelectLListener(final SelectLayout selectLayout, final String[] arr) {
         setSelectLListener(selectLayout, arr, null);
+    }
+
+    protected void setMultiSelectListener(final SelectLayout selectLayout, final String[] arr,String title){
+        final MultySelectPopup multySelectPopup = new MultySelectPopup(getActivity());
+        ArrayList<MultySelectBean> list = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            String s = arr[i];
+            MultySelectBean bean = new MultySelectBean();
+            bean.id = i+1;
+            bean.title = s;
+            list.add(bean);
+        }
+        multySelectPopup.setData(list);
+        multySelectPopup.setOnMultySelectListener(new MultySelectPopup.OnMultySelectListener() {
+            @Override
+            public void onGetTitle(String s) {
+                selectLayout.setText(s);
+            }
+
+            @Override
+            public void onGetValue(String s) {
+                selectLayout.setvalue(s);
+            }
+        });
+        selectLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                multySelectPopup.setPopupGravity(Gravity.CENTER);
+                multySelectPopup.showPopupWindow();
+            }
+        });
     }
 
 
