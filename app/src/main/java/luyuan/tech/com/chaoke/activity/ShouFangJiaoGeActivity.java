@@ -259,6 +259,7 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
                 .params("gas_degree", getValue(inputRanqidushu))
                 .params("first_cost", getValue(slJiafangchegndan))
                 .params("handover_time", slQingdanjiaofuriqi.getText().toString())
+                .params("side_letter",getValue(inputChufangjiage))
                 .params("contract_id", id)
                 .params("config", handoverList.toString())
 

@@ -272,7 +272,8 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         int laiyuan = data.getContract_data().getFrom_by();
         String laiyuanString = getLaiyuan(laiyuan);
         tvFangyuanlaiyuan.setText(laiyuanString);
-        tvQianyueleixing.setText(data.getContract_data().getSigning_type());
+//        为首签 2为续签
+        tvQianyueleixing.setText(getType(data.getContract_data().getSigning_type()));
         tvHetongbianhao.setText(data.getContract_data().getIdentifier());
         tvQianyueriqi.setText(data.getContract_data().getSigning_time());
         tvJiaofangriqi.setText(data.getContract_data().getOver_time());
@@ -356,6 +357,15 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         tvShoujihaoma2.setText(data.getUrgent_people().getPhone());
 
 
+    }
+
+    private String getType(String signing_type) {
+        if (signing_type.equals("1")){
+            return "首签";
+        }else if (signing_type.equals("2")){
+            return "续签";
+        }
+        return "续签";
     }
 
     public String getLaiyuan(int i) {

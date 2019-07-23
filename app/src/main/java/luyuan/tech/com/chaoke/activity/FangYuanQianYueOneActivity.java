@@ -50,8 +50,6 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
     SelectLayout slFangwulaiyuan;
     @BindView(R.id.sl_qianyueleixing)
     SelectLayout slQianyueleixing;
-    @BindView(R.id.input_hetongbianhao)
-    InputLayout inputHetongbianhao;
     @BindView(R.id.sl_qianyueriqi)
     SelectLayout slQianyueriqi;
     @BindView(R.id.sl_jiaofangriqi)

@@ -189,49 +189,6 @@
                 app:mHint="请选择"
                 app:mTitle="证件有效截止日" />
 
-            <RelativeLayout
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:background="#ffffff"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-                <TextView
-                    android:textColor="#000000"
-                    android:layout_centerVertical="true"
-                    android:text="其他承租人"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <CheckBox
-                    android:id="@+id/cb_chengzuren"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:background="#ffffff"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-                <TextView
-                    android:textColor="#000000"
-                    android:layout_centerVertical="true"
-                    android:text="代理人"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <CheckBox
-                    android:id="@+id/cb_dailiren"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
-
-
             <Button
                 android:id="@+id/btn_next"
                 android:layout_width="200dp"

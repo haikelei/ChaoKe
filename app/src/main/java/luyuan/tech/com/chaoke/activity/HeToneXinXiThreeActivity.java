@@ -75,10 +75,6 @@ public class HeToneXinXiThreeActivity extends BaseActivity {
     SelectLayout slZhengjianyouxiaokaishi;
     @BindView(R.id.sl_zhengjianyouxiaojiezhi)
     SelectLayout slZhengjianyouxiaojiezhi;
-    @BindView(R.id.cb_chengzuren)
-    CheckBox cbChengzuren;
-    @BindView(R.id.cb_dailiren)
-    CheckBox cbDailiren;
     @BindView(R.id.rl_zhengmian)
     RelativeLayout rlZhengmian;
     @BindView(R.id.rl_fanmian)

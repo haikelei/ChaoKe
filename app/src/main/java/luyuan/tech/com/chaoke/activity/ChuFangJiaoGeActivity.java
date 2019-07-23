@@ -260,6 +260,7 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
                 .params("first_cost", getValue(slJiafangchegndan))
                 .params("handover_time", slQingdanjiaofuriqi.getText().toString())
                 .params("contract_id", id)
+                .params("side_letter",getValue(inputChufangjiage))
                 .params("config", handoverList.toString())
 
                 .params("pics", getListJson(listShuidianranqi));

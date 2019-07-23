@@ -55,15 +55,7 @@
                 android:paddingRight="15dp"
                 app:mHint="请输入"
                 app:mTitle="电力户号" />
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_chufangjiage"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="出房价格" />
+
             <luyuan.tech.com.chaoke.widget.InputLayout
                 android:id="@+id/input_zongdian"
                 android:layout_width="match_parent"
@@ -119,6 +111,15 @@
                 android:paddingRight="15dp"
                 app:mHint="请输入"
                 app:mTitle="燃气度数" />
+            <luyuan.tech.com.chaoke.widget.InputLayout
+                android:id="@+id/input_chufangjiage"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:mHint="请输入"
+                app:mTitle="补充条款" />
 
 
 

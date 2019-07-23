@@ -125,16 +125,6 @@
                 app:mHint="请选择"
                 app:mTitle="签约类型" />
 
-            <luyuan.tech.com.chaoke.widget.InputLayout
-                android:id="@+id/input_hetongbianhao"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#ffffff"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:mHint="请输入"
-                app:mTitle="合同编号" />
-
             <luyuan.tech.com.chaoke.widget.SelectLayout
                 android:id="@+id/sl_qianyueriqi"
                 android:layout_width="match_parent"
