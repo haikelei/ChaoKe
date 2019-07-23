@@ -55,6 +55,14 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
                             rentState = (finalI + 1) + "";
+                            for (int j = 0; j < containerRentState.getChildCount(); j++) {
+                                if (containerRentState.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerRentState.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
+                            }
                         }
                     }
                 });
@@ -71,6 +79,14 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
                             fitUp = (finalI + 1) + "";
+                            for (int j = 0; j < containerFitUp.getChildCount(); j++) {
+                                if (containerFitUp.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerFitUp.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
+                            }
                         }
                     }
                 });
@@ -85,8 +101,14 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                orientation = (finalI + 1) + "";
+                            orientation = (finalI + 1) + "";
+                            for (int j = 0; j < containerOrientation.getChildCount(); j++) {
+                                if (containerOrientation.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerOrientation.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
                             }
                         }
                     }
@@ -102,8 +124,14 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                source = (finalI + 1) + "";
+                            source = (finalI + 1) + "";
+                            for (int j = 0; j < containerSource.getChildCount(); j++) {
+                                if (containerSource.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerSource.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
                             }
                         }
                     }
@@ -120,6 +148,14 @@ public class ShaiXuanPopup extends BasePopupWindow {
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
                             hasPic = (finalI + 1) + "";
+                            for (int j = 0; j < containerHasPic.getChildCount(); j++) {
+                                if (containerHasPic.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerHasPic.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
+                            }
                         }
                     }
                 });

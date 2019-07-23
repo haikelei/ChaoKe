@@ -34,7 +34,9 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ImageSelectAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ImageBean;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -256,7 +258,7 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
                 .params("gas_number", getValue(inputRanqihuhao))
                 .params("gas_degree", getValue(inputRanqidushu))
                 .params("first_cost", getValue(slJiafangchegndan))
-                .params("handover_time", getValue(slQingdanjiaofuriqi))
+                .params("handover_time", slQingdanjiaofuriqi.getText().toString())
                 .params("contract_id", id)
                 .params("config", handoverList.toString())
 
@@ -271,8 +273,14 @@ public class ShouFangJiaoGeActivity extends BaseActivity {
 
             @Override
             public void onSuccess(String data) {
-                showSuccess();
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
+                if (NetParser.isOk(data)){
+                    showSuccess();
+                    startActivity(new Intent(getBaseContext(), MainActivity.class));
+                }else {
+                    StringDataResponse stringDataResponse = NetParser.parse(data,StringDataResponse.class);
+                    T.showShort(getActivity(),stringDataResponse.getMsg());
+                }
+
             }
         });
     }

@@ -191,29 +191,16 @@ public class ZuQianKeHuActivity extends BaseActivity {
         shaiXuanPopup.setPopupGravity(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR, Gravity.BOTTOM);
         shaiXuanPopup.setOnShaiXuanSelectListener(new ZuKeShaiXuanPopup.OnShaiXuanSelectListener() {
             @Override
-            public void onSource(String s) {
-                source = s;
+            public void onConfirm(String source, String status, String grade, String sex, String room) {
+                ZuQianKeHuActivity.this.source = source;
+                ZuQianKeHuActivity.this.status = status;
+                ZuQianKeHuActivity.this.grade = grade;
+                ZuQianKeHuActivity.this.sex = sex;
+                ZuQianKeHuActivity.this.room = room;
+                loadData();
+
             }
 
-            @Override
-            public void onStatus(String s) {
-                status = s;
-            }
-
-            @Override
-            public void onGrade(String s) {
-                grade = s;
-            }
-
-            @Override
-            public void onSex(String s) {
-                sex = s;
-            }
-
-            @Override
-            public void onRoom(String s) {
-                room = s;
-            }
         });
         shaiXuanPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
             @Override

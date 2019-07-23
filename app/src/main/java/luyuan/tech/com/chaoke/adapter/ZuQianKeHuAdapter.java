@@ -33,8 +33,21 @@ public class ZuQianKeHuAdapter extends BaseQuickAdapter<ZuKeListBean,BaseViewHol
         TextView tvName = helper.getView(R.id.tv_name);
         TextView tvOther = helper.getView(R.id.tv_other);
         TextView tvMoney = helper.getView(R.id.tv_money);
+        TextView tvLeixing = helper.getView(R.id.tv_leixing);
+        tvLeixing.setText(getLeixing(item.getGrade()));
         tvName.setText(item.getUsername());
-        tvMoney.setText(item.getRent_min());
+        tvMoney.setText(item.getRent_min()+"-"+item.getRent_max());
         tvOther.setText(item.getCity_name()+"  "+item.getRoom()+"-"+item.getOffice()+"-"+item.getToilet());
+    }
+
+    private String getLeixing(int grade) {
+        if (grade == 1) {
+            return "A类";
+        } else if (grade == 2) {
+            return "B类";
+        } else if (grade == 3) {
+            return "C类";
+        }
+        return "其他";
     }
 }

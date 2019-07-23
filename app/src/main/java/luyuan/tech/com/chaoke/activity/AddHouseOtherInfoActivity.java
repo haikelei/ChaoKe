@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import luyuan.tech.com.chaoke.bean.ItemBean;
 import luyuan.tech.com.chaoke.bean.PeiZhiBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
+import luyuan.tech.com.chaoke.utils.KeyBoardUtil;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.ChooesLayout;
@@ -31,6 +33,7 @@ import luyuan.tech.com.chaoke.widget.InputLayout;
 import luyuan.tech.com.chaoke.widget.PeiZhiPopup;
 import luyuan.tech.com.chaoke.widget.SelectDialogFragment;
 import luyuan.tech.com.chaoke.widget.SelectLayout;
+import razerdp.basepopup.BasePopupWindow;
 
 import static com.zhouyou.http.EasyHttp.getContext;
 
@@ -130,10 +133,12 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
         slPeizhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                KeyBoardUtil.hideKeyBoard(getActivity());
                 peiZhiPopup.showPopupWindow();
             }
         });
         peiZhiPopup = new PeiZhiPopup(getActivity());
+        peiZhiPopup.setPopupGravity(Gravity.CENTER);
         peiZhiPopup.setOnPeiZhiListener(new PeiZhiPopup.OnPeiZhiListener() {
             @Override
             public void onGetData(String s) {

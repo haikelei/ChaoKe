@@ -34,7 +34,9 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ImageSelectAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ImageBean;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -271,8 +273,13 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
 
             @Override
             public void onSuccess(String data) {
-                showSuccess();
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
+                if (NetParser.isOk(data)){
+                    showSuccess();
+                    startActivity(new Intent(getBaseContext(), MainActivity.class));
+                }else {
+                    StringDataResponse stringDataResponse = NetParser.parse(data,StringDataResponse.class);
+                    T.showShort(getActivity(),stringDataResponse.getMsg());
+                }
             }
         });
     }

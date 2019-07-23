@@ -31,6 +31,11 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
     GridLayout containerGrade;
     @BindView(R.id.container_room)
     GridLayout containerRoom;
+    private String zhuangtai;
+    private String sex;
+    private String laiyuan;
+    private String huxing;
+    private String dengji;
 
     public ZuKeShaiXuanPopup(Context context) {
         super(context);
@@ -49,8 +54,14 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onStatus((finalI + 1) + "");
+                            zhuangtai = (finalI + 1) + "";
+                            for (int j = 0; j < containerStatus.getChildCount(); j++) {
+                                if (containerStatus.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerStatus.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
                             }
                         }
                     }
@@ -67,8 +78,14 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onSex((finalI + 1) + "");
+                            sex = (finalI + 1) + "";
+                            for (int j = 0; j < containerSex.getChildCount(); j++) {
+                                if (containerSex.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerSex.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
                             }
                         }
                     }
@@ -84,8 +101,14 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onGrade((finalI + 1) + "");
+                            dengji = (finalI + 1) + "";
+                            for (int j = 0; j < containerGrade.getChildCount(); j++) {
+                                if (containerGrade.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerGrade.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
                             }
                         }
                     }
@@ -101,8 +124,14 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onSource((finalI + 1) + "");
+                            laiyuan = (finalI + 1) + "";
+                            for (int j = 0; j < containerSource.getChildCount(); j++) {
+                                if (containerSource.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerSource.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
                             }
                         }
                     }
@@ -119,8 +148,14 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if (b) {
-                            if (mOnShaiXuanSelectListener != null) {
-                                mOnShaiXuanSelectListener.onRoom((finalI + 1) + "");
+                            huxing = (finalI + 1) + "";
+                            for (int j = 0; j < containerRoom.getChildCount(); j++) {
+                                if (containerRoom.getChildAt(j) instanceof CheckBox){
+                                    CheckBox checkBox = (CheckBox) containerRoom.getChildAt(j);
+                                    if (!checkBox.equals(compoundButton)){
+                                        checkBox.setChecked(false);
+                                    }
+                                }
                             }
                         }
                     }
@@ -131,17 +166,19 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
         tvReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mOnShaiXuanSelectListener != null) {
-                    mOnShaiXuanSelectListener.onSource("");
-                    mOnShaiXuanSelectListener.onGrade("");
-                    mOnShaiXuanSelectListener.onSex("");
-                    mOnShaiXuanSelectListener.onStatus("");
-                }
+                huxing = "";
+                sex ="";
+                dengji = "";
+                laiyuan = "";
+                zhuangtai = "";
             }
         });
         tvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mOnShaiXuanSelectListener!=null){
+                    mOnShaiXuanSelectListener.onConfirm(laiyuan,zhuangtai,dengji,sex,huxing);
+                }
                 dismiss();
             }
         });
@@ -155,15 +192,7 @@ public class ZuKeShaiXuanPopup extends BasePopupWindow {
 
 
     public interface OnShaiXuanSelectListener {
-        void onSource(String s);
-
-        void onStatus(String s);
-
-        void onGrade(String s);
-
-        void onSex(String s);
-
-        void onRoom(String s);
+        void  onConfirm(String source,String status,String grade,String sex,String room);
     }
 
     private OnShaiXuanSelectListener mOnShaiXuanSelectListener;

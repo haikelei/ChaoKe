@@ -211,6 +211,7 @@
             android:background="#ffffff"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
+            app:must="false"
             app:mTitle="配置" />
         <luyuan.tech.com.chaoke.widget.ChooesLayout
             android:id="@+id/cl_dianti"

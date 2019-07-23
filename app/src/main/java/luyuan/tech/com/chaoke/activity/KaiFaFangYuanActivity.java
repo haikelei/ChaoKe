@@ -192,6 +192,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         });
 //        筛选
         shaiXuanPopup = new ShaiXuanPopup(getActivity());
+        shaiXuanPopup.setOutSideDismiss(false);
         shaiXuanPopup.setPopupGravity(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR, Gravity.BOTTOM);
         shaiXuanPopup.setOnShaiXuanSelectListener(new ShaiXuanPopup.OnShaiXuanSelectListener() {
             @Override
@@ -202,6 +203,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
                 KaiFaFangYuanActivity.this.hasPic = hasPic;
                 KaiFaFangYuanActivity.this.floorMin = floormin;
                 KaiFaFangYuanActivity.this.floorMax = floorMax;
+                KaiFaFangYuanActivity.this.orientation = orientation;
             }
         });
         shaiXuanPopup.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
@@ -245,7 +247,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         if (!TextUtils.isEmpty(floorMin)){
             request.params("floor_min",floorMin);
         }
-        if (!TextUtils.isEmpty(hasPic)){
+        if (!TextUtils.isEmpty(floorMax)){
             request.params("floor_max",floorMax);
         }
         request.execute(new SimpleCallBack<List<HouseBean>>() {

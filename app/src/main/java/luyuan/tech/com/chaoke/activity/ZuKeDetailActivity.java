@@ -148,7 +148,7 @@ public class ZuKeDetailActivity extends BaseActivity {
         tvName.setText(data.getUsername());
         tvLeixing.setText(getLeixing(data.getGrade()));
         SettingManager.getInstance().setZuKeDetailBean(data);
-        tvYouxiao.setText(data.getStatus() == 1 ? "有效" : "无效");
+        tvYouxiao.setText(getStatus(data.getStatus()));
         tvCreatetime.setText(data.createtime);
         tvQita.setText("其他需求:"+data.getDesc());
         tvBianhao.setText("编号:" + data.getTenant_num() + "");
@@ -163,6 +163,19 @@ public class ZuKeDetailActivity extends BaseActivity {
             list.addAll(data.getFollow_data());
             adapter.notifyDataSetChanged();
         }
+    }
+
+    private String getStatus(int status) {
+        if (status==0){
+            return "有效";
+        }else if (status==1){
+            return "暂缓";
+        }else if (status==2){
+            return "他租";
+        }else if (status==3){
+            return "失效";
+        }
+        return "有效";
     }
 
     private String getLeixing(int grade) {

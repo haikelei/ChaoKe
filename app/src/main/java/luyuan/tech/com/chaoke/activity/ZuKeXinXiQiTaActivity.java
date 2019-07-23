@@ -115,7 +115,7 @@ public class ZuKeXinXiQiTaActivity extends BaseActivity {
                 shi = options1+1;
                 wei = options3+1;
                 ting= options2+1;
-                String tx = shiList.get(options1) + tingList.get(options1) + weiList.get(options1);
+                String tx = shiList.get(options1) + tingList.get(options2) + weiList.get(options3);
                 slHuxing.setText(tx);
 //                Toast.makeText(getActivity(), tx, Toast.LENGTH_SHORT).show();
 

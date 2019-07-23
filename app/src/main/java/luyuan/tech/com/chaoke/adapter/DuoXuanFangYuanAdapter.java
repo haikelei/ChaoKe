@@ -1,6 +1,8 @@
 package luyuan.tech.com.chaoke.adapter;
 
 import android.support.annotation.Nullable;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -32,12 +34,12 @@ public class DuoXuanFangYuanAdapter extends BaseQuickAdapter<HouseBean,BaseViewH
         TextView tvName = helper.getView(R.id.tv_name);
         TextView tvOther = helper.getView(R.id.tv_other);
         TextView tvMoney = helper.getView(R.id.tv_money);
-        RadioButton rb = helper.getView(R.id.rb);
+        ImageView rb = helper.getView(R.id.rb);
         ImageView iv = helper.getView(R.id.iv);
         tvName.setText(item.getRoom_name());
         tvOther.setText(item.getArea()+"m²");
         tvMoney.setText(item.getLong_price());
-        rb.setChecked(item.checked);
+        rb.setImageResource(item.checked?R.mipmap.selected:R.mipmap.not_select);
         RequestOptions options = new RequestOptions().centerCrop().error(R.mipmap.default_image);
         Glide.with(helper.itemView.getContext()).load(item.getCover()).apply(options).into(iv);
     }
