@@ -39,6 +39,8 @@ import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ImageBean;
 import luyuan.tech.com.chaoke.bean.NameBean;
 import luyuan.tech.com.chaoke.bean.QiNiuBean;
+import luyuan.tech.com.chaoke.bean.QianYueBeanSeven;
+import luyuan.tech.com.chaoke.bean.QianYueBeanTwo;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
@@ -92,7 +94,8 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
     SelectLayout slChanquanzhengleixing;
     @BindView(R.id.input_chanquanzhengbianhao)
     InputLayout inputChanquanzhengbianhao;
-    private String id;
+    private String downloadTotalId;
+    private String uploadTotalId;
 
     private ImageSelectAdapter adapterShenfenzhengmian;
     private ImageSelectAdapter adapterShenfenfanmian;
@@ -125,7 +128,8 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
         setContentView(R.layout.activity_fangyuanqianyue_seven);
         ButterKnife.bind(this);
         if (getIntent() != null) {
-            id = getIntent().getStringExtra("id");
+            downloadTotalId = getIntent().getStringExtra("down_id");
+            uploadTotalId = getIntent().getStringExtra("up_id");
         }
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +157,9 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
         setDatePickerListener(slZhengjiankaishiri);
         initView();
         initListener();
+        if (!TextUtils.isEmpty(downloadTotalId)){
+            loadOldData(downloadTotalId);
+        }
     }
 
     private void initListener() {
@@ -330,13 +337,60 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
 
     private String oldId;
 
+    private void loadOldData(String totalId) {
+        HttpManager.post(HttpManager.QIANYUESHUJU)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("total_id",totalId)
+                .params("step", "7")
+                .execute(new SimpleCallBack<QianYueBeanSeven>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(QianYueBeanSeven data) {
+                        slChanquanrenleixing.setSelect(data.getPeople_type());
+                        slZhengjianleixing.setSelect(data.getCard_type());
+                        inputXingming.setText(data.getUsername());
+                        inputZhengjianhaoma.setText(data.getCard_num());
+                        slZhengjiankaishiri.setText(data.getCard_begin());
+                        slZhengjianjiezhiri.setText(data.getCard_end());
+                        slChanquanzhengleixing.setSelect(data.getProperty_type());
+                        inputChanquanzhengbianhao.setText(data.getProperty_num());
+                        listShenfenzhengmian.add(0,new ImageBean(data.getCard_zpic()));
+                        listShenfenfanmian.add(0,new ImageBean(data.getCard_fpic()));
+                        listDaizhenghaoye.add(0,new ImageBean(data.getCard_num()));
+                        listZhuye.add(0,new ImageBean(data.getHome_pic()));
+                        listFujiye.add(0,new ImageBean(data.getAttach_pic()));
+                        listYuanhuxingtu.add(0,new ImageBean(data.getOld_id()));
+                        listFenhutu.add(0,new ImageBean(data.getHousehold_pic()));
+                        for (int i = 0; i < data.getOther_pic().size(); i++) {
+                            listQita.add(0,new ImageBean(data.getOther_pic().get(i)));
+                        }
+                        adapterDaizhenghaoye.notifyDataSetChanged();
+                        adapterFenhutu.notifyDataSetChanged();
+                        adapterFujiye.notifyDataSetChanged();
+                        adapterQita.notifyDataSetChanged();
+                        adapterShenfenfanmian.notifyDataSetChanged();
+                        adapterShenfenzhengmian.notifyDataSetChanged();
+                        adapterZhuye.notifyDataSetChanged();
+                        adapterYuanhuxingtu.notifyDataSetChanged();
+
+
+                    }
+                });
+
+    }
+
     private void loadData() {
         if (!checkEmptyInfo()) {
             return;
         }
         PostRequest request = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("total_id", id)
+                .params("total_id", uploadTotalId)
                 .params("step", "7")
                 .params("people_type", getValue(slChanquanrenleixing))
                 .params("card_type", getValue(slZhengjianleixing))
@@ -369,7 +423,8 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
             public void onSuccess(TotalIdBean data) {
                 oldId = data.getOld_id();
                 Intent intent = new Intent(getBaseContext(), FangYuanQianYueEightActivity.class);
-                intent.putExtra("id", id);
+                intent.putExtra("down_id",downloadTotalId);
+                intent.putExtra("up_id",uploadTotalId);
                 startActivity(intent);
             }
         });

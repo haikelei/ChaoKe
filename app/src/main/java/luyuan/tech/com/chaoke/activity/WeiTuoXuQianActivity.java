@@ -27,7 +27,7 @@ import luyuan.tech.com.chaoke.widget.InputLayout;
  */
 
 
-public class XuQianActivity extends BaseActivity {
+public class WeiTuoXuQianActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.input_kehuxingming)

@@ -13,6 +13,13 @@ public class ImageBean implements MultiItemEntity {
     private boolean isAddItem;
     private String path;
 
+    public ImageBean() {
+    }
+
+    public ImageBean(String path) {
+        this.path = path;
+    }
+
     public String getPath() {
         return path;
     }

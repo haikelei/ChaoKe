@@ -277,6 +277,16 @@ public class HttpManager {
      */
     public static final String PEIZHI = "/api/agent/house_config";
 
+    /**
+     * 委托续签
+     */
+    public static final String ChuZuXUQIAN = "/api/agent/contract_again";
+
+    /**
+     * 获取签约数据
+     */
+    public static final String QIANYUESHUJU = "/api/agent/getSigningData";
+
 
 
 

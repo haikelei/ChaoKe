@@ -32,7 +32,7 @@ import luyuan.tech.com.chaoke.utils.UserInfoUtils;
  */
 
 
-public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
+public class BoHuiWeiTuoHeTongXiangQingActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.tv_wuyedizhi)
@@ -183,17 +183,16 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     TextView tvDianhua;
     @BindView(R.id.iv_qita)
     ImageView ivQita;
-    @BindView(R.id.rl_hetongzhengben)
-    RelativeLayout rlHetongzhengben;
-    @BindView(R.id.rl_xuqian)
-    RelativeLayout rlXuqian;
+    @BindView(R.id.rl_chongxinbianji)
+    RelativeLayout rlChongxinbianji;
     private String id;
+    private String totalId;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weituotongxiangqing);
+        setContentView(R.layout.activity_bohuiweituotongxiangqing);
         ButterKnife.bind(this);
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
@@ -204,21 +203,12 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-        rlHetongzhengben.setOnClickListener(new View.OnClickListener() {
+        rlChongxinbianji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(url)){
-                    T.showShort(getActivity(),"url不存在");
-                }else {
-                    Html5Activity.start(getActivity(),url);
-                }
-            }
-        });
-        rlXuqian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), WeiTuoXuQianActivity.class);
+                Intent intent = new Intent(getActivity(),FangYuanQianYueOneActivity.class);
                 intent.putExtra("id",id);
+                intent.putExtra("total_id",totalId);
                 startActivity(intent);
             }
         });
@@ -227,7 +217,8 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     }
 
     private String url;
-    public void loadHeTongUrl(){
+
+    public void loadHeTongUrl() {
         HttpManager.post(HttpManager.WEITUOHETONGZHENGBEN)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("id", id)
@@ -240,8 +231,8 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(String data) {
-                        if (NetParser.isOk(data)){
-                            StringDataResponse response = NetParser.parse(data,StringDataResponse.class);
+                        if (NetParser.isOk(data)) {
+                            StringDataResponse response = NetParser.parse(data, StringDataResponse.class);
                             url = response.getData();
                         }
                     }
@@ -262,6 +253,7 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(WeiTuoHeTongDetailBean data) {
+                        totalId = data.getContract_data().getId()+"";
                         fillData(data);
                     }
                 });
@@ -362,9 +354,9 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     }
 
     private String getType(String signing_type) {
-        if (signing_type.equals("1")){
+        if (signing_type.equals("1")) {
             return "首签";
-        }else if (signing_type.equals("2")){
+        } else if (signing_type.equals("2")) {
             return "续签";
         }
         return "续签";

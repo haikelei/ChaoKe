@@ -24,6 +24,9 @@ import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.CelueParam;
+import luyuan.tech.com.chaoke.bean.QianYueBeanFive;
+import luyuan.tech.com.chaoke.bean.QianYueBeanTwo;
+import luyuan.tech.com.chaoke.bean.ShouFangShenPiBean;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
@@ -47,15 +50,16 @@ public class FangYuanQianYueFiveActivity extends BaseActivity {
     @BindView(R.id.rl_add)
     RelativeLayout rlAdd;
     private List<CelueParam> list;
-    private String id;
-
+    private String downloadTotalId;
+    private String uploadTotalId;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fangyuanqianyue_five);
         ButterKnife.bind(this);
-        if (getIntent()!=null){
-            id = getIntent().getStringExtra("id");
+        if (getIntent() != null) {
+            downloadTotalId = getIntent().getStringExtra("down_id");
+            uploadTotalId = getIntent().getStringExtra("up_id");
         }
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +76,48 @@ public class FangYuanQianYueFiveActivity extends BaseActivity {
             }
         });
 
+        if (!TextUtils.isEmpty(downloadTotalId)){
+            loadOldData(downloadTotalId);
+        }
+    }
 
+    private void loadOldData(String totalId) {
+        HttpManager.post(HttpManager.QIANYUESHUJU)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("total_id",totalId)
+                .params("step", "5")
+                .execute(new SimpleCallBack<QianYueBeanFive>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(QianYueBeanFive data) {
+                        for (int i = 0; i < data.getData().size(); i++) {
+                            container.removeAllViews();
+                            QianYueBeanFive.DataBean dataBean = data.getData().get(i);
+                            CelueParam param = dataBean.toCeLueParam();
+                            list.add(param);
+                            addChild(param);
+                        }
+                    }
+                });
+
+    }
+
+    private void addChild(CelueParam celueParam) {
+        int position = container.getChildCount() - 1;
+        ZuJinCeLueLayout layout = new ZuJinCeLueLayout(getBaseContext(), getSupportFragmentManager());
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout.setTitle("第"+(position+1)+"年租金策略");
+        container.addView(layout, position, layoutParams);
+        layout.slWeituokaishi.setText(celueParam.getWeituo_kaishi());
+        layout.slWeituojieshu.setText(celueParam.getWeituo_jieshu());
+        layout.slMianzukaishiri.setText(celueParam.getMianzu_kaishi());
+        layout.slMianzujieshuri.setText(celueParam.getMianzu_jieshu());
+        layout.inputMeiyuezujin.setText(celueParam.getMoney());
     }
 
     private String oldId;
@@ -82,7 +127,7 @@ public class FangYuanQianYueFiveActivity extends BaseActivity {
         }
         PostRequest request = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("total_id", id)
+                .params("total_id", uploadTotalId)
                 .params("data", getData())
                 .params("step","5");
         if (!TextUtils.isEmpty(oldId)){
@@ -100,7 +145,8 @@ public class FangYuanQianYueFiveActivity extends BaseActivity {
             public void onSuccess(TotalIdBean data) {
                 oldId = data.getOld_id();
                 Intent intent =new Intent(getBaseContext(), FangYuanQianYueSixActivity.class);
-                intent.putExtra("id",id);
+                intent.putExtra("down_id",downloadTotalId);
+                intent.putExtra("up_id",uploadTotalId);
                 startActivity(intent);
             }
         });

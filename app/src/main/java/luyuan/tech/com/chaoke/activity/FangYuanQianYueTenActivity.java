@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,8 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HeTongXiangQingBean;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
+import luyuan.tech.com.chaoke.bean.QianYueBeanTen;
+import luyuan.tech.com.chaoke.bean.QianYueBeanTwo;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -37,15 +40,17 @@ public class FangYuanQianYueTenActivity extends BaseActivity {
     InputLayout inputXingming;
     @BindView(R.id.input_shouji)
     InputLayout inputShouji;
-    private String id;
+    private String downloadTotalId;
+    private String uploadTotalId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fangyuanqianyue_ten);
         ButterKnife.bind(this);
-        if (getIntent()!=null){
-            id = getIntent().getStringExtra("id");
+        if (getIntent() != null) {
+            downloadTotalId = getIntent().getStringExtra("down_id");
+            uploadTotalId = getIntent().getStringExtra("up_id");
         }
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +59,31 @@ public class FangYuanQianYueTenActivity extends BaseActivity {
 
             }
         });
+
+        if (!TextUtils.isEmpty(downloadTotalId)){
+            loadOldData(downloadTotalId);
+        }
+    }
+
+    private void loadOldData(String totalId) {
+        HttpManager.post(HttpManager.QIANYUESHUJU)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("total_id",totalId)
+                .params("step", "13")
+                .execute(new SimpleCallBack<QianYueBeanTen>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(QianYueBeanTen data) {
+                        inputXingming.setText(data.getUsername());
+                        inputShouji.setText(data.getPhone());
+                    }
+                });
+
     }
 
     private void loadData() {
@@ -62,7 +92,7 @@ public class FangYuanQianYueTenActivity extends BaseActivity {
         }
         HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("total_id",id)
+                .params("total_id",uploadTotalId)
                 .params("step","13" )
                 .params("username",getValue(inputXingming) )
                 .params("phone", getValue(inputShouji))

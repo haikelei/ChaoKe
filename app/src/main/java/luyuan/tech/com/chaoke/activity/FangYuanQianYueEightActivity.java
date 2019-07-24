@@ -37,6 +37,8 @@ import luyuan.tech.com.chaoke.adapter.ImageSelectAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.ImageBean;
 import luyuan.tech.com.chaoke.bean.NameBean;
+import luyuan.tech.com.chaoke.bean.QianYueBeanEight;
+import luyuan.tech.com.chaoke.bean.QianYueBeanTwo;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
@@ -75,7 +77,8 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
     RecyclerView rvShenfenfanmian;
     @BindView(R.id.input_chanquanzhengbianhao)
     InputLayout inputChanquanzhengbianhao;
-    private String id;
+    private String downloadTotalId;
+    private String uploadTotalId;
 
     private ImageSelectAdapter adapterShenfenzhengmian;
     private ImageSelectAdapter adapterShenfenfanmian;
@@ -90,7 +93,8 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
         setContentView(R.layout.activity_fangyuanqianyue_eight);
         ButterKnife.bind(this);
         if (getIntent() != null) {
-            id = getIntent().getStringExtra("id");
+            downloadTotalId = getIntent().getStringExtra("down_id");
+            uploadTotalId = getIntent().getStringExtra("up_id");
         }
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +114,9 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
         setDatePickerListener(slZhengjiankaishiri);
         initView();
         initListener();
+        if (!TextUtils.isEmpty(downloadTotalId)){
+            loadOldData(downloadTotalId);
+        }
     }
 
     private void initListener() {
@@ -173,6 +180,36 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
 
     }
 
+    private void loadOldData(String totalId) {
+        HttpManager.post(HttpManager.QIANYUESHUJU)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("total_id",totalId)
+                .params("step", "8")
+                .execute(new SimpleCallBack<QianYueBeanEight>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(QianYueBeanEight data) {
+                        slChanquanrenleixing.setSelect(data.getPeople_type());
+                        slZhengjianleixing.setSelect(data.getCard_type());
+                        inputXingming.setText(data.getUsername());
+                        inputZhengjianhaoma.setText(data.getCard_num());
+                        slZhengjiankaishiri.setText(data.getCard_begin());
+                        slZhengjianjiezhiri.setText(data.getCard_end());
+                        listShenfenzhengmian.add(new ImageBean(data.getCard_zpic()));
+                        listShenfenfanmian.add(new ImageBean(data.getCard_fpic()));
+                        adapterShenfenfanmian.notifyDataSetChanged();
+                        adapterShenfenzhengmian.notifyDataSetChanged();
+                        inputChanquanzhengbianhao.setText(data.getProperty_num());
+                    }
+                });
+
+    }
+
 
     private String oldId;
 
@@ -182,7 +219,7 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
         }
         PostRequest request = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("total_id", id)
+                .params("total_id", uploadTotalId)
                 .params("step", "8")
                 .params("people_type", getValue(slChanquanrenleixing))
                 .params("card_type", getValue(slZhengjianleixing))
@@ -208,7 +245,8 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
             public void onSuccess(TotalIdBean data) {
                 oldId = data.getOld_id();
                 Intent intent = new Intent(getBaseContext(), FangYuanQianYueEightChuZuRenActivity.class);
-                intent.putExtra("id",id);
+                intent.putExtra("down_id",downloadTotalId);
+                intent.putExtra("up_id",uploadTotalId);
                 startActivity(intent);
             }
         });

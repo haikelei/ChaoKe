@@ -20,7 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.bean.ItemBean;
+import luyuan.tech.com.chaoke.bean.QianYueBeanOne;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.bean.XiaoQuBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
@@ -68,6 +70,7 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
     SelectLayout slUnityName;
     private String id;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,7 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
         }
+
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,7 +114,12 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
                 startActivityForResult(new Intent(getActivity(),XuanZeXiaoQuActivity.class),134);
             }
         });
-
+        if (getIntent()!=null){
+            downloadTotalId = getIntent().getStringExtra("total_id");
+            if (!TextUtils.isEmpty(downloadTotalId)){
+                loadOldData(downloadTotalId);
+            }
+        }
     }
 
     private void createDialog(String[] arr, final SelectLayout sl) {
@@ -131,8 +140,43 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         });
     }
 
-    private String totalId;
 
+    private void loadOldData(String totalId) {
+        HttpManager.post(HttpManager.QIANYUESHUJU)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("total_id",totalId)
+                .params("step", "1")
+                .execute(new SimpleCallBack<QianYueBeanOne>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(QianYueBeanOne data) {
+                        id = data.getId()+"";
+                        inputLou.setText(data.getFloor_count());
+                        inputDanyuan.setText(data.getUnit());
+                        inputHao.setText(data.getNumber());
+                        inputFangyuanbianhao.setText(data.getRent_num());
+                        slQianyueleixing.setSelect(data.getSigning_type());
+                        slQianyueriqi.setText(data.getSigning_time());
+                        slJiaofangriqi.setText(data.getOver_time());
+                        slJiafangchizheng.setSelect(data.getCertificate());
+                        slFangwuyongtu.setSelect(data.getUsed_by());
+                        slFangwulaiyuan.setSelect(data.getFrom_by());
+                        slUnityName.setText(data.getReside_name());
+                        bean = new XiaoQuBean();
+                        bean.setReside_name(data.getReside_name());
+                        bean.setId(Integer.valueOf(data.getReside_id()));
+                    }
+                });
+
+    }
+
+    private String downloadTotalId;
+    private String uploadTotalId;
     private void loadData() {
         if (!checkEmptyInfo()){
             return;
@@ -154,8 +198,8 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         if (bean!=null){
             postRequest.params("reside_id", bean.getId()+"");
         }
-        if (!TextUtils.isEmpty(totalId)) {
-            postRequest.params("total_id", totalId);
+        if (!TextUtils.isEmpty(downloadTotalId)) {
+            postRequest.params("total_id", downloadTotalId);
         }
         postRequest.execute(new SimpleCallBack<TotalIdBean>() {
 
@@ -166,9 +210,10 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
 
             @Override
             public void onSuccess(TotalIdBean data) {
-                totalId = data.getTotal_id();
+                uploadTotalId = data.getTotal_id();
                 Intent intent = new Intent(getBaseContext(), FangYuanQianYueTwoActivity.class);
-                intent.putExtra("id",totalId);
+                intent.putExtra("down_id",downloadTotalId);
+                intent.putExtra("up_id",uploadTotalId);
                 startActivity(intent);
             }
         });

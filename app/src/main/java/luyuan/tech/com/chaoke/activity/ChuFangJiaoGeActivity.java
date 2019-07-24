@@ -221,7 +221,7 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
             return;
         }
         StringBuilder handoverList = new StringBuilder();
-        handoverList.append(numDianshi.getText() + ",")
+        handoverList
                 .append(numDianshi.getText() + ",")
                 .append(numKongtiao.getText() + ",")
                 .append(numBingxiang.getText() + ",")
@@ -258,7 +258,7 @@ public class ChuFangJiaoGeActivity extends BaseActivity {
                 .params("water_meter", getValue(inputShuibiao))
                 .params("gas_number", getValue(inputRanqihuhao))
                 .params("gas_degree", getValue(inputRanqidushu))
-                .params("first_cost", getValue(slJiafangchegndan))
+                .params("first_cost", slJiafangchegndan.getValue())
                 .params("handover_time", slQingdanjiaofuriqi.getText().toString())
                 .params("contract_id", id)
                 .params("side_letter",getValue(inputChufangjiage))

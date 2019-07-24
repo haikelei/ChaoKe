@@ -44,7 +44,13 @@ public class ImageSelectAdapter extends BaseMultiItemQuickAdapter<ImageBean,Base
             ImageView iv = helper.getView(R.id.iv);
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.error(R.mipmap.default_image);
-            Glide.with(helper.itemView.getContext()).load(Constant.IMAGE_PRE+item.getPath()).apply(requestOptions).into(iv);
+            String path;
+            if (item.getPath().startsWith("http")){
+                path = item.getPath();
+            }else {
+                path = Constant.IMAGE_PRE+item.getPath();
+            }
+            Glide.with(helper.itemView.getContext()).load(path).apply(requestOptions).into(iv);
         }
     }
 }

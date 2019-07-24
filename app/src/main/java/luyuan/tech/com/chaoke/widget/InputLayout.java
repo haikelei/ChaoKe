@@ -62,6 +62,10 @@ public class InputLayout extends RelativeLayout {
         }
     }
 
+    public void setText(String s){
+        et.setText(s);
+    }
+
     public String getText(){
         return et.getText().toString().trim();
     }

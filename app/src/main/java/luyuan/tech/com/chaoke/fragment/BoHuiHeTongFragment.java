@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.activity.BoHuiWeiTuoHeTongXiangQingActivity;
 import luyuan.tech.com.chaoke.activity.WeiTuoHeTongXiangQingActivity;
 import luyuan.tech.com.chaoke.adapter.BoHuiHeTongAdapter;
 import luyuan.tech.com.chaoke.adapter.WeiTuoHeTongAdapter;
@@ -62,7 +63,7 @@ public class BoHuiHeTongFragment extends Fragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 String id = list.get(position).getId()+"";
-                Intent intent = new Intent(getActivity(), WeiTuoHeTongXiangQingActivity.class);
+                Intent intent = new Intent(getActivity(), BoHuiWeiTuoHeTongXiangQingActivity.class);
                 intent.putExtra("id",id);
                 startActivity(intent);
             }

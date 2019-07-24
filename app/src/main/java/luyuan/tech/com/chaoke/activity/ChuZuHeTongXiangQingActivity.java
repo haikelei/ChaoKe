@@ -135,7 +135,7 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
         rlXuqian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), XuQianActivity.class);
+                Intent intent = new Intent(getBaseContext(), ChuZuXuQianActivity.class);
                 intent.putExtra("id",id);
                 startActivity(intent);
             }
@@ -250,15 +250,23 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
 //        押金
         tvTimeYajin.setText(data.getContract_bill().getDeposit().get(0).getBillstart_time());
         tvMoneyYajin.setText(data.getContract_bill().getDeposit().get(0).getPrice());
-        tvZhuangtaiYajin.setText(data.getContract_bill().getDeposit().get(0).getPay_state());
+        tvZhuangtaiYajin.setText(getPayState(data.getContract_bill().getDeposit().get(0).getPay_state()));
         //首期租金
         tvTimeShouqiyajin.setText(data.getContract_bill().getFirst_rent().get(0).getBillstart_time());
         tvJineShouqiyajin.setText(data.getContract_bill().getFirst_rent().get(0).getPrice());
-        tvZhuangtaiShouqiyajin.setText(data.getContract_bill().getFirst_rent().get(0).getPay_state());
+        tvZhuangtaiShouqiyajin.setText(getPayState(data.getContract_bill().getFirst_rent().get(0).getPay_state()));
         //租金
 //        tvTimeZujin.setText(data.getContract_bill().getRent_list().get(0));
 //        tvMoneyZujin.setText();
 //        tvZhuangtaiZujin.setText();
+    }
+
+    public String getPayState(int i){
+        if (i==1){
+            return "未支付";
+        }else {
+            return "已支付";
+        }
     }
 
 

@@ -16,6 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.QianYueBeanNien;
+import luyuan.tech.com.chaoke.bean.QianYueBeanTwo;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
@@ -51,15 +53,17 @@ public class FangYuanQianYueNineActivity extends BaseActivity {
     InputLayout inputShoukuanjigou;
     @BindView(R.id.input_shoukuanzhihang)
     InputLayout inputShoukuanzhihang;
-    private String id;
+    private String downloadTotalId;
+    private String uploadTotalId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fangyuanqianyue_nine);
         ButterKnife.bind(this);
-        if (getIntent()!=null){
-            id = getIntent().getStringExtra("id");
+        if (getIntent() != null) {
+            downloadTotalId = getIntent().getStringExtra("down_id");
+            uploadTotalId = getIntent().getStringExtra("up_id");
         }
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +78,34 @@ public class FangYuanQianYueNineActivity extends BaseActivity {
         setSelectLListener(slZhengjianleixing,arr1,"证件类型");
         String[] arr2 = {"银行卡"};
         setSelectLListener(slZhanghaoleixing,arr2,"账号类型");
+        if (!TextUtils.isEmpty(downloadTotalId)){
+            loadOldData(downloadTotalId);
+        }
+    }
+
+    private void loadOldData(String totalId) {
+        HttpManager.post(HttpManager.QIANYUESHUJU)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("total_id",totalId)
+                .params("step", "12")
+                .execute(new SimpleCallBack<QianYueBeanNien>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(QianYueBeanNien data) {
+                        slShoukuanrenleixing.setSelect(data.getPeople_type());
+                        inputXinging.setText(data.getUsername());
+                        inputZhengjianhaoma.setText(data.getCard_num());
+                        inputShoukuanzhenghao.setText(data.getNumber_num());
+                        inputShoukuanjigou.setText(data.getMechanism());
+                        inputShoukuanzhihang.setText(data.getBranch());
+                    }
+                });
+
     }
 
     private String oldId;
@@ -83,7 +115,7 @@ public class FangYuanQianYueNineActivity extends BaseActivity {
         }
         PostRequest request = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
-                .params("total_id",id)
+                .params("total_id",uploadTotalId)
                 .params("step","12")
                 .params("people_type",getValue(slShoukuanrenleixing))
                 .params("card_type", "2")
@@ -108,7 +140,8 @@ public class FangYuanQianYueNineActivity extends BaseActivity {
             public void onSuccess(TotalIdBean data) {
                 oldId = data.getOld_id();
                 Intent intent = new Intent(getBaseContext(), FangYuanQianYueTenActivity.class);
-                intent.putExtra("id",id);
+                intent.putExtra("down_id",downloadTotalId);
+                intent.putExtra("up_id",uploadTotalId);
                 startActivity(intent);
             }
         });

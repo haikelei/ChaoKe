@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
@@ -89,5 +91,28 @@ public class SelectLayout extends RelativeLayout {
     }
     public String getValue() {
         return value;
+    }
+
+    private String[] arr;
+    public void setArray(String[] arr) {
+        this.arr = arr;
+    }
+
+    public void setSelect(String s){
+        int index = Integer.valueOf(s)-1;
+        setText(arr[index]);
+        setTag(index);
+    }
+
+    public void setMlttySelect(List<String> first_cost) {
+        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder1 = new StringBuilder();
+        for (int i = 0; i < first_cost.size(); i++) {
+            int index = Integer.valueOf(first_cost.get(i))-1;
+            stringBuilder.append(arr[index]+",");
+            stringBuilder1.append(index+",");
+        }
+        setText(stringBuilder.toString());
+        setvalue(stringBuilder1.toString());
     }
 }

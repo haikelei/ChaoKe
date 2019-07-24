@@ -156,10 +156,11 @@
         <activity android:name=".activity.ChangePasswordActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.GeRenYeJiMingXiActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.Html5Activity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BoHuiWeiTuoHeTongXiangQingActivity" android:screenOrientation="portrait"/>
 
 
 
-        <activity android:name=".activity.XuQianActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.WeiTuoXuQianActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -61,6 +61,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void setMultiSelectListener(final SelectLayout selectLayout, final String[] arr,String title){
+        selectLayout.setArray(arr);
         final MultySelectPopup multySelectPopup = new MultySelectPopup(getActivity());
         ArrayList<MultySelectBean> list = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
@@ -93,6 +94,7 @@ public class BaseActivity extends AppCompatActivity {
 
 
     protected void setSelectLListener(final SelectLayout selectLayout, final String[] arr, final String title) {
+        selectLayout.setArray(arr);
         selectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

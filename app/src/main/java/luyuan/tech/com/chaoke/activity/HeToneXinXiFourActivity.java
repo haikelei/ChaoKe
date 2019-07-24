@@ -98,7 +98,7 @@ public class HeToneXinXiFourActivity extends BaseActivity {
                 .params("urgent_man",inputJinjixingming.getText().trim())
                 .params("urgent_phone",inputJinjishouji.getText())
                 .params("side_letter",etBuchogntiaokuan.getText().toString().trim())
-                .params("first_party_pay",slJiafangchegndan.getText())
+                .params("first_party_pay",slJiafangchegndan.getValue())
                 .execute(new SimpleCallBack<HeTongIdBean>() {
 
                     @Override
