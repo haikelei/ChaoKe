@@ -106,6 +106,7 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(QianYueBeanFour data) {
+                        oldId = data.getOld_id();
                         inputMeiyuefangzu.setText(data.getRent_price());
                         slShoucifukuanri.setText(data.getFirst_pay());
                         slShifoudaichewei.setSelect(data.getIs_parking());

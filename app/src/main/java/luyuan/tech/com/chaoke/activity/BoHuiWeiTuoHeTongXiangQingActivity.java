@@ -325,12 +325,15 @@ public class BoHuiWeiTuoHeTongXiangQingActivity extends BaseActivity {
         Glide.with(getActivity()).load(data.getProperty2().getCard_fpic()).apply(requestOptions).into(ivZhengjian3);
         tvGongyouchanquanbianhao.setText(data.getProperty2().getProperty_num() + "");
         //出租人信息
-        tvZhengjianleixing2.setText(data.getOut_people().getCard_type() + "");
-        tvXingming2.setText(data.getOut_people().getUsername());
-        tvZhengjianhaoma2.setText(data.getOut_people().getCard_num() + "");
-        tvDianhua.setText(data.getOut_people().getPhone());
-        tvYouxiangdizhi.setText(data.getOut_people().getEmail_address());
-        tvTongxundizhi.setText(data.getOut_people().getComm_address());
+        if (data.getOut_people()!=null){
+            tvZhengjianleixing2.setText(data.getOut_people().getCard_type() + "");
+            tvXingming2.setText(data.getOut_people().getUsername());
+            tvZhengjianhaoma2.setText(data.getOut_people().getCard_num() + "");
+            tvDianhua.setText(data.getOut_people().getPhone());
+            tvYouxiangdizhi.setText(data.getOut_people().getEmail_address());
+            tvTongxundizhi.setText(data.getOut_people().getComm_address());
+        }
+
         //共租人信息
         tvZhengjianleixing3.setText(data.getCommon_people().getCard_type() + "");
         tvXingming3.setText(data.getCommon_people().getUsername());

@@ -166,13 +166,13 @@ public class ZuKeDetailActivity extends BaseActivity {
     }
 
     private String getStatus(int status) {
-        if (status==0){
+        if (status==1){
             return "有效";
-        }else if (status==1){
-            return "暂缓";
         }else if (status==2){
-            return "他租";
+            return "暂缓";
         }else if (status==3){
+            return "他租";
+        }else if (status==4){
             return "失效";
         }
         return "有效";

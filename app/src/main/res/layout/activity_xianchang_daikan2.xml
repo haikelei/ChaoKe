@@ -93,6 +93,44 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="3dp"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/tv_title"
+            android:src="@mipmap/dingwei"
+            android:layout_centerVertical="true"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/arrow_gray_right"
+            android:id="@+id/tv_content"
+            android:drawablePadding="3dp"
+            android:textSize="13sp"
+            android:layout_toRightOf="@id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:drawableRight="@mipmap/arrow_gray_right"
+            android:id="@+id/tv"
+            android:textColor="#000000"
+            android:drawablePadding="3dp"
+            android:textSize="15sp"
+            android:gravity="right|center"
+            android:layout_toRightOf="@id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
     <luyuan.tech.com.chaoke.widget.SelectLayout
         android:layout_marginTop="20dp"
         android:id="@+id/sl_xuanzejieguo"

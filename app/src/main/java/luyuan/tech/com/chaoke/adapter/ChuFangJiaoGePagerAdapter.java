@@ -24,12 +24,14 @@ public class ChuFangJiaoGePagerAdapter extends FragmentStatePagerAdapter {
     private List<String> titles;
     private List<Fragment> fragments;
 
+    public static final int TYPE_YIJIAOGE = 1;
+    public static final int TYPE_WEIJIAOGE = 2;
     public ChuFangJiaoGePagerAdapter(FragmentManager fm, ShouFangJiaoGeBean data) {
         super(fm);
         fragments = new ArrayList<>();
         titles = new ArrayList<>();
-        fragments.add(ChuFangJiaoGeFragment.newInstance((ArrayList<ShouFangJiaoGeListBean>) data.getList()));
-        fragments.add(ChuFangJiaoGeFragment.newInstance((ArrayList<ShouFangJiaoGeListBean>) data.getList1()));
+        fragments.add(ChuFangJiaoGeFragment.newInstance((ArrayList<ShouFangJiaoGeListBean>) data.getList(),TYPE_WEIJIAOGE));
+        fragments.add(ChuFangJiaoGeFragment.newInstance((ArrayList<ShouFangJiaoGeListBean>) data.getList1(),TYPE_YIJIAOGE));
         titles.add("未交割");
         titles.add("已交割");
     }

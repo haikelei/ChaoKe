@@ -104,6 +104,7 @@ public class FangYuanQianYueTwoActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(QianYueBeanTwo data) {
+                        oldId = data.getOld_id();
                         slGongyuleixing.setSelect(data.getHouse_type());
                         inputGaizaoxinxi.setText(data.getReform_data());
                         inputHetongleixing.setText(data.getContract_type());

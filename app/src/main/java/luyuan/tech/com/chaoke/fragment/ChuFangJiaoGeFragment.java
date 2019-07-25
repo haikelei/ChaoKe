@@ -23,6 +23,8 @@ import luyuan.tech.com.chaoke.activity.ChuFangJiaoGeActivity;
 import luyuan.tech.com.chaoke.adapter.ShouFangJiaoGeAdapter;
 import luyuan.tech.com.chaoke.bean.ShouFangJiaoGeListBean;
 
+import static luyuan.tech.com.chaoke.adapter.ChuFangJiaoGePagerAdapter.TYPE_YIJIAOGE;
+
 /**
  * @author: lujialei
  * @date: 2019/6/12
@@ -37,11 +39,13 @@ public class ChuFangJiaoGeFragment extends Fragment {
     Unbinder unbinder;
     private ArrayList<ShouFangJiaoGeListBean> list;
     private ShouFangJiaoGeAdapter adapter;
+    private int type;
 
-    public static Fragment newInstance(ArrayList<ShouFangJiaoGeListBean> list) {
+    public static Fragment newInstance(ArrayList<ShouFangJiaoGeListBean> list,int type) {
         ChuFangJiaoGeFragment fragment = new ChuFangJiaoGeFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("data",list);
+        bundle.putInt("type",type);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -59,6 +63,7 @@ public class ChuFangJiaoGeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if (getArguments()!=null){
             list = getArguments().getParcelableArrayList("data");
+            type = getArguments().getInt("type");
         }
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ShouFangJiaoGeAdapter(list);
@@ -67,6 +72,9 @@ public class ChuFangJiaoGeFragment extends Fragment {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (type==TYPE_YIJIAOGE){
+                    return;
+                }
                 Intent intent = new Intent(getActivity(), ChuFangJiaoGeActivity.class);
                 intent.putExtra("id",list.get(position).getId()+"");
                 startActivity(intent);

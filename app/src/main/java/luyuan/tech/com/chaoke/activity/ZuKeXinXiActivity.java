@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.widget.NormalDialog;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.request.PostRequest;
@@ -60,7 +62,8 @@ public class ZuKeXinXiActivity extends BaseActivity {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                showDialog();
+
             }
         });
         btnSubmmit.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +73,7 @@ public class ZuKeXinXiActivity extends BaseActivity {
             }
         });
 
-        String[] arr = {"男", "女"};
+        String[] arr = {"未知","男", "女"};
         setSelectLListener(slXingbie, arr, "性别");
 
         String[] arr1 = {"安居客", "贝壳", "老带新", "58同城", "自己开发"};
@@ -81,6 +84,30 @@ public class ZuKeXinXiActivity extends BaseActivity {
 
         String[] arr3 = {"技术员", "老板", "个体户", "其他"};
         setSelectLListener(slShehuizizhi, arr3, "社会资质");
+
+    }
+
+    private void showDialog() {
+        final NormalDialog dialog = new NormalDialog(getActivity());
+        dialog.content("退出将丢失填写的信息")//
+                .style(NormalDialog.STYLE_TWO)//
+                .titleTextSize(23)//
+                .show();
+
+        dialog.setOnBtnClickL(
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {
+                        dialog.dismiss();
+                        onBackPressed();
+                    }
+                });
 
     }
 

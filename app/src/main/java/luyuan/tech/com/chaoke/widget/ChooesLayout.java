@@ -6,13 +6,16 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.bean.PeiZhiBean;
 
 /**
  * @author: lujialei
@@ -32,6 +35,8 @@ public class ChooesLayout extends RelativeLayout {
     RadioButton rb0;
     @BindView(R.id.rb01)
     RadioButton rb01;
+    @BindView(R.id.rg)
+    RadioGroup rg;
 
     public ChooesLayout(Context context) {
         super(context);
@@ -72,13 +77,32 @@ public class ChooesLayout extends RelativeLayout {
         return title;
     }
 
-    public String getCheckedPosition(){
-        if (rb0.isChecked()){
+    public String getCheckedPosition() {
+        if (rb0.isChecked()) {
             return "1";
-        }else if (rb01.isChecked()){
-            return "2";
+        } else if (rb01.isChecked()) {
+            return "0";
         }
-        return "";
+        return "0";
     }
 
+
+    public void setData(final PeiZhiBean item) {
+        rb0.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    item.checked = true;
+                }
+            }
+        });
+        rb01.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    item.checked = false;
+                }
+            }
+        });
+    }
 }

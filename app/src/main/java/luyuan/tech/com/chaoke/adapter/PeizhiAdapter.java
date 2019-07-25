@@ -29,5 +29,6 @@ public class PeizhiAdapter extends BaseQuickAdapter<PeiZhiBean,BaseViewHolder> {
     protected void convert(BaseViewHolder helper, PeiZhiBean item) {
         ChooesLayout chooesLayout = helper.getView(R.id.cl);
         chooesLayout.setText(item.getName());
+        chooesLayout.setData(item);
     }
 }

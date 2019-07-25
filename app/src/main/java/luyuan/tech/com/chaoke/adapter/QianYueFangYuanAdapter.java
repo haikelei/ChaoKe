@@ -1,6 +1,8 @@
 package luyuan.tech.com.chaoke.adapter;
 
+import android.content.IntentFilter;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,7 +38,9 @@ public class QianYueFangYuanAdapter extends BaseQuickAdapter<HouseBean,BaseViewH
         ImageView iv = helper.getView(R.id.iv);
         tvName.setText(item.getRoom_name());
         tvOther.setText(item.getArea());
-        tvMoney.setText(item.getLong_price());
+        if (!TextUtils.isEmpty(item.getLong_price())){
+            tvMoney.setText(item.getLong_price());
+        }
         RequestOptions options = new RequestOptions().centerCrop().error(R.mipmap.default_image);
         Glide.with(helper.itemView.getContext()).load(item.getCover()).apply(options).into(iv);
     }

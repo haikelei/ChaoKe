@@ -288,6 +288,9 @@ public class HttpManager {
     public static final String QIANYUESHUJU = "/api/agent/getSigningData";
 
 
+    public static final String QIANYUEFANGYUAN = "/api/agent/takeLookRecord";
+
+
 
 
 

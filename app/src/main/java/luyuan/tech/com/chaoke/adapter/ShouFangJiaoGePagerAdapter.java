@@ -13,6 +13,9 @@ import luyuan.tech.com.chaoke.bean.ShouFangJiaoGeListBean;
 import luyuan.tech.com.chaoke.fragment.ShouFangDaiChuShenFragment;
 import luyuan.tech.com.chaoke.fragment.ShouFangJiaoGeFragment;
 
+import static luyuan.tech.com.chaoke.adapter.ChuFangJiaoGePagerAdapter.TYPE_WEIJIAOGE;
+import static luyuan.tech.com.chaoke.adapter.ChuFangJiaoGePagerAdapter.TYPE_YIJIAOGE;
+
 /**
  * @author: lujialei
  * @date: 2019/6/12
@@ -28,8 +31,8 @@ public class ShouFangJiaoGePagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         fragments = new ArrayList<>();
         titles = new ArrayList<>();
-        fragments.add(ShouFangJiaoGeFragment.newInstance((ArrayList<ShouFangJiaoGeListBean>) data.getList()));
-        fragments.add(ShouFangJiaoGeFragment.newInstance((ArrayList<ShouFangJiaoGeListBean>) data.getList1()));
+        fragments.add(ShouFangJiaoGeFragment.newInstance((ArrayList<ShouFangJiaoGeListBean>) data.getList(),TYPE_WEIJIAOGE));
+        fragments.add(ShouFangJiaoGeFragment.newInstance((ArrayList<ShouFangJiaoGeListBean>) data.getList1(),TYPE_YIJIAOGE));
         titles.add("未交割");
         titles.add("已交割");
     }

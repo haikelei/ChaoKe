@@ -36,7 +36,7 @@ public class PeiZhiPopup extends BasePopupWindow {
     }
     private OnPeiZhiListener listener;
     public void setOnPeiZhiListener(OnPeiZhiListener listener){
-        listener = listener;
+        this.listener = listener;
     }
 
     public PeiZhiPopup(Context context) {
@@ -54,11 +54,12 @@ public class PeiZhiPopup extends BasePopupWindow {
             @Override
             public void onClick(View view) {
                 if (listener!=null&&list.size()>0){
-                    StringBuilder stringBuilder = new StringBuilder();
+                    StringBuffer stringBuilder = new StringBuffer();
                     for (int i = 0; i < list.size(); i++) {
-                       if (list.get(i).checked){
-                           stringBuilder.append(list.get(i).getId()+",");
-                       }
+                        if (list.get(i).checked){
+                            stringBuilder.append(String.valueOf(list.get(i).getId()));
+                            stringBuilder.append(",");
+                        }
                     }
                     listener.onGetData(stringBuilder.toString());
                 }

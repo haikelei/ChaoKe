@@ -22,6 +22,7 @@ import luyuan.tech.com.chaoke.adapter.QianYueFangYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.SettingManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
@@ -62,8 +63,9 @@ public class QianYueFangYuanActivity extends BaseActivity {
         if (!checkEmptyInfo()){
             return;
         }
-        HttpManager.post(HttpManager.HOUSE_LIST)
+        HttpManager.post(HttpManager.QIANYUEFANGYUAN)
                 .params("token", UserInfoUtils.getInstance().getToken())
+                .params("tenant_id", SettingManager.getInstance().getZuKeDetailBean().getId()+"")
                 .execute(new SimpleCallBack<List<HouseBean>>() {
 
                     @Override

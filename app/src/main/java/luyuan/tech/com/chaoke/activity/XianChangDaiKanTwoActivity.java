@@ -23,7 +23,6 @@ import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
-import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.Constant;
 import luyuan.tech.com.chaoke.utils.SettingManager;
 import luyuan.tech.com.chaoke.utils.T;
@@ -54,7 +53,10 @@ public class XianChangDaiKanTwoActivity extends BaseActivity {
     TextView tvYouxiao;
     @BindView(R.id.tv_bianhao)
     TextView tvBianhao;
+    @BindView(R.id.tv_content)
+    TextView tvContent;
     private String id;
+    private String address;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +66,10 @@ public class XianChangDaiKanTwoActivity extends BaseActivity {
         if (getIntent() != null) {
             Intent intent = getIntent();
             id = intent.getStringExtra("id");
+            address = intent.getStringExtra("address");
+            if (!TextUtils.isEmpty(address)){
+                tvContent.setText(address);
+            }
         }
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.error(R.mipmap.moren_touxiang);
@@ -95,7 +101,7 @@ public class XianChangDaiKanTwoActivity extends BaseActivity {
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("type", "2")
                 .params("rent_id", id)
-                .params("tenant_id", SettingManager.getInstance().getZuKeDetailBean().getId()+"")
+                .params("tenant_id", SettingManager.getInstance().getZuKeDetailBean().getId() + "")
                 .params("result", ((int) slXuanzejieguo.getTag() + 1) + "")
                 .params("desc", etInput.getText().toString().trim());
 //        if (TextUtils.isEmpty(id)) {

@@ -29,7 +29,7 @@ public class App extends Application {
         super.onCreate();
         app = this;
         initNet();
-//        CrashHandler.getInstance().init(this);
+        CrashHandler.getInstance().init(this);
     }
 
     public static Context getAppContext(){

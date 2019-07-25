@@ -168,6 +168,7 @@ public class AddHouseActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 199) {
             if (resultCode == RESULT_OK) {
+                setResult(RESULT_OK);
                 finish();
             }
         }else if (requestCode==133){

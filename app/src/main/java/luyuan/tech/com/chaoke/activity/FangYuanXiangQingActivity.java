@@ -33,7 +33,6 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.HousePeiZhiAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
-import luyuan.tech.com.chaoke.bean.HousePeiZhiBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -60,8 +59,6 @@ public class FangYuanXiangQingActivity extends BaseActivity {
     TextView tvJushi;
     @BindView(R.id.tv_size)
     TextView tvSize;
-    @BindView(R.id.tv_fangyuanzhuangtai)
-    TextView tvFangyuanzhuangtai;
     @BindView(R.id.tv_chaoxiang)
     TextView tvChaoxiang;
     @BindView(R.id.tv_zhuangxiuqingkuang)
@@ -88,6 +85,10 @@ public class FangYuanXiangQingActivity extends BaseActivity {
     MapView mMapView;
     @BindView(R.id.recycler_peizhi)
     RecyclerView recyclerPeizhi;
+    @BindView(R.id.tv_fangyuanleixing)
+    TextView tvFangyuanleixing;
+    @BindView(R.id.tv_wuyeleixing)
+    TextView tvWuyeleixing;
     private String id;
     private AMap aMap;
     private HousePeiZhiAdapter housePeiZhiAdapter;
@@ -218,13 +219,16 @@ public class FangYuanXiangQingActivity extends BaseActivity {
             tvJushi.setText(data.getApartment());
         }
         if (!TextUtils.isEmpty(data.getArea())) {
-            tvSize.setText(data.getArea());
+            tvSize.setText(data.getArea()+"㎡");
         }
 //        tvFangyuanzhuangtai.setText();
-        tvChaoxiang.setText("朝向:" + getOrientation(data.getOrientation()));
+        tvChaoxiang.setText(getOrientation(data.getOrientation()));
+        tvZhuangxiuqingkuang.setText(getFitUp(data.getFit_up()));
 //        tvZhuangxiuqingkuang.setText();
+        tvFangyuanleixing.setText("房源类型:"+getFangyuanleixing(data.getSource()));
+        tvWuyeyongtu.setText("物业用途:暂无");
         if (!TextUtils.isEmpty(data.getFloor())) {
-            tvLouceng.setText("楼层:" + data.getFloor());
+            tvLouceng.setText("房源楼层:" + data.getFloor());
         }
 //        tvWuyeyongtu.setText();
         tvFankangzhuangtai.setText("看房方式:" + getSeeType(data.getSee_type()));
@@ -232,7 +236,7 @@ public class FangYuanXiangQingActivity extends BaseActivity {
     }
 
     private void bindRecycler(List<HouseDetailBean.ConfigureBean> configure) {
-        if (configure==null){
+        if (configure == null) {
             return;
         }
         list.clear();
@@ -246,6 +250,22 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         if (resultCode == RESULT_OK && requestCode == 201) {
             loadData();
         }
+    }
+
+    public String getFitUp(int i){
+//        {"毛坯", "简装", "精装配置齐全", "精装配置不齐全", "豪华装修"};
+        if (i == 1) {
+            return "毛坯";
+        } else if (i == 2) {
+            return "简装";
+        } else if (i == 3) {
+            return "精装配置齐全";
+        } else if (i == 4) {
+            return "精装配置不齐全";
+        }else if (i == 5) {
+            return "豪华装修";
+        }
+        return "毛坯";
     }
 
     public String getSeeType(int i) {
@@ -266,6 +286,30 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         return "智能锁";
     }
 
+    public String getFangyuanleixing(int i){
+//        {"中介合作", "转介绍", "老客户", "网络端口", "地推", "房东上门", "名单获取", "销冠", "其他"}
+        if (i == 1) {
+            return "中介合作";
+        } else if (i == 2) {
+            return "转介绍";
+        } else if (i == 3) {
+            return "老客户";
+        } else if (i == 4) {
+            return "网络端口";
+        } else if (i == 5) {
+            return "地推";
+        } else if (i == 6) {
+            return "房东上门";
+        }else if (i == 6) {
+            return "名单获取";
+        }else if (i == 6) {
+            return "销冠";
+        }else if (i == 6) {
+            return "其他";
+        }
+        return "中介合作";
+    }
+
     public String getOrientation(int i) {
 //        朝向 1朝南 2为朝北 3为朝东 4为朝西
         if (i == 1) {
@@ -282,7 +326,7 @@ public class FangYuanXiangQingActivity extends BaseActivity {
 
 
     private void initView() {
-        recyclerPeizhi.setLayoutManager(new GridLayoutManager(getActivity(),5));
+        recyclerPeizhi.setLayoutManager(new GridLayoutManager(getActivity(), 5));
         list = new ArrayList<>();
         housePeiZhiAdapter = new HousePeiZhiAdapter(list);
         recyclerPeizhi.setAdapter(housePeiZhiAdapter);

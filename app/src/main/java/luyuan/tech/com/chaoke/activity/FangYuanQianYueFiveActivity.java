@@ -95,6 +95,7 @@ public class FangYuanQianYueFiveActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(QianYueBeanFive data) {
+                        oldId = data.getOld_id();
                         for (int i = 0; i < data.getData().size(); i++) {
                             container.removeAllViews();
                             QianYueBeanFive.DataBean dataBean = data.getData().get(i);

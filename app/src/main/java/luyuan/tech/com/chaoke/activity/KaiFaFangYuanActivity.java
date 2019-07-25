@@ -135,7 +135,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
         ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(), AddHouseActivity.class));
+                startActivityForResult(new Intent(getBaseContext(), AddHouseActivity.class),175);
             }
         });
     }
@@ -278,6 +278,14 @@ public class KaiFaFangYuanActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK&&requestCode==175){
+            loadData();
+        }
     }
 
     @OnClick({R.id.iv_back})

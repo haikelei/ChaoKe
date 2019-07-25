@@ -93,6 +93,7 @@ public class FangYuanQianYueSixActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(QianYueBeanSix data) {
+                        oldId = data.getOld_id();
                         inputChanquandizhi.setText(data.getProperty_address());
                         inputJianzhumianji.setText(data.getArea());
                         inputHuxing.setText(data.getApartment());

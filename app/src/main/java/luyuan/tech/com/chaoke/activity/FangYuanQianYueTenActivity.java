@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+import com.zhouyou.http.request.PostRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,6 +80,7 @@ public class FangYuanQianYueTenActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(QianYueBeanTen data) {
+                        oldId = data.getOld_id();
                         inputXingming.setText(data.getUsername());
                         inputShouji.setText(data.getPhone());
                     }
@@ -86,17 +88,22 @@ public class FangYuanQianYueTenActivity extends BaseActivity {
 
     }
 
+    private String oldId;
     private void loadData() {
         if (!checkEmptyInfo()){
             return;
         }
-        HttpManager.post(HttpManager.FANGYUANQIANYUE)
+
+        PostRequest request = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("total_id",uploadTotalId)
                 .params("step","13" )
                 .params("username",getValue(inputXingming) )
-                .params("phone", getValue(inputShouji))
-                .execute(new SimpleCallBack<HeTongXiangQingBean>() {
+                .params("phone", getValue(inputShouji));
+        if (!TextUtils.isEmpty(oldId)){
+            request.params("old_id",oldId);
+        }
+        request.execute(new SimpleCallBack<HeTongXiangQingBean>() {
 
                     @Override
                     public void onError(ApiException e) {

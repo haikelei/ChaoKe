@@ -44,6 +44,15 @@ public class HouseDetailBean {
     private String describe;
     private List<String> pics;
     private List<ConfigureBean> configure;
+    private String add_details;
+
+    public String getAdd_details() {
+        return add_details;
+    }
+
+    public void setAdd_details(String add_details) {
+        this.add_details = add_details;
+    }
 
     public int getId() {
         return id;

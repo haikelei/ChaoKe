@@ -18,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:text="11111"
             android:id="@+id/tv_name"
             android:textSize="15sp"
             android:textColor="#000000"
@@ -26,16 +25,36 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:text="222222"
+            android:layout_below="@id/tv_name"
             android:id="@+id/tv_other"
+            android:textSize="12sp"
+            android:textColor="#9c9c9c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_below="@id/tv_other"
+            android:id="@+id/tv_quyu"
             android:layout_centerVertical="true"
             android:textSize="12sp"
             android:textColor="#9c9c9c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+
         <TextView
-            android:text="333333"
+            android:layout_marginRight="30dp"
+            android:id="@+id/tv_zhuangtai"
+            android:layout_alignParentBottom="true"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:layout_width="50dp"
+            android:layout_height="18dp" />
+
+        <TextView
+            android:layout_marginRight="30dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/tv_money"
             android:layout_alignParentBottom="true"
             android:textSize="15sp"

@@ -96,6 +96,7 @@ public class FangYuanQianYueThreeActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(QianYueBeanThree data) {
+                        oldId = data.getOld_id();
                         slFukuanxinxi.setSelect(data.getPayment_msg());
                         inputFukuantianshu.setText(data.getPayment_day());
                         inputMianzhutianshu.setText(data.getRent_day());

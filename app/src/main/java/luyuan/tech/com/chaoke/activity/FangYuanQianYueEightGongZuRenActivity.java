@@ -95,6 +95,7 @@ public class FangYuanQianYueEightGongZuRenActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(QianYueBeanEightChuzuren data) {
+                        oldId = data.getOld_id();
                         slZhengjianleixing.setSelect(data.getCard_type());
                         inputXingming.setText(data.getUsername());
                         inputZhengjianhaoma.setText(data.getCard_num());

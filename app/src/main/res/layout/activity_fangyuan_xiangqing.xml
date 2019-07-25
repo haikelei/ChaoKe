@@ -79,6 +79,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="20dp"
                 android:text="支持短租,可签1-3个月(月租金=22元*每月天数)"
@@ -156,6 +157,74 @@
                     </LinearLayout>
 
                 </FrameLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#f5f5f5" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="装修" />
+
+                        <TextView
+                            android:id="@+id/tv_zhuangxiuqingkuang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="103㎡"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
+                </FrameLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#f5f5f5" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="朝向" />
+
+                        <TextView
+                            android:id="@+id/tv_chaoxiang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="103㎡"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
+                </FrameLayout>
             </LinearLayout>
 
             <TextView
@@ -180,29 +249,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
                     <TextView
-                        android:visibility="invisible"
-                        android:id="@+id/tv_fangyuanzhuangtai"
+                        android:id="@+id/tv_fangyuanleixing"
                         android:gravity="center_vertical"
-                        android:text="房源状态:自营待租"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:id="@+id/tv_chaoxiang"
-                        android:gravity="center_vertical"
-                        android:text="朝向:南"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-                    <TextView
-                        android:id="@+id/tv_zhuangxiuqingkuang"
-                        android:gravity="center_vertical"
-                        android:text="装修情况:精装配置齐全"
+                        android:text="房源类型:自营待租"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
@@ -215,7 +264,6 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
@@ -233,6 +281,20 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:id="@+id/tv_wuyeleixing"
+                        android:gravity="center_vertical"
+                        android:text="物业类型:住宅"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
                 </LinearLayout>
             </LinearLayout>
             <TextView
