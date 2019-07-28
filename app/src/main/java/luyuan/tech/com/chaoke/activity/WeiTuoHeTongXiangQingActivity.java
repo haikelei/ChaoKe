@@ -268,12 +268,17 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     }
 
     private void fillData(WeiTuoHeTongDetailBean data) {
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.error(R.mipmap.default_image);
         //合同信息
-        tvWuyedizhi.setText(data.getContract_data().getWuye_address());
-        tvFangyuanbianhao.setText(data.getContract_data().getRent_num());
-        int laiyuan = data.getContract_data().getFrom_by();
-        String laiyuanString = getLaiyuan(laiyuan);
-        tvFangyuanlaiyuan.setText(laiyuanString);
+        if (data.getContract_data()!=null){
+            tvWuyedizhi.setText(data.getContract_data().getWuye_address());
+            tvFangyuanbianhao.setText(data.getContract_data().getRent_num());
+            int laiyuan = data.getContract_data().getFrom_by();
+            String laiyuanString = getLaiyuan(laiyuan);
+            tvFangyuanlaiyuan.setText(laiyuanString);
+        }
+
 //        为首签 2为续签
         tvQianyueleixing.setText(getType(data.getContract_data().getSigning_type()));
         tvHetongbianhao.setText(data.getContract_data().getIdentifier());
@@ -293,67 +298,82 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         data.getStrategy();
 
         //房产信息
-        tvChanquandizhi.setText(data.getProperty().getProperty_address());
-        tvJianzhumianji.setText(data.getProperty().getArea() + "");
-        tvHuxing.setText(data.getProperty().getApartment());
-        tvGongyouqingkuang.setText(data.getProperty().getShare_desc());
-        tvYongtu.setText(data.getProperty().getUsed_type() + "");
-        tvShifouyoufangdai.setText(data.getProperty().getIs_loan() == 1 ? "有" : "无");
+        if (data.getProperty()!=null){
+            tvChanquandizhi.setText(data.getProperty().getProperty_address());
+            tvJianzhumianji.setText(data.getProperty().getArea() + "");
+            tvHuxing.setText(data.getProperty().getApartment());
+            tvGongyouqingkuang.setText(data.getProperty().getShare_desc());
+            tvYongtu.setText(data.getProperty().getUsed_type() + "");
+            tvShifouyoufangdai.setText(data.getProperty().getIs_loan() == 1 ? "有" : "无");
+        }
+
 
         //产权人信息
-        tvChanquanrenleixing.setText(data.getProperty1().getPeople_type() == 1 ? "个人" : "企业");
-        tvZhengjianleixing.setText(data.getProperty1().getCard_type() + "");
-        tvXingming.setText(data.getProperty1().getUsername());
-        tvZhengjianhaoma.setText(data.getProperty1().getCard_num() + "");
-        tvZhengjianyouxiaori.setText(data.getProperty1().getCard_begin());
-        tvZhengjianjiezhiri.setText(data.getProperty1().getCard_end());
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.error(R.mipmap.default_image);
-        Glide.with(getActivity()).load(data.getProperty1().getCard_zpic()).apply(requestOptions).into(ivZhengjian);
-        Glide.with(getActivity()).load(data.getProperty1().getCard_fpic()).apply(requestOptions).into(ivZhengjian1);
-        tvChanquanzhengleixing.setText(data.getProperty1().getProperty_type() + "");
-        tvChanquanzhengbianhao.setText(data.getProperty1().getProperty_num() + "");
-        Glide.with(getActivity()).load(data.getProperty1().getNum_pic()).apply(requestOptions).into(ivDaizhenghaoye);
-        Glide.with(getActivity()).load(data.getProperty1().getHome_pic()).apply(requestOptions).into(ivZhuye);
-        Glide.with(getActivity()).load(data.getProperty1().getAttach_pic()).apply(requestOptions).into(ivFujiye);
-        Glide.with(getActivity()).load(data.getProperty1().getOld_pic()).apply(requestOptions).into(ivYuanhuxingtu);
-        Glide.with(getActivity()).load(data.getProperty1().getHousehold_pic()).apply(requestOptions).into(ivFenhutu);
-        if (data.getProperty1().getOther_pic() != null && data.getProperty1().getOther_pic().size() > 0) {
-            Glide.with(getActivity()).load(data.getProperty1().getOther_pic().get(0)).apply(requestOptions).into(ivQita);
+        if (data.getProperty1()!=null){
+            tvChanquanrenleixing.setText(data.getProperty1().getPeople_type() == 1 ? "个人" : "企业");
+            tvZhengjianleixing.setText(data.getProperty1().getCard_type() + "");
+            tvXingming.setText(data.getProperty1().getUsername());
+            tvZhengjianhaoma.setText(data.getProperty1().getCard_num() + "");
+            tvZhengjianyouxiaori.setText(data.getProperty1().getCard_begin());
+            tvZhengjianjiezhiri.setText(data.getProperty1().getCard_end());
+            Glide.with(getActivity()).load(data.getProperty1().getCard_zpic()).apply(requestOptions).into(ivZhengjian);
+            Glide.with(getActivity()).load(data.getProperty1().getCard_fpic()).apply(requestOptions).into(ivZhengjian1);
+            tvChanquanzhengleixing.setText(data.getProperty1().getProperty_type() + "");
+            tvChanquanzhengbianhao.setText(data.getProperty1().getProperty_num() + "");
+            Glide.with(getActivity()).load(data.getProperty1().getNum_pic()).apply(requestOptions).into(ivDaizhenghaoye);
+            Glide.with(getActivity()).load(data.getProperty1().getHome_pic()).apply(requestOptions).into(ivZhuye);
+            Glide.with(getActivity()).load(data.getProperty1().getAttach_pic()).apply(requestOptions).into(ivFujiye);
+            Glide.with(getActivity()).load(data.getProperty1().getOld_pic()).apply(requestOptions).into(ivYuanhuxingtu);
+            Glide.with(getActivity()).load(data.getProperty1().getHousehold_pic()).apply(requestOptions).into(ivFenhutu);
+            if (data.getProperty1().getOther_pic() != null && data.getProperty1().getOther_pic().size() > 0) {
+                Glide.with(getActivity()).load(data.getProperty1().getOther_pic().get(0)).apply(requestOptions).into(ivQita);
+            }
         }
 
         //共有产权人信息
-        tvChanquanrenleixing1.setText(data.getProperty2().getPeople_type() == 1 ? "个人" : "企业");
-        tvZhengjianleixing1.setText(data.getProperty2().getCard_type() + "");
-        tvXingming1.setText(data.getProperty2().getUsername());
-        tvZhengjianhaoma1.setText(data.getProperty2().getCard_num() + "");
-        tvZhengjianyouxiaori1.setText(data.getProperty2().getCard_begin());
-        tvZhengjianjiezhiri1.setText(data.getProperty2().getCard_end());
-        Glide.with(getActivity()).load(data.getProperty2().getCard_zpic()).apply(requestOptions).into(ivZhengjian2);
-        Glide.with(getActivity()).load(data.getProperty2().getCard_fpic()).apply(requestOptions).into(ivZhengjian3);
-        tvGongyouchanquanbianhao.setText(data.getProperty2().getProperty_num() + "");
+        if (data.getProperty2()!=null){
+            tvChanquanrenleixing1.setText(data.getProperty2().getPeople_type() == 1 ? "个人" : "企业");
+            tvZhengjianleixing1.setText(data.getProperty2().getCard_type() + "");
+            tvXingming1.setText(data.getProperty2().getUsername());
+            tvZhengjianhaoma1.setText(data.getProperty2().getCard_num() + "");
+            tvZhengjianyouxiaori1.setText(data.getProperty2().getCard_begin());
+            tvZhengjianjiezhiri1.setText(data.getProperty2().getCard_end());
+            Glide.with(getActivity()).load(data.getProperty2().getCard_zpic()).apply(requestOptions).into(ivZhengjian2);
+            Glide.with(getActivity()).load(data.getProperty2().getCard_fpic()).apply(requestOptions).into(ivZhengjian3);
+            tvGongyouchanquanbianhao.setText(data.getProperty2().getProperty_num() + "");
+        }
+
         //出租人信息
-        tvZhengjianleixing2.setText(data.getOut_people().getCard_type() + "");
-        tvXingming2.setText(data.getOut_people().getUsername());
-        tvZhengjianhaoma2.setText(data.getOut_people().getCard_num() + "");
-        tvDianhua.setText(data.getOut_people().getPhone());
-        tvYouxiangdizhi.setText(data.getOut_people().getEmail_address());
-        tvTongxundizhi.setText(data.getOut_people().getComm_address());
+        if (data.getOut_people()!=null){
+            tvZhengjianleixing2.setText(data.getOut_people().getCard_type() + "");
+            tvXingming2.setText(data.getOut_people().getUsername());
+            tvZhengjianhaoma2.setText(data.getOut_people().getCard_num() + "");
+            tvDianhua.setText(data.getOut_people().getPhone());
+            tvYouxiangdizhi.setText(data.getOut_people().getEmail_address());
+            tvTongxundizhi.setText(data.getOut_people().getComm_address());
+        }
+
         //共租人信息
-        tvZhengjianleixing3.setText(data.getCommon_people().getCard_type() + "");
-        tvXingming3.setText(data.getCommon_people().getUsername());
-        tvZhengjianhaoma3.setText(data.getCommon_people().getCard_num() + "");
-        tvYouxiangdizhi1.setText(data.getCommon_people().getEmail_address());
-        tvTongxundizhi1.setText(data.getCommon_people().getComm_address());
+        if (data.getCommon_people()!=null){
+            tvZhengjianleixing3.setText(data.getCommon_people().getCard_type() + "");
+            tvXingming3.setText(data.getCommon_people().getUsername());
+            tvZhengjianhaoma3.setText(data.getCommon_people().getCard_num() + "");
+            tvYouxiangdizhi1.setText(data.getCommon_people().getEmail_address());
+            tvTongxundizhi1.setText(data.getCommon_people().getComm_address());
+        }
+
         //收款人信息
-        tvShoukuanrenleixing.setText(data.getPayee().getPeople_type() + "");
-        tvZhengjianleixing4.setText(data.getPayee().getCard_type() + "");
-        tvXingming4.setText(data.getPayee().getUsername() + "");
-        tvZhengjianhaoma3.setText(data.getPayee().getCard_num() + "");
-        tvZhanghaoleixing.setText(data.getPayee().getNumber_type() + "");
-        tvShoukuanzhanghao.setText(data.getPayee().getNumber_num() + "");
-        tvShoukuanjigou.setText(data.getPayee().getMechanism() + "");
-        tvShoukuanzhihang.setText(data.getPayee().getBranch() + "");
+        if (data.getPayee()!=null){
+            tvShoukuanrenleixing.setText(data.getPayee().getPeople_type() + "");
+            tvZhengjianleixing4.setText(data.getPayee().getCard_type() + "");
+            tvXingming4.setText(data.getPayee().getUsername() + "");
+            tvZhengjianhaoma3.setText(data.getPayee().getCard_num() + "");
+            tvZhanghaoleixing.setText(data.getPayee().getNumber_type() + "");
+            tvShoukuanzhanghao.setText(data.getPayee().getNumber_num() + "");
+            tvShoukuanjigou.setText(data.getPayee().getMechanism() + "");
+            tvShoukuanzhihang.setText(data.getPayee().getBranch() + "");
+        }
+
         //紧急联系人
         tvXingming5.setText(data.getUrgent_people().getUsername());
         tvShoujihaoma2.setText(data.getUrgent_people().getPhone());

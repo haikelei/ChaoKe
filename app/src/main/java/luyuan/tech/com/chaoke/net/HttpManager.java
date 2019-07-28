@@ -138,7 +138,7 @@ public class HttpManager {
     /**
      * 保存房源跟进
      */
-    public static final String GENJIN_FANGYUAN = "/api/agent/up_follow";
+    public static final String GENJIN_FANGYUAN = "/api/agent/upload_follow";
 
 
     /**
