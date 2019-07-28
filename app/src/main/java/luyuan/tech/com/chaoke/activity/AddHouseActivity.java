@@ -74,9 +74,18 @@ public class AddHouseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_house);
         ButterKnife.bind(this);
+
+        String[] arr = {"中介合作", "转介绍", "老客户", "网络端口", "地推", "房东上门", "名单获取", "销冠", "其他"};
+        setSelectLListener(slHouseFrom,arr);
+
+        String[] arr1 = {"业主待租", "非自营在租", "业主自用"};
+        setSelectLListener(slHouseState,arr1);
+
+        String[] arr2 = {"整租", "分租"};
+        setSelectLListener(slChuzufangshi,arr2);
     }
 
-    @OnClick({R.id.iv_back, R.id.sl_unity_name, R.id.sl_house_from, R.id.sl_house_state, R.id.btn_next,R.id.sl_chuzufangshi})
+    @OnClick({R.id.iv_back, R.id.sl_unity_name, R.id.btn_next})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -84,18 +93,6 @@ public class AddHouseActivity extends BaseActivity {
                 break;
             case R.id.sl_unity_name:
                 startActivityForResult(new Intent(getActivity(),XuanZeXiaoQuActivity.class),133);
-                break;
-            case R.id.sl_house_from:
-                String[] arr = {"中介合作", "转介绍", "老客户", "网络端口", "地推", "房东上门", "名单获取", "销冠", "其他"};
-                createDialog(arr, slHouseFrom);
-                break;
-            case R.id.sl_house_state:
-                String[] arr1 = {"业主待租", "非自营在租", "业主自用"};
-                createDialog(arr1, slHouseState);
-                break;
-            case R.id.sl_chuzufangshi:
-                String[] arr2 = {"整租", "分租"};
-                createDialog(arr2, slChuzufangshi);
                 break;
             case R.id.btn_next:
                 loadData();
@@ -110,10 +107,10 @@ public class AddHouseActivity extends BaseActivity {
         PostRequest postRequest = HttpManager.post(HttpManager.FABUONE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("address", inputUnityAddress.getText().toString().trim())
-                .params("source", slHouseFrom.getText().toString())
-                .params("rent_state", slHouseState.getText().toString())
+                .params("source", getValue(slHouseFrom))
+                .params("rent_state", getValue(slHouseState))
                 .params("landlady_name", inputHostName.getText().toString().trim())
-                .params("mode",slHouseState.getText().equals("整租")?"1":"2")
+                .params("mode",getValue(slChuzufangshi))
                 .params("floor_count",inputLou.getText().toString().trim())
                 .params("unit",inputDanyuan.getText().toString().trim())
                 .params("number",inputHao.getText().toString().trim())

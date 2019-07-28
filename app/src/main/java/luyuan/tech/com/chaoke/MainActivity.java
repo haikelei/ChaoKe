@@ -1,4 +1,4 @@
-package luyuan.tech.com.chaoke.activity;
+package luyuan.tech.com.chaoke;
 
 import android.Manifest;
 import android.content.Intent;
@@ -23,6 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.activity.HeToneXinXiFourActivity;
+import luyuan.tech.com.chaoke.activity.HeToneXinXiThreeActivity;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.fragment.HomeFragment;
 import luyuan.tech.com.chaoke.fragment.MessageFragment;
@@ -93,7 +95,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loadData() {
-//        startActivity(new Intent(getBaseContext(),HeToneXinXiThreeActivity.class));
+//        startActivity(new Intent(getBaseContext(),HeToneXinXiFourActivity.class));
 //        startActivity(new Intent(getBaseContext(),AddHouseOtherInfoActivity.class));
     }
 

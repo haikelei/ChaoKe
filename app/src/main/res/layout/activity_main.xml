@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="luyuan.tech.com.chaoke.activity.MainActivity">
+    tools:context="luyuan.tech.com.chaoke.MainActivity">
    <FrameLayout
        android:id="@+id/fl_container"
        android:layout_above="@id/ll_bottom"

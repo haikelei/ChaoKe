@@ -21,6 +21,7 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.QianYueFangYuanAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseBean;
+import luyuan.tech.com.chaoke.bean.HouseStringBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.SettingManager;
 import luyuan.tech.com.chaoke.utils.T;
@@ -41,7 +42,7 @@ public class QianYueFangYuanActivity extends BaseActivity {
     ImageView ivBack;
     @BindView(R.id.recycler)
     RecyclerView recycler;
-    ArrayList<HouseBean> list = new ArrayList();
+    ArrayList<HouseStringBean> list = new ArrayList();
     private QianYueFangYuanAdapter adapter;
 
     @Override
@@ -66,7 +67,7 @@ public class QianYueFangYuanActivity extends BaseActivity {
         HttpManager.post(HttpManager.QIANYUEFANGYUAN)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("tenant_id", SettingManager.getInstance().getZuKeDetailBean().getId()+"")
-                .execute(new SimpleCallBack<List<HouseBean>>() {
+                .execute(new SimpleCallBack<List<HouseStringBean>>() {
 
                     @Override
                     public void onError(ApiException e) {
@@ -74,7 +75,7 @@ public class QianYueFangYuanActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onSuccess(List<HouseBean> data) {
+                    public void onSuccess(List<HouseStringBean> data) {
                         list.clear();
                         list.addAll(data);
                         adapter.notifyDataSetChanged();
@@ -91,7 +92,7 @@ public class QianYueFangYuanActivity extends BaseActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = new Intent(getBaseContext(),XianChangQianYueActivity.class);
-                HouseBean houseBean = list.get(position);
+                HouseStringBean houseBean = list.get(position);
                 intent.putExtra("id",String.valueOf(houseBean.getId()));
                 startActivity(intent);
             }

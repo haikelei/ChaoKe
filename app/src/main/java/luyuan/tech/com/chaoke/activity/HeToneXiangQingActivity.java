@@ -9,10 +9,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import javax.microedition.khronos.opengles.GL;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import luyuan.tech.com.chaoke.MainActivity;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HeTongXiangQingBean;

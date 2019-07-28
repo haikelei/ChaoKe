@@ -98,6 +98,8 @@ public class FangYuanQianYueNineActivity extends BaseActivity {
                     @Override
                     public void onSuccess(QianYueBeanNien data) {
                         oldId = data.getOld_id();
+                        slZhanghaoleixing.setSelect("1");
+                        slZhengjianleixing.setSelect(data.getCard_type());
                         slShoukuanrenleixing.setSelect(data.getPeople_type());
                         inputXinging.setText(data.getUsername());
                         inputZhengjianhaoma.setText(data.getCard_num());
@@ -119,7 +121,7 @@ public class FangYuanQianYueNineActivity extends BaseActivity {
                 .params("total_id",uploadTotalId)
                 .params("step","12")
                 .params("people_type",getValue(slShoukuanrenleixing))
-                .params("card_type", "2")
+                .params("card_type", getValue(slZhengjianleixing))
                 .params("username", getValue(inputXinging))
                 .params("card_num", getValue(inputZhengjianhaoma))
                 .params("number_type", "2")

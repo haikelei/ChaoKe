@@ -16,8 +16,16 @@ public class ImageBean implements MultiItemEntity {
     public ImageBean() {
     }
 
+    public String removeHost(String path){
+        if (path.startsWith("http://rentpic.sayyin.com")){
+            return path.replaceAll("http://rentpic.sayyin.com","");
+        }
+        return  path;
+    }
+
     public ImageBean(String path) {
-        this.path = path;
+        String p = removeHost(path);
+        this.path = p;
     }
 
     public String getPath() {

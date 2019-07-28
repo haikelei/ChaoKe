@@ -335,11 +335,14 @@ public class BoHuiWeiTuoHeTongXiangQingActivity extends BaseActivity {
         }
 
         //共租人信息
-        tvZhengjianleixing3.setText(data.getCommon_people().getCard_type() + "");
-        tvXingming3.setText(data.getCommon_people().getUsername());
-        tvZhengjianhaoma3.setText(data.getCommon_people().getCard_num() + "");
-        tvYouxiangdizhi1.setText(data.getCommon_people().getEmail_address());
-        tvTongxundizhi1.setText(data.getCommon_people().getComm_address());
+        if (data.getCommon_people()!=null){
+            tvZhengjianleixing3.setText(data.getCommon_people().getCard_type() + "");
+            tvXingming3.setText(data.getCommon_people().getUsername());
+            tvZhengjianhaoma3.setText(data.getCommon_people().getCard_num() + "");
+            tvYouxiangdizhi1.setText(data.getCommon_people().getEmail_address());
+            tvTongxundizhi1.setText(data.getCommon_people().getComm_address());
+        }
+
         //收款人信息
         tvShoukuanrenleixing.setText(data.getPayee().getPeople_type() + "");
         tvZhengjianleixing4.setText(data.getPayee().getCard_type() + "");

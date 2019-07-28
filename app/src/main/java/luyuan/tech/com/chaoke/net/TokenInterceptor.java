@@ -8,7 +8,7 @@ import com.zhouyou.http.model.ApiResult;
 
 import luyuan.tech.com.chaoke.App;
 import luyuan.tech.com.chaoke.activity.LoginActivity;
-import luyuan.tech.com.chaoke.activity.MainActivity;
+import luyuan.tech.com.chaoke.MainActivity;
 import luyuan.tech.com.chaoke.utils.AppManager;
 import okhttp3.Response;
 
