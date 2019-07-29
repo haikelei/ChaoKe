@@ -593,6 +593,7 @@
             android:textColor="#000000" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/tv_zujincelue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

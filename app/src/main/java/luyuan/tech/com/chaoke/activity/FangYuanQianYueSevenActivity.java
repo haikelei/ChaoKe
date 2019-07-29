@@ -362,7 +362,7 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
                         inputChanquanzhengbianhao.setText(data.getProperty_num());
                         listShenfenzhengmian.add(0,new ImageBean(data.getCard_zpic()));
                         listShenfenfanmian.add(0,new ImageBean(data.getCard_fpic()));
-                        listDaizhenghaoye.add(0,new ImageBean(data.getCard_num()));
+                        listDaizhenghaoye.add(0,new ImageBean(data.getNum_pic()));
                         listZhuye.add(0,new ImageBean(data.getHome_pic()));
                         listFujiye.add(0,new ImageBean(data.getAttach_pic()));
                         listYuanhuxingtu.add(0,new ImageBean(data.getOld_id()));

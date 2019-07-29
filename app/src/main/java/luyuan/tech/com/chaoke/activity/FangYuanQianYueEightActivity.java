@@ -201,8 +201,8 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
                         inputZhengjianhaoma.setText(data.getCard_num());
                         slZhengjiankaishiri.setText(data.getCard_begin());
                         slZhengjianjiezhiri.setText(data.getCard_end());
-                        listShenfenzhengmian.add(new ImageBean(data.getCard_zpic()));
-                        listShenfenfanmian.add(new ImageBean(data.getCard_fpic()));
+                        listShenfenzhengmian.add(0,new ImageBean(data.getCard_zpic()));
+                        listShenfenfanmian.add(0,new ImageBean(data.getCard_fpic()));
                         adapterShenfenfanmian.notifyDataSetChanged();
                         adapterShenfenzhengmian.notifyDataSetChanged();
                         inputChanquanzhengbianhao.setText(data.getProperty_num());

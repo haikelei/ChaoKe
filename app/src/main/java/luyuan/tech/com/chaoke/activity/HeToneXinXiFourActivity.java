@@ -98,7 +98,7 @@ public class HeToneXinXiFourActivity extends BaseActivity {
                 .params("urgent_man",inputJinjixingming.getText().trim())
                 .params("urgent_phone",inputJinjishouji.getText())
                 .params("side_letter",etBuchogntiaokuan.getText().toString().trim())
-                .params("first_party_pay",slJiafangchegndan.getValue())
+                .params("first_party_pay",handleDouHao(slJiafangchegndan.getValue()))
                 .execute(new SimpleCallBack<HeTongIdBean>() {
 
                     @Override
@@ -113,6 +113,15 @@ public class HeToneXinXiFourActivity extends BaseActivity {
                         startActivity(intent);
                     }
                 });
+    }
+
+    private String handleDouHao(String value) {
+        if (value.length()>1){
+            String s = value.substring(0,value.length()-1);
+            return s;
+        }
+       return value;
+
     }
 
 }
