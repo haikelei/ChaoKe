@@ -230,17 +230,17 @@ public class WeiTuoHeTongDetailBean {
          * renovation_end : 2018-12-12
          */
 
-        private String house_type;
+        private int house_type;
         private String reform_data;
         private String contract_type;
         private String renovation_begin;
         private String renovation_end;
 
-        public String getHouse_type() {
+        public int getHouse_type() {
             return house_type;
         }
 
-        public void setHouse_type(String house_type) {
+        public void setHouse_type(int house_type) {
             this.house_type = house_type;
         }
 

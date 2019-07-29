@@ -68,7 +68,7 @@ public class FangYuanQianYueFiveActivity extends BaseActivity {
             }
         });
         list = new ArrayList<>();
-        addZelue();
+
         rlAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +78,8 @@ public class FangYuanQianYueFiveActivity extends BaseActivity {
 
         if (!TextUtils.isEmpty(downloadTotalId)){
             loadOldData(downloadTotalId);
+        }else {
+            addZelue();
         }
     }
 
@@ -96,12 +98,14 @@ public class FangYuanQianYueFiveActivity extends BaseActivity {
                     @Override
                     public void onSuccess(QianYueBeanFive data) {
                         oldId = data.getOld_id();
-                        for (int i = 0; i < data.getData().size(); i++) {
-                            container.removeAllViews();
-                            QianYueBeanFive.DataBean dataBean = data.getData().get(i);
-                            CelueParam param = dataBean.toCeLueParam();
-                            list.add(param);
-                            addChild(param);
+                        if (data.getData()!=null&&data.getData().size()>0){
+//                            container.removeAllViews();
+                            for (int i = 0; i < data.getData().size(); i++) {
+                                QianYueBeanFive.DataBean dataBean = data.getData().get(i);
+                                CelueParam param = dataBean.toCeLueParam();
+                                list.add(param);
+                                addChild(param);
+                            }
                         }
                     }
                 });

@@ -77,7 +77,7 @@ public class HeToneXinXiFourActivity extends BaseActivity {
         });
 
         String[] arr = {"电费","水费","燃气","物业及能耗费"};
-        setSelectLListener(slJiafangchegndan,arr,"甲方承担");
+        setMultiSelectListener(slJiafangchegndan,arr,"甲方承担");
 
         String[] arr1 = {"专科以下","专科","本科","研究生","博士"};
         setSelectLListener(slXueli,arr1,"学历");

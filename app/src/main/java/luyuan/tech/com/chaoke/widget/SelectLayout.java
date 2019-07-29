@@ -109,8 +109,11 @@ public class SelectLayout extends RelativeLayout {
         StringBuilder stringBuilder1 = new StringBuilder();
         for (int i = 0; i < first_cost.size(); i++) {
             int index = Integer.valueOf(first_cost.get(i))-1;
-            stringBuilder.append(arr[index]+",");
-            stringBuilder1.append(index+",");
+            if (index>=0){
+                stringBuilder.append(arr[index]+",");
+                stringBuilder1.append((index+1)+",");
+            }
+
         }
         setText(stringBuilder.toString());
         setvalue(stringBuilder1.toString());

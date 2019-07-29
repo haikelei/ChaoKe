@@ -3,6 +3,8 @@ package luyuan.tech.com.chaoke.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,9 +16,12 @@ import com.bumptech.glide.request.RequestOptions;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.adapter.ZuJinCeLueAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.bean.WeiTuoHeTongDetailBean;
@@ -187,8 +192,11 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     RelativeLayout rlHetongzhengben;
     @BindView(R.id.rl_xuqian)
     RelativeLayout rlXuqian;
+    @BindView(R.id.rv_zujincelue)
+    RecyclerView rvZujincelue;
     private String id;
-
+    private ZuJinCeLueAdapter adapter;
+    private ArrayList<WeiTuoHeTongDetailBean.StrategyBean> list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -207,10 +215,10 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         rlHetongzhengben.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(url)){
-                    T.showShort(getActivity(),"url不存在");
-                }else {
-                    Html5Activity.start(getActivity(),url);
+                if (TextUtils.isEmpty(url)) {
+                    T.showShort(getActivity(), "url不存在");
+                } else {
+                    Html5Activity.start(getActivity(), url);
                 }
             }
         });
@@ -218,16 +226,21 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), WeiTuoXuQianActivity.class);
-                intent.putExtra("id",id);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });
+        rvZujincelue.setLayoutManager(new LinearLayoutManager(getActivity()));
+        list = new ArrayList<>();
+        adapter = new ZuJinCeLueAdapter(list);
+        rvZujincelue.setAdapter(adapter);
         loadHeTongUrl();
         loadData();
     }
 
     private String url;
-    public void loadHeTongUrl(){
+
+    public void loadHeTongUrl() {
         HttpManager.post(HttpManager.WEITUOHETONGZHENGBEN)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("id", id)
@@ -240,8 +253,8 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(String data) {
-                        if (NetParser.isOk(data)){
-                            StringDataResponse response = NetParser.parse(data,StringDataResponse.class);
+                        if (NetParser.isOk(data)) {
+                            StringDataResponse response = NetParser.parse(data, StringDataResponse.class);
                             url = response.getData();
                         }
                     }
@@ -271,7 +284,7 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.error(R.mipmap.default_image);
         //合同信息
-        if (data.getContract_data()!=null){
+        if (data.getContract_data() != null) {
             tvWuyedizhi.setText(data.getContract_data().getWuye_address());
             tvFangyuanbianhao.setText(data.getContract_data().getRent_num());
             int laiyuan = data.getContract_data().getFrom_by();
@@ -285,7 +298,7 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         tvQianyueriqi.setText(data.getContract_data().getSigning_time());
         tvJiaofangriqi.setText(data.getContract_data().getOver_time());
         //委托信息
-        tvFukuanxinxi.setText(data.getEntrust().getPayment_msg() + "");
+        tvFukuanxinxi.setText(getFukuanxinxi(data.getEntrust().getPayment_msg()));
         tvFukuantianshu.setText(data.getEntrust().getPayment_day() + "");
         tvMianzutianshu.setText(data.getEntrust().getRent_day() + "");
         tvWeituoqisuanri.setText(data.getEntrust().getEntrust_begin());
@@ -295,23 +308,35 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         tvShifoudaichewei.setText(data.getRent().getIs_parking() == 1 ? "带车位" : "不带");
         tvMeiyuefangzu.setText(data.getRent().getRent_price());
         //租金策略
-        data.getStrategy();
+        if (data.getStrategy()!=null){
+            list.clear();
+            list.addAll(data.getStrategy());
+            adapter.notifyDataSetChanged();
+        }
+
+//        装修信息
+        tvGongyuxinxi.setText(getGongyuLeiXing(data.getRenovation().getHouse_type()));
+        tvGaizaoxinxi.setText(data.getRenovation().getReform_data());
+        tvHetongleixing.setText(data.getRenovation().getContract_type());
+        tvZhuangxiuqisuanri.setText(data.getRenovation().getRenovation_begin());
+        tvZhuangxiujiezhiri.setText(data.getRenovation().getRenovation_end());
+
 
         //房产信息
-        if (data.getProperty()!=null){
+        if (data.getProperty() != null) {
             tvChanquandizhi.setText(data.getProperty().getProperty_address());
             tvJianzhumianji.setText(data.getProperty().getArea() + "");
             tvHuxing.setText(data.getProperty().getApartment());
             tvGongyouqingkuang.setText(data.getProperty().getShare_desc());
-            tvYongtu.setText(data.getProperty().getUsed_type() + "");
+            tvYongtu.setText(getYongTu(data.getProperty().getUsed_type()));
             tvShifouyoufangdai.setText(data.getProperty().getIs_loan() == 1 ? "有" : "无");
         }
 
 
         //产权人信息
-        if (data.getProperty1()!=null){
+        if (data.getProperty1() != null) {
             tvChanquanrenleixing.setText(data.getProperty1().getPeople_type() == 1 ? "个人" : "企业");
-            tvZhengjianleixing.setText(data.getProperty1().getCard_type() + "");
+            tvZhengjianleixing.setText(getZhengjianleixing(data.getProperty1().getCard_type()));
             tvXingming.setText(data.getProperty1().getUsername());
             tvZhengjianhaoma.setText(data.getProperty1().getCard_num() + "");
             tvZhengjianyouxiaori.setText(data.getProperty1().getCard_begin());
@@ -331,9 +356,9 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         }
 
         //共有产权人信息
-        if (data.getProperty2()!=null){
+        if (data.getProperty2() != null) {
             tvChanquanrenleixing1.setText(data.getProperty2().getPeople_type() == 1 ? "个人" : "企业");
-            tvZhengjianleixing1.setText(data.getProperty2().getCard_type() + "");
+            tvZhengjianleixing1.setText(getZhengjianleixing(data.getProperty2().getCard_type()));
             tvXingming1.setText(data.getProperty2().getUsername());
             tvZhengjianhaoma1.setText(data.getProperty2().getCard_num() + "");
             tvZhengjianyouxiaori1.setText(data.getProperty2().getCard_begin());
@@ -344,8 +369,8 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         }
 
         //出租人信息
-        if (data.getOut_people()!=null){
-            tvZhengjianleixing2.setText(data.getOut_people().getCard_type() + "");
+        if (data.getOut_people() != null) {
+            tvZhengjianleixing2.setText(getZhengjianleixing(data.getOut_people().getCard_type()));
             tvXingming2.setText(data.getOut_people().getUsername());
             tvZhengjianhaoma2.setText(data.getOut_people().getCard_num() + "");
             tvDianhua.setText(data.getOut_people().getPhone());
@@ -354,8 +379,8 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         }
 
         //共租人信息
-        if (data.getCommon_people()!=null){
-            tvZhengjianleixing3.setText(data.getCommon_people().getCard_type() + "");
+        if (data.getCommon_people() != null) {
+            tvZhengjianleixing3.setText(getZhengjianleixing(data.getCommon_people().getCard_type()));
             tvXingming3.setText(data.getCommon_people().getUsername());
             tvZhengjianhaoma3.setText(data.getCommon_people().getCard_num() + "");
             tvYouxiangdizhi1.setText(data.getCommon_people().getEmail_address());
@@ -363,12 +388,12 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         }
 
         //收款人信息
-        if (data.getPayee()!=null){
+        if (data.getPayee() != null) {
             tvShoukuanrenleixing.setText(data.getPayee().getPeople_type() + "");
-            tvZhengjianleixing4.setText(data.getPayee().getCard_type() + "");
+            tvZhengjianleixing4.setText(getZhengjianleixing(data.getPayee().getCard_type()));
             tvXingming4.setText(data.getPayee().getUsername() + "");
             tvZhengjianhaoma3.setText(data.getPayee().getCard_num() + "");
-            tvZhanghaoleixing.setText(data.getPayee().getNumber_type() + "");
+            tvZhanghaoleixing.setText(getZhanghaoleixing(data.getPayee().getNumber_type()));
             tvShoukuanzhanghao.setText(data.getPayee().getNumber_num() + "");
             tvShoukuanjigou.setText(data.getPayee().getMechanism() + "");
             tvShoukuanzhihang.setText(data.getPayee().getBranch() + "");
@@ -381,10 +406,65 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
 
     }
 
+    private String getZhanghaoleixing(int i) {
+        return "银行卡";
+    }
+
+    private String getZhengjianleixing(int i) {
+        if (i == 1) {
+            return "身份证";
+        } else if (i == 2) {
+            return "护照 ";
+        } else if (i == 3) {
+            return "军人证";
+        }
+        return "";
+    }
+
+    private String getYongTu(int i) {
+        if (i == 1) {
+            return "住宅";
+        } else if (i == 2) {
+            return "商用";
+        }
+        return "";
+
+    }
+
+    private String getFukuanxinxi(int i) {
+        if (i == 1) {
+            return "1次性付款";
+        } else if (i == 2) {
+            return "年付";
+        } else if (i == 3) {
+            return "月付";
+        } else if (i == 4) {
+            return "季付";
+        } else if (i == 5) {
+            return "半年付";
+        }
+        return "";
+    }
+
+    private String getGongyuLeiXing(int i) {
+        if (i == 1) {
+            return "普通公寓";
+        } else if (i == 2) {
+            return "商用公寓";
+        } else if (i == 3) {
+            return "住宅公寓";
+        } else if (i == 4) {
+            return "复式公寓";
+        } else if (i == 5) {
+            return "品牌公寓";
+        }
+        return "";
+    }
+
     private String getType(String signing_type) {
-        if (signing_type.equals("1")){
+        if (signing_type.equals("1")) {
             return "首签";
-        }else if (signing_type.equals("2")){
+        } else if (signing_type.equals("2")) {
             return "续签";
         }
         return "续签";
