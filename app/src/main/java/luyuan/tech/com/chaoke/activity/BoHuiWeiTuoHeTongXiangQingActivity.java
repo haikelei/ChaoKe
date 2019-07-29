@@ -334,7 +334,7 @@ public class BoHuiWeiTuoHeTongXiangQingActivity extends BaseActivity {
             tvZhengjianjiezhiri.setText(data.getProperty1().getCard_end());
             Glide.with(getActivity()).load(data.getProperty1().getCard_zpic()).apply(requestOptions).into(ivZhengjian);
             Glide.with(getActivity()).load(data.getProperty1().getCard_fpic()).apply(requestOptions).into(ivZhengjian1);
-            tvChanquanzhengleixing.setText(data.getProperty1().getProperty_type() + "");
+            tvChanquanzhengleixing.setText(getChanquanzheng(data.getProperty1().getProperty_type()));
             tvChanquanzhengbianhao.setText(data.getProperty1().getProperty_num() + "");
             Glide.with(getActivity()).load(data.getProperty1().getNum_pic()).apply(requestOptions).into(ivDaizhenghaoye);
             Glide.with(getActivity()).load(data.getProperty1().getHome_pic()).apply(requestOptions).into(ivZhuye);
@@ -366,6 +366,7 @@ public class BoHuiWeiTuoHeTongXiangQingActivity extends BaseActivity {
             tvZhengjianhaoma2.setText(data.getOut_people().getCard_num() + "");
             tvDianhua.setText(data.getOut_people().getPhone());
             tvYouxiangdizhi.setText(data.getOut_people().getEmail_address());
+            tvShoujihaoma1.setText(data.getOut_people().getPhone());
             tvTongxundizhi.setText(data.getOut_people().getComm_address());
         }
 
@@ -373,14 +374,14 @@ public class BoHuiWeiTuoHeTongXiangQingActivity extends BaseActivity {
         if (data.getCommon_people() != null) {
             tvZhengjianleixing3.setText(getZhengjianleixing(data.getCommon_people().getCard_type()));
             tvXingming3.setText(data.getCommon_people().getUsername());
-            tvZhengjianhaoma3.setText(data.getCommon_people().getCard_num() + "");
+            tvZhengjianhaom3.setText(data.getCommon_people().getCard_num() + "");
             tvYouxiangdizhi1.setText(data.getCommon_people().getEmail_address());
             tvTongxundizhi1.setText(data.getCommon_people().getComm_address());
         }
 
         //收款人信息
         if (data.getPayee() != null) {
-            tvShoukuanrenleixing.setText(data.getPayee().getPeople_type() + "");
+            tvShoukuanrenleixing.setText(getShoukuanren(data.getPayee().getPeople_type()));
             tvZhengjianleixing4.setText(getZhengjianleixing(data.getPayee().getCard_type()));
             tvXingming4.setText(data.getPayee().getUsername() + "");
             tvZhengjianhaoma3.setText(data.getPayee().getCard_num() + "");
@@ -394,6 +395,29 @@ public class BoHuiWeiTuoHeTongXiangQingActivity extends BaseActivity {
         tvXingming5.setText(data.getUrgent_people().getUsername());
         tvShoujihaoma2.setText(data.getUrgent_people().getPhone());
 
+
+    }
+
+    private String getShoukuanren(int i) {
+        if (i == 1) {
+            return "产权人 ";
+        } else if (i == 2) {
+            return "共有产权人";
+        }
+        return "";
+    }
+
+    private String getChanquanzheng(int i) {
+        if (i == 1) {
+            return "国家所有住宅";
+        } else if (i == 2) {
+            return "劳动群众集体所有住宅";
+        } else if (i == 3) {
+            return "公民私人所有住宅";
+        } else if (i == 4) {
+            return "其他经济组织(如中外合资企业等)所有住宅";
+        }
+        return "";
 
     }
 
