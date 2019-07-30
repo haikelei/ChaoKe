@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class InputLayout extends RelativeLayout {
     String title;
     String hint;
     boolean must;
+    boolean numberKeybord;
     @BindView(R.id.tv)
     TextView tv;
     @BindView(R.id.et)
@@ -51,6 +53,7 @@ public class InputLayout extends RelativeLayout {
             hint = a.getString(R.styleable.InputLayout_mHint);
             title = a.getString(R.styleable.InputLayout_mTitle);
             must = a.getBoolean(R.styleable.InputLayout_must,true);
+            numberKeybord = a.getBoolean(R.styleable.InputLayout_number_keybord,false);
         }
         View view = LayoutInflater.from(context).inflate(R.layout.layout_input, this, true);
         ButterKnife.bind(this,view);
@@ -59,6 +62,9 @@ public class InputLayout extends RelativeLayout {
         }
         if (!TextUtils.isEmpty(hint)) {
             et.setHint(hint);
+        }
+        if (numberKeybord){
+            et.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         }
     }
 

@@ -53,6 +53,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请填写"
                 app:mTitle="租金(元/月)" />
 
@@ -106,6 +107,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请填写"
                 app:mTitle="押金(元)" />
 

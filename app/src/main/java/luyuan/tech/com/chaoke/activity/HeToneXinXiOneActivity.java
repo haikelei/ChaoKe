@@ -121,6 +121,7 @@ public class HeToneXinXiOneActivity extends BaseActivity {
         HttpManager.post(HttpManager.HETONG_ONE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("rent_id", id)
+                .params("tenant_id",SettingManager.getInstance().getZuKeDetailBean().getId()+"")
                 .params("phone",UserInfoUtils.getInstance().getPhone())
                 .params("address",inputTongxundizhi.getText())
                 .params("lessee", SettingManager.getInstance().getZuKeDetailBean().getId()+"")

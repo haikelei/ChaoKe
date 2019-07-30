@@ -204,7 +204,9 @@ public class FangYuanXiangQingActivity extends BaseActivity {
             banner.setImages(data.getPics()).setImageLoader(new ImageLoader() {
                 @Override
                 public void displayImage(Context context, Object path, ImageView imageView) {
-                    RequestOptions requestOptions = RequestOptions.centerCropTransform();
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions.dontTransform();
+                    imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                     Glide.with(context).load(path).apply(requestOptions).into(imageView);
                 }
             }).start();

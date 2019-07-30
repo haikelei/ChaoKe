@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.base;
 
+import android.accessibilityservice.AccessibilityService;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import java.util.List;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.bean.MultySelectBean;
 import luyuan.tech.com.chaoke.utils.AppManager;
+import luyuan.tech.com.chaoke.utils.KeyBoardUtil;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.widget.ChooesLayout;
 import luyuan.tech.com.chaoke.widget.DatePickerDialogFragment;
@@ -86,6 +88,7 @@ public class BaseActivity extends AppCompatActivity {
         selectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                KeyBoardUtil.hideKeyBoard(getActivity());
                 multySelectPopup.setPopupGravity(Gravity.CENTER);
                 multySelectPopup.showPopupWindow();
             }
@@ -98,6 +101,7 @@ public class BaseActivity extends AppCompatActivity {
         selectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                KeyBoardUtil.hideKeyBoard(getActivity());
                 final NormalListDialog dialog = new NormalListDialog(getActivity(), arr);
                 dialog.titleBgColor(getResources().getColor(R.color.colorPrimary));
                 dialog.titleTextColor(getResources().getColor(R.color.white));
@@ -122,6 +126,7 @@ public class BaseActivity extends AppCompatActivity {
         selectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                KeyBoardUtil.hideKeyBoard(getActivity());
                 final DatePickerDialogFragment datePickerDialogFragment = DatePickerDialogFragment.create(true);
                 datePickerDialogFragment.show(getSupportFragmentManager(), "tag");
                 datePickerDialogFragment.setOnSelectListener(new DatePickerDialogFragment.OnDateSelectListener() {

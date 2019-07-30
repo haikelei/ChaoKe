@@ -26,6 +26,7 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.CityBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.KeyBoardUtil;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
@@ -99,6 +100,7 @@ public class ZuKeXinXiQiTaActivity extends BaseActivity {
         slHuxing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                KeyBoardUtil.hideKeyBoard(getActivity());
                 showHuXingPickerView();
             }
         });
@@ -263,6 +265,13 @@ public class ZuKeXinXiQiTaActivity extends BaseActivity {
     private void loadData() {
         if (TextUtils.isEmpty(etZujinLow.getText())||TextUtils.isEmpty(etZujinHigh.getText())||TextUtils.isEmpty(etZujinLow.getText())||TextUtils.isEmpty(etMore.getText())){
             T.showShort(getActivity(),"请填写完整信息");
+            return;
+        }
+        int min = Integer.valueOf(etZujinLow.getText().toString());
+        int max = Integer.valueOf(etZujinHigh.getText().toString());
+        if (min>=max){
+            T.showShort(getActivity(),"请确保最低租金要比最高租金低");
+            return;
         }
         if (!checkEmptyInfo()){
             return;

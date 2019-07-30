@@ -4,6 +4,7 @@
         <attr name="mTitle" format="string"/>
         <attr name="mHint" format="string"/>
         <attr name="must" format="boolean"/>
+        <attr name="number_keybord" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="LineChart">

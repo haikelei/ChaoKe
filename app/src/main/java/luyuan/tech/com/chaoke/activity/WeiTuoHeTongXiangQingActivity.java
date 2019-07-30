@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.adapter.ImageSelectAdapter;
 import luyuan.tech.com.chaoke.adapter.ZuJinCeLueAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.ImageBean;
 import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.bean.WeiTuoHeTongDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
@@ -186,14 +188,16 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     TextView tvXingming5;
     @BindView(R.id.tv_dianhua)
     TextView tvDianhua;
-    @BindView(R.id.iv_qita)
-    ImageView ivQita;
     @BindView(R.id.rl_hetongzhengben)
     RelativeLayout rlHetongzhengben;
     @BindView(R.id.rl_xuqian)
     RelativeLayout rlXuqian;
     @BindView(R.id.rv_zujincelue)
     RecyclerView rvZujincelue;
+    @BindView(R.id.rv_qita)
+    RecyclerView rvQita;
+    private ImageSelectAdapter adapterQita;
+    private ArrayList<ImageBean> listQita;
     private String id;
     private ZuJinCeLueAdapter adapter;
     private ArrayList<WeiTuoHeTongDetailBean.StrategyBean> list;
@@ -234,6 +238,12 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         list = new ArrayList<>();
         adapter = new ZuJinCeLueAdapter(list);
         rvZujincelue.setAdapter(adapter);
+
+        listQita = new ArrayList<>();
+        adapterQita = new ImageSelectAdapter(listQita);
+        rvQita.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
+        rvQita.setAdapter(adapterQita);
+
         loadHeTongUrl();
         loadData();
     }
@@ -351,7 +361,13 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
             Glide.with(getActivity()).load(data.getProperty1().getOld_pic()).apply(requestOptions).into(ivYuanhuxingtu);
             Glide.with(getActivity()).load(data.getProperty1().getHousehold_pic()).apply(requestOptions).into(ivFenhutu);
             if (data.getProperty1().getOther_pic() != null && data.getProperty1().getOther_pic().size() > 0) {
-                Glide.with(getActivity()).load(data.getProperty1().getOther_pic().get(0)).apply(requestOptions).into(ivQita);
+                listQita.clear();
+                for (int i = 0; i < data.getProperty1().getOther_pic().size(); i++) {
+                    ImageBean imageBean = new ImageBean();
+                    imageBean.setPath(data.getProperty1().getOther_pic().get(i));
+                    listQita.add(imageBean);
+                }
+                adapterQita.notifyDataSetChanged();
             }
         }
 

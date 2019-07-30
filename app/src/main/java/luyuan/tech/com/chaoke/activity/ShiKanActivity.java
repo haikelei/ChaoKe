@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -92,7 +93,9 @@ public class ShiKanActivity extends BaseActivity {
     private String getListJson(List<ImageBean> data) {
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
-            list.add(data.get(i).getPath());
+            if (!TextUtils.isEmpty(data.get(i).getPath())){
+                list.add(data.get(i).getPath());
+            }
         }
         String s = new Gson().toJson(list);
         return s;

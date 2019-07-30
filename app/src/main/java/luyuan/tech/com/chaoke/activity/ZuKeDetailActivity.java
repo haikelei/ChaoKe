@@ -155,7 +155,7 @@ public class ZuKeDetailActivity extends BaseActivity {
         tvQuyu.setText("区域:" + data.getCity_name());
         tvZujin.setText("租金:" + data.getRent_min() + "-" + data.getRent_max());
         tvJushi.setText("居室:" + data.getRoom() + "室" + data.getOffice() + "厅" + data.getToilet() + "卫");
-//        tvZhuangxiu.setText("装修:"+);
+        tvZhuangxiu.setText("状态:"+getStatus(data.getStatus()));
         tvXiwangruzhuri.setText("希望入住日:" + data.getCheckin_time());
         tvRenshu.setText("人数:" + data.getPeople_num());
         if (data.getFollow_data() != null) {

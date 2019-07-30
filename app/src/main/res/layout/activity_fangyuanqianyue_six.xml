@@ -52,6 +52,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:number_keybord="true"
                 app:mHint="请输入"
                 app:mTitle="建筑面积㎡" />
             <luyuan.tech.com.chaoke.widget.InputLayout

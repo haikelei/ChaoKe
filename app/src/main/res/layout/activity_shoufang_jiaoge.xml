@@ -63,6 +63,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:number_keybord="true"
                 app:mHint="请输入"
                 app:mTitle="总电(非必填)" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -72,6 +73,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:number_keybord="true"
                 app:mHint="请输入"
                 app:mTitle="峰电" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -81,6 +83,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:number_keybord="true"
                 app:mHint="请输入"
                 app:mTitle="谷电" />
 
@@ -91,6 +94,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:number_keybord="true"
                 app:mHint="请输入"
                 app:mTitle="水表" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -109,6 +113,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:number_keybord="true"
                 app:mHint="请输入"
                 app:mTitle="燃气度数" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -181,6 +186,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="电视机" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -190,6 +196,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="空调" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -199,6 +206,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="冰箱" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -208,6 +216,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="洗衣机" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -217,6 +226,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="烘干机" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -226,6 +236,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="微波炉" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -235,6 +246,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="油烟机" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -244,6 +256,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="煤气灶" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -253,6 +266,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="电磁炉" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -262,6 +276,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="床" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -271,6 +286,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="床垫" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -280,6 +296,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="沙发" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -289,6 +306,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="衣柜" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -298,6 +316,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="书桌" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -307,6 +326,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="椅子" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -316,6 +336,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="窗帘" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -325,6 +346,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="床头柜" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -334,6 +356,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="地毯" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -343,6 +366,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="鞋柜" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -352,6 +376,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="餐桌" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -361,6 +386,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="餐椅" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -370,6 +396,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="茶几" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -379,6 +406,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="矮柜" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -388,6 +416,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="饮水机" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -397,6 +426,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="热水器" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -406,6 +436,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:number_keybord="true"
                 app:mHint="请输入数量"
                 app:mTitle="门卡" />
 

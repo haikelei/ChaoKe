@@ -63,6 +63,7 @@
 
                 <luyuan.tech.com.chaoke.widget.InputLayout
                     android:id="@+id/input_lou"
+                    app:number_keybord="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -73,6 +74,7 @@
                     android:layout_height="wrap_content" />
                 <luyuan.tech.com.chaoke.widget.InputLayout
                     android:id="@+id/input_danyuan"
+                    app:number_keybord="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -83,6 +85,7 @@
                     android:layout_height="wrap_content" />
                 <luyuan.tech.com.chaoke.widget.InputLayout
                     android:id="@+id/input_hao"
+                    app:number_keybord="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />

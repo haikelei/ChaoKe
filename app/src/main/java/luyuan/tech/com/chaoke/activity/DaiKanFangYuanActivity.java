@@ -314,6 +314,7 @@ public class DaiKanFangYuanActivity extends BaseActivity {
     private void loadData() {
         PostRequest request = HttpManager.post(HttpManager.HOUSE_LIST)
                 .params("type", "2")
+                .params("is_dai","1")
                 .params("token", UserInfoUtils.getInstance().getToken());
         if (!TextUtils.isEmpty(zujinLow) && !TextUtils.isEmpty(zujinHigh)) {
             request.params("price_min", zujinLow).params("price_max", zujinHigh);

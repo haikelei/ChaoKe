@@ -62,7 +62,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/iv_search"
-                        android:text="搜索房源,客源" />
+                        android:text="搜索房源" />
                 </RelativeLayout>
             </RelativeLayout>
 
