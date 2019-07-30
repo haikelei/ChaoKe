@@ -149,6 +149,7 @@ public class ZuKeXinXiQiTaActivity extends BaseActivity {
                         slCity.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                KeyBoardUtil.hideKeyBoard(getActivity());
                                 showCityPickerView();
                             }
                         });

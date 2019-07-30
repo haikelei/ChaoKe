@@ -130,7 +130,6 @@ public class KaiFaFangYuanActivity extends BaseActivity {
             }
         });
         initView();
-        loadData();
 
         ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +137,12 @@ public class KaiFaFangYuanActivity extends BaseActivity {
                 startActivityForResult(new Intent(getBaseContext(), AddHouseActivity.class),175);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
     }
 
     private void initPopup() {
