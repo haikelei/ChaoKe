@@ -228,6 +228,12 @@ public class ZuKeDetailActivity extends BaseActivity {
                 GenJinPopup genJinPopup = new GenJinPopup(ZuKeDetailActivity.this, id);
                 genJinPopup.setPopupGravity(Gravity.CENTER);
                 genJinPopup.showPopupWindow();
+                genJinPopup.setOnDialogListener(new GenJinPopup.OnDialogListener() {
+                    @Override
+                    public void onSuccess() {
+                        loadData();
+                    }
+                });
                 break;
             case R.id.ll_yuekan_bottom:
                 startActivity(new Intent(getActivity(), XuanZeYueKanFangYuanActivity.class));

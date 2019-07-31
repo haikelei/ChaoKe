@@ -1,5 +1,6 @@
 package luyuan.tech.com.chaoke.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  */
 
 
-public class HouseDetailBean {
+public class HouseDetailBean implements Serializable {
 
     /**
      * id : 1
@@ -34,17 +35,26 @@ public class HouseDetailBean {
     private String long_price;
     private String apartment;
     private String area;
+    private String area_name;
     private int fit_up;
     private int orientation;
     private String floor;
     private int source;
     private int see_type;
-    private String lat_pos;
-    private String lng_pos;
+    private Double lat_pos;
+    private Double lng_pos;
     private String describe;
     private List<String> pics;
     private List<ConfigureBean> configure;
     private String add_details;
+
+    public String getArea_name() {
+        return area_name;
+    }
+
+    public void setArea_name(String area_name) {
+        this.area_name = area_name;
+    }
 
     public String getAdd_details() {
         return add_details;
@@ -134,19 +144,19 @@ public class HouseDetailBean {
         this.see_type = see_type;
     }
 
-    public String getLat_pos() {
+    public Double getLat_pos() {
         return lat_pos;
     }
 
-    public void setLat_pos(String lat_pos) {
+    public void setLat_pos(Double lat_pos) {
         this.lat_pos = lat_pos;
     }
 
-    public String getLng_pos() {
+    public Double getLng_pos() {
         return lng_pos;
     }
 
-    public void setLng_pos(String lng_pos) {
+    public void setLng_pos(Double lng_pos) {
         this.lng_pos = lng_pos;
     }
 
@@ -174,7 +184,7 @@ public class HouseDetailBean {
         this.configure = configure;
     }
 
-    public static class ConfigureBean {
+    public static class ConfigureBean implements Serializable {
         /**
          * id : 2
          * name : 热水器

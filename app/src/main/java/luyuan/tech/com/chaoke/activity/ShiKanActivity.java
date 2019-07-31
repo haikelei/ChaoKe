@@ -13,7 +13,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
@@ -38,6 +42,7 @@ import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.adapter.ImageSelectAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.bean.ImageBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.ImageUploadUtils;
@@ -60,7 +65,7 @@ public class ShiKanActivity extends BaseActivity {
     MapView mMapView;
     @BindView(R.id.btn_submmit)
     Button btnSubmmit;
-    private String id;
+    HouseDetailBean data;
     private ImageSelectAdapter adapter;
     private ArrayList<ImageBean> list;
     public static final int CODE_SHIKAN = 160;
@@ -70,7 +75,7 @@ public class ShiKanActivity extends BaseActivity {
         public void run() {
             HttpManager.post(HttpManager.SHIKAN_TUPIAN)
                     .params("token", UserInfoUtils.getInstance().getToken())
-                    .params("id", id)
+                    .params("id", data.getId()+"")
                     .params("pics", getListJson(list))
                     .execute(new SimpleCallBack<String>() {
 
@@ -112,7 +117,7 @@ public class ShiKanActivity extends BaseActivity {
         }
         mMapView.onCreate(savedInstanceState);
         if (getIntent() != null) {
-            id = getIntent().getStringExtra("id");
+            data = (HouseDetailBean) getIntent().getSerializableExtra("data");
         }
         btnSubmmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,23 +146,16 @@ public class ShiKanActivity extends BaseActivity {
                 onClick(imageBean, CODE_SHIKAN);
             }
         });
-        initMap();
+        initMap(data);
     }
 
-    private void initMap() {
-        MyLocationStyle myLocationStyle = new MyLocationStyle();
-        ;
-        myLocationStyle.interval(2000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
-        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);
-        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
-        aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-
-            }
-        });
+    private void initMap(HouseDetailBean data) {
+        //移动位置
+        LatLng localLatLng=new LatLng(data.getLng_pos(), data.getLat_pos());
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localLatLng,18));
+        //标记点
+        LatLng latLng = new LatLng(data.getLng_pos(),data.getLat_pos());
+        final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title(data.getArea_name()));
     }
 
     private void onClick(ImageBean imageBean, int code) {

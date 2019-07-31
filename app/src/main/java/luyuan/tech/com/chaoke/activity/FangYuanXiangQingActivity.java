@@ -15,7 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -93,6 +98,7 @@ public class FangYuanXiangQingActivity extends BaseActivity {
     private AMap aMap;
     private HousePeiZhiAdapter housePeiZhiAdapter;
     private ArrayList<HouseDetailBean.ConfigureBean> list;
+    private HouseDetailBean bean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -134,8 +140,12 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         llShikanBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (bean==null){
+                    T.showShort(getActivity(),"房源信息获取为空");
+                    return;
+                }
                 Intent intent = new Intent(getBaseContext(), ShiKanActivity.class);
-                intent.putExtra("id", id);
+                intent.putExtra("data",bean );
                 startActivityForResult(intent, 201);
             }
         });
@@ -153,22 +163,29 @@ public class FangYuanXiangQingActivity extends BaseActivity {
                 callPhone("18888888888");
             }
         });
-        initMap();
+//        initMap();
     }
 
-    private void initMap() {
-        MyLocationStyle myLocationStyle = new MyLocationStyle();
-        myLocationStyle.interval(2000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
-        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);
-        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
-        aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
+    private void initMap(HouseDetailBean data) {
+//        MyLocationStyle myLocationStyle = new MyLocationStyle();
+//        myLocationStyle.interval(2000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
+//        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
+//        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+//        aMap.getUiSettings().setMyLocationButtonEnabled(true);
+//        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
+//        aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
+//            @Override
+//            public void onMyLocationChange(Location location) {
+//
+//            }
+//        });
 
-            }
-        });
+        //移动位置
+        LatLng localLatLng=new LatLng(data.getLng_pos(), data.getLat_pos());
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localLatLng,18));
+        //标记点
+        LatLng latLng = new LatLng(data.getLng_pos(),data.getLat_pos());
+        final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title(data.getArea_name()));
     }
 
     public void callPhone(String phoneNum) {
@@ -194,6 +211,8 @@ public class FangYuanXiangQingActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(HouseDetailBean data) {
+                        bean = data;
+                        initMap(data);
                         fillData(data);
                     }
                 });

@@ -156,6 +156,9 @@ public class GenJinPopup extends BasePopupWindow {
 
                     @Override
                     public void onSuccess(String data) {
+                        if (listener!=null){
+                            listener.onSuccess();
+                        }
                         T.showShort(getContext(),"跟进成功");
                        dismiss();
                     }
@@ -165,6 +168,14 @@ public class GenJinPopup extends BasePopupWindow {
     @Override
     public View onCreateContentView() {
         return createPopupById(R.layout.layout_popup_genjin);
+    }
+
+    public interface OnDialogListener{
+        void onSuccess();
+    }
+    private OnDialogListener listener;
+    public void setOnDialogListener(OnDialogListener listener){
+        this.listener = listener;
     }
 
 
