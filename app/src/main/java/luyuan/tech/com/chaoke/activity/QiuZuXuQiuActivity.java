@@ -68,7 +68,8 @@ public class QiuZuXuQiuActivity extends BaseActivity {
     private ArrayList<String> tingList;
     private ArrayList<String> weiList;
     private int shi, ting, wei;
-    private int topId, cityId;
+    private int topId=-1;
+    private int cityId=-1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -247,6 +248,14 @@ public class QiuZuXuQiuActivity extends BaseActivity {
             return;
         }
         if (!checkEmptyInfo()) {
+            return;
+        }
+        if (topId==-1){
+            T.showShort(getActivity(), "请选择城市");
+            return;
+        }
+        if (cityId==-1){
+            T.showShort(getActivity(), "请选择商圈");
             return;
         }
         HttpManager.post(HttpManager.QIUZUXUQIU)

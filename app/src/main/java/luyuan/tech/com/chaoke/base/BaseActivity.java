@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.bean.MultySelectBean;
@@ -153,7 +156,8 @@ public class BaseActivity extends AppCompatActivity {
                 datePickerDialogFragment.setOnSelectListener(new DatePickerDialogFragment.OnDateSelectListener() {
                     @Override
                     public void onSelect(List<String> date) {
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
                         try {
                             Date date1 = simpleDateFormat.parse(date.get(0));
                             if (date1.getTime()>outTime){
