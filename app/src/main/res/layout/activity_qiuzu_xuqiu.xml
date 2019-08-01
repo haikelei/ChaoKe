@@ -111,7 +111,7 @@
             app:mHint="请选择"
             app:mTitle="户型" />
 
-        <luyuan.tech.com.chaoke.widget.InputLayout
+        <luyuan.tech.com.chaoke.widget.SelectLayout
             android:id="@+id/sl_ruzhurenshu"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -132,6 +132,16 @@
             android:paddingRight="15dp"
             app:mHint="请选择"
             app:mTitle="入住时间" />
+        <luyuan.tech.com.chaoke.widget.InputLayout
+            android:id="@+id/input_chenghu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            app:mHint="请输入姓名"
+            app:mTitle="称呼" />
         <EditText
             android:id="@+id/et_more"
             android:paddingLeft="10dp"

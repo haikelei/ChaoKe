@@ -119,6 +119,10 @@ public class HttpManager {
      */
     public static final String CITYS = "/api/agent/all_city";
 
+    public static final String FIND_CITYS = "/api/Clientindex/find_city";
+
+    public static final String QIUZUXUQIU = "/api/Clientuser/rent_seek";
+
 
     /**
      * 修改状态
