@@ -47,6 +47,24 @@ public class HouseDetailBean implements Serializable {
     private List<String> pics;
     private List<ConfigureBean> configure;
     private String add_details;
+    private long entrust_end;
+    private String true_price;
+
+    public String getTrue_price() {
+        return true_price;
+    }
+
+    public void setTrue_price(String true_price) {
+        this.true_price = true_price;
+    }
+
+    public long getEntrust_end() {
+        return entrust_end;
+    }
+
+    public void setEntrust_end(long entrust_end) {
+        this.entrust_end = entrust_end;
+    }
 
     public String getArea_name() {
         return area_name;

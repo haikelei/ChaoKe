@@ -92,6 +92,7 @@ public class ZuKeDetailActivity extends BaseActivity {
     private String id;
     private List<ZuKeDetailBean.FollowDataBean> list;
     private GenJinAdapter adapter;
+    private ZuKeDetailBean bean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -136,6 +137,7 @@ public class ZuKeDetailActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(ZuKeDetailBean data) {
+                        bean = data;
                         fillData(data);
                     }
                 });
@@ -208,6 +210,9 @@ public class ZuKeDetailActivity extends BaseActivity {
 
                     @Override
                     public void onQiuzuxuqiu(View view) {
+                        Intent intent = new Intent(getBaseContext(),QiuZuXuQiuActivity.class);
+                        intent.putExtra("id",id);
+                        startActivity(intent);
 
                     }
 
@@ -239,7 +244,7 @@ public class ZuKeDetailActivity extends BaseActivity {
                 startActivity(new Intent(getActivity(), XuanZeYueKanFangYuanActivity.class));
                 break;
             case R.id.ll_call:
-                callPhone("13800000000");
+                callPhone(bean.getPhone());
                 break;
         }
     }

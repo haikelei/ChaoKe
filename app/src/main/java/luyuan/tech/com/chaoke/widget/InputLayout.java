@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class InputLayout extends RelativeLayout {
     String hint;
     boolean must;
     boolean numberKeybord;
+    boolean editable;
     @BindView(R.id.tv)
     TextView tv;
     @BindView(R.id.et)
@@ -54,6 +56,7 @@ public class InputLayout extends RelativeLayout {
             title = a.getString(R.styleable.InputLayout_mTitle);
             must = a.getBoolean(R.styleable.InputLayout_must,true);
             numberKeybord = a.getBoolean(R.styleable.InputLayout_number_keybord,false);
+            editable = a.getBoolean(R.styleable.InputLayout_mEditable,true);
         }
         View view = LayoutInflater.from(context).inflate(R.layout.layout_input, this, true);
         ButterKnife.bind(this,view);
@@ -65,6 +68,12 @@ public class InputLayout extends RelativeLayout {
         }
         if (numberKeybord){
             et.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        }
+        if (!editable){
+            et.setFocusable(false);
+            et.setFocusableInTouchMode(false);
+            et.setLongClickable(false);
+            et.setInputType(InputType.TYPE_NULL);
         }
     }
 

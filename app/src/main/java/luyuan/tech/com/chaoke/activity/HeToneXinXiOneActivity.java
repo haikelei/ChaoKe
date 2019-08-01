@@ -68,6 +68,7 @@ public class HeToneXinXiOneActivity extends BaseActivity {
     @BindView(R.id.input_tongxundizhi)
     InputLayout inputTongxundizhi;
     private String id;
+    private  HouseDetailBean bean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +77,7 @@ public class HeToneXinXiOneActivity extends BaseActivity {
         ButterKnife.bind(this);
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
+            bean = (HouseDetailBean) getIntent().getSerializableExtra("data");
         }
 
         RequestOptions requestOptions = new RequestOptions();
@@ -98,7 +100,11 @@ public class HeToneXinXiOneActivity extends BaseActivity {
         setDatePickerListener(slQianyueriqi);
         setDatePickerListener(slShoucifukuan);
         setDatePickerListener(slChengzuqisuan);
-        setDatePickerListener(slChengzujiezhi);
+        if (bean==null||bean.getEntrust_end()==0){
+            setDatePickerListener(slChengzujiezhi);
+        }else {
+            setDatePickerListener(slChengzujiezhi,bean.getEntrust_end()*1000);
+        }
 
         String[] arr = {"一次性付款","年付","月付","季付","半年付"};
         setSelectLListener(slFukuanfangshi,arr,"付款方式");
@@ -143,6 +149,7 @@ public class HeToneXinXiOneActivity extends BaseActivity {
                     public void onSuccess(HeTongIdBean data) {
                         Intent intent = new Intent(getBaseContext(), HeToneXinXiTwoActivity.class);
                         intent.putExtra("data",data);
+                        intent.putExtra("bean",bean);
                         startActivity(intent);
                     }
                 });

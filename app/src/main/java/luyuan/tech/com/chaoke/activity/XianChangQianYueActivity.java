@@ -101,6 +101,7 @@ public class XianChangQianYueActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), HeToneXinXiOneActivity.class);
                 intent.putExtra("id", id);
+                intent.putExtra("data",bean);
                 startActivity(intent);
             }
         });

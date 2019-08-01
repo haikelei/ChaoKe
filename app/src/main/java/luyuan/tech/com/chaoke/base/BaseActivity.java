@@ -16,7 +16,10 @@ import android.widget.Toast;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.NormalListDialog;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import luyuan.tech.com.chaoke.R;
@@ -134,6 +137,36 @@ public class BaseActivity extends AppCompatActivity {
                     public void onSelect(List<String> date) {
                         selectLayout.setText(date.get(0));
                         datePickerDialogFragment.dismiss();
+                    }
+                });
+            }
+        });
+    }
+
+    protected void setDatePickerListener(final SelectLayout selectLayout, final long outTime) {
+        selectLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                KeyBoardUtil.hideKeyBoard(getActivity());
+                final DatePickerDialogFragment datePickerDialogFragment = DatePickerDialogFragment.create(true);
+                datePickerDialogFragment.show(getSupportFragmentManager(), "tag");
+                datePickerDialogFragment.setOnSelectListener(new DatePickerDialogFragment.OnDateSelectListener() {
+                    @Override
+                    public void onSelect(List<String> date) {
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+                        try {
+                            Date date1 = simpleDateFormat.parse(date.get(0));
+                            if (date1.getTime()>outTime){
+                                T.showShort(getBaseContext(),"承租截止期必须小于超时时间:"+simpleDateFormat.format(outTime));
+                            }else {
+                                selectLayout.setText(date.get(0));
+                                datePickerDialogFragment.dismiss();
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                            datePickerDialogFragment.dismiss();
+                        }
+
                     }
                 });
             }

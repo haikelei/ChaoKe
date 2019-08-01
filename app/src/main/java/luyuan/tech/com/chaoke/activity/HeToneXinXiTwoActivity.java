@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HeTongIdBean;
+import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -50,6 +51,7 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
     @BindView(R.id.input_fuwuguanjia)
     InputLayout inputFuwuguanjia;
     private HeTongIdBean bean;
+    private HouseDetailBean houseDetailBean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
         ButterKnife.bind(this);
         if (getIntent() != null) {
             bean = (HeTongIdBean) getIntent().getSerializableExtra("data");
+            houseDetailBean = (HouseDetailBean) getIntent().getSerializableExtra("bean");
         }
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +78,8 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
         setDatePickerListener(slFukuanjieshu);
         setDatePickerListener(slFukuankaishi);
         setDatePickerListener(slFenqijiekuan);
+
+        inputZujin.setText(houseDetailBean.getTrue_price());
 
         String[] arr = {"压1","压2","无押金"};
         setSelectLListener(slYajinleixing,arr,"押金类型");
