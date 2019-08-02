@@ -20,9 +20,9 @@ import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.bean.StringDataResponse;
+import luyuan.tech.com.chaoke.bean.ZukeOneBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
 import luyuan.tech.com.chaoke.net.NetParser;
-import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
@@ -52,6 +52,7 @@ public class ZuKeXinXiActivity extends BaseActivity {
     SelectLayout slZukedengji;
     @BindView(R.id.sl_shehuizizhi)
     SelectLayout slShehuizizhi;
+    private String tenant_id;
 
 
     @Override
@@ -84,7 +85,35 @@ public class ZuKeXinXiActivity extends BaseActivity {
 
         String[] arr3 = {"技术员", "老板", "个体户", "其他"};
         setSelectLListener(slShehuizizhi, arr3, "社会资质");
+        if (getIntent()!=null){
+            tenant_id = getIntent().getStringExtra("id");
+            if (!TextUtils.isEmpty(tenant_id)){
+                loadOldData();
+            }
+        }
+    }
 
+    private void loadOldData() {
+        HttpManager.post(HttpManager.ZUKEBIANJI_ONE)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("tenant_id", tenant_id)
+                .execute(new SimpleCallBack<ZukeOneBean>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(ZukeOneBean data) {
+                        inputName.setText(data.getUsername());
+                        inputShouji.setText(data.getPhone());
+                        slXingbie.setSelect(data.getSex()+"");
+                        slZukelaiyuan.setSelect(data.getSource()+"");
+                        slZukedengji.setSelect(data.getGrade()+"");
+                        slShehuizizhi.setSelect(data.getSocial()+"");
+                    }
+                });
     }
 
     private void showDialog() {
@@ -124,8 +153,8 @@ public class ZuKeXinXiActivity extends BaseActivity {
                 .params("source", ((int) slZukelaiyuan.getTag() + 1) + "")
                 .params("grade", ((int) slZukedengji.getTag() + 1) + "")
                 .params("social", ((int) slShehuizizhi.getTag() + 1) + "");
-        if (!TextUtils.isEmpty(id)) {
-            request.params("tenant_id", id);
+        if (!TextUtils.isEmpty(tenant_id)) {
+            request.params("id", tenant_id);
         }
         request.execute(new SimpleCallBack<String>() {
 
@@ -140,6 +169,9 @@ public class ZuKeXinXiActivity extends BaseActivity {
                     Intent intent = new Intent(getBaseContext(), ZuKeXinXiQiTaActivity.class);
                     StringDataResponse stringDataResponse = NetParser.parse(data, StringDataResponse.class);
                     id = stringDataResponse.getData();
+                    if (!TextUtils.isEmpty(tenant_id)){
+                        intent.putExtra("tenant_id", tenant_id);
+                    }
                     intent.putExtra("id", id);
                     startActivity(intent);
                 }else {

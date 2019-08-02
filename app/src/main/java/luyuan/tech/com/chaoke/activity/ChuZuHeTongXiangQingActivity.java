@@ -10,8 +10,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.widget.NormalDialog;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,6 +125,7 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
     @BindView(R.id.rl_hetongzhengben)
     RelativeLayout rlHetongzhengben;
     private String id;
+    private ChuZuDetailBean bean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -135,9 +144,22 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
         rlXuqian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), ChuZuXuQianActivity.class);
-                intent.putExtra("id",id);
-                startActivity(intent);
+                if (bean!=null){
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+                    simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
+                    try {
+                        Date date = simpleDateFormat.parse(bean.getContract_msg().getLessee_endtime());
+                        if (date.getTime()-System.currentTimeMillis()>60*24*60*60*1000){
+                            showDialog();
+                        }else {
+                            Intent intent = new Intent(getBaseContext(), ChuZuXuQianActivity.class);
+                            intent.putExtra("id",id);
+                            startActivity(intent);
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
         rlHetongzhengben.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +174,22 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
         });
         loadHeTongUrl();
         loadData();
+    }
+
+    private void showDialog() {
+        final NormalDialog dialog = new NormalDialog(getActivity());
+        dialog.content("与租客续期最多只能提早两个月,还未到可以续签日期~")//
+                .btnNum(1)
+                .title("温馨提示")
+                .btnText("确定")//
+                .show();
+
+        dialog.setOnBtnClickL(new OnBtnClickL() {
+            @Override
+            public void onBtnClick() {
+                dialog.dismiss();
+            }
+        });
     }
 
     private String url;
@@ -190,6 +228,7 @@ public class ChuZuHeTongXiangQingActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(ChuZuDetailBean data) {
+                        bean = data;
                         fillData(data);
                     }
                 });

@@ -205,6 +205,7 @@ public class ZuKeDetailActivity extends BaseActivity {
                     @Override
                     public void onZukexinxiClick(View view) {
                         Intent intent = new Intent(getBaseContext(), ZuKeXinXiActivity.class);
+                        intent.putExtra("id",id);
                         startActivity(intent);
                     }
 

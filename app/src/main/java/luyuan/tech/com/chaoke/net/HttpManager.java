@@ -295,6 +295,11 @@ public class HttpManager {
     public static final String QIANYUEFANGYUAN = "/api/agent/takeLookRecord";
 
 
+    public static final String ZUKEBIANJI_ONE = "/api/agent/first_detail";
+
+    public static final String ZUKEBIANJI_TWO = "/api/agent/second_detail";
+
+
 
 
 
