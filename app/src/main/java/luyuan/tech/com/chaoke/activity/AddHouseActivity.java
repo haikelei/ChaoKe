@@ -134,6 +134,10 @@ public class AddHouseActivity extends BaseActivity {
                 if (NetParser.isOk(s)) {
                     StringDataResponse response = NetParser.parse(s, StringDataResponse.class);
                     houseId = response.getData();
+                    if (!TextUtils.isEmpty(response.getMsg())){
+                        T.showShort(getActivity(),response.getMsg());
+                        return;
+                    }
                     Intent intent = new Intent(getBaseContext(), AddHouseOtherInfoActivity.class);
                     intent.putExtra("id", houseId);
                     startActivityForResult(intent, 199);
