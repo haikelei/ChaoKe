@@ -190,6 +190,10 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
         if (!checkEmptyInfo()) {
             return;
         }
+        if (TextUtils.isEmpty(config)){
+            T.showShort(getActivity(), "请选择配置");
+            return;
+        }
         HttpManager.post(HttpManager.FABUTWO)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("ren_id", id)

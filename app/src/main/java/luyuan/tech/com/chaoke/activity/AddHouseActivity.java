@@ -137,6 +137,9 @@ public class AddHouseActivity extends BaseActivity {
                     Intent intent = new Intent(getBaseContext(), AddHouseOtherInfoActivity.class);
                     intent.putExtra("id", houseId);
                     startActivityForResult(intent, 199);
+                }else {
+                    StringDataResponse dataResponse = NetParser.parse(s,StringDataResponse.class);
+                    T.showShort(getActivity(),dataResponse.getMsg());
                 }
             }
         });

@@ -15,7 +15,9 @@ import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.MainActivity;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.StringDataResponse;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
@@ -76,8 +78,16 @@ public class WeiTuoXuQianActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(String data) {
-                       T.showShort(getActivity(),"续签成功");
-                       startActivity(new Intent(getActivity(),MainActivity.class));
+
+                        if (NetParser.isOk(data)){
+                            startActivity(new Intent(getActivity(),MainActivity.class));
+                            T.showShort(getActivity(),"续签成功");
+                        }else {
+                            StringDataResponse stringDataResponse = NetParser.parse(data,StringDataResponse.class);
+                            T.showShort(getActivity(),stringDataResponse.getMsg());
+                        }
+
+
                     }
                 });
     }
