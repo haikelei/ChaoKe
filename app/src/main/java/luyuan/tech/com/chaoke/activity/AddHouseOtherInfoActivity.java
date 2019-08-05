@@ -73,8 +73,6 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     Button btnSubmmit;
     @BindView(R.id.sl_zhuangxiu)
     SelectLayout slZhuangxiu;
-    @BindView(R.id.input_floor)
-    InputLayout inputFloor;
     @BindView(R.id.sl_fangwuyongtu)
     SelectLayout slFangwuyongtu;
     @BindView(R.id.sl_duanzu)
@@ -203,7 +201,6 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
                 .params("is_first_rent", getValue(slShoucichuzu))
                 .params("used_type", getValue(slFangwuyongtu))
                 .params("type", getValue(slDuanzu))
-                .params("floor", getValue(inputFloor))
                 .params("fit_up", getValue(slZhuangxiu))
                 .params("is_lift", getValue(clDianti))
                 .params("is_mind", getValue(clZhinengsuo))
