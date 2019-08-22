@@ -26,6 +26,7 @@ import luyuan.tech.com.chaoke.bean.QianYueBeanOne;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.bean.XiaoQuBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.StringUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
@@ -97,7 +98,7 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         setSelectLListener(slFangwulaiyuan, arr, "房源来源");
 
         String[] arr1 = {"房屋所有权证书", "原购房发票", "房屋买卖合同", "其他"};
-        setSelectLListener(slJiafangchizheng, arr1, "甲方持证");
+        setMultiSelectListener(slJiafangchizheng, arr1, "甲方持证");
 
         setDatePickerListener(slQianyueriqi);
         setDatePickerListener(slJiaofangriqi);
@@ -193,7 +194,7 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
                 .params("signing_type", getValue(slQianyueleixing))
                 .params("signing_time", slQianyueriqi.getText().toString())
                 .params("over_time", slJiaofangriqi.getText().toString())
-                .params("certificate", getValue(slJiafangchizheng))
+                .params("certificate", StringUtils.handleDouHao(slJiafangchizheng.getValue()))
                 .params("used_by", getValue(slFangwuyongtu));
         if (bean!=null){
             postRequest.params("reside_id", bean.getId()+"");
@@ -211,7 +212,7 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
             @Override
             public void onSuccess(TotalIdBean data) {
                 uploadTotalId = data.getTotal_id();
-                Intent intent = new Intent(getBaseContext(), FangYuanQianYueTwoActivity.class);
+                Intent intent = new Intent(getBaseContext(), FangYuanQianYueThreeActivity.class);
                 intent.putExtra("down_id",downloadTotalId);
                 intent.putExtra("up_id",uploadTotalId);
                 startActivity(intent);

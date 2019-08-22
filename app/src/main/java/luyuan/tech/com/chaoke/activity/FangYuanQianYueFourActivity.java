@@ -22,6 +22,7 @@ import luyuan.tech.com.chaoke.bean.QianYueBeanFour;
 import luyuan.tech.com.chaoke.bean.QianYueBeanTwo;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.InputLayout;
@@ -89,6 +90,11 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
         if (!TextUtils.isEmpty(downloadTotalId)){
             loadOldData(downloadTotalId);
         }
+
+        if (AppStorageUtils.getInstance().getHouseDetail()!=null){
+            inputMeiyuefangzu.setText(AppStorageUtils.getInstance().getHouseDetail().getTrue_price());
+        }
+
     }
 
 

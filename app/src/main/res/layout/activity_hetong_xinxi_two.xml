@@ -144,6 +144,7 @@
                 app:mTitle="分期最后结款时间" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -159,6 +160,8 @@
                 android:background="#ffffff"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                app:must="false"
+                android:visibility="gone"
                 app:mHint="请填写"
                 app:mTitle="服务管家费" />
 

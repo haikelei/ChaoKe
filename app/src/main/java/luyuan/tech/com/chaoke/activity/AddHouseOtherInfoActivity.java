@@ -75,8 +75,8 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     SelectLayout slZhuangxiu;
     @BindView(R.id.sl_fangwuyongtu)
     SelectLayout slFangwuyongtu;
-    @BindView(R.id.sl_duanzu)
-    SelectLayout slDuanzu;
+//    @BindView(R.id.sl_duanzu)
+//    SelectLayout slDuanzu;
     @BindView(R.id.sl_shoucichuzu)
     SelectLayout slShoucichuzu;
     @BindView(R.id.cl_dianti)
@@ -108,8 +108,8 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
         String[] arr1 = {"住宅", "出租"};
         setSelectLListener(slFangwuyongtu, arr1);
 
-        String[] arr2 = {"仅长租", "仅短租", "都可租"};
-        setSelectLListener(slDuanzu, arr2);
+//        String[] arr2 = {"仅长租", "仅短租", "都可租"};
+//        setSelectLListener(slDuanzu, arr2);
 
         String[] arr3 = {"首次出租", "非首次出租"};
         setSelectLListener(slShoucichuzu, arr3);
@@ -200,7 +200,7 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
                 .params("apartment", "")
                 .params("is_first_rent", getValue(slShoucichuzu))
                 .params("used_type", getValue(slFangwuyongtu))
-                .params("type", getValue(slDuanzu))
+//                .params("type", getValue(slDuanzu))
                 .params("fit_up", getValue(slZhuangxiu))
                 .params("is_lift", getValue(clDianti))
                 .params("is_mind", getValue(clZhinengsuo))

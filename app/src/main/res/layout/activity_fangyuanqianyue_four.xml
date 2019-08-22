@@ -48,6 +48,7 @@
                 android:paddingRight="15dp"
                 app:number_keybord="true"
                 app:mHint="请输入"
+                app:mEditable="false"
                 app:mTitle="每月房租(元)" />
 
             <luyuan.tech.com.chaoke.widget.SelectLayout

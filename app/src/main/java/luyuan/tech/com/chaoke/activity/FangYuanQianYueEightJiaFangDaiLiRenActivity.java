@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.base.BaseActivity;
+import luyuan.tech.com.chaoke.bean.LoginBean;
 import luyuan.tech.com.chaoke.bean.QianYueBeanEightChuzuren;
 import luyuan.tech.com.chaoke.bean.QianYueBeanTwo;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
@@ -73,11 +74,19 @@ public class FangYuanQianYueEightJiaFangDaiLiRenActivity extends BaseActivity {
                 loadData();
             }
         });
-        String[] arr1 = {"居民身份证","护照","军人证"};
-        setSelectLListener(slZhengjianleixing,arr1,"证件类型");
+//        String[] arr1 = {"居民身份证","护照","军人证"};
+//        setSelectLListener(slZhengjianleixing,arr1,"证件类型");
         if (!TextUtils.isEmpty(downloadTotalId)){
             loadOldData(downloadTotalId);
         }
+
+        LoginBean loginBean = UserInfoUtils.getInstance().getUser();
+        slZhengjianleixing.setText(loginBean.card_type);
+        inputXingming.setText(loginBean.getUsername());
+        inputZhengjianhaoma.setText(loginBean.card_num);
+        inputShoujihaoma.setText(loginBean.getPhone());
+        inputYouxiangdizhi.setText(loginBean.email);
+        inputTongxundizhi.setText(loginBean.address);
     }
 
     private void loadOldData(String totalId) {

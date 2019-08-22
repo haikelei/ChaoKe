@@ -79,7 +79,7 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
         setDatePickerListener(slFukuankaishi);
         setDatePickerListener(slFenqijiekuan);
 
-        inputZujin.setText(houseDetailBean.getTrue_price());
+        inputZujin.setText(houseDetailBean.true_price2);
 
         String[] arr = {"压1","压2","无押金"};
         setSelectLListener(slYajinleixing,arr,"押金类型");
@@ -103,7 +103,7 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
                 .params("deposit_price", inputYajin.getText().trim())
                 .params("pay_type",((int)slFukuanfangshi.getTag()+1)+"")
                 .params("by_stages_endtime",slFenqijiekuan.getText())
-                .params("other_price",inputFuwuguanjia.getText().trim())
+//                .params("other_price",inputFuwuguanjia.getText().trim())
                 .execute(new SimpleCallBack<HeTongIdBean>() {
 
                     @Override

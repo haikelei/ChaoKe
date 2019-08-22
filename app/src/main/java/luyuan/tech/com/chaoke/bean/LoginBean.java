@@ -40,7 +40,7 @@ public class LoginBean {
     private String headimgurl;
     private int sex;
     private String phone;
-    private Object username;
+    private String username;
     private String password;
     private String user_id;
     private String user_balance;
@@ -56,6 +56,10 @@ public class LoginBean {
     private String code;
     private int store_id;
     private int is_auth;
+    public String email;
+    public String address;
+    public String card_type;
+    public String card_num;
 
     public int getId() {
         return id;
@@ -105,11 +109,11 @@ public class LoginBean {
         this.phone = phone;
     }
 
-    public Object getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(Object username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

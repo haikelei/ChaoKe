@@ -3,6 +3,7 @@ package luyuan.tech.com.chaoke.utils;
 import android.text.TextUtils;
 
 import luyuan.tech.com.chaoke.App;
+import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.bean.LoginBean;
 import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
 
@@ -15,6 +16,7 @@ import luyuan.tech.com.chaoke.bean.ZuKeDetailBean;
 
 public class AppStorageUtils {
     private static AppStorageUtils instance;
+    private HouseDetailBean mHouseDetail;
 
     private AppStorageUtils(){
     }
@@ -24,6 +26,14 @@ public class AppStorageUtils {
             instance = new AppStorageUtils();
         }
         return instance;
+    }
+
+    public void setHouseDetail(HouseDetailBean houseDetail) {
+        mHouseDetail = houseDetail;
+    }
+
+    public HouseDetailBean getHouseDetail() {
+        return mHouseDetail;
     }
 
 

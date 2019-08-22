@@ -2,6 +2,8 @@ package luyuan.tech.com.chaoke.utils;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+
 import luyuan.tech.com.chaoke.App;
 import luyuan.tech.com.chaoke.bean.LoginBean;
 
@@ -63,12 +65,27 @@ public class UserInfoUtils {
         helper.put("name",name);
     }
 
+    public void setUser(String s){
+        helper.put("user",s);
+    }
+
+    public LoginBean getUser(){
+        Gson gson = new Gson();
+        String s = (String) helper.getSharedPreference("user","");
+        LoginBean bean = gson.fromJson(s,LoginBean.class);
+        return bean;
+    }
+
+
+
 
     public void updateUserInfo(LoginBean bean){
         setToken(bean.getToken());
         setPhone(bean.getPhone());
         setAvatar(bean.getHeadimgurl());
         setUserName(bean.getNickname());
+        Gson gson = new Gson();
+        setUser(gson.toJson(bean));
     }
 
     public void logout() {

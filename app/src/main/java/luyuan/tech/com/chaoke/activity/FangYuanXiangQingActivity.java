@@ -39,6 +39,7 @@ import luyuan.tech.com.chaoke.adapter.HousePeiZhiAdapter;
 import luyuan.tech.com.chaoke.base.BaseActivity;
 import luyuan.tech.com.chaoke.bean.HouseDetailBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 
@@ -212,6 +213,7 @@ public class FangYuanXiangQingActivity extends BaseActivity {
                     @Override
                     public void onSuccess(HouseDetailBean data) {
                         bean = data;
+                        AppStorageUtils.getInstance().setHouseDetail(data);
                         initMap(data);
                         fillData(data);
                     }
