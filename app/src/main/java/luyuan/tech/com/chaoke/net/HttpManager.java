@@ -299,6 +299,11 @@ public class HttpManager {
 
     public static final String ZUKEBIANJI_TWO = "/api/agent/second_detail";
 
+    //免租策略上传
+    public static final String MIANZUCELUE_SHANGCHUAN = "/api/Agent/free_strategy";
+    //免租策略下载
+    public static final String MIANZUCELUE_XIAZAI = "/api/Agent/show_free_strategy\n";
+
 
 
 

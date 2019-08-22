@@ -155,7 +155,7 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
             @Override
             public void onSuccess(TotalIdBean data) {
                 oldId = data.getOld_id();
-                Intent intent = new Intent(getBaseContext(), FangYuanQianYueFiveActivity.class);
+                Intent intent = new Intent(getBaseContext(), FangYuanQianYueFourMianZuCeLueActivity.class);
                 intent.putExtra("down_id",downloadTotalId);
                 intent.putExtra("up_id",uploadTotalId);
                 startActivity(intent);

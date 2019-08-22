@@ -56,8 +56,8 @@ public class ZuJinCeLueLayout extends LinearLayout {
     private void intiView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_zujincelue, this, true);
         ButterKnife.bind(this, view);
-        setDatePickerListener(slMianzujieshuri);
-        setDatePickerListener(slMianzukaishiri);
+//        setDatePickerListener(slMianzujieshuri);
+//        setDatePickerListener(slMianzukaishiri);
         setDatePickerListener(slWeituojieshu);
         setDatePickerListener(slWeituokaishi);
     }
