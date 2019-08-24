@@ -92,9 +92,27 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
         }
 
         if (AppStorageUtils.getInstance().getHouseDetail()!=null){
-            inputMeiyuefangzu.setText(AppStorageUtils.getInstance().getHouseDetail().getTrue_price());
+            loadHouseDetail(AppStorageUtils.getInstance().getHouseDetail().getId());
         }
 
+    }
+
+    private void loadHouseDetail(int id) {
+        HttpManager.post(HttpManager.HOUSE_DETAIL)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("id", String.valueOf(id))
+                .execute(new SimpleCallBack<HouseDetailBean>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(HouseDetailBean data) {
+                        inputMeiyuefangzu.setText(data.getTrue_price());
+                    }
+                });
     }
 
 

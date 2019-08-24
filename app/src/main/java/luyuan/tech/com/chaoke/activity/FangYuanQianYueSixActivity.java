@@ -60,6 +60,12 @@ public class FangYuanQianYueSixActivity extends BaseActivity {
             downloadTotalId = getIntent().getStringExtra("down_id");
             uploadTotalId = getIntent().getStringExtra("up_id");
         }
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

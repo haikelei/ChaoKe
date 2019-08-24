@@ -67,6 +67,13 @@ public class FangYuanQianYueFourMianZuCeLueActivity extends BaseActivity {
             downloadTotalId = getIntent().getStringExtra("down_id");
             uploadTotalId = getIntent().getStringExtra("up_id");
         }
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         rb0.setChecked(true);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,11 +152,11 @@ public class FangYuanQianYueFourMianZuCeLueActivity extends BaseActivity {
 
         for (int i = 0; i < list.size(); i++) {
             String s = list.get(i).getContent();
-            if (StringUtils.isNumber(s)) {
+            if (StringUtils.isZhengInteger(s)) {
                 try {
                     Integer integer = Integer.valueOf(s);
                     if (getType().equals("1")){
-                        if (integer < 1 || integer > 13) {
+                        if (integer < 1 || integer > 12) {
                             T.showShort(getBaseContext(), "免租月份必须是1-12之间");
                             return;
                         }
@@ -159,7 +166,7 @@ public class FangYuanQianYueFourMianZuCeLueActivity extends BaseActivity {
                     return;
                 }
             }else {
-                T.showShort(getBaseContext(), "免租月份必须是数字类型");
+                T.showShort(getBaseContext(), "免租月份必须是数字类型并且是整数");
                 return;
             }
         }
@@ -201,7 +208,12 @@ public class FangYuanQianYueFourMianZuCeLueActivity extends BaseActivity {
                 param.setContent(zuJinCeLueLayout.mInputLayout.getText().toString().trim());
             }
         }
-        String s = new Gson().toJson(list);
+
+        ArrayList<String> uploadList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            uploadList.add(list.get(i).getContent());
+        }
+        String s = new Gson().toJson(uploadList);
         return s;
     }
 
