@@ -90,15 +90,15 @@ public class FangYuanQianYueEightJiaFangDaiLiRenActivity extends BaseActivity {
         inputTongxundizhi.setText(loginBean.address);
     }
 
-    private String getCardType(String card_type) {
+    private int getCardType(String card_type) {
         if ("身份证".equals(card_type)){
-            return "1";
+            return 0;
         }else if ("护照".equals(card_type)){
-            return "2";
+            return 1;
         }else if ("军人证".equals(card_type)){
-            return "3";
+            return 2;
         }
-        return "1";
+        return  0;
     }
 
     private void loadOldData(String totalId) {
