@@ -203,7 +203,7 @@ public class BaseActivity extends AppCompatActivity {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) instanceof SelectLayout){
                 SelectLayout selectLayout = (SelectLayout) list.get(i);
-                if (selectLayout.getMust()&&TextUtils.isEmpty(selectLayout.getText())){
+                if (selectLayout.getVisibility()==View.VISIBLE&&selectLayout.getMust()&&TextUtils.isEmpty(selectLayout.getText())){
                     T.showShort(this,"请选择"+selectLayout.getTitle());
                     return false;
                 }

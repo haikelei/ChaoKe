@@ -472,16 +472,14 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
     }
 
     private String getFukuanxinxi(int i) {
-        if (i == 1) {
-            return "1次性付款";
-        } else if (i == 2) {
-            return "年付";
-        } else if (i == 3) {
+         if (i == 1) {
             return "月付";
-        } else if (i == 4) {
+        } else if (i == 2) {
             return "季付";
-        } else if (i == 5) {
+        } else if (i == 3) {
             return "半年付";
+        }else if (i == 4) {
+            return "年付";
         }
         return "";
     }

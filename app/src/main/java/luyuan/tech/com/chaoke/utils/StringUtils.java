@@ -17,4 +17,26 @@ public class StringUtils {
         return value;
 
     }
+
+    /**
+     * 1.判断字符串是否仅为数字:
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isNumber(String str) {
+
+        for (int i = str.length(); --i >= 0; ) {
+
+            if (!Character.isDigit(str.charAt(i))) {
+
+                return false;
+
+            }
+
+        }
+
+        return true;
+
+    }
 }

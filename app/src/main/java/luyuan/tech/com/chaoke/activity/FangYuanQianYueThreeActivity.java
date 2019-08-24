@@ -72,7 +72,7 @@ public class FangYuanQianYueThreeActivity extends BaseActivity {
                 loadData();
             }
         });
-        String[] arr = {"1次性付款 ", "年付", "月付", "季付", "半年付"};
+        String[] arr = {"月付", "季付", "半年付", "年付"};
         setSelectLListener(slFukuanxinxi, arr, "付款信息");
         setDatePickerListener(slWeituodaoqiri);
         setDatePickerListener(slWeituoqisuanri);

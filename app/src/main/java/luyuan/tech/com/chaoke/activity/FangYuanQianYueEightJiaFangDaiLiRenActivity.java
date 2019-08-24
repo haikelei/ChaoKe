@@ -82,11 +82,23 @@ public class FangYuanQianYueEightJiaFangDaiLiRenActivity extends BaseActivity {
 
         LoginBean loginBean = UserInfoUtils.getInstance().getUser();
         slZhengjianleixing.setText(loginBean.card_type);
+        slZhengjianleixing.setTag(getCardType(loginBean.card_type));
         inputXingming.setText(loginBean.getUsername());
         inputZhengjianhaoma.setText(loginBean.card_num);
         inputShoujihaoma.setText(loginBean.getPhone());
         inputYouxiangdizhi.setText(loginBean.email);
         inputTongxundizhi.setText(loginBean.address);
+    }
+
+    private String getCardType(String card_type) {
+        if ("身份证".equals(card_type)){
+            return "1";
+        }else if ("护照".equals(card_type)){
+            return "2";
+        }else if ("军人证".equals(card_type)){
+            return "3";
+        }
+        return "1";
     }
 
     private void loadOldData(String totalId) {

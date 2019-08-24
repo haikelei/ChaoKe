@@ -29,6 +29,8 @@ import luyuan.tech.com.chaoke.bean.MianZuCelueParam;
 import luyuan.tech.com.chaoke.bean.QianYueBeanFive;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.net.NetParser;
+import luyuan.tech.com.chaoke.utils.StringUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
 import luyuan.tech.com.chaoke.widget.MianZuCeLueLayout;
@@ -136,12 +138,33 @@ public class FangYuanQianYueFourMianZuCeLueActivity extends BaseActivity {
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("total_id", uploadTotalId)
                 .params("data", getData())
-                .params("type",getType());
+                .params("type", getType());
         if (!TextUtils.isEmpty(oldId)) {
             request.params("old_id", oldId);
         }
 
-        request.execute(new SimpleCallBack<TotalIdBean>() {
+        for (int i = 0; i < list.size(); i++) {
+            String s = list.get(i).getContent();
+            if (StringUtils.isNumber(s)) {
+                try {
+                    Integer integer = Integer.valueOf(s);
+                    if (getType().equals("1")){
+                        if (integer < 1 || integer > 13) {
+                            T.showShort(getBaseContext(), "免租月份必须是1-12之间");
+                            return;
+                        }
+                    }
+                } catch (Exception e) {
+                    T.showShort(getBaseContext(), "免租月份必须是数字类型");
+                    return;
+                }
+            }else {
+                T.showShort(getBaseContext(), "免租月份必须是数字类型");
+                return;
+            }
+        }
+
+        request.execute(new SimpleCallBack<String>() {
 
             @Override
             public void onError(ApiException e) {
@@ -149,20 +172,23 @@ public class FangYuanQianYueFourMianZuCeLueActivity extends BaseActivity {
             }
 
             @Override
-            public void onSuccess(TotalIdBean data) {
-                oldId = data.getOld_id();
-                Intent intent = new Intent(getBaseContext(), FangYuanQianYueFiveActivity.class);
-                intent.putExtra("down_id", downloadTotalId);
-                intent.putExtra("up_id", uploadTotalId);
-                startActivity(intent);
+            public void onSuccess(String data) {
+//                oldId = data.getOld_id();
+                if (NetParser.isOk(data)){
+                    Intent intent = new Intent(getBaseContext(), FangYuanQianYueFiveActivity.class);
+                    intent.putExtra("down_id", downloadTotalId);
+                    intent.putExtra("up_id", uploadTotalId);
+                    startActivity(intent);
+                }
+
             }
         });
     }
 
     private String getType() {
-        if (rb0.isChecked()){
+        if (rb0.isChecked()) {
             return "1";
-        }else {
+        } else {
             return "2";
         }
     }

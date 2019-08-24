@@ -57,7 +57,8 @@ public class LoginMIMaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        etPhone.setText("18723836080");
+//        etPhone.setText("18723836080");
+        etPhone.setText("13100000000");
         etPwd.setText("123456");
         initListener();
     }

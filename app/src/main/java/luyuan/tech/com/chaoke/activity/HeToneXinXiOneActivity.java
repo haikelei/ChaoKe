@@ -106,7 +106,7 @@ public class HeToneXinXiOneActivity extends BaseActivity {
             setDatePickerListener(slChengzujiezhi,bean.getEntrust_end()*1000);
         }
 
-        String[] arr = {"一次性付款","年付","月付","季付","半年付"};
+        String[] arr = {"月付", "季付", "半年付", "年付"};
         setSelectLListener(slFukuanfangshi,arr,"付款方式");
 
         String[] arr1 = {"居住","商业"};

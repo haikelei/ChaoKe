@@ -159,6 +159,7 @@
         <activity android:name=".activity.BoHuiWeiTuoHeTongXiangQingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.QiuZuXuQiuActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ChuZuXuQianActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FangYuanQianYueFourMianZuCeLueActivity" android:screenOrientation="portrait"/>
 
 
 
