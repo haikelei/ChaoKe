@@ -92,4 +92,8 @@ public class InputLayout extends RelativeLayout {
     public boolean getMust(){
         return must;
     }
+
+    public void setHint(String s) {
+        et.setHint(s);
+    }
 }

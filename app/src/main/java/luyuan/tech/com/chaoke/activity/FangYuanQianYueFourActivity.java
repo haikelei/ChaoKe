@@ -46,10 +46,10 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
     SelectLayout slShoucifukuanri;
     @BindView(R.id.sl_shifoudaichewei)
     SelectLayout slShifoudaichewei;
-    @BindView(R.id.sl_mianzukaishiri)
-    SelectLayout slMianzukaishiri;
-    @BindView(R.id.sl_mianzudaoqiri)
-    SelectLayout slMianzudaoqiri;
+//    @BindView(R.id.sl_mianzukaishiri)
+//    SelectLayout slMianzukaishiri;
+//    @BindView(R.id.sl_mianzudaoqiri)
+//    SelectLayout slMianzudaoqiri;
     @BindView(R.id.sl_zujinzhifufangshi)
     SelectLayout slZujinzhifufangshi;
     @BindView(R.id.et_more)
@@ -79,8 +79,8 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
                 loadData();
             }
         });
-        setDatePickerListener(slMianzudaoqiri);
-        setDatePickerListener(slMianzukaishiri);
+//        setDatePickerListener(slMianzudaoqiri);
+//        setDatePickerListener(slMianzukaishiri);
         setDatePickerListener(slShoucifukuanri);
         String[] arr = {"带车位", "不带车位"};
         setSelectLListener(slShifoudaichewei, arr, "是否带车位");
@@ -134,8 +134,8 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
                         inputMeiyuefangzu.setText(data.getRent_price());
                         slShoucifukuanri.setText(data.getFirst_pay());
                         slShifoudaichewei.setSelect(data.getIs_parking());
-                        slMianzukaishiri.setText(data.getRent_begin());
-                        slMianzudaoqiri.setText(data.getRent_end());
+//                        slMianzukaishiri.setText(data.getRent_begin());
+//                        slMianzudaoqiri.setText(data.getRent_end());
                         slZujinzhifufangshi.setSelect(data.getPay_type());
                         etMore.setText(data.getOther_desc());
 
@@ -154,8 +154,8 @@ public class FangYuanQianYueFourActivity extends BaseActivity {
                 .params("rent_price", getValue(inputMeiyuefangzu))
                 .params("first_pay",slShoucifukuanri.getText())
                 .params("is_parking", getValue(slShifoudaichewei))
-                .params("rent_begin", slMianzukaishiri.getText())
-                .params("rent_end",slMianzudaoqiri.getText())
+//                .params("rent_begin", slMianzukaishiri.getText())
+//                .params("rent_end",slMianzudaoqiri.getText())
                 .params("pay_type", getValue(slZujinzhifufangshi))
                 .params("other_desc", etMore.getText().toString().trim())
                 .params("step","4");

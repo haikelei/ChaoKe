@@ -41,8 +41,8 @@ public class FangYuanQianYueSixActivity extends BaseActivity {
     InputLayout inputChanquandizhi;
     @BindView(R.id.input_jianzhumianji)
     InputLayout inputJianzhumianji;
-    @BindView(R.id.input_huxing)
-    InputLayout inputHuxing;
+//    @BindView(R.id.input_huxing)
+//    InputLayout inputHuxing;
     @BindView(R.id.input_gongyouqingkuang)
     InputLayout inputGongyouqingkuang;
     @BindView(R.id.sl_yongtu)
@@ -102,7 +102,7 @@ public class FangYuanQianYueSixActivity extends BaseActivity {
                         oldId = data.getOld_id();
                         inputChanquandizhi.setText(data.getProperty_address());
                         inputJianzhumianji.setText(data.getArea());
-                        inputHuxing.setText(data.getApartment());
+//                        inputHuxing.setText(data.getApartment());
                         inputGongyouqingkuang.setText(data.getShare_desc());
                         slYongtu.setSelect(data.getUsed_type());
                         slFangdaidiya.setSelect(data.getIs_loan());
@@ -122,7 +122,7 @@ public class FangYuanQianYueSixActivity extends BaseActivity {
                 .params("step","6")
                 .params("property_address",getValue(inputChanquandizhi))
                 .params("area", getValue(inputJianzhumianji))
-                .params("apartment",getValue(inputHuxing))
+//                .params("apartment",getValue(inputHuxing))
                 .params("share_desc",getValue(inputGongyouqingkuang))
                 .params("used_type", getValue(slYongtu))
                 .params("is_loan", getValue(slFangdaidiya));

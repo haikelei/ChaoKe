@@ -56,12 +56,14 @@
                 app:mHint="请输入"
                 app:mTitle="建筑面积㎡" />
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:visibility="gone"
                 android:id="@+id/input_huxing"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:must="false"
                 app:mHint="请输入"
                 app:mTitle="户型" />
             <luyuan.tech.com.chaoke.widget.InputLayout

@@ -55,4 +55,8 @@ public class MianZuCeLueLayout extends LinearLayout {
     public void setTitle(String s) {
         tvTitle.setText(s);
     }
+
+    public void setHint(String s) {
+        mInputLayout.setHint(s);
+    }
 }

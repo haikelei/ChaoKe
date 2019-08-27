@@ -78,6 +78,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                android:visibility="gone"
                 app:mHint="请选择"
                 app:mTitle="免租开始日" />
 
@@ -88,6 +89,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                android:visibility="gone"
                 app:mHint="请选择"
                 app:mTitle="免租到期日" />
 

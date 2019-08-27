@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -15,6 +16,8 @@ import com.google.gson.Gson;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 import com.zhouyou.http.request.PostRequest;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +78,22 @@ public class FangYuanQianYueFourMianZuCeLueActivity extends BaseActivity {
             }
         });
         rb0.setChecked(true);
+        rb0.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                for (int i = 0; i < container.getChildCount(); i++) {
+                    if (container.getChildAt(i) instanceof MianZuCeLueLayout) {
+                        MianZuCeLueLayout zuJinCeLueLayout = (MianZuCeLueLayout) container.getChildAt(i);
+                        if (isChecked){
+                            zuJinCeLueLayout.setHint("请输入免租月数");
+                        }else {
+                            zuJinCeLueLayout.setHint("请输入免租天数");
+                        }
+
+                    }
+                }
+            }
+        });
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -220,6 +239,11 @@ public class FangYuanQianYueFourMianZuCeLueActivity extends BaseActivity {
     private void addZelue() {
         int position = container.getChildCount() - 1;
         MianZuCeLueLayout layout = new MianZuCeLueLayout(getBaseContext(), getSupportFragmentManager());
+        if (rb0.isChecked()){
+            layout.setHint("请输入免租月数");
+        }else {
+            layout.setHint("请输入免租天数");
+        }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layout.setTitle("第" + (position + 1) + "年租金策略");
         container.addView(layout, position, layoutParams);
