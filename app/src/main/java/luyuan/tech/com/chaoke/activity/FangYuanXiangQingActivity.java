@@ -2,7 +2,6 @@ package luyuan.tech.com.chaoke.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,12 +15,10 @@ import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
-import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
-import com.amap.api.maps.model.MyLocationStyle;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.youth.banner.Banner;
@@ -95,6 +92,8 @@ public class FangYuanXiangQingActivity extends BaseActivity {
     TextView tvFangyuanleixing;
     @BindView(R.id.tv_wuyeleixing)
     TextView tvWuyeleixing;
+    @BindView(R.id.tv_address)
+    TextView tvAddress;
     private String id;
     private AMap aMap;
     private HousePeiZhiAdapter housePeiZhiAdapter;
@@ -141,12 +140,12 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         llShikanBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (bean==null){
-                    T.showShort(getActivity(),"房源信息获取为空");
+                if (bean == null) {
+                    T.showShort(getActivity(), "房源信息获取为空");
                     return;
                 }
                 Intent intent = new Intent(getBaseContext(), ShiKanActivity.class);
-                intent.putExtra("data",bean );
+                intent.putExtra("data", bean);
                 startActivityForResult(intent, 201);
             }
         });
@@ -182,10 +181,10 @@ public class FangYuanXiangQingActivity extends BaseActivity {
 //        });
 
         //移动位置
-        LatLng localLatLng=new LatLng(data.getLng_pos(), data.getLat_pos());
-        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localLatLng,18));
+        LatLng localLatLng = new LatLng(data.getLng_pos(), data.getLat_pos());
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localLatLng, 18));
         //标记点
-        LatLng latLng = new LatLng(data.getLng_pos(),data.getLat_pos());
+        LatLng latLng = new LatLng(data.getLng_pos(), data.getLat_pos());
         final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title(data.getArea_name()));
     }
 
@@ -242,13 +241,13 @@ public class FangYuanXiangQingActivity extends BaseActivity {
             tvJushi.setText(data.getApartment());
         }
         if (!TextUtils.isEmpty(data.getArea())) {
-            tvSize.setText(data.getArea()+"㎡");
+            tvSize.setText(data.getArea() + "㎡");
         }
 //        tvFangyuanzhuangtai.setText();
         tvChaoxiang.setText(getOrientation(data.getOrientation()));
         tvZhuangxiuqingkuang.setText(getFitUp(data.getFit_up()));
 //        tvZhuangxiuqingkuang.setText();
-        tvFangyuanleixing.setText("房源类型:"+getFangyuanleixing(data.getSource()));
+        tvFangyuanleixing.setText("房源类型:" + getFangyuanleixing(data.getSource()));
         tvWuyeyongtu.setText("物业用途:暂无");
         if (!TextUtils.isEmpty(data.getFloor())) {
             tvLouceng.setText("房源楼层:" + data.getFloor());
@@ -256,6 +255,8 @@ public class FangYuanXiangQingActivity extends BaseActivity {
 //        tvWuyeyongtu.setText();
         tvFankangzhuangtai.setText("看房方式:" + getSeeType(data.getSee_type()));
         bindRecycler(data.getConfigure());
+
+        tvAddress.setText(data.getAdd_details());
     }
 
     private void bindRecycler(List<HouseDetailBean.ConfigureBean> configure) {
@@ -275,7 +276,7 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         }
     }
 
-    public String getFitUp(int i){
+    public String getFitUp(int i) {
 //        {"毛坯", "简装", "精装配置齐全", "精装配置不齐全", "豪华装修"};
         if (i == 1) {
             return "毛坯";
@@ -285,7 +286,7 @@ public class FangYuanXiangQingActivity extends BaseActivity {
             return "精装配置齐全";
         } else if (i == 4) {
             return "精装配置不齐全";
-        }else if (i == 5) {
+        } else if (i == 5) {
             return "豪华装修";
         }
         return "毛坯";
@@ -309,7 +310,7 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         return "智能锁";
     }
 
-    public String getFangyuanleixing(int i){
+    public String getFangyuanleixing(int i) {
 //        {"中介合作", "转介绍", "老客户", "网络端口", "地推", "房东上门", "名单获取", "销冠", "其他"}
         if (i == 1) {
             return "中介合作";
@@ -323,11 +324,11 @@ public class FangYuanXiangQingActivity extends BaseActivity {
             return "地推";
         } else if (i == 6) {
             return "房东上门";
-        }else if (i == 6) {
+        } else if (i == 6) {
             return "名单获取";
-        }else if (i == 6) {
+        } else if (i == 6) {
             return "销冠";
-        }else if (i == 6) {
+        } else if (i == 6) {
             return "其他";
         }
         return "中介合作";

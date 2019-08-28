@@ -1,6 +1,7 @@
 package luyuan.tech.com.chaoke.widget;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import luyuan.tech.com.chaoke.R;
+import luyuan.tech.com.chaoke.utils.T;
 import razerdp.basepopup.BasePopupWindow;
 
 /**
@@ -56,7 +58,7 @@ public class ZuJinPopup extends BasePopupWindow {
         tvZujinbuxian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                select("0","0");
+                select("","");
             }
         });
         tvZujin1500.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +89,22 @@ public class ZuJinPopup extends BasePopupWindow {
             @Override
             public void onClick(View view) {
                 select("4000","999999999999");
+            }
+        });
+        btnZujin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String low = etFrom.getText().toString().trim();
+                String high = etTo.getText().toString().trim();
+                if (TextUtils.isEmpty(low)&&TextUtils.isEmpty(high)){
+                    T.showShort(getContext(),"租金至少填写一个");
+                }else if (TextUtils.isEmpty(low)&&!TextUtils.isEmpty(high)){
+                    select("0",high);
+                }else if (!TextUtils.isEmpty(low)&&TextUtils.isEmpty(high)){
+                    select(low,"999999999");
+                }else if (!TextUtils.isEmpty(low)&&!TextUtils.isEmpty(high)){
+                    select(low,high);
+                }
             }
         });
     }

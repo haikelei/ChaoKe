@@ -31,11 +31,25 @@ public class ZiYingYuanAdapter extends BaseQuickAdapter<HouseBean,BaseViewHolder
         TextView tvName = helper.getView(R.id.tv_name);
         TextView tvOther = helper.getView(R.id.tv_other);
         TextView tvMoney = helper.getView(R.id.tv_money);
+        TextView tvZhuangtai = helper.getView(R.id.tv_zhuangtai);
         ImageView iv = helper.getView(R.id.iv);
         tvName.setText(item.getRoom_name());
         tvOther.setText(item.getArea()+"m²");
         tvMoney.setText(item.getLong_price());
         RequestOptions options = new RequestOptions().centerCrop().error(R.mipmap.default_image);
         Glide.with(helper.itemView.getContext()).load(item.getCover()).apply(options).into(iv);
+        tvZhuangtai.setText(getStatus(item.getType()));
+    }
+
+    public String getStatus(int i){
+//    仅长租", "仅短租", "都可租
+        if (i == 1) {
+            return "仅长租";
+        } else if (i == 2) {
+            return "仅短租";
+        } else if (i == 3) {
+            return "都可租";
+        }
+        return "仅长租";
     }
 }

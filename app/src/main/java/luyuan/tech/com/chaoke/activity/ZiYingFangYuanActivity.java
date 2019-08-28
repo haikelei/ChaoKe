@@ -253,7 +253,7 @@ public class ZiYingFangYuanActivity extends BaseActivity {
         if (!TextUtils.isEmpty(floorMin)){
             request.params("floor_min",floorMin);
         }
-        if (!TextUtils.isEmpty(hasPic)){
+        if (!TextUtils.isEmpty(floorMax)){
             request.params("floor_max",floorMax);
         }
         request.execute(new SimpleCallBack<List<HouseBean>>() {

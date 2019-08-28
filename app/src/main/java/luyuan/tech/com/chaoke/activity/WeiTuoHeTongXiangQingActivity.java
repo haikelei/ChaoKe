@@ -325,11 +325,14 @@ public class WeiTuoHeTongXiangQingActivity extends BaseActivity {
         }
 
 //        装修信息
-        tvGongyuxinxi.setText(getGongyuLeiXing(data.getRenovation().getHouse_type()));
-        tvGaizaoxinxi.setText(data.getRenovation().getReform_data());
-        tvHetongleixing.setText(data.getRenovation().getContract_type());
-        tvZhuangxiuqisuanri.setText(data.getRenovation().getRenovation_begin());
-        tvZhuangxiujiezhiri.setText(data.getRenovation().getRenovation_end());
+        if (data.getRenovation()!=null){
+            tvGongyuxinxi.setText(getGongyuLeiXing(data.getRenovation().getHouse_type()));
+            tvGaizaoxinxi.setText(data.getRenovation().getReform_data());
+            tvHetongleixing.setText(data.getRenovation().getContract_type());
+            tvZhuangxiuqisuanri.setText(data.getRenovation().getRenovation_begin());
+            tvZhuangxiujiezhiri.setText(data.getRenovation().getRenovation_end());
+        }
+
 
 
         //房产信息

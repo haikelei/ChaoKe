@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import cn.aigestudio.datepicker.bizs.themes.DPTManager;
@@ -54,7 +55,7 @@ public class DatePickerDialogFragment  extends DialogFragment {
         }
         DPTManager.getInstance().initCalendar(new MyCalendarTheme());
         datePicker = view.findViewById(R.id.date_picker);
-        datePicker.setDate(2019, 7);
+        datePicker.setDate(getYear(), getMonth());
         if (single){
             datePicker.setMode(DPMode.SINGLE);
             datePicker.setOnDatePickedListener(new DatePicker.OnDatePickedListener() {
@@ -82,6 +83,24 @@ public class DatePickerDialogFragment  extends DialogFragment {
         }
 
         return view;
+    }
+
+    /**
+     * 获取年
+     * @return
+     */
+    public static int getYear(){
+        Calendar cd = Calendar.getInstance();
+        return  cd.get(Calendar.YEAR);
+    }
+
+    /**
+     * 获取月
+     * @return
+     */
+    public static int getMonth(){
+        Calendar cd = Calendar.getInstance();
+        return  cd.get(Calendar.MONTH)+1;
     }
 
     @Override

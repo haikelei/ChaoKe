@@ -312,12 +312,21 @@
                 android:layout_marginTop="1dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="220dp">
 
                 <com.amap.api.maps.MapView
                     android:id="@+id/map"
+                    android:layout_above="@id/tv_address"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></com.amap.api.maps.MapView>
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/tv_address"
+                    android:text="位置信息"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </RelativeLayout>
 
             <TextView
