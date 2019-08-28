@@ -56,25 +56,25 @@ public class ZuKePaiXuPopup extends BasePopupWindow {
         tvPaixuZujinlow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setSelect("1");
+                setSelect("2");
             }
         });
         tvPaixuZujinhigh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setSelect("2");
+                setSelect("1");
             }
         });
         tvPaixuMianjilow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setSelect("3");
+                setSelect("4");
             }
         });
         tvPaixuMianjihigh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setSelect("4");
+                setSelect("3");
             }
         });
         tvShijian.setOnClickListener(new View.OnClickListener() {

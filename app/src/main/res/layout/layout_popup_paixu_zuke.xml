@@ -27,7 +27,7 @@
         android:layout_height="40dp"
         android:gravity="center_vertical"
         android:paddingLeft="25dp"
-        android:text="租金由高到低" />
+        android:text="租金由低到高" />
 
     <View
         android:layout_width="match_parent"

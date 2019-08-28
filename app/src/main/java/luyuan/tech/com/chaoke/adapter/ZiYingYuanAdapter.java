@@ -34,11 +34,17 @@ public class ZiYingYuanAdapter extends BaseQuickAdapter<HouseBean,BaseViewHolder
         TextView tvZhuangtai = helper.getView(R.id.tv_zhuangtai);
         ImageView iv = helper.getView(R.id.iv);
         tvName.setText(item.getRoom_name());
-        tvOther.setText(item.getArea()+"m²");
         tvMoney.setText(item.getLong_price());
         RequestOptions options = new RequestOptions().centerCrop().error(R.mipmap.default_image);
         Glide.with(helper.itemView.getContext()).load(item.getCover()).apply(options).into(iv);
         tvZhuangtai.setText(getStatus(item.getType()));
+
+        String s = item.getApartment()
+                +"|"+item.getArea()+"m²"+"|"
+                +getOrientation(item.getOrientation())
+                +"|"+getFitUp(item.getFit_up())
+                +"\n"+item.getRegion();
+        tvOther.setText(s);
     }
 
     public String getStatus(int i){
@@ -51,5 +57,35 @@ public class ZiYingYuanAdapter extends BaseQuickAdapter<HouseBean,BaseViewHolder
             return "都可租";
         }
         return "仅长租";
+    }
+
+    public String getOrientation(int i) {
+//        朝向 1朝南 2为朝北 3为朝东 4为朝西
+        if (i == 1) {
+            return "朝南";
+        } else if (i == 2) {
+            return "朝北";
+        } else if (i == 3) {
+            return "朝东";
+        } else if (i == 4) {
+            return "朝西";
+        }
+        return "朝南";
+    }
+
+    public String getFitUp(int i) {
+//        {"毛坯", "简装", "精装配置齐全", "精装配置不齐全", "豪华装修"};
+        if (i == 1) {
+            return "毛坯";
+        } else if (i == 2) {
+            return "简装";
+        } else if (i == 3) {
+            return "精装配置齐全";
+        } else if (i == 4) {
+            return "精装配置不齐全";
+        } else if (i == 5) {
+            return "豪华装修";
+        }
+        return "毛坯";
     }
 }
