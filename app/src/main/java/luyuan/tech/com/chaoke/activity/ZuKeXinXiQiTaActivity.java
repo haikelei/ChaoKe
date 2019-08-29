@@ -368,9 +368,13 @@ public class ZuKeXinXiQiTaActivity extends BaseActivity {
                 .params("people_num", slRuzhurenshu.getText().trim())
                 .params("checkin_time", slRuzhushijian.getText().trim())
                 .params("desc", etMore.getText().toString().trim());
+        if (!TextUtils.isEmpty(id)) {
+            request.params("id", id);
+        }
         if (!TextUtils.isEmpty(tenant_id)) {
             request.params("id", tenant_id);
         }
+
         request.execute(new SimpleCallBack<String>() {
 
             @Override

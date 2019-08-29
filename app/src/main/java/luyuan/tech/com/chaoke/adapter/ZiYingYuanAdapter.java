@@ -40,9 +40,9 @@ public class ZiYingYuanAdapter extends BaseQuickAdapter<HouseBean,BaseViewHolder
         tvZhuangtai.setText(getStatus(item.getType()));
 
         String s = item.getApartment()
-                +"|"+item.getArea()+"m²"+"|"
-                +getOrientation(item.getOrientation())
-                +"|"+getFitUp(item.getFit_up())
+                +"|" +item.getArea()+"m²"
+                +"|" +getOrientation(item.getOrientation()) +
+                "|"+getFitUp(item.getFit_up())
                 +"\n"+item.getRegion();
         tvOther.setText(s);
     }

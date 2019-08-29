@@ -207,7 +207,7 @@ public class KaiFaFangYuanActivity extends BaseActivity {
                 KaiFaFangYuanActivity.this.rent_state = rentState;
                 KaiFaFangYuanActivity.this.hasPic = hasPic;
                 KaiFaFangYuanActivity.this.floorMin = floormin;
-                KaiFaFangYuanActivity.this.floorMax = floorMax;
+                KaiFaFangYuanActivity.this.floorMax = floormax;
                 KaiFaFangYuanActivity.this.orientation = orientation;
             }
         });
