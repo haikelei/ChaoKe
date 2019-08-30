@@ -53,7 +53,6 @@
                 android:id="@+id/tv_wuyedizhi"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="这是地址"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
@@ -72,7 +71,6 @@
                 android:id="@+id/tv_chuzudizhi"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="这是地址"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
@@ -91,7 +89,6 @@
                 android:id="@+id/tv_zukexingming"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="这是地址"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
@@ -110,7 +107,6 @@
                 android:id="@+id/tv_shoujihaoma"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="这是地址"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
@@ -129,7 +125,6 @@
                 android:id="@+id/tv_qianyueshijian"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="这是地址"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
@@ -173,7 +168,7 @@
                     android:layout_height="180dp" />
                 <TextView
                     android:layout_marginTop="20dp"
-                    android:text="手机扫一扫,立即APP签约"
+                    android:text="微信扫一扫,立即APP签约"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

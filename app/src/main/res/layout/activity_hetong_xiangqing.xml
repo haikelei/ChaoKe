@@ -155,7 +155,7 @@
                     android:layout_height="180dp" />
                 <TextView
                     android:layout_marginTop="20dp"
-                    android:text="手机扫一扫,立即APP签约"
+                    android:text="微信扫一扫,立即APP签约"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

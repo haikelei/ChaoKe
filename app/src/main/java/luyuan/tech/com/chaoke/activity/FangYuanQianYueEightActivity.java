@@ -75,8 +75,6 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
     RecyclerView rvShenfenzhengmian;
     @BindView(R.id.rv_shenfenfanmian)
     RecyclerView rvShenfenfanmian;
-    @BindView(R.id.input_chanquanzhengbianhao)
-    InputLayout inputChanquanzhengbianhao;
     private String downloadTotalId;
     private String uploadTotalId;
 
@@ -211,7 +209,6 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
                         listShenfenfanmian.add(0,new ImageBean(data.getCard_fpic()));
                         adapterShenfenfanmian.notifyDataSetChanged();
                         adapterShenfenzhengmian.notifyDataSetChanged();
-                        inputChanquanzhengbianhao.setText(data.getProperty_num());
                     }
                 });
 
@@ -227,16 +224,31 @@ public class FangYuanQianYueEightActivity extends BaseActivity {
         PostRequest request = HttpManager.post(HttpManager.FANGYUANQIANYUE)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("total_id", uploadTotalId)
-                .params("step", "8")
-                .params("people_type", getValue(slChanquanrenleixing))
-                .params("card_type", getValue(slZhengjianleixing))
-                .params("username", getValue(inputXingming))
-                .params("card_num", getValue(inputZhengjianhaoma))
-                .params("card_begin", slZhengjiankaishiri.getText())
-                .params("card_end", slZhengjianjiezhiri.getText())
-                .params("card_zpic", getSingleJson(listShenfenzhengmian))
-                .params("card_fpic", getSingleJson(listShenfenfanmian))
-                .params("property_num", getValue(inputChanquanzhengbianhao));
+                .params("step", "8");
+        if (!TextUtils.isEmpty(getValue(slChanquanrenleixing))){
+            request.params("people_type",getValue(slChanquanrenleixing));
+        }
+        if (!TextUtils.isEmpty(getValue(slZhengjianleixing))){
+            request.params("card_type",getValue(slZhengjianleixing));
+        }
+        if (!TextUtils.isEmpty(getValue(inputXingming))){
+            request.params("username",getValue(inputXingming));
+        }
+        if (!TextUtils.isEmpty(getValue(inputZhengjianhaoma))){
+            request.params("card_num",getValue(inputZhengjianhaoma));
+        }
+        if (!TextUtils.isEmpty(slZhengjianjiezhiri.getText())){
+            request.params("card_end",slZhengjianjiezhiri.getText());
+        }
+        if (!TextUtils.isEmpty(slZhengjiankaishiri.getText())){
+            request.params("card_begin",slZhengjiankaishiri.getText());
+        }
+        if (!TextUtils.isEmpty(getSingleJson(listShenfenzhengmian))){
+            request.params("card_zpic",getSingleJson(listShenfenzhengmian));
+        }
+        if (!TextUtils.isEmpty(getSingleJson(listShenfenfanmian))){
+            request.params("card_fpic",getSingleJson(listShenfenfanmian));
+        }
         if (!TextUtils.isEmpty(oldId)) {
             request.params("old_id", oldId);
         }

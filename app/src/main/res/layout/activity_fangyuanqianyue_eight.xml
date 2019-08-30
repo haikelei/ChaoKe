@@ -53,6 +53,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:must="false"
                 app:mHint="请选择"
                 app:mTitle="产权人类型" />
 
@@ -63,6 +64,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:must="false"
                 app:mHint="请选择"
                 app:mTitle="证件类型" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -72,6 +74,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:must="false"
                 app:mHint="请输入"
                 app:mTitle="姓名" />
             <luyuan.tech.com.chaoke.widget.InputLayout
@@ -81,6 +84,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:must="false"
                 app:mHint="请输入"
                 app:mTitle="证件号码" />
             <luyuan.tech.com.chaoke.widget.SelectLayout
@@ -90,6 +94,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:must="false"
                 app:mHint="请选择"
                 app:mTitle="证件有效开始日" />
             <luyuan.tech.com.chaoke.widget.SelectLayout
@@ -99,6 +104,7 @@
                 android:background="#ffffff"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:must="false"
                 app:mHint="请选择"
                 app:mTitle="证件有效截止日" />
             <LinearLayout
@@ -147,6 +153,7 @@
             </LinearLayout>
 
             <luyuan.tech.com.chaoke.widget.InputLayout
+                android:visibility="gone"
                 android:id="@+id/input_chanquanzhengbianhao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

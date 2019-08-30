@@ -50,6 +50,7 @@ public class HouseDetailBean implements Serializable {
     private long entrust_end;
     private String true_price;
     public String true_price2;
+    public String landlady_phone;
 
     public String getTrue_price() {
         return true_price;

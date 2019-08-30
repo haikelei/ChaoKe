@@ -139,7 +139,8 @@
             android:background="#ffffff"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            app:mHint="请选择(必填)"
+            app:must="false"
+            app:mHint="请选择(非必填)"
             app:mTitle="他租到期日" />
 
         <luyuan.tech.com.chaoke.widget.SelectLayout

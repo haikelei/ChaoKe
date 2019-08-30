@@ -81,7 +81,7 @@ public class HeToneXinXiTwoActivity extends BaseActivity {
 
         inputZujin.setText(houseDetailBean.true_price2);
 
-        String[] arr = {"压1","压2","无押金"};
+        String[] arr = {"押1","押2","无押金"};
         setSelectLListener(slYajinleixing,arr,"押金类型");
 
         String[] arr1 = {"一次性结清","分期"};

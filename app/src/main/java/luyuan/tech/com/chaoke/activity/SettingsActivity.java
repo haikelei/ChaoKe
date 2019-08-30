@@ -28,6 +28,8 @@ public class SettingsActivity extends BaseActivity {
     Button btnNext;
     @BindView(R.id.rl_change_password)
     RelativeLayout rlChangePassword;
+    @BindView(R.id.btn_login)
+    Button btnLogin;
 
 
     @Override
@@ -35,6 +37,7 @@ public class SettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         ButterKnife.bind(this);
+        initView();
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,9 +54,26 @@ public class SettingsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 UserInfoUtils.getInstance().logout();
-                startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                finish();
             }
         });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                finish();
+            }
+        });
+    }
+
+    private void initView() {
+        if (UserInfoUtils.getInstance().isLogin()) {
+            btnNext.setVisibility(View.VISIBLE);
+            btnLogin.setVisibility(View.GONE);
+        }else {
+            btnNext.setVisibility(View.GONE);
+            btnLogin.setVisibility(View.VISIBLE);
+        }
     }
 
 

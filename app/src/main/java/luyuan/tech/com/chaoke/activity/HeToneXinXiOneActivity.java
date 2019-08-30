@@ -109,8 +109,8 @@ public class HeToneXinXiOneActivity extends BaseActivity {
         String[] arr = {"月付", "季付", "半年付", "年付"};
         setSelectLListener(slFukuanfangshi,arr,"付款方式");
 
-        String[] arr1 = {"居住","商业"};
-        setSelectLListener(slYongtu,arr1,"用途");
+//        String[] arr1 = {"居住","商业"};
+//        setSelectLListener(slYongtu,arr1,"用途");
 
 
 
@@ -132,7 +132,7 @@ public class HeToneXinXiOneActivity extends BaseActivity {
                 .params("address",inputTongxundizhi.getText())
                 .params("lessee", SettingManager.getInstance().getZuKeDetailBean().getId()+"")
                 .params("payway",String.valueOf(i+1))
-                .params("purpose",slYongtu.getText().equals("居住")?"1":"2")
+//                .params("purpose",slYongtu.getText().equals("居住")?"1":"2")
                 .params("postal_address",inputTongxundizhi.getText())
                 .params("first_paytime",slShoucifukuan.getText())
                 .params("lessee_starttime",slChengzuqisuan.getText())

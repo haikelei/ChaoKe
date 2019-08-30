@@ -142,6 +142,10 @@ public class ZuKeXinXiActivity extends BaseActivity {
 
     private String id;
     private void loadData() {
+        if (TextUtils.isEmpty(inputShouji.getText().trim())){
+            T.showShort(getActivity(),"请填写完整手机号");
+            return;
+        }
         if (!checkEmptyInfo()) {
             return;
         }

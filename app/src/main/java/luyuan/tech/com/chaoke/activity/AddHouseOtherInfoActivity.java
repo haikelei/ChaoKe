@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+import com.zhouyou.http.request.PostRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +76,7 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
     SelectLayout slZhuangxiu;
     @BindView(R.id.sl_fangwuyongtu)
     SelectLayout slFangwuyongtu;
-//    @BindView(R.id.sl_duanzu)
+    //    @BindView(R.id.sl_duanzu)
 //    SelectLayout slDuanzu;
     @BindView(R.id.sl_shoucichuzu)
     SelectLayout slShoucichuzu;
@@ -188,11 +189,7 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
         if (!checkEmptyInfo()) {
             return;
         }
-        if (TextUtils.isEmpty(config)){
-            T.showShort(getActivity(), "请选择配置");
-            return;
-        }
-        HttpManager.post(HttpManager.FABUTWO)
+        PostRequest postRequest = HttpManager.post(HttpManager.FABUTWO)
                 .params("token", UserInfoUtils.getInstance().getToken())
                 .params("ren_id", id)
                 .params("long_price", getValue(inputMoney))
@@ -207,32 +204,37 @@ public class AddHouseOtherInfoActivity extends BaseActivity {
                 .params("is_toilet", getValue(clDuwei))
                 .params("is_balcony", getValue(clYangtai))
                 .params("is_bw", getValue(clPiaochaung))
-                .params("configure", config)
                 .params("orientation", getValue(slChaoxiang))
                 .params("company_id", getValue(slZulingongsi))
-                .params("expiretime", slDaoqiri.getText().toString())
                 .params("see_time", slKanfangri.getText().toString())
                 .params("see_type", getValue(slKanfangfangshi))
                 .params("describe", etBeizhu.getText().toString().trim())
                 .params("room", getValue(inputShi))
                 .params("office", getValue(inputTing))
-                .params("guard", getValue(inputWei))
-                .execute(new SimpleCallBack<String>() {
+                .params("guard", getValue(inputWei));
+        if (!TextUtils.isEmpty(slDaoqiri.getText().toString())) {
+            postRequest.params("expiretime", slDaoqiri.getText().toString());
+        }
+        if (!TextUtils.isEmpty(config)) {
+            postRequest.params("configure", config);
+            return;
+        }
+        postRequest.execute(new SimpleCallBack<String>() {
 
-                    @Override
-                    public void onError(ApiException e) {
-                        T.showShort(getContext(), e.getMessage());
-                    }
+            @Override
+            public void onError(ApiException e) {
+                T.showShort(getContext(), e.getMessage());
+            }
 
-                    @Override
-                    public void onSuccess(String s) {
-                        if (NetParser.isOk(s)) {
-                            T.showShort(getActivity(), "新增成功");
-                            setResult(RESULT_OK);
-                            finish();
-                        }
-                    }
-                });
+            @Override
+            public void onSuccess(String s) {
+                if (NetParser.isOk(s)) {
+                    T.showShort(getActivity(), "新增成功");
+                    setResult(RESULT_OK);
+                    finish();
+                }
+            }
+        });
     }
 
     private void createDataPickerDialog(final boolean single, final SelectLayout selectLayout) {

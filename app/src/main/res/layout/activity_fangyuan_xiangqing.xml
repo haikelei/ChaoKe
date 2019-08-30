@@ -268,9 +268,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
                     <TextView
-                        android:id="@+id/tv_wuyeyongtu"
+                        android:id="@+id/tv_wuyeleixing"
                         android:gravity="center_vertical"
-                        android:text="物业用途:住宅"
+                        android:text="物业类型:住宅"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
@@ -282,20 +282,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_marginBottom="20dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-                    <TextView
-                        android:id="@+id/tv_wuyeleixing"
-                        android:gravity="center_vertical"
-                        android:text="物业类型:住宅"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
 
-                </LinearLayout>
             </LinearLayout>
             <TextView
                 android:gravity="center_vertical"

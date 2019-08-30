@@ -96,4 +96,15 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_login"
+        android:textSize="16sp"
+        android:text="登录"
+        android:textColor="#60d1c8"
+        android:background="#ffffff"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 </LinearLayout>

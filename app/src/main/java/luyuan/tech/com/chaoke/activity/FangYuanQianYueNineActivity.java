@@ -78,7 +78,7 @@ public class FangYuanQianYueNineActivity extends BaseActivity {
             }
         });
 
-        String[] arr = {"产权人","共有产权人"};
+        String[] arr = {"产权人","共有产权人","出租人"};
         setSelectLListener(slShoukuanrenleixing,arr,"收款人类型");
         String[] arr1 = {"居民身份证","护照","军人证"};
         setSelectLListener(slZhengjianleixing,arr1,"证件类型");

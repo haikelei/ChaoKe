@@ -104,7 +104,7 @@ public class LineFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(LoginEvent event) {
-        if (list.size() == 0) {
+        if (list.size() == 0&&UserInfoUtils.getInstance().isLogin()) {
             loadData();
         }
     }

@@ -68,8 +68,6 @@ public class FangYuanXiangQingActivity extends BaseActivity {
     TextView tvZhuangxiuqingkuang;
     @BindView(R.id.tv_louceng)
     TextView tvLouceng;
-    @BindView(R.id.tv_wuyeyongtu)
-    TextView tvWuyeyongtu;
     @BindView(R.id.tv_fankangzhuangtai)
     TextView tvFankangzhuangtai;
     @BindView(R.id.ll_shoufang_bottom)
@@ -160,7 +158,10 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         llCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                callPhone("18888888888");
+                if (bean==null||TextUtils.isEmpty(bean.landlady_phone)){
+                    return;
+                }
+                callPhone(bean.landlady_phone);
             }
         });
 //        initMap();
@@ -248,11 +249,9 @@ public class FangYuanXiangQingActivity extends BaseActivity {
         tvZhuangxiuqingkuang.setText(getFitUp(data.getFit_up()));
 //        tvZhuangxiuqingkuang.setText();
         tvFangyuanleixing.setText("房源类型:" + getFangyuanleixing(data.getSource()));
-        tvWuyeyongtu.setText("物业用途:暂无");
         if (!TextUtils.isEmpty(data.getFloor())) {
             tvLouceng.setText("房源楼层:" + data.getFloor());
         }
-//        tvWuyeyongtu.setText();
         tvFankangzhuangtai.setText("看房方式:" + getSeeType(data.getSee_type()));
         bindRecycler(data.getConfigure());
 
