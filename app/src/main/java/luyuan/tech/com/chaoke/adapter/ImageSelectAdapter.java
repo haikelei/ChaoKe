@@ -2,6 +2,7 @@ package luyuan.tech.com.chaoke.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -39,9 +40,10 @@ public class ImageSelectAdapter extends BaseMultiItemQuickAdapter<ImageBean,Base
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ImageBean item) {
+    protected void convert(final BaseViewHolder helper, ImageBean item) {
         if (!item.isAddItem()){
             ImageView iv = helper.getView(R.id.iv);
+            ImageView ivDelete = helper.getView(R.id.iv_delete);
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.error(R.mipmap.default_image);
             String path;
@@ -51,6 +53,13 @@ public class ImageSelectAdapter extends BaseMultiItemQuickAdapter<ImageBean,Base
                 path = Constant.IMAGE_PRE+item.getPath();
             }
             Glide.with(helper.itemView.getContext()).load(path).apply(requestOptions).into(iv);
+            ivDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getData().remove(helper.getAdapterPosition());
+                    notifyDataSetChanged();
+                }
+            });
         }
     }
 }

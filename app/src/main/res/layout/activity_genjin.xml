@@ -27,7 +27,7 @@
 
     <luyuan.tech.com.chaoke.widget.SelectLayout
         android:id="@+id/sl_daikanjilu"
-        app:mTitle="带看记录"
+        app:mTitle="跟进类型"
         app:mHint="请选择"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"

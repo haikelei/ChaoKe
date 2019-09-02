@@ -25,6 +25,7 @@ import butterknife.OnClick;
 import luyuan.tech.com.chaoke.R;
 import luyuan.tech.com.chaoke.activity.AddHouseOtherInfoActivity;
 import luyuan.tech.com.chaoke.activity.FangYuanQianYueFourMianZuCeLueActivity;
+import luyuan.tech.com.chaoke.activity.FangYuanQianYueSevenActivity;
 import luyuan.tech.com.chaoke.activity.HeToneXinXiFourActivity;
 import luyuan.tech.com.chaoke.activity.HeToneXinXiThreeActivity;
 import luyuan.tech.com.chaoke.base.BaseActivity;
@@ -98,7 +99,7 @@ public class MainActivity extends BaseActivity {
 
     private void loadData() {
 //        startActivity(new Intent(getBaseContext(),HeToneXinXiFourActivity.class));
-//        startActivity(new Intent(getBaseContext(),FangYuanQianYueFourMianZuCeLueActivity.class));
+        startActivity(new Intent(getBaseContext(), FangYuanQianYueSevenActivity.class));
     }
 
     @OnClick({R.id.ll0, R.id.ll1, R.id.ll2, R.id.ll3})

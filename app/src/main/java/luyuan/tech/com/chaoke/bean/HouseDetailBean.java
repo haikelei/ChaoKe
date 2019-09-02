@@ -51,6 +51,15 @@ public class HouseDetailBean implements Serializable {
     private String true_price;
     public String true_price2;
     public String landlady_phone;
+    public String room;
+    public String guard;
+    public String office;
+    public String city_id;
+    public String unit;
+    public String floor_count;
+    public String number;
+    public String rid;
+
 
     public String getTrue_price() {
         return true_price;

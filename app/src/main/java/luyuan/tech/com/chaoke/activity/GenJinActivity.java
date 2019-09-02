@@ -62,7 +62,7 @@ public class GenJinActivity extends BaseActivity {
             }
         });
         String[] arr={"普通跟进","推荐收房","意向跟进","面谈","无法初勘","回访跟进"};
-        setSelectLListener(slDaikanjilu,arr,"带看记录");
+        setSelectLListener(slDaikanjilu,arr,"跟进类型");
 
         String[] arr1={"业主待用 ","非自营在租","业主自用","无效"};
         setSelectLListener(slFangyuuanzhuangtai,arr1,"房源状态");

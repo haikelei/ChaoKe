@@ -181,35 +181,35 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ImageBean imageBean = listDaizhenghaoye.get(position);
-                onSingleClick(imageBean, CODE_Daizhenghaoye);
+                onMultyClick(imageBean, CODE_Daizhenghaoye);
             }
         });
         adapterZhuye.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ImageBean imageBean = listZhuye.get(position);
-                onSingleClick(imageBean, CODE_Zhuye);
+                onMultyClick(imageBean, CODE_Zhuye);
             }
         });
         adapterFujiye.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ImageBean imageBean = listFujiye.get(position);
-                onSingleClick(imageBean, CODE_Fujiye);
+                onMultyClick(imageBean, CODE_Fujiye);
             }
         });
         adapterYuanhuxingtu.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ImageBean imageBean = listYuanhuxingtu.get(position);
-                onSingleClick(imageBean, CODE_Yuanhuxingtu);
+                onMultyClick(imageBean, CODE_Yuanhuxingtu);
             }
         });
         adapterFenhutu.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ImageBean imageBean = listFenhutu.get(position);
-                onSingleClick(imageBean, CODE_Fenhutu);
+                onMultyClick(imageBean, CODE_Fenhutu);
             }
         });
         adapterQita.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -362,11 +362,21 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
                         inputChanquanzhengbianhao.setText(data.getProperty_num());
                         listShenfenzhengmian.add(0,new ImageBean(data.getCard_zpic()));
                         listShenfenfanmian.add(0,new ImageBean(data.getCard_fpic()));
-                        listDaizhenghaoye.add(0,new ImageBean(data.getNum_pic()));
-                        listZhuye.add(0,new ImageBean(data.getHome_pic()));
-                        listFujiye.add(0,new ImageBean(data.getAttach_pic()));
-                        listYuanhuxingtu.add(0,new ImageBean(data.getOld_pic()));
-                        listFenhutu.add(0,new ImageBean(data.getHousehold_pic()));
+                        for (int i = 0; i < data.getNum_pic().size(); i++) {
+                            listDaizhenghaoye.add(0,new ImageBean(data.getNum_pic().get(i)));
+                        }
+                        for (int i = 0; i < data.getHome_pic().size(); i++) {
+                            listZhuye.add(0,new ImageBean(data.getHome_pic().get(i)));
+                        }
+                        for (int i = 0; i < data.getAttach_pic().size(); i++) {
+                            listFujiye.add(0,new ImageBean(data.getAttach_pic().get(i)));
+                        }
+                        for (int i = 0; i < data.getOld_pic().size(); i++) {
+                            listYuanhuxingtu.add(0,new ImageBean(data.getOld_pic().get(i)));
+                        }
+                        for (int i = 0; i < data.getHousehold_pic().size(); i++) {
+                            listFenhutu.add(0,new ImageBean(data.getHousehold_pic().get(i)));
+                        }
                         for (int i = 0; i < data.getOther_pic().size(); i++) {
                             listQita.add(0,new ImageBean(data.getOther_pic().get(i)));
                         }
@@ -403,11 +413,11 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
                 .params("card_fpic", getSingleJson(listShenfenfanmian))
                 .params("property_type", getValue(slChanquanzhengleixing))
                 .params("property_num", getValue(inputChanquanzhengbianhao))
-                .params("num_pic", getSingleJson(listDaizhenghaoye))
-                .params("home_pic", getSingleJson(listZhuye))
-                .params("attach_pic", getSingleJson(listFujiye))
-                .params("old_pic", getSingleJson(listYuanhuxingtu))
-                .params("household_pic", getSingleJson(listFenhutu))
+                .params("num_pic", getListJson(listDaizhenghaoye))
+                .params("home_pic", getListJson(listZhuye))
+                .params("attach_pic", getListJson(listFujiye))
+                .params("old_pic", getListJson(listYuanhuxingtu))
+                .params("household_pic", getListJson(listFenhutu))
                 .params("other_pic", getListJson(listQita));
         if (!TextUtils.isEmpty(oldId)) {
             request.params("old_id", oldId);
@@ -470,23 +480,23 @@ public class FangYuanQianYueSevenActivity extends BaseActivity {
                     break;
                 case CODE_Daizhenghaoye:
                     // 图片选择结果回调
-                    onSingleResult(data, listDaizhenghaoye, adapterDaizhenghaoye);
+                    onMultyResult(data, listDaizhenghaoye, adapterDaizhenghaoye);
                     break;
                 case CODE_Fujiye:
                     // 图片选择结果回调
-                    onSingleResult(data, listFujiye, adapterFujiye);
+                    onMultyResult(data, listFujiye, adapterFujiye);
                     break;
                 case CODE_Zhuye:
                     // 图片选择结果回调
-                    onSingleResult(data, listZhuye, adapterZhuye);
+                    onMultyResult(data, listZhuye, adapterZhuye);
                     break;
                 case CODE_Yuanhuxingtu:
                     // 图片选择结果回调
-                    onSingleResult(data, listYuanhuxingtu, adapterYuanhuxingtu);
+                    onMultyResult(data, listYuanhuxingtu, adapterYuanhuxingtu);
                     break;
                 case CODE_Fenhutu:
                     // 图片选择结果回调
-                    onSingleResult(data, listFenhutu, adapterFenhutu);
+                    onMultyResult(data, listFenhutu, adapterFenhutu);
                     break;
                 case CODE_Qita:
                     // 图片选择结果回调

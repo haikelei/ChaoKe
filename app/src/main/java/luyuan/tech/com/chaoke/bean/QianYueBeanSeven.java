@@ -21,11 +21,11 @@ public class QianYueBeanSeven {
     private String card_fpic;
     private String property_num;
     private String property_type;
-    private String num_pic;
-    private String home_pic;
-    private String attach_pic;
-    private String old_pic;
-    private String household_pic;
+    private List<String> num_pic;
+    private List<String> home_pic;
+    private List<String> attach_pic;
+    private List<String> old_pic;
+    private List<String> household_pic;
     private List<String> other_pic;
 
     public String getOld_id() {
@@ -116,43 +116,43 @@ public class QianYueBeanSeven {
         this.property_type = property_type;
     }
 
-    public String getNum_pic() {
+    public List<String> getNum_pic() {
         return num_pic;
     }
 
-    public void setNum_pic(String num_pic) {
+    public void setNum_pic(List<String> num_pic) {
         this.num_pic = num_pic;
     }
 
-    public String getHome_pic() {
+    public List<String> getHome_pic() {
         return home_pic;
     }
 
-    public void setHome_pic(String home_pic) {
+    public void setHome_pic(List<String> home_pic) {
         this.home_pic = home_pic;
     }
 
-    public String getAttach_pic() {
+    public List<String> getAttach_pic() {
         return attach_pic;
     }
 
-    public void setAttach_pic(String attach_pic) {
+    public void setAttach_pic(List<String> attach_pic) {
         this.attach_pic = attach_pic;
     }
 
-    public String getOld_pic() {
+    public List<String> getOld_pic() {
         return old_pic;
     }
 
-    public void setOld_pic(String old_pic) {
+    public void setOld_pic(List<String> old_pic) {
         this.old_pic = old_pic;
     }
 
-    public String getHousehold_pic() {
+    public List<String> getHousehold_pic() {
         return household_pic;
     }
 
-    public void setHousehold_pic(String household_pic) {
+    public void setHousehold_pic(List<String> household_pic) {
         this.household_pic = household_pic;
     }
 

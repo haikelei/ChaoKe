@@ -302,7 +302,7 @@ public class HttpManager {
     //免租策略上传
     public static final String MIANZUCELUE_SHANGCHUAN = "/api/Agent/free_strategy";
     //免租策略下载
-    public static final String MIANZUCELUE_XIAZAI = "/api/Agent/show_free_strategy\n";
+    public static final String MIANZUCELUE_XIAZAI = "/api/Agent/show_free_strategy";
 
 
 

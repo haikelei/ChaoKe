@@ -26,6 +26,7 @@ import luyuan.tech.com.chaoke.bean.QianYueBeanOne;
 import luyuan.tech.com.chaoke.bean.TotalIdBean;
 import luyuan.tech.com.chaoke.bean.XiaoQuBean;
 import luyuan.tech.com.chaoke.net.HttpManager;
+import luyuan.tech.com.chaoke.utils.AppStorageUtils;
 import luyuan.tech.com.chaoke.utils.StringUtils;
 import luyuan.tech.com.chaoke.utils.T;
 import luyuan.tech.com.chaoke.utils.UserInfoUtils;
@@ -79,6 +80,9 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         ButterKnife.bind(this);
         if (getIntent() != null) {
             id = getIntent().getStringExtra("id");
+            if (!TextUtils.isEmpty(id)){
+                loadHouseDetail();
+            }
         }
 
         ivBack.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +127,28 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         }
     }
 
+    private void loadHouseDetail() {
+        HttpManager.post(HttpManager.HOUSE_DETAIL)
+                .params("token", UserInfoUtils.getInstance().getToken())
+                .params("id", id)
+                .execute(new SimpleCallBack<HouseDetailBean>() {
+
+                    @Override
+                    public void onError(ApiException e) {
+                        T.showShort(getBaseContext(), e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(HouseDetailBean data) {
+                        inputLou.setText(data.floor_count);
+                        inputDanyuan.setText(data.unit);
+                        inputHao.setText(data.number);
+                        slUnityName.setText(data.getArea_name());
+                        bean.setId(Integer.valueOf(data.rid));
+                    }
+                });
+    }
+
     private void createDialog(String[] arr, final SelectLayout sl) {
         ArrayList<ItemBean> datas = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
@@ -140,6 +166,8 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
             }
         });
     }
+
+
 
 
     private void loadOldData(String totalId) {
@@ -220,7 +248,7 @@ public class FangYuanQianYueOneActivity extends BaseActivity {
         });
     }
 
-    private XiaoQuBean bean;
+    private XiaoQuBean bean = new XiaoQuBean();
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
